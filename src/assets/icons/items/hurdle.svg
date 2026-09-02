@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    hurdle — athletics track hurdle. Red top bar, white uprights, gold feet, black shadow.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="48" cy="90" rx="44" ry="6" fill="#3A2A20"/>
+
+  <!-- ══ BASE FEET (L-shaped feet) ══ -->
+  <!-- Left foot shadow -->
+  <rect x="6"  y="70" width="24" height="10" rx="4" fill="#3A2A20"/>
+  <rect x="6"  y="58" width="8"  height="24" rx="4" fill="#3A2A20"/>
+  <!-- Left foot -->
+  <rect x="2"  y="66" width="24" height="10" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="2"  y="54" width="8"  height="24" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Right foot shadow -->
+  <rect x="66" y="70" width="24" height="10" rx="4" fill="#3A2A20"/>
+  <rect x="82" y="58" width="8"  height="24" rx="4" fill="#3A2A20"/>
+  <!-- Right foot -->
+  <rect x="70" y="66" width="24" height="10" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="86" y="54" width="8"  height="24" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ UPRIGHTS ══ -->
+  <!-- Left upright shadow -->
+  <rect x="8"  y="14" width="10" height="58" rx="5" fill="#3A2A20"/>
+  <!-- Left upright -->
+  <rect x="4"  y="10" width="10" height="58" rx="5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Right upright shadow -->
+  <rect x="82" y="14" width="10" height="58" rx="5" fill="#3A2A20"/>
+  <!-- Right upright -->
+  <rect x="82" y="10" width="10" height="58" rx="5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ HORIZONTAL BAR ══ -->
+  <!-- Bar shadow -->
+  <rect x="4"  y="16" width="88" height="14" rx="5" fill="#3A2A20"/>
+  <!-- Bar body (top section red, bottom cream — regulation colours) -->
+  <rect x="2"  y="10" width="92" height="14" rx="5" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Cream lower half of bar -->
+  <rect x="2"  y="17" width="92" height="7"  rx="3" fill="#F5E9D0"/>
+  <!-- Division line -->
+  <line x1="2" y1="17" x2="94" y2="17" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ PIVOT NOTCHES (where bar rests, can be knocked off) ══ -->
+  <rect x="4"  y="10" width="4"  height="4" rx="1" fill="#E0A94A"/>
+  <rect x="88" y="10" width="4"  height="4" rx="1" fill="#E0A94A"/>
+
+  <!-- ══ TRACK LINE ══ -->
+  <rect x="0" y="82" width="96" height="5" rx="2" fill="#C8102E"/>
+  <rect x="0" y="86" width="96" height="3" rx="1" fill="#F5E9D0"/>
+</svg>

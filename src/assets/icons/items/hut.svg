@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    hut — tropical bungalow/beach hut. Bamboo stilts, thatched roof, wooden walls.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="91" rx="44" ry="5" fill="#3A2A20"/>
+
+  <!-- ══ STILTS (bamboo poles) ══ -->
+  <rect x="16" y="62" width="6" height="28" rx="3" fill="#C89830" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="44" y="62" width="6" height="28" rx="3" fill="#C89830" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="74" y="62" width="6" height="28" rx="3" fill="#C89830" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Bamboo nodes -->
+  <rect x="14" y="74" width="10" height="3" rx="1.5" fill="#B08020"/>
+  <rect x="42" y="76" width="10" height="3" rx="1.5" fill="#B08020"/>
+  <rect x="72" y="72" width="10" height="3" rx="1.5" fill="#B08020"/>
+
+  <!-- ══ FLOOR PLATFORM ══ -->
+  <rect x="10" y="58" width="76" height="8" rx="3" fill="#B08020" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Plank lines -->
+  <line x1="26" y1="58" x2="26" y2="66" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="48" y1="58" x2="48" y2="66" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="70" y1="58" x2="70" y2="66" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ WALLS ══ -->
+  <rect x="12" y="34" width="72" height="26" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Wall plank lines -->
+  <line x1="12" y1="42" x2="84" y2="42" stroke="#C89830" stroke-width="1.5"/>
+  <line x1="12" y1="50" x2="84" y2="50" stroke="#C89830" stroke-width="1.5"/>
+
+  <!-- ══ DOOR ══ -->
+  <rect x="38" y="40" width="20" height="22" rx="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="55" cy="51" r="2" fill="#E0A94A"/>
+  <!-- Door planks -->
+  <line x1="48" y1="40" x2="48" y2="62" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ WINDOW ══ -->
+  <rect x="16" y="38" width="16" height="12" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="24" y1="38" x2="24" y2="50" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="16" y1="44" x2="32" y2="44" stroke="#1A1A1A" stroke-width="1"/>
+  <rect x="64" y="38" width="16" height="12" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="72" y1="38" x2="72" y2="50" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="64" y1="44" x2="80" y2="44" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ THATCHED ROOF ══ -->
+  <!-- Roof shadow -->
+  <polygon points="54,4 90,38 10,38" fill="#3A2A20"/>
+  <!-- Roof body -->
+  <polygon points="48,2 88,36 8,36" fill="#7C5D31" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Thatch layers (lighter strips) -->
+  <polygon points="48,2 60,14 36,14" fill="#B08020"/>
+  <polygon points="48,2 74,26 22,26" fill="none" stroke="#E0A94A" stroke-width="3"/>
+  <polygon points="48,2 82,32 14,32" fill="none" stroke="#B08020" stroke-width="2.5"/>
+  <!-- Thatch detail lines on roof face -->
+  <line x1="48" y1="2"  x2="32" y2="36" stroke="#C89830" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="48" y1="2"  x2="38" y2="36" stroke="#C89830" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="48" y1="2"  x2="58" y2="36" stroke="#C89830" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="48" y1="2"  x2="64" y2="36" stroke="#C89830" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Ridge cap -->
+  <rect x="40" y="0" width="16" height="6" rx="3" fill="#B08020" stroke="#1A1A1A" stroke-width="1.5"/>
+</svg>

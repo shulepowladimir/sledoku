@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    sculpture — classical bust on a pedestal. Stone bust, cream pedestal, teal bronze detail.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="91" rx="34" ry="5" fill="#3A2A20"/>
+
+  <!-- ══ PEDESTAL ══ -->
+  <!-- Pedestal shadow -->
+  <rect x="20" y="62" width="60" height="28" rx="4" fill="#3A2A20"/>
+  <!-- Pedestal top cap -->
+  <rect x="18" y="58" width="60" height="8"  rx="3" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Pedestal column -->
+  <rect x="26" y="64" width="44" height="22" rx="2" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Pedestal relief lines -->
+  <rect x="28" y="68" width="40" height="3" rx="1" fill="#888880"/>
+  <rect x="28" y="76" width="40" height="3" rx="1" fill="#888880"/>
+  <!-- Base -->
+  <rect x="16" y="84" width="64" height="6" rx="3" fill="#888880" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ NECK/TORSO (bust base) ══ -->
+  <!-- Shadow -->
+  <rect x="32" y="42" width="36" height="18" rx="4" fill="#3A2A20"/>
+  <!-- Torso -->
+  <rect x="28" y="38" width="36" height="22" rx="4" fill="#C0BCAE" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Draped fabric lines -->
+  <path d="M32,42 Q48,40 60,46" fill="none" stroke="#A8A8A0" stroke-width="2" stroke-linecap="round"/>
+  <path d="M30,50 Q46,48 62,54" fill="none" stroke="#A8A8A0" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ══ HEAD ══ -->
+  <!-- Head shadow -->
+  <ellipse cx="50" cy="30" rx="20" ry="22" fill="#3A2A20"/>
+  <!-- Head -->
+  <ellipse cx="46" cy="26" rx="20" ry="22" fill="#C0BCAE" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Hair / laurel wreath -->
+  <ellipse cx="46" cy="12" rx="18" ry="8"  fill="#888880" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Wreath leaves -->
+  <ellipse cx="32" cy="14" rx="5" ry="3"   fill="#2E6E65" transform="rotate(-20,32,14)"/>
+  <ellipse cx="40" cy="10" rx="5" ry="3"   fill="#2E6E65" transform="rotate(-5,40,10)"/>
+  <ellipse cx="48" cy="8"  rx="5" ry="3"   fill="#2E6E65"/>
+  <ellipse cx="56" cy="10" rx="5" ry="3"   fill="#2E6E65" transform="rotate(5,56,10)"/>
+  <ellipse cx="60" cy="14" rx="5" ry="3"   fill="#2E6E65" transform="rotate(20,60,14)"/>
+
+  <!-- ══ FACE FEATURES ══ -->
+  <!-- Brow ridge / brow -->
+  <line x1="36" y1="20" x2="42" y2="18" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="50" y1="18" x2="56" y2="20" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Nose (classical Roman nose) -->
+  <path d="M46,22 L44,32 Q46,34 48,32 L46,22 Z" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- Eyes (closed, classical) -->
+  <path d="M34,22 Q38,20 42,22" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <path d="M50,22 Q54,20 58,22" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Mouth (serene) -->
+  <path d="M40,34 Q46,37 52,34" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Ear -->
+  <ellipse cx="26" cy="26" rx="3" ry="5" fill="#C0BCAE" stroke="#1A1A1A" stroke-width="1.5"/>
+</svg>

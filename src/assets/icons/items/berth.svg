@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    berth — train sleeping berth (полка). Two-tier bunk in a compartment wall.
+    Navy wall, cream mattresses, teal blanket, ladder rungs.
+  -->
+
+  <!-- ══ WALL / COMPARTMENT ══ -->
+  <rect width="96" height="96" fill="#1F3A5F"/>
+  <!-- Window -->
+  <rect x="58" y="6" width="30" height="22" rx="4" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="2"/>
+  <line x1="73" y1="6" x2="73" y2="28" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="58" y1="17" x2="88" y2="17" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ UPPER BERTH ══ -->
+  <!-- Frame shadow -->
+  <rect x="8" y="14" width="50" height="18" rx="3" fill="#3A2A20"/>
+  <!-- Frame board -->
+  <rect x="4" y="10" width="50" height="18" rx="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Mattress -->
+  <rect x="6" y="10" width="46" height="12" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Pillow -->
+  <rect x="8" y="10" width="14" height="10" rx="3" fill="#E0D4B8" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Blanket (teal, rumpled) -->
+  <rect x="24" y="10" width="26" height="10" rx="2" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.5"/>
+  <path d="M24,16 Q30,13 36,16 Q42,13 50,16" fill="none" stroke="#1A1A1A" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- ══ LOWER BERTH ══ -->
+  <!-- Frame shadow -->
+  <rect x="8" y="50" width="50" height="18" rx="3" fill="#3A2A20"/>
+  <!-- Frame board -->
+  <rect x="4" y="46" width="50" height="18" rx="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Mattress -->
+  <rect x="6" y="46" width="46" height="12" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Pillow -->
+  <rect x="8" y="46" width="14" height="10" rx="3" fill="#E0D4B8" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Blanket (navy) -->
+  <rect x="24" y="46" width="26" height="10" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <path d="M24,52 Q30,49 36,52 Q42,49 50,52" fill="none" stroke="#1A1A1A" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- ══ LADDER RUNGS (right side) ══ -->
+  <rect x="54" y="8"  width="6" height="62" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="50" y="22" width="14" height="5" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="50" y="36" width="14" height="5" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="50" y="60" width="14" height="5" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ FLOOR ══ -->
+  <rect x="0" y="70" width="96" height="26" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Seat / table (folds up) -->
+  <rect x="4" y="70" width="50" height="10" rx="2" fill="#E0824A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Table surface lines -->
+  <line x1="10" y1="70" x2="10" y2="80" stroke="#C89830" stroke-width="1.5"/>
+  <line x1="20" y1="70" x2="20" y2="80" stroke="#C89830" stroke-width="1.5"/>
+</svg>

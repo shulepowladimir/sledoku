@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    departureBoard — Solari split-flap departures board. Navy frame, flip panels.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <rect x="6" y="12" width="88" height="78" rx="6" fill="#3A2A20"/>
+
+  <!-- ══ FRAME ══ -->
+  <rect x="2" y="8" width="88" height="78" rx="6" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ HEADER BAR ══ -->
+  <rect x="6" y="12" width="80" height="14" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- "DEPARTURES" text blocks (simulated) -->
+  <rect x="10" y="15" width="8" height="8" rx="1" fill="#1F3A5F"/>
+  <rect x="20" y="15" width="8" height="8" rx="1" fill="#1F3A5F"/>
+  <rect x="30" y="15" width="8" height="8" rx="1" fill="#1F3A5F"/>
+  <rect x="40" y="15" width="8" height="8" rx="1" fill="#1F3A5F"/>
+  <rect x="50" y="15" width="8" height="8" rx="1" fill="#1F3A5F"/>
+  <rect x="60" y="15" width="8" height="8" rx="1" fill="#1F3A5F"/>
+  <rect x="70" y="15" width="8" height="8" rx="1" fill="#1F3A5F"/>
+
+  <!-- ══ FLIP PANEL GRID (4 rows × 4 cols of panels) ══ -->
+  <!-- Each panel: 18×12, gap 2. Starting at x=8, y=30 -->
+  <!-- Row 1 -->
+  <rect x="8"  y="30" width="18" height="12" rx="2" fill="#1A1A1A" stroke="#3A2A20" stroke-width="1"/>
+  <rect x="28" y="30" width="18" height="12" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1"/>
+  <rect x="48" y="30" width="18" height="12" rx="2" fill="#1A1A1A" stroke="#3A2A20" stroke-width="1"/>
+  <rect x="68" y="30" width="18" height="12" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- Mid-flip line (horizontal separator at center of panel) -->
+  <line x1="8"  y1="36" x2="26" y2="36" stroke="#3A2A20" stroke-width="1"/>
+  <line x1="48" y1="36" x2="66" y2="36" stroke="#3A2A20" stroke-width="1"/>
+  <!-- Letter marks in cream panels -->
+  <rect x="32" y="33" width="6" height="6" rx="1" fill="#1F3A5F"/>
+  <rect x="72" y="33" width="6" height="6" rx="1" fill="#E0A94A"/>
+
+  <!-- Row 2 -->
+  <rect x="8"  y="44" width="18" height="12" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1"/>
+  <rect x="28" y="44" width="18" height="12" rx="2" fill="#1A1A1A" stroke="#3A2A20" stroke-width="1"/>
+  <rect x="48" y="44" width="18" height="12" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1"/>
+  <rect x="68" y="44" width="18" height="12" rx="2" fill="#1A1A1A" stroke="#3A2A20" stroke-width="1"/>
+  <line x1="28" y1="50" x2="46" y2="50" stroke="#3A2A20" stroke-width="1"/>
+  <line x1="68" y1="50" x2="86" y2="50" stroke="#3A2A20" stroke-width="1"/>
+  <rect x="12" y="47" width="6" height="6" rx="1" fill="#E0A94A"/>
+  <rect x="52" y="47" width="6" height="6" rx="1" fill="#1F3A5F"/>
+
+  <!-- Row 3 -->
+  <rect x="8"  y="58" width="18" height="12" rx="2" fill="#1A1A1A" stroke="#3A2A20" stroke-width="1"/>
+  <rect x="28" y="58" width="18" height="12" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1"/>
+  <rect x="48" y="58" width="18" height="12" rx="2" fill="#1A1A1A" stroke="#3A2A20" stroke-width="1"/>
+  <rect x="68" y="58" width="18" height="12" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="8"  y1="64" x2="26" y2="64" stroke="#3A2A20" stroke-width="1"/>
+  <line x1="48" y1="64" x2="66" y2="64" stroke="#3A2A20" stroke-width="1"/>
+  <rect x="32" y="61" width="6" height="6" rx="1" fill="#C8102E"/>
+  <rect x="72" y="61" width="6" height="6" rx="1" fill="#1F3A5F"/>
+
+  <!-- Row 4 -->
+  <rect x="8"  y="72" width="18" height="12" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1"/>
+  <rect x="28" y="72" width="18" height="12" rx="2" fill="#1A1A1A" stroke="#3A2A20" stroke-width="1"/>
+  <rect x="48" y="72" width="18" height="12" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1"/>
+  <rect x="68" y="72" width="18" height="12" rx="2" fill="#1A1A1A" stroke="#3A2A20" stroke-width="1"/>
+  <line x1="28" y1="78" x2="46" y2="78" stroke="#3A2A20" stroke-width="1"/>
+  <line x1="68" y1="78" x2="86" y2="78" stroke="#3A2A20" stroke-width="1"/>
+  <rect x="12" y="75" width="6" height="6" rx="1" fill="#2E6E65"/>
+  <rect x="52" y="75" width="6" height="6" rx="1" fill="#E0A94A"/>
+
+  <!-- ══ MOUNTING BRACKETS ══ -->
+  <rect x="0"  y="28" width="4" height="8" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="88" y="28" width="4" height="8" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+</svg>

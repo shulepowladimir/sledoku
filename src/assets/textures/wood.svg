@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!--
+    Seamless layout (vertically):
+      1px top seam  +  4 × 62px planks  +  3 × 2px dividers  +  1px bottom seam  =  256px
+    Top seam (y=0) + bottom seam (y=255) together form a 2px divider when tiled.
+    All fills are palette-only. No opacity attributes.
+  -->
+
+  <!-- ── Seam top ── -->
+  <rect x="0" y="0" width="256" height="1" fill="#3A2A20"/>
+
+  <!-- ── Plank 1  y=1-62  (orange) ── -->
+  <rect x="0" y="1" width="256" height="62" fill="#E0824A"/>
+  <rect x="0" y="14" width="256" height="1" fill="#3A2A20"/>
+  <rect x="0" y="30" width="256" height="1" fill="#3A2A20"/>
+  <rect x="0" y="50" width="256" height="1" fill="#3A2A20"/>
+  <ellipse cx="192" cy="35" rx="11" ry="5" fill="#3A2A20"/>
+  <ellipse cx="192" cy="35" rx="6"  ry="2" fill="#E0824A"/>
+
+  <!-- ── Divider 1-2 ── -->
+  <rect x="0" y="63" width="256" height="2" fill="#3A2A20"/>
+
+  <!-- ── Plank 2  y=65-126  (gold) ── -->
+  <rect x="0" y="65" width="256" height="62" fill="#E0A94A"/>
+  <rect x="0" y="78" width="256" height="1" fill="#3A2A20"/>
+  <rect x="0" y="96" width="256" height="1" fill="#3A2A20"/>
+  <rect x="0" y="116" width="256" height="1" fill="#3A2A20"/>
+  <ellipse cx="64" cy="98" rx="9"  ry="4" fill="#3A2A20"/>
+  <ellipse cx="64" cy="98" rx="4"  ry="2" fill="#E0A94A"/>
+
+  <!-- ── Divider 2-3 ── -->
+  <rect x="0" y="127" width="256" height="2" fill="#3A2A20"/>
+
+  <!-- ── Plank 3  y=129-190  (orange) ── -->
+  <rect x="0" y="129" width="256" height="62" fill="#E0824A"/>
+  <rect x="0" y="142" width="256" height="1" fill="#3A2A20"/>
+  <rect x="0" y="160" width="256" height="1" fill="#3A2A20"/>
+  <rect x="0" y="178" width="256" height="1" fill="#3A2A20"/>
+  <ellipse cx="130" cy="160" rx="13" ry="5" fill="#3A2A20"/>
+  <ellipse cx="130" cy="160" rx="7"  ry="2" fill="#E0824A"/>
+
+  <!-- ── Divider 3-4 ── -->
+  <rect x="0" y="191" width="256" height="2" fill="#3A2A20"/>
+
+  <!-- ── Plank 4  y=193-254  (gold) ── -->
+  <rect x="0" y="193" width="256" height="62" fill="#E0A94A"/>
+  <rect x="0" y="206" width="256" height="1" fill="#3A2A20"/>
+  <rect x="0" y="224" width="256" height="1" fill="#3A2A20"/>
+  <rect x="0" y="242" width="256" height="1" fill="#3A2A20"/>
+  <ellipse cx="210" cy="224" rx="10" ry="4" fill="#3A2A20"/>
+  <ellipse cx="210" cy="224" rx="5"  ry="2" fill="#E0A94A"/>
+
+  <!-- ── Seam bottom ── -->
+  <rect x="0" y="255" width="256" height="1" fill="#3A2A20"/>
+</svg>

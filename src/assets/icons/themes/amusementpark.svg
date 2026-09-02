@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    amusementpark theme — Ferris wheel, 6 gondolas, support structure.
+    Cream wheel ring, red hub, colored gondolas, navy support.
+    Gondola positions at r=28 from center (48,44): 0°,60°,120°,180°,240°,300°.
+  -->
+
+  <!-- ══ SHADOWS ══ -->
+  <circle cx="52" cy="48" r="30" fill="#3A2A20"/>
+  <rect x="50" y="74" width="8" height="18" rx="2" fill="#3A2A20"/>
+  <rect x="32" y="90" width="40" height="6" rx="2" fill="#3A2A20"/>
+
+  <!-- ══ SUPPORT STRUCTURE ══ -->
+  <rect x="44" y="72" width="8" height="20" rx="2" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Diagonal supports -->
+  <line x1="48" y1="74" x2="36" y2="92" stroke="#1F3A5F" stroke-width="3" stroke-linecap="round"/>
+  <line x1="48" y1="74" x2="60" y2="92" stroke="#1F3A5F" stroke-width="3" stroke-linecap="round"/>
+  <!-- Ground base -->
+  <rect x="28" y="88" width="40" height="6" rx="2" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ SPOKES (drawn before ring so ring overlaps) ══ -->
+  <line x1="48" y1="44" x2="48" y2="16" stroke="#3A2A20" stroke-width="2.5"/>
+  <line x1="48" y1="44" x2="72" y2="58" stroke="#3A2A20" stroke-width="2.5"/>
+  <line x1="48" y1="44" x2="24" y2="58" stroke="#3A2A20" stroke-width="2.5"/>
+  <line x1="48" y1="44" x2="48" y2="72" stroke="#3A2A20" stroke-width="2.5"/>
+  <line x1="48" y1="44" x2="72" y2="30" stroke="#3A2A20" stroke-width="2.5"/>
+  <line x1="48" y1="44" x2="24" y2="30" stroke="#3A2A20" stroke-width="2.5"/>
+
+  <!-- ══ WHEEL RING ══ -->
+  <circle cx="48" cy="44" r="30" fill="none" stroke="#1A1A1A" stroke-width="5"/>
+  <circle cx="48" cy="44" r="30" fill="none" stroke="#F5E9D0" stroke-width="3"/>
+
+  <!-- ══ HUB ══ -->
+  <circle cx="48" cy="44" r="8" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.5"/>
+  <circle cx="48" cy="44" r="5" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ GONDOLAS (6, alternating colors) ══ -->
+  <!-- Top (12 o'clock): (48,16) -->
+  <rect x="44" y="10" width="8" height="12" rx="3" fill="#E0824A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- 2 o'clock: (72,30) -->
+  <rect x="68" y="24" width="8" height="12" rx="3" fill="#2E6E65" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- 4 o'clock: (72,58) -->
+  <rect x="68" y="52" width="8" height="12" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Bottom (6 o'clock): (48,72) -->
+  <rect x="44" y="66" width="8" height="12" rx="3" fill="#E0824A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- 8 o'clock: (24,58) -->
+  <rect x="20" y="52" width="8" height="12" rx="3" fill="#2E6E65" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- 10 o'clock: (24,30) -->
+  <rect x="20" y="24" width="8" height="12" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+</svg>

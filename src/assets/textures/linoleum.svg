@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!--
+    linoleum.svg — seamless 256×256 large-format tile floor.
+    2×2 checkerboard of 126×126 cream/teal tiles with 2px stone-gray grout lines.
+    When tiled, the pattern repeats as a continuous checkerboard floor.
+    No opacity attributes.
+  -->
+
+  <!-- Grout base (stone gray fills all gaps) -->
+  <rect width="256" height="256" fill="#A8A8A0"/>
+
+  <!-- ── TILE LAYOUT (2×2 checkerboard per 256px tile) ── -->
+  <!-- Top-left: cream -->
+  <rect x="1" y="1" width="126" height="126" fill="#F5E9D0"/>
+  <!-- Top-right: teal -->
+  <rect x="129" y="1" width="126" height="126" fill="#2E6E65"/>
+  <!-- Bottom-left: teal -->
+  <rect x="1" y="129" width="126" height="126" fill="#2E6E65"/>
+  <!-- Bottom-right: cream -->
+  <rect x="129" y="129" width="126" height="126" fill="#F5E9D0"/>
+
+  <!-- ── TILE SHADOW EDGES (depth illusion) ── -->
+  <!-- Right edge of left tiles -->
+  <rect x="123" y="1"   width="4" height="126" fill="#888880"/>
+  <rect x="123" y="129" width="4" height="126" fill="#C8C8C0"/>
+  <!-- Bottom edge of top tiles -->
+  <rect x="1"   y="123" width="126" height="4" fill="#888880"/>
+  <rect x="129" y="123" width="126" height="4" fill="#C8C8C0"/>
+
+  <!-- ── GROUT LINE HIGHLIGHTS (light side of grout) ── -->
+  <rect x="128" y="1"   width="1" height="126" fill="#C0C0B8"/>
+  <rect x="128" y="129" width="1" height="126" fill="#C0C0B8"/>
+  <rect x="1"   y="128" width="126" height="1" fill="#C0C0B8"/>
+  <rect x="129" y="128" width="126" height="1" fill="#C0C0B8"/>
+
+  <!-- ── TILE SURFACE WEAR MARKS ── -->
+  <!-- Cream tile (top-left): subtle scuff -->
+  <rect x="28" y="30"  width="40" height="2" rx="1" fill="#E0D0B0"/>
+  <rect x="60" y="80"  width="28" height="2" rx="1" fill="#E0D0B0"/>
+  <rect x="20" y="100" width="50" height="2" rx="1" fill="#E0D0B0"/>
+  <!-- Cream tile (bottom-right) -->
+  <rect x="152" y="158" width="40" height="2" rx="1" fill="#E0D0B0"/>
+  <rect x="180" y="200" width="30" height="2" rx="1" fill="#E0D0B0"/>
+  <!-- Teal tile (top-right): subtle lighter marks -->
+  <rect x="152" y="30"  width="36" height="2" rx="1" fill="#3A8070"/>
+  <rect x="168" y="80"  width="26" height="2" rx="1" fill="#3A8070"/>
+  <!-- Teal tile (bottom-left) -->
+  <rect x="24"  y="160" width="36" height="2" rx="1" fill="#3A8070"/>
+  <rect x="40"  y="210" width="28" height="2" rx="1" fill="#3A8070"/>
+</svg>

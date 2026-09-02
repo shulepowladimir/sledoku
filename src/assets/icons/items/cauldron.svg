@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    cauldron — bubbling witch cauldron. Dark iron pot, green potion, steam, three legs.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="90" rx="36" ry="6" fill="#3A2A20"/>
+
+  <!-- ══ LEGS (three) ══ -->
+  <!-- Left leg shadow -->
+  <line x1="28" y1="70" x2="18" y2="90" stroke="#3A2A20" stroke-width="8" stroke-linecap="round"/>
+  <!-- Right leg shadow -->
+  <line x1="68" y1="70" x2="78" y2="90" stroke="#3A2A20" stroke-width="8" stroke-linecap="round"/>
+  <!-- Centre leg shadow -->
+  <line x1="48" y1="74" x2="48" y2="92" stroke="#3A2A20" stroke-width="8" stroke-linecap="round"/>
+  <!-- Left leg -->
+  <line x1="24" y1="68" x2="14" y2="88" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+  <!-- Right leg -->
+  <line x1="64" y1="68" x2="74" y2="88" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+  <!-- Centre leg -->
+  <line x1="44" y1="72" x2="44" y2="90" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- ══ POT BODY SHADOW ══ -->
+  <ellipse cx="50" cy="62" rx="36" ry="28" fill="#3A2A20"/>
+
+  <!-- ══ POT BODY ══ -->
+  <ellipse cx="46" cy="58" rx="36" ry="28" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ CAULDRON RIM ══ -->
+  <ellipse cx="46" cy="30" rx="36" ry="10" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="3"/>
+  <ellipse cx="46" cy="30" rx="36" ry="10" fill="none" stroke="#3A2A20" stroke-width="2"/>
+
+  <!-- ══ POTION SURFACE ══ -->
+  <ellipse cx="46" cy="30" rx="32" ry="8" fill="#4D8B3A"/>
+  <!-- Bubble rings -->
+  <circle cx="40" cy="28" r="6"  fill="none" stroke="#2E6E65" stroke-width="2.5"/>
+  <circle cx="54" cy="32" r="4"  fill="none" stroke="#2E6E65" stroke-width="2"/>
+  <circle cx="36" cy="34" r="3"  fill="none" stroke="#3A8070" stroke-width="1.5"/>
+  <!-- Foam bubbles -->
+  <circle cx="32" cy="26" r="4"  fill="#3A8070"/>
+  <circle cx="42" cy="22" r="5"  fill="#4D8B3A"/>
+  <circle cx="52" cy="24" r="3"  fill="#3A8070"/>
+  <circle cx="60" cy="28" r="4"  fill="#4D8B3A"/>
+
+  <!-- ══ RIVETS (decorative) ══ -->
+  <circle cx="14" cy="50" r="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="14" cy="64" r="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="78" cy="50" r="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="78" cy="64" r="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ HANDLE ARC ══ -->
+  <path d="M22,30 Q44,10 68,30" fill="none" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- ══ STEAM WISPS ══ -->
+  <path d="M36,20 Q32,12 36,6"  fill="none" stroke="#A8A8A0" stroke-width="3" stroke-linecap="round"/>
+  <path d="M46,18 Q42,10 46,4"  fill="none" stroke="#A8A8A0" stroke-width="3" stroke-linecap="round"/>
+  <path d="M56,20 Q60,12 56,6"  fill="none" stroke="#A8A8A0" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ══ RUNE GLYPHS (etched on pot) ══ -->
+  <path d="M24,56 L28,50 L32,56" fill="none" stroke="#3A2A20" stroke-width="2" stroke-linecap="round"/>
+  <path d="M60,50 L64,56 M60,56 L64,50" fill="none" stroke="#3A2A20" stroke-width="2" stroke-linecap="round"/>
+</svg>

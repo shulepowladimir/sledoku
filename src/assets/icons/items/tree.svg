@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    tree — plain forest fir / spruce. Three triangular tiers, dark trunk. No ornaments.
+    Green tiers with teal shadow depth.
+  -->
+
+  <!-- ══ SHADOWS ══ -->
+  <!-- Trunk shadow -->
+  <rect x="46" y="72" width="12" height="20" rx="3" fill="#3A2A20"/>
+  <!-- Tier shadows (offset +4/+4) -->
+  <polygon points="52,60  80,86  24,86" fill="#3A2A20"/>
+  <polygon points="50,38  76,64  24,64" fill="#3A2A20"/>
+  <polygon points="50,16  72,44  28,44" fill="#3A2A20"/>
+
+  <!-- ══ TRUNK ══ -->
+  <rect x="42" y="70" width="12" height="22" rx="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Bark lines -->
+  <line x1="45" y1="74" x2="45" y2="88" stroke="#5A4030" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="50" y1="72" x2="50" y2="86" stroke="#5A4030" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- ══ BOTTOM TIER (widest) ══ -->
+  <polygon points="48,56  76,82  20,82"
+           fill="#4D8B3A" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Teal shadow depth (inner left) -->
+  <polygon points="48,56  28,78  20,82  48,72" fill="#2E6E65"/>
+  <!-- Branch tip notches -->
+  <line x1="20" y1="82" x2="24" y2="76" stroke="#3A6B2C" stroke-width="2" stroke-linecap="round"/>
+  <line x1="34" y1="82" x2="36" y2="76" stroke="#3A6B2C" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="62" y1="82" x2="60" y2="76" stroke="#3A6B2C" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="76" y1="82" x2="72" y2="76" stroke="#3A6B2C" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ══ MIDDLE TIER ══ -->
+  <polygon points="48,32  74,60  22,60"
+           fill="#4D8B3A" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Teal depth -->
+  <polygon points="48,32  28,56  22,60  48,50" fill="#2E6E65"/>
+  <!-- Branch notches -->
+  <line x1="22" y1="60" x2="26" y2="54" stroke="#3A6B2C" stroke-width="2" stroke-linecap="round"/>
+  <line x1="36" y1="60" x2="38" y2="55" stroke="#3A6B2C" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="60" y1="60" x2="58" y2="55" stroke="#3A6B2C" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="74" y1="60" x2="70" y2="54" stroke="#3A6B2C" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ══ TOP TIER (narrowest) ══ -->
+  <polygon points="48,8  70,38  26,38"
+           fill="#4D8B3A" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Teal depth -->
+  <polygon points="48,8  30,34  26,38  48,28" fill="#2E6E65"/>
+  <!-- Branch notches -->
+  <line x1="26" y1="38" x2="30" y2="33" stroke="#3A6B2C" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="40" y1="38" x2="42" y2="34" stroke="#3A6B2C" stroke-width="1" stroke-linecap="round"/>
+  <line x1="56" y1="38" x2="54" y2="34" stroke="#3A6B2C" stroke-width="1" stroke-linecap="round"/>
+  <line x1="70" y1="38" x2="66" y2="33" stroke="#3A6B2C" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    hitchingPost — wild-west wooden hitching post with iron ring and rope. Worn wood, red rope.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="91" rx="30" ry="5" fill="#3A2A20"/>
+
+  <!-- ══ GROUND RAIL (horizontal beam) ══ -->
+  <!-- Rail shadow -->
+  <rect x="6"  y="60" width="84" height="14" rx="5" fill="#3A2A20"/>
+  <!-- Rail body -->
+  <rect x="2"  y="56" width="84" height="14" rx="5" fill="#B08020" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Grain lines -->
+  <line x1="4"  y1="60" x2="84" y2="60" stroke="#7C5D31" stroke-width="1.5"/>
+  <line x1="4"  y1="66" x2="84" y2="66" stroke="#7C5D31" stroke-width="1.5"/>
+  <!-- Nail heads -->
+  <circle cx="12" cy="63" r="3" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="76" cy="63" r="3" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ POSTS (two vertical) ══ -->
+  <!-- Left post shadow -->
+  <rect x="14" y="18" width="16" height="74" rx="5" fill="#3A2A20"/>
+  <!-- Left post -->
+  <rect x="10" y="14" width="16" height="74" rx="5" fill="#B08020" stroke="#1A1A1A" stroke-width="2.5"/>
+  <line x1="14" y1="14" x2="14" y2="88" stroke="#7C5D31" stroke-width="1.5"/>
+  <line x1="20" y1="14" x2="20" y2="88" stroke="#7C5D31" stroke-width="1.5"/>
+  <!-- Left post cap -->
+  <rect x="8"  y="12" width="20" height="6"  rx="3" fill="#C89830" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- Right post shadow -->
+  <rect x="66" y="18" width="16" height="74" rx="5" fill="#3A2A20"/>
+  <!-- Right post -->
+  <rect x="62" y="14" width="16" height="74" rx="5" fill="#B08020" stroke="#1A1A1A" stroke-width="2.5"/>
+  <line x1="66" y1="14" x2="66" y2="88" stroke="#7C5D31" stroke-width="1.5"/>
+  <line x1="72" y1="14" x2="72" y2="88" stroke="#7C5D31" stroke-width="1.5"/>
+  <!-- Right post cap -->
+  <rect x="60" y="12" width="20" height="6"  rx="3" fill="#C89830" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ IRON RINGS ══ -->
+  <circle cx="18" cy="40" r="8" fill="none" stroke="#1A1A1A" stroke-width="4"/>
+  <circle cx="18" cy="40" r="8" fill="none" stroke="#A8A8A0" stroke-width="2"/>
+  <circle cx="70" cy="40" r="8" fill="none" stroke="#1A1A1A" stroke-width="4"/>
+  <circle cx="70" cy="40" r="8" fill="none" stroke="#A8A8A0" stroke-width="2"/>
+
+  <!-- ══ ROPE ══ -->
+  <!-- Hanging loop from left ring -->
+  <path d="M22,42 Q36,52 44,46 Q52,40 60,44 Q66,46 68,42" fill="none" stroke="#C8102E" stroke-width="3" stroke-linecap="round"/>
+  <!-- Rope end knot -->
+  <circle cx="44" cy="48" r="4" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <path d="M22,42 Q22,50 28,52" fill="none" stroke="#C8102E" stroke-width="2" stroke-linecap="round"/>
+</svg>

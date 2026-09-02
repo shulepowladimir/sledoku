@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    artifactChest — treasure/artifact chest, lid slightly ajar with glow.
+    Navy body, gold trim and lock, red gem, cream interior glow.
+  -->
+
+  <!-- ══ SHADOWS ══ -->
+  <rect x="14" y="56" width="72" height="34" rx="4" fill="#3A2A20"/>
+  <rect x="14" y="28" width="72" height="32" rx="6" fill="#3A2A20"/>
+
+  <!-- ══ CHEST BODY ══ -->
+  <rect x="10" y="52" width="72" height="34" rx="4" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ GOLD CORNER PLATES ══ -->
+  <rect x="10" y="52" width="14" height="34" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="68" y="52" width="14" height="34" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="10" y="72" width="72" height="10" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ INTERIOR GLOW (cream, visible at lid gap) ══ -->
+  <rect x="12" y="46" width="68" height="8" rx="2" fill="#F5E9D0"/>
+
+  <!-- ══ LID (tilted slightly open) ══ -->
+  <rect x="10" y="24" width="72" height="30" rx="6" fill="#2E6E65" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Lid gold trim bands -->
+  <rect x="10" y="24" width="72" height="6" rx="6" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="10" y="44" width="72" height="6" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Lid cross band -->
+  <rect x="10" y="32" width="72" height="6" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ LOCK ══ -->
+  <rect x="38" y="52" width="16" height="14" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="42" y="58" width="8" height="8" rx="2" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Gem/keyhole -->
+  <circle cx="46" cy="60" r="3" fill="#C8102E" stroke="#1A1A1A" stroke-width="1"/>
+</svg>

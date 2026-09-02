@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    kassa — cash register (Russian kassovyi apparat), vintage style.
+    Navy body, teal keys, gold paper roll, red action key.
+  -->
+
+  <!-- ══ SHADOWS ══ -->
+  <rect x="68" y="20" width="16" height="22" rx="4" fill="#3A2A20"/>
+  <rect x="20" y="28" width="64" height="56" rx="4" fill="#3A2A20"/>
+
+  <!-- ══ PAPER ROLL ══ -->
+  <rect x="64" y="16" width="16" height="20" rx="5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <line x1="66" y1="22" x2="78" y2="22" stroke="#A8A8A0" stroke-width="1.5"/>
+  <line x1="66" y1="27" x2="78" y2="27" stroke="#A8A8A0" stroke-width="1.5"/>
+  <line x1="66" y1="32" x2="78" y2="32" stroke="#A8A8A0" stroke-width="1.5"/>
+  <!-- Paper strip coming out -->
+  <rect x="68" y="34" width="8" height="16" rx="1" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="70" y1="37" x2="74" y2="37" stroke="#A8A8A0" stroke-width="1"/>
+  <line x1="70" y1="41" x2="74" y2="41" stroke="#A8A8A0" stroke-width="1"/>
+
+  <!-- ══ MAIN BODY ══ -->
+  <rect x="16" y="24" width="64" height="56" rx="4" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ DISPLAY WINDOW ══ -->
+  <rect x="20" y="28" width="56" height="16" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Display readout bars -->
+  <rect x="42" y="32" width="22" height="4" rx="1" fill="#2E6E65"/>
+  <rect x="42" y="37" width="16" height="3" rx="1" fill="#2E6E65"/>
+
+  <!-- ══ KEYS SECTION ══ -->
+  <rect x="20" y="48" width="44" height="26" rx="2" fill="#2E6E65" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Row 1 -->
+  <rect x="23" y="51" width="9" height="6" rx="1" fill="#F5E9D0"/>
+  <rect x="34" y="51" width="9" height="6" rx="1" fill="#F5E9D0"/>
+  <rect x="45" y="51" width="9" height="6" rx="1" fill="#F5E9D0"/>
+  <!-- Row 2 -->
+  <rect x="23" y="59" width="9" height="6" rx="1" fill="#F5E9D0"/>
+  <rect x="34" y="59" width="9" height="6" rx="1" fill="#F5E9D0"/>
+  <rect x="45" y="59" width="9" height="6" rx="1" fill="#C8102E"/>
+  <!-- Row 3 -->
+  <rect x="23" y="67" width="9" height="5" rx="1" fill="#F5E9D0"/>
+  <rect x="34" y="67" width="9" height="5" rx="1" fill="#F5E9D0"/>
+  <rect x="45" y="67" width="9" height="5" rx="1" fill="#E0A94A"/>
+
+  <!-- ══ CASH DRAWER ══ -->
+  <rect x="16" y="76" width="64" height="8" rx="2" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Drawer handle -->
+  <rect x="38" y="77.5" width="20" height="3" rx="1.5" fill="#1A1A1A"/>
+</svg>

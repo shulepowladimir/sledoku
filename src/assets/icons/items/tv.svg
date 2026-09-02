@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    tv — flat screen plasma TV on stand. Navy bezel, sky-blue screen, gold stand, cream on-screen content.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="91" rx="30" ry="5" fill="#3A2A20"/>
+
+  <!-- ══ STAND ══ -->
+  <rect x="40" y="78" width="20" height="8"  rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="32" y="84" width="36" height="6"  rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Stand neck -->
+  <rect x="46" y="70" width="8"  height="12" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ TV BODY / BEZEL ══ -->
+  <!-- Bezel shadow -->
+  <rect x="6"  y="8"  width="84" height="64" rx="6" fill="#3A2A20"/>
+  <!-- Bezel -->
+  <rect x="2"  y="4"  width="84" height="64" rx="6" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ SCREEN ══ -->
+  <rect x="8"  y="10" width="72" height="52" rx="4" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ SCREEN CONTENT (stylized news/show frame) ══ -->
+  <!-- Header bar -->
+  <rect x="8"  y="10" width="72" height="10" rx="4" fill="#C8102E"/>
+  <rect x="10" y="12" width="20" height="6"  rx="1" fill="#F5E9D0"/>
+  <!-- Ticker bar at bottom -->
+  <rect x="8"  y="56" width="72" height="6"  rx="0" fill="#1F3A5F"/>
+  <rect x="10" y="57" width="30" height="4"  rx="1" fill="#E0A94A"/>
+  <rect x="44" y="57" width="30" height="4"  rx="1" fill="#F5E9D0"/>
+  <!-- Main "image" area — a simple scene: anchor desk -->
+  <rect x="14" y="22" width="56" height="32" rx="2" fill="#5A9AB8"/>
+  <!-- Anchor figure (silhouette) -->
+  <circle cx="44" cy="32" r="6" fill="#1A1A1A"/>
+  <rect x="38" y="38" width="12" height="10" rx="3" fill="#1F3A5F"/>
+  <!-- Desk -->
+  <rect x="22" y="46" width="44" height="5" rx="2" fill="#E0A94A"/>
+  <!-- Logo bug -->
+  <rect x="58" y="22" width="10" height="8" rx="2" fill="#E0A94A"/>
+  <circle cx="63" cy="26" r="2" fill="#C8102E"/>
+
+  <!-- ══ BEZEL CONTROLS ══ -->
+  <circle cx="80" cy="36" r="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Power indicator LED -->
+  <circle cx="80" cy="46" r="2" fill="#2E6E65"/>
+</svg>

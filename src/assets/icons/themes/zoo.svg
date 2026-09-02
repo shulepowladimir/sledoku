@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Shadows for cage bars -->
+  <rect x="18" y="16" width="5" height="60" rx="2.5" fill="#3A2A20"/>
+  <rect x="33" y="16" width="5" height="60" rx="2.5" fill="#3A2A20"/>
+  <rect x="61" y="16" width="5" height="60" rx="2.5" fill="#3A2A20"/>
+  <rect x="76" y="16" width="5" height="60" rx="2.5" fill="#3A2A20"/>
+  <!-- Shadow for animal body -->
+  <ellipse cx="52" cy="56" rx="20" ry="16" fill="#3A2A20"/>
+  <!-- Shadow for animal head -->
+  <circle cx="66" cy="44" r="10" fill="#3A2A20"/>
+  <!-- Teal ground strip -->
+  <rect x="8" y="72" width="80" height="14" rx="3" fill="#2E6E65" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Animal body -->
+  <ellipse cx="48" cy="52" rx="20" ry="16" fill="#E0824A" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Animal head -->
+  <circle cx="62" cy="40" r="10" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Animal eye -->
+  <circle cx="66" cy="38" r="2" fill="#1A1A1A"/>
+  <!-- Horizontal top bar -->
+  <rect x="10" y="12" width="76" height="6" rx="3" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Vertical cage bars -->
+  <rect x="14" y="12" width="5" height="60" rx="2.5" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="29" y="12" width="5" height="60" rx="2.5" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="57" y="12" width="5" height="60" rx="2.5" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="72" y="12" width="5" height="60" rx="2.5" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+</svg>

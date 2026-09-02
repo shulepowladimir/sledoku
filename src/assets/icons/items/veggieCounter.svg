@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    veggieCounter — market vegetable counter. Stone/wood surface, colourful produce piles.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="91" rx="46" ry="5" fill="#3A2A20"/>
+
+  <!-- ══ COUNTER BODY ══ -->
+  <!-- Shadow -->
+  <rect x="4"  y="54" width="88" height="36" rx="5" fill="#3A2A20"/>
+  <!-- Body -->
+  <rect x="0"  y="50" width="88" height="36" rx="5" fill="#B08020" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Front panel planks -->
+  <line x1="0"  y1="62" x2="88" y2="62" stroke="#C89830" stroke-width="1.5"/>
+  <line x1="0"  y1="74" x2="88" y2="74" stroke="#C89830" stroke-width="1.5"/>
+  <!-- Price tags hanging -->
+  <rect x="8"  y="68" width="12" height="8" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="30" y="68" width="12" height="8" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="56" y="68" width="12" height="8" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Price lines -->
+  <line x1="10" y1="72" x2="18" y2="72" stroke="#C8102E" stroke-width="1.5"/>
+  <line x1="32" y1="72" x2="40" y2="72" stroke="#C8102E" stroke-width="1.5"/>
+  <line x1="58" y1="72" x2="66" y2="72" stroke="#C8102E" stroke-width="1.5"/>
+
+  <!-- ══ COUNTER TOP SURFACE ══ -->
+  <rect x="0" y="44" width="92" height="10" rx="4" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ PRODUCE DISPLAY SHELF (sloped at back) ══ -->
+  <!-- Back shelf -->
+  <rect x="2"  y="20" width="86" height="26" rx="3" fill="#7C5D31" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Divider strips -->
+  <line x1="30" y1="20" x2="30" y2="46" stroke="#4A3018" stroke-width="2"/>
+  <line x1="60" y1="20" x2="60" y2="46" stroke="#4A3018" stroke-width="2"/>
+
+  <!-- ══ VEGETABLES ══ -->
+  <!-- Left bin: carrots (orange) -->
+  <ellipse cx="16" cy="38" rx="12" ry="8" fill="#E0824A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <ellipse cx="10" cy="32" rx="7"  ry="5" fill="#E0824A"/>
+  <ellipse cx="22" cy="30" rx="6"  ry="4" fill="#C8702E"/>
+  <!-- Carrot tops (green) -->
+  <path d="M10,28 Q8,22 6,20 M10,28 Q12,22 10,18 M10,28 Q14,22 14,18" fill="none" stroke="#4D8B3A" stroke-width="2" stroke-linecap="round"/>
+  <path d="M20,26 Q18,20 16,18 M20,26 Q22,20 22,18" fill="none" stroke="#4D8B3A" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Middle bin: tomatoes (red) -->
+  <circle cx="44" cy="38" r="8"  fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="38" cy="32" r="6"  fill="#C8102E"/>
+  <circle cx="50" cy="32" r="6"  fill="#A80020"/>
+  <!-- Stems -->
+  <line x1="44" y1="30" x2="44" y2="26" stroke="#4D8B3A" stroke-width="1.5"/>
+  <line x1="38" y1="26" x2="38" y2="22" stroke="#4D8B3A" stroke-width="1.5"/>
+  <line x1="50" y1="26" x2="50" y2="22" stroke="#4D8B3A" stroke-width="1.5"/>
+
+  <!-- Right bin: cabbages/lettuce (green) -->
+  <circle cx="72" cy="38" r="9"  fill="#4D8B3A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="66" cy="32" r="7"  fill="#3A6B2C"/>
+  <circle cx="78" cy="32" r="7"  fill="#4D8B3A"/>
+  <!-- Leaf lines -->
+  <path d="M66,28 Q64,24 68,22" fill="none" stroke="#3A6B2C" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M78,28 Q80,24 76,22" fill="none" stroke="#3A6B2C" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M72,28 Q72,22 72,18" fill="none" stroke="#4D8B3A" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- ══ AWNING FRAME ══ -->
+  <rect x="0"  y="4"  width="92" height="8"  rx="4" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Awning support poles -->
+  <rect x="2"  y="4"  width="5"  height="42" rx="2.5" fill="#1F3A5F"/>
+  <rect x="83" y="4"  width="5"  height="42" rx="2.5" fill="#1F3A5F"/>
+  <!-- Sign board -->
+  <rect x="10" y="0"  width="70" height="12" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Sign label lines -->
+  <line x1="20" y1="4"  x2="70" y2="4"  stroke="#C89830" stroke-width="2"/>
+  <line x1="20" y1="8"  x2="60" y2="8"  stroke="#C89830" stroke-width="1.5"/>
+</svg>

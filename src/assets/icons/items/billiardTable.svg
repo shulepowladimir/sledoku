@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    billiardTable — top-down view. Teal felt, navy frame, 6 pockets, cue ball + colored balls.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <rect x="8" y="14" width="84" height="74" rx="8" fill="#3A2A20"/>
+
+  <!-- ══ TABLE FRAME ══ -->
+  <rect x="4" y="10" width="84" height="74" rx="8" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ FELT SURFACE ══ -->
+  <rect x="14" y="20" width="64" height="54" rx="4" fill="#2E6E65" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ CUSHION RAILS (lighter teal inner border) ══ -->
+  <rect x="18" y="24" width="56" height="46" rx="3" fill="none" stroke="#3A8070" stroke-width="2"/>
+
+  <!-- ══ CENTER LINE ══ -->
+  <line x1="46" y1="24" x2="46" y2="70" stroke="#3A8070" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- ══ 6 POCKETS ══ -->
+  <!-- Corners -->
+  <circle cx="14" cy="20" r="5" fill="#1A1A1A" stroke="#E0A94A" stroke-width="1.5"/>
+  <circle cx="78" cy="20" r="5" fill="#1A1A1A" stroke="#E0A94A" stroke-width="1.5"/>
+  <circle cx="14" cy="74" r="5" fill="#1A1A1A" stroke="#E0A94A" stroke-width="1.5"/>
+  <circle cx="78" cy="74" r="5" fill="#1A1A1A" stroke="#E0A94A" stroke-width="1.5"/>
+  <!-- Mid pockets -->
+  <circle cx="46" cy="18" r="5" fill="#1A1A1A" stroke="#E0A94A" stroke-width="1.5"/>
+  <circle cx="46" cy="76" r="5" fill="#1A1A1A" stroke="#E0A94A" stroke-width="1.5"/>
+
+  <!-- ══ BILLIARD BALLS ══ -->
+  <!-- Cue ball (cream, top area) -->
+  <circle cx="46" cy="34" r="5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Rack of colored balls (triangle, bottom area) -->
+  <!-- Row 1 (apex) -->
+  <circle cx="46" cy="58" r="4" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Row 2 -->
+  <circle cx="42" cy="63" r="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="50" cy="63" r="4" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Row 3 -->
+  <circle cx="38" cy="68" r="4" fill="#E0824A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="46" cy="68" r="4" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="54" cy="68" r="4" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ CUE STICK ══ -->
+  <line x1="8"  y1="86" x2="76" y2="36"
+        stroke="#E0824A" stroke-width="3" stroke-linecap="round"/>
+  <line x1="8"  y1="86" x2="16" y2="80"
+        stroke="#F5E9D0" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    journal — hotel reservations ledger. Thick book, navy cover, gold spine, cream pages, red ribbon.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <rect x="14" y="18" width="74" height="70" rx="5" fill="#3A2A20"/>
+
+  <!-- ══ PAGES (right side visible) ══ -->
+  <rect x="14" y="14" width="74" height="70" rx="5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Page lines -->
+  <line x1="22" y1="28" x2="80" y2="28" stroke="#E0D4B8" stroke-width="1.5"/>
+  <line x1="22" y1="36" x2="80" y2="36" stroke="#E0D4B8" stroke-width="1.5"/>
+  <line x1="22" y1="44" x2="80" y2="44" stroke="#E0D4B8" stroke-width="1.5"/>
+  <line x1="22" y1="52" x2="80" y2="52" stroke="#E0D4B8" stroke-width="1.5"/>
+  <line x1="22" y1="60" x2="80" y2="60" stroke="#E0D4B8" stroke-width="1.5"/>
+  <line x1="22" y1="68" x2="80" y2="68" stroke="#E0D4B8" stroke-width="1.5"/>
+  <!-- Vertical column divider -->
+  <line x1="46" y1="14" x2="46" y2="84" stroke="#E0D4B8" stroke-width="1"/>
+  <!-- Column headers (simulated) -->
+  <rect x="22" y="18" width="20" height="6" rx="1" fill="#E0D4B8"/>
+  <rect x="50" y="18" width="26" height="6" rx="1" fill="#E0D4B8"/>
+  <!-- Entry marks -->
+  <rect x="22" y="30" width="16" height="4" rx="1" fill="#C0C0B8"/>
+  <rect x="50" y="30" width="20" height="4" rx="1" fill="#C0C0B8"/>
+  <rect x="22" y="38" width="18" height="4" rx="1" fill="#C0C0B8"/>
+  <rect x="50" y="38" width="16" height="4" rx="1" fill="#C0C0B8"/>
+  <rect x="22" y="46" width="14" height="4" rx="1" fill="#C0C0B8"/>
+  <rect x="50" y="46" width="22" height="4" rx="1" fill="#C0C0B8"/>
+  <rect x="22" y="54" width="20" height="4" rx="1" fill="#C0C0B8"/>
+  <rect x="50" y="54" width="18" height="4" rx="1" fill="#C0C0B8"/>
+
+  <!-- ══ COVER (left, navy) ══ -->
+  <rect x="6" y="10" width="20" height="74" rx="5" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ SPINE DETAIL ══ -->
+  <rect x="10" y="10" width="12" height="74" rx="4" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Spine bands -->
+  <rect x="10" y="22" width="12" height="4" rx="1" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+  <rect x="10" y="58" width="12" height="4" rx="1" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- Gold title block -->
+  <rect x="10" y="34" width="12" height="18" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ BOOKMARK RIBBON ══ -->
+  <rect x="76" y="14" width="4" height="60" rx="2" fill="#C8102E"/>
+  <!-- Ribbon tail (v-cut) -->
+  <polygon points="76,74 80,74 78,82" fill="#C8102E"/>
+
+  <!-- ══ PEN ══ -->
+  <line x1="84" y1="8"  x2="72" y2="86" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="72,86 70,92 76,88" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>
+  <line x1="82" y1="12" x2="86" y2="6"  stroke="#C8102E" stroke-width="3" stroke-linecap="round"/>
+</svg>

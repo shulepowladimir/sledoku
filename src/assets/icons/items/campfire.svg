@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    campfire — crossed logs with layered flames. Red outer, gold mid, orange core.
+  -->
+
+  <!-- ══ SHADOWS ══ -->
+  <ellipse cx="52" cy="82" rx="30" ry="8" fill="#3A2A20"/>
+
+  <!-- ══ LOGS (crossed, behind flames) ══ -->
+  <!-- Log 1 (bottom-left to top-right) -->
+  <rect x="14" y="64" width="70" height="12" rx="6"
+        fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.5"
+        transform="rotate(-22 49 70)"/>
+  <!-- Log 2 (top-left to bottom-right) -->
+  <rect x="14" y="64" width="70" height="12" rx="6"
+        fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"
+        transform="rotate(22 49 70)"/>
+  <!-- Log ends (circular cut face) -->
+  <ellipse cx="20" cy="72" rx="7" ry="7" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <ellipse cx="76" cy="72" rx="7" ry="7" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Growth rings on cut face -->
+  <circle cx="20" cy="72" r="4" fill="none" stroke="#3A2A20" stroke-width="1"/>
+  <circle cx="20" cy="72" r="2" fill="none" stroke="#3A2A20" stroke-width="1"/>
+
+  <!-- ══ EMBER BASE ══ -->
+  <ellipse cx="48" cy="74" rx="20" ry="6" fill="#C8102E" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ FLAMES (outer to inner, painted in layers) ══ -->
+  <!-- Outer red flames -->
+  <path d="M30,72 C24,52 28,36 36,28 C34,42 40,48 38,36 C44,22 48,14 48,14 C48,14 52,22 58,36 C56,48 62,42 60,28 C68,36 72,52 66,72 Z"
+        fill="#C8102E" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Mid gold flame -->
+  <path d="M34,72 C30,56 34,44 40,36 C38,46 44,52 42,40 C46,28 48,22 48,22 C48,22 50,28 54,40 C52,52 58,46 56,36 C62,44 66,56 62,72 Z"
+        fill="#E0A94A"/>
+  <!-- Core orange flame -->
+  <path d="M38,72 C36,60 40,50 44,44 C42,52 46,56 48,48 C50,56 54,52 52,44 C56,50 60,60 58,72 Z"
+        fill="#E0824A"/>
+</svg>

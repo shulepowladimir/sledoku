@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Shadow for wall -->
+  <rect x="12" y="12" width="80" height="80" rx="4" fill="#3A2A20"/>
+  <!-- Background wall -->
+  <rect x="8" y="8" width="80" height="80" rx="4" fill="#3A2A20" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Brick pattern row 1 -->
+  <rect x="10" y="14" width="35" height="12" fill="#E0824A"/>
+  <rect x="49" y="14" width="35" height="12" fill="#E0A94A"/>
+  <!-- Brick pattern row 2 -->
+  <rect x="10" y="30" width="18" height="12" fill="#E0A94A"/>
+  <rect x="32" y="30" width="35" height="12" fill="#E0824A"/>
+  <rect x="71" y="30" width="18" height="12" fill="#E0A94A"/>
+  <!-- Brick pattern row 3 -->
+  <rect x="10" y="46" width="35" height="12" fill="#E0A94A"/>
+  <rect x="49" y="46" width="35" height="12" fill="#E0824A"/>
+  <!-- Brick pattern row 4 -->
+  <rect x="10" y="62" width="18" height="12" fill="#E0824A"/>
+  <rect x="32" y="62" width="35" height="12" fill="#E0A94A"/>
+  <rect x="71" y="62" width="18" height="12" fill="#E0824A"/>
+  <!-- Window opening -->
+  <rect x="32" y="14" width="32" height="40" rx="2" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Vertical bars -->
+  <rect x="36" y="14" width="4" height="40" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="46" y="14" width="4" height="40" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="56" y="14" width="4" height="40" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Horizontal bar -->
+  <rect x="32" y="34" width="32" height="4" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+</svg>

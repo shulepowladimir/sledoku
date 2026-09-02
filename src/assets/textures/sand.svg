@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!--
+    sand.svg — seamless 256×256 beach/desert sand texture.
+    Base: #EBC98D (gold #E0A94A × 50% + cream #F5E9D0 × 50% pre-blended).
+    Ripple lines: #D4A83C (darker warm gold). Grain: #F5E9D0 + #3A2A20 dots.
+    No opacity attributes.
+  -->
+
+  <!-- Base sandy tan -->
+  <rect width="256" height="256" fill="#EBC98D"/>
+
+  <!-- ── Wind ripple bands (gentle horizontal arcs, alternating) ── -->
+  <path d="M0,22  C42,16  84,28  128,22  172,16  214,28  256,22"
+        fill="none" stroke="#D4A83C" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M0,44  C42,50  84,38  128,44  172,50  214,38  256,44"
+        fill="none" stroke="#D4A83C" stroke-width="2" stroke-linecap="round"/>
+  <path d="M0,66  C42,60  84,72  128,66  172,60  214,72  256,66"
+        fill="none" stroke="#C89830" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M0,88  C42,94  84,82  128,88  172,94  214,82  256,88"
+        fill="none" stroke="#D4A83C" stroke-width="2" stroke-linecap="round"/>
+  <path d="M0,110 C42,104 84,116 128,110 172,104 214,116 256,110"
+        fill="none" stroke="#D4A83C" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M0,132 C42,138 84,126 128,132 172,138 214,126 256,132"
+        fill="none" stroke="#C89830" stroke-width="2" stroke-linecap="round"/>
+  <path d="M0,154 C42,148 84,160 128,154 172,148 214,160 256,154"
+        fill="none" stroke="#D4A83C" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M0,176 C42,182 84,170 128,176 172,182 214,170 256,176"
+        fill="none" stroke="#D4A83C" stroke-width="2" stroke-linecap="round"/>
+  <path d="M0,198 C42,192 84,204 128,198 172,192 214,204 256,198"
+        fill="none" stroke="#C89830" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M0,220 C42,226 84,214 128,220 172,226 214,214 256,220"
+        fill="none" stroke="#D4A83C" stroke-width="2" stroke-linecap="round"/>
+  <path d="M0,242 C42,236 84,248 128,242 172,236 214,248 256,242"
+        fill="none" stroke="#D4A83C" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- ── Cream grain highlights (scattered) ── -->
+  <rect x="14"  y="8"   width="3" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="56"  y="30"  width="2" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="96"  y="52"  width="3" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="148" y="18"  width="2" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="198" y="40"  width="3" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="236" y="74"  width="2" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="32"  y="100" width="3" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="74"  y="120" width="2" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="118" y="140" width="3" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="168" y="108" width="2" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="214" y="128" width="3" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="246" y="152" width="2" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="8"   y="178" width="3" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="50"  y="200" width="2" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="102" y="218" width="3" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="152" y="236" width="2" height="2" rx="1" fill="#F5E9D0"/>
+  <rect x="202" y="252" width="3" height="2" rx="1" fill="#F5E9D0"/>
+
+  <!-- ── Dark grain flecks (sparse, simulating heavy mineral grains) ── -->
+  <rect x="38"  y="56"  width="2" height="2" rx="0.5" fill="#3A2A20"/>
+  <rect x="88"  y="14"  width="2" height="2" rx="0.5" fill="#3A2A20"/>
+  <rect x="130" y="92"  width="2" height="2" rx="0.5" fill="#3A2A20"/>
+  <rect x="180" y="62"  width="2" height="2" rx="0.5" fill="#3A2A20"/>
+  <rect x="228" y="106" width="2" height="2" rx="0.5" fill="#3A2A20"/>
+  <rect x="18"  y="148" width="2" height="2" rx="0.5" fill="#3A2A20"/>
+  <rect x="66"  y="170" width="2" height="2" rx="0.5" fill="#3A2A20"/>
+  <rect x="114" y="190" width="2" height="2" rx="0.5" fill="#3A2A20"/>
+  <rect x="164" y="212" width="2" height="2" rx="0.5" fill="#3A2A20"/>
+  <rect x="212" y="232" width="2" height="2" rx="0.5" fill="#3A2A20"/>
+  <rect x="244" y="196" width="2" height="2" rx="0.5" fill="#3A2A20"/>
+</svg>

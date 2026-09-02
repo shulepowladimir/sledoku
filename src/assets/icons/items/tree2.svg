@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    tree2 — leafy tree with rounded canopy, frontal view.
+    Green canopy with teal depth, dark trunk.
+  -->
+
+  <!-- ══ SHADOWS ══ -->
+  <circle cx="52" cy="40" r="34" fill="#3A2A20"/>
+  <rect x="46" y="66" width="12" height="26" rx="4" fill="#3A2A20"/>
+
+  <!-- ══ TRUNK ══ -->
+  <rect x="42" y="64" width="12" height="28" rx="4" fill="#3A2A20" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Bark grain -->
+  <line x1="45" y1="70" x2="45" y2="88" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="50" y1="68" x2="49" y2="84" stroke="#1A1A1A" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- ══ CANOPY ══ -->
+  <!-- Main canopy -->
+  <circle cx="48" cy="36" r="34" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Inner teal shadow depth -->
+  <circle cx="44" cy="38" r="20" fill="#2E6E65"/>
+  <!-- Highlight cluster bumps -->
+  <circle cx="36" cy="22" r="12" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <circle cx="60" cy="20" r="12" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <circle cx="48" cy="10" r="12" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <circle cx="22" cy="36" r="10" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <circle cx="74" cy="34" r="10" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2.5"/>
+</svg>

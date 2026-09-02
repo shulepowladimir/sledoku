@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    hotel theme — classic hotel building facade.
+    Navy body, gold windows, red awning over entrance, flag on roof.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <rect x="14" y="14" width="74" height="78" rx="4" fill="#3A2A20"/>
+
+  <!-- ══ BUILDING BODY ══ -->
+  <rect x="10" y="10" width="74" height="78" rx="4" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ CORNICE / ROOF BAND ══ -->
+  <rect x="10" y="10" width="74" height="10" rx="4" fill="#2E6E65" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ WINDOWS: 3 columns × 3 rows ══ -->
+  <!-- Row 1 (y=24) -->
+  <rect x="14" y="24" width="18" height="14" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="37" y="24" width="18" height="14" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="60" y="24" width="18" height="14" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Row 2 (y=44) -->
+  <rect x="14" y="44" width="18" height="14" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="37" y="44" width="18" height="14" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="60" y="44" width="18" height="14" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Row 3 partial (flanking entrance, y=62) -->
+  <rect x="14" y="62" width="18" height="12" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="60" y="62" width="18" height="12" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ ENTRANCE ARCH ══ -->
+  <rect x="34" y="60" width="24" height="28" rx="10" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Door line -->
+  <line x1="46" y1="64" x2="46" y2="88" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ══ AWNING ══ -->
+  <polygon points="28,60 64,60 60,54 32,54"
+           fill="#C8102E" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Awning stripes -->
+  <line x1="36" y1="54" x2="34" y2="60" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="44" y1="54" x2="42" y2="60" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="52" y1="54" x2="50" y2="60" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ ROOF FLAG ══ -->
+  <rect x="46" y="4" width="2" height="8" rx="1" fill="#1A1A1A"/>
+  <polygon points="48,4 62,7 48,10" fill="#C8102E" stroke="#1A1A1A" stroke-width="1"/>
+</svg>

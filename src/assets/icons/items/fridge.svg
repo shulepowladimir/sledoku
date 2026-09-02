@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    fridge — tall two-door refrigerator. Cream body, navy freezer top, gold handles, teal interior glow.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <rect x="8" y="88" width="80" height="6" rx="3" fill="#3A2A20"/>
+
+  <!-- ══ BODY ══ -->
+  <!-- Body shadow -->
+  <rect x="10" y="4" width="76" height="86" rx="6" fill="#3A2A20"/>
+  <!-- Main body -->
+  <rect x="6"  y="0" width="76" height="86" rx="6" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ FREEZER SECTION (top ~30%) ══ -->
+  <rect x="6"  y="0"  width="76" height="28" rx="6" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Freezer bottom border -->
+  <rect x="6"  y="24" width="76" height="6"  rx="0" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ FREEZER DOOR (interior show) ══ -->
+  <rect x="10" y="4"  width="68" height="20" rx="4" fill="#2E5580" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Ice tray rows -->
+  <rect x="14" y="8"  width="28" height="6"  rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1"/>
+  <rect x="14" y="16" width="28" height="6"  rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- Dividers -->
+  <line x1="20" y1="8"  x2="20" y2="14" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="26" y1="8"  x2="26" y2="14" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="32" y1="8"  x2="32" y2="14" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="20" y1="16" x2="20" y2="22" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="26" y1="16" x2="26" y2="22" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="32" y1="16" x2="32" y2="22" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- Frost patches -->
+  <ellipse cx="60" cy="10" rx="8"  ry="4"  fill="#D4E0E8"/>
+  <ellipse cx="58" cy="18" rx="6"  ry="3"  fill="#D4E0E8"/>
+
+  <!-- ══ FRIDGE DOOR SHELVES ══ -->
+  <rect x="10" y="32" width="68" height="48" rx="4" fill="#E8E0CC" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Shelf lines -->
+  <rect x="12" y="44" width="64" height="3" rx="1.5" fill="#C8C0AC"/>
+  <rect x="12" y="60" width="64" height="3" rx="1.5" fill="#C8C0AC"/>
+  <rect x="12" y="74" width="64" height="3" rx="1.5" fill="#C8C0AC"/>
+  <!-- Food items -->
+  <!-- Milk carton -->
+  <rect x="14" y="34" width="12" height="10" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1"/>
+  <polygon points="14,34 20,28 26,34" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- Orange juice -->
+  <rect x="30" y="35" width="10" height="9"  rx="3" fill="#E0824A" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- Tall bottle -->
+  <rect x="44" y="32" width="8"  height="12" rx="3" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- Bottom shelf items -->
+  <rect x="14" y="64" width="18" height="10" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+  <rect x="36" y="64" width="14" height="10" rx="2" fill="#C8102E" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ HANDLES ══ -->
+  <!-- Freezer handle -->
+  <rect x="72" y="8"  width="6"  height="16" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Fridge handle -->
+  <rect x="72" y="36" width="6"  height="26" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ DOOR DIVISION SEAM ══ -->
+  <line x1="6" y1="30" x2="82" y2="30" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ BRAND PLATE ══ -->
+  <rect x="24" y="78" width="26" height="6" rx="2" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="1"/>
+</svg>

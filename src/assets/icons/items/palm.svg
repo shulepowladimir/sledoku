@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    palm — tropical palm tree. Curved trunk, 5 green fronds, coconuts.
+  -->
+
+  <!-- ══ SHADOWS ══ -->
+  <ellipse cx="52" cy="90" rx="24" ry="6" fill="#3A2A20"/>
+
+  <!-- ══ TRUNK ══ -->
+  <!-- Trunk shadow -->
+  <path d="M50,88 Q54,60 58,40 Q62,20 60,8" fill="none" stroke="#3A2A20" stroke-width="10" stroke-linecap="round"/>
+  <!-- Trunk body (curved) -->
+  <path d="M46,88 Q50,60 54,40 Q58,20 56,8"
+        fill="none" stroke="#7C5D31" stroke-width="8" stroke-linecap="round"/>
+  <!-- Trunk ring marks -->
+  <path d="M46,78 Q50,76 54,78" fill="none" stroke="#3A2A20" stroke-width="2" stroke-linecap="round"/>
+  <path d="M47,68 Q51,66 55,68" fill="none" stroke="#3A2A20" stroke-width="2" stroke-linecap="round"/>
+  <path d="M48,58 Q52,56 56,58" fill="none" stroke="#3A2A20" stroke-width="2" stroke-linecap="round"/>
+  <path d="M49,48 Q53,46 57,48" fill="none" stroke="#3A2A20" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M50,38 Q54,36 58,38" fill="none" stroke="#3A2A20" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M51,28 Q55,26 59,28" fill="none" stroke="#3A2A20" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- ══ FRONDS (5, radiating from crown) ══ -->
+  <!-- Crown base -->
+  <circle cx="56" cy="10" r="6" fill="#3A6B2C" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Frond 1 — drooping right -->
+  <path d="M56,10 Q82,16 90,30"
+        fill="none" stroke="#4D8B3A" stroke-width="5" stroke-linecap="round"/>
+  <path d="M60,12 Q80,20 86,34"
+        fill="none" stroke="#3A6B2C" stroke-width="2" stroke-linecap="round"/>
+  <!-- Frond 2 — upper right -->
+  <path d="M56,8 Q76,2 86,8"
+        fill="none" stroke="#4D8B3A" stroke-width="5" stroke-linecap="round"/>
+  <path d="M60,8 Q78,4 84,10"
+        fill="none" stroke="#3A6B2C" stroke-width="2" stroke-linecap="round"/>
+  <!-- Frond 3 — upper left -->
+  <path d="M54,8 Q36,2 22,8"
+        fill="none" stroke="#4D8B3A" stroke-width="5" stroke-linecap="round"/>
+  <path d="M52,8 Q36,4 24,10"
+        fill="none" stroke="#3A6B2C" stroke-width="2" stroke-linecap="round"/>
+  <!-- Frond 4 — drooping left -->
+  <path d="M54,10 Q30,14 14,28"
+        fill="none" stroke="#4D8B3A" stroke-width="5" stroke-linecap="round"/>
+  <path d="M52,12 Q30,18 16,32"
+        fill="none" stroke="#3A6B2C" stroke-width="2" stroke-linecap="round"/>
+  <!-- Frond 5 — arching up centre -->
+  <path d="M55,6 Q52,0 48,4"
+        fill="none" stroke="#4D8B3A" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Leaflets on fronds (short diagonal strokes) -->
+  <line x1="66" y1="13" x2="68" y2="8"  stroke="#3A6B2C" stroke-width="2" stroke-linecap="round"/>
+  <line x1="74" y1="16" x2="77" y2="11" stroke="#3A6B2C" stroke-width="2" stroke-linecap="round"/>
+  <line x1="38" y1="12" x2="36" y2="7"  stroke="#3A6B2C" stroke-width="2" stroke-linecap="round"/>
+  <line x1="28" y1="14" x2="26" y2="9"  stroke="#3A6B2C" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ══ COCONUTS ══ -->
+  <circle cx="62" cy="14" r="5" fill="#5A3A18" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="52" cy="14" r="4" fill="#5A3A18" stroke="#1A1A1A" stroke-width="1.5"/>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    watercooler — office water dispenser. Sky-blue jug, cream body, teal/red taps, drip tray.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="48" cy="91" rx="28" ry="5" fill="#3A2A20"/>
+
+  <!-- ══ BASE / FEET ══ -->
+  <rect x="26" y="80" width="44" height="10" rx="4" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="30" y="85" width="8"  height="8"  rx="2" fill="#888880" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="58" y="85" width="8"  height="8"  rx="2" fill="#888880" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ CABINET BODY SHADOW ══ -->
+  <rect x="24" y="36" width="46" height="48" rx="5" fill="#3A2A20"/>
+
+  <!-- ══ CABINET BODY ══ -->
+  <rect x="20" y="32" width="46" height="48" rx="5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ DISPENSER HOUSING (top) ══ -->
+  <rect x="22" y="32" width="42" height="18" rx="4" fill="#E8E0CC" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Drip nozzle area -->
+  <rect x="28" y="44" width="30" height="8"  rx="3" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ TAPS ══ -->
+  <!-- Hot tap (red) -->
+  <rect x="30" y="52" width="10" height="6" rx="3" fill="#C8102E" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="28" y="50" width="4"  height="10" rx="2" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Cold tap (teal) -->
+  <rect x="46" y="52" width="10" height="6" rx="3" fill="#2E6E65" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="54" y="50" width="4"  height="10" rx="2" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ DRIP TRAY ══ -->
+  <rect x="26" y="58" width="34" height="5" rx="2" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Tray grid -->
+  <line x1="30" y1="58" x2="30" y2="63" stroke="#888880" stroke-width="1"/>
+  <line x1="38" y1="58" x2="38" y2="63" stroke="#888880" stroke-width="1"/>
+  <line x1="46" y1="58" x2="46" y2="63" stroke="#888880" stroke-width="1"/>
+  <line x1="54" y1="58" x2="54" y2="63" stroke="#888880" stroke-width="1"/>
+
+  <!-- ══ LOWER CABINET DOOR ══ -->
+  <rect x="24" y="64" width="38" height="14" rx="3" fill="#E0D4B0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Door knob -->
+  <circle cx="58" cy="71" r="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ WATER JUG (inverted, top) ══ -->
+  <!-- Jug shadow -->
+  <ellipse cx="44" cy="20" rx="16" ry="18" fill="#3A2A20"/>
+  <!-- Jug body -->
+  <ellipse cx="40" cy="16" rx="16" ry="18" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Water level inside jug -->
+  <ellipse cx="40" cy="18" rx="14" ry="6" fill="#5A9AB8"/>
+  <!-- Jug neck (inverted — bottom of jug goes into cooler) -->
+  <rect x="34" y="30" width="12" height="6"  rx="3" fill="#5A9AB8" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Jug brand label -->
+  <rect x="28" y="12" width="18" height="8"  rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="30" y1="15" x2="44" y2="15" stroke="#7EB9D4" stroke-width="1.5"/>
+  <!-- Air bubble in jug -->
+  <circle cx="48" cy="8" r="4" fill="none" stroke="#F5E9D0" stroke-width="1.5"/>
+</svg>

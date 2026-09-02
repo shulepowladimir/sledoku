@@ -1,0 +1,110 @@
+# Шпаргалка конвенций для нового уровня
+
+Точечная сверка перед добавлением предмета/иконки — не открывать полные файлы ради этого.
+Обновляй этот файл при каждом новом item/иконке в itemLibrary.ts / ItemIcon.tsx / floorTextures.ts.
+
+## itemLibrary.ts — готовые предметы (id — kind)
+
+- chair — occupiable
+- armchair — occupiable
+- sofa — occupiable
+- bench — occupiable
+- stool — occupiable
+- workbench — occupiable
+- plant — decorative
+- globe — decorative
+- portrait — decorative
+- telescope — decorative
+- bookshelf — decorative
+- box — decorative
+- rack — decorative
+- ladder — decorative
+- lamppost — decorative
+- trashcan — decorative
+- barrel — decorative
+- safe — decorative
+- fountain — decorative
+- kiosk — decorative
+- kassa — decorative
+- piano — decorative
+- billiardTable — decorative
+- barStool — occupiable
+- hitchingPost — decorative
+- souvenirRack — decorative
+- computer — decorative
+- watercooler — decorative
+- horse — occupiable
+- cactus — decorative
+- wagon — decorative
+- trough — decorative
+- goal — occupiable
+- ball — decorative
+- seat — occupiable
+- treadmill — occupiable
+- exerciseBike — occupiable
+- hurdle — decorative
+- bed — occupiable
+- table — decorative
+- basketball — decorative
+- toilet — decorative
+- camera — decorative
+- toolbox — decorative
+- clock — decorative
+- bathtub — occupiable
+- jacuzzi — occupiable
+- tv — decorative
+- floorLamp — decorative
+- keyBox — decorative
+- journal — decorative
+- barCounter — decorative
+- palm — decorative
+- rock — decorative
+- coconut — decorative
+- hammock — occupiable
+- hut — decorative
+- bottle — decorative
+- shell — decorative
+- campfire — decorative
+- chest — decorative (icon artifactChest)
+- lamp — decorative
+- boat — decorative
+- tree — decorative
+- stove — decorative (существующая иконка из 01-apartment)
+- fridge — decorative (существующая иконка из 01-apartment)
+- wardrobe — decorative (существующая иконка из 01-apartment)
+- suitcase — decorative (существующая иконка из 10-station)
+- berth — occupiable
+- samovar — decorative
+- luggageRack — decorative
+- throne — occupiable
+- candleStand — decorative
+- armorStand — decorative
+- weaponRack — decorative
+- well — decorative
+- haystack — decorative
+- ferrisWheel — occupiable
+- carousel — occupiable
+- swing — occupiable
+- shootingGallery — decorative
+- popcornStand — decorative
+- plane — decorative
+- windsock — decorative
+- baggageCart — decorative
+- lion — decorative
+- giraffe — decorative
+- monkey — decorative
+- hippo — decorative
+- zebra — decorative
+- penguin — decorative
+
+## ItemIcon.tsx — существующие иконки (имена case, без кода)
+
+stove, fridge, chair, sofa, bed, wardrobe, bookshelf, kassa, veggieCounter, cart, plant, rack, box, stool, paintingStand, sculpture, souvenirRack, ladder, bench, fountain, swing, lamppost, trashcan, flowerbed, kiosk, barCounter, piano, billiardTable, barStool, barrel, hitchingPost, haystack, safe, cauldron, workbench, spellbookStand, globe, artifactChest, armchair, portrait, telescope, broomRack, computer, watercooler, mannequin, tent, campfire, tree, stump, suitcase, departureBoard, turnstile, clock, sarcophagus, canopicJar, torch, goldStatue, stela, airlock, satelliteDish, cryopod, examTable, medicineCabinet, horse, cactus, wagon, trough, goal, ball, seat, treadmill, exerciseBike, hurdle, table, basketball, toilet, camera, toolbox, bathtub, jacuzzi, tv, floorLamp, keyBox, journal, palm, rock, coconut, hammock, hut, bottle, shell, lamp, boat, berth, samovar, luggageRack, throne, candleStand, armorStand, weaponRack, well, ferrisWheel, carousel, shootingGallery, popcornStand, plane, windsock, baggageCart, lion, giraffe, monkey, hippo, zebra, penguin
+
+## floorTextures.ts — textureKey
+
+tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice
+
+## Имена
+
+Таблица имён по буквам — `notes.md` §5 (`~/.paiw/projects/personal/murdoku/notes.md`, симлинк `.paiw/README.md` в репо). Не дублировать здесь.

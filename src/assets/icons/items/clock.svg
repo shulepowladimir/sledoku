@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    clock — round wall clock, front view.
+    Navy frame, cream face, ink hands, red center.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <circle cx="52" cy="52" r="36" fill="#3A2A20"/>
+
+  <!-- ══ CLOCK CASE ══ -->
+  <circle cx="48" cy="48" r="36" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ CLOCK FACE ══ -->
+  <circle cx="48" cy="48" r="29" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ HOUR MARKS ══ -->
+  <!-- 12, 3, 6, 9 — bold rectangles -->
+  <rect x="45.5" y="21" width="5" height="9" rx="1.5" fill="#1A1A1A"/>
+  <rect x="65"   y="45.5" width="9" height="5" rx="1.5" fill="#1A1A1A"/>
+  <rect x="45.5" y="66" width="5" height="9" rx="1.5" fill="#1A1A1A"/>
+  <rect x="22"   y="45.5" width="9" height="5" rx="1.5" fill="#1A1A1A"/>
+  <!-- 1,2,4,5,7,8,10,11 — small circles -->
+  <circle cx="62" cy="26" r="2.5" fill="#1A1A1A"/>
+  <circle cx="71" cy="35" r="2.5" fill="#1A1A1A"/>
+  <circle cx="71" cy="61" r="2.5" fill="#1A1A1A"/>
+  <circle cx="62" cy="70" r="2.5" fill="#1A1A1A"/>
+  <circle cx="35" cy="70" r="2.5" fill="#1A1A1A"/>
+  <circle cx="25" cy="61" r="2.5" fill="#1A1A1A"/>
+  <circle cx="25" cy="35" r="2.5" fill="#1A1A1A"/>
+  <circle cx="35" cy="26" r="2.5" fill="#1A1A1A"/>
+
+  <!-- ══ HANDS ══ -->
+  <!-- Hour hand (to ~10 o'clock) -->
+  <line x1="48" y1="48" x2="34" y2="35" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/>
+  <!-- Minute hand (to ~2 o'clock) -->
+  <line x1="48" y1="48" x2="62" y2="27" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <!-- Second hand (to ~6 o'clock) -->
+  <line x1="48" y1="48" x2="48" y2="70" stroke="#C8102E" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- ══ CENTER ══ -->
+  <circle cx="48" cy="48" r="5" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="48" cy="48" r="2" fill="#1A1A1A"/>
+</svg>

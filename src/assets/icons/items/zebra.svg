@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    zebra — side profile. Cream body with bold black stripes, dark mane.
+  -->
+
+  <!-- ══ SHADOWS ══ -->
+  <rect x="20" y="66" width="8" height="26" rx="3" fill="#3A2A20"/>
+  <rect x="32" y="66" width="8" height="26" rx="3" fill="#3A2A20"/>
+  <rect x="52" y="66" width="8" height="26" rx="3" fill="#3A2A20"/>
+  <rect x="64" y="66" width="8" height="26" rx="3" fill="#3A2A20"/>
+
+  <!-- ══ LEGS (cream base, striped at top) ══ -->
+  <rect x="16" y="62" width="8" height="30" rx="3" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="28" y="62" width="8" height="30" rx="3" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="48" y="62" width="8" height="30" rx="3" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="60" y="62" width="8" height="30" rx="3" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Hoof markings -->
+  <rect x="15" y="86" width="10" height="6" rx="2" fill="#1A1A1A"/>
+  <rect x="27" y="86" width="10" height="6" rx="2" fill="#1A1A1A"/>
+  <rect x="47" y="86" width="10" height="6" rx="2" fill="#1A1A1A"/>
+  <rect x="59" y="86" width="10" height="6" rx="2" fill="#1A1A1A"/>
+
+  <!-- ══ BODY ══ -->
+  <ellipse cx="46" cy="58" rx="32" ry="18" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ NECK ══ -->
+  <rect x="48" y="26" width="14" height="36" rx="6" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ HEAD ══ -->
+  <ellipse cx="66" cy="24" rx="16" ry="12" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Long zebra muzzle -->
+  <ellipse cx="78" cy="28" rx="8" ry="6" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Nostril -->
+  <ellipse cx="82" cy="30" rx="3" ry="2" fill="#1A1A1A"/>
+  <!-- Eye -->
+  <circle cx="62" cy="20" r="3.5" fill="#1A1A1A"/>
+  <circle cx="61" cy="19" r="1.2" fill="#F5E9D0"/>
+  <!-- Ear -->
+  <ellipse cx="54" cy="14" rx="4" ry="7" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <ellipse cx="54" cy="15" rx="2" ry="4" fill="#3A2A20"/>
+
+  <!-- ══ MANE (dark, along top of neck) ══ -->
+  <rect x="50" y="26" width="6" height="36" rx="2" fill="#1A1A1A"/>
+  <!-- Mane tufts -->
+  <line x1="52" y1="26" x2="46" y2="20" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <line x1="52" y1="30" x2="46" y2="26" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <line x1="52" y1="36" x2="46" y2="32" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ══ STRIPES ON BODY ══ -->
+  <rect x="24" y="44" width="6" height="28" rx="2" fill="#1A1A1A" transform="rotate(-10 27 58)"/>
+  <rect x="34" y="42" width="6" height="30" rx="2" fill="#1A1A1A" transform="rotate(-8 37 57)"/>
+  <rect x="44" y="42" width="5" height="30" rx="2" fill="#1A1A1A" transform="rotate(-5 46 57)"/>
+  <rect x="54" y="44" width="5" height="28" rx="2" fill="#1A1A1A" transform="rotate(2 56 58)"/>
+  <rect x="64" y="46" width="5" height="24" rx="2" fill="#1A1A1A" transform="rotate(8 66 58)"/>
+  <!-- Stripes on neck -->
+  <rect x="50" y="32" width="5" height="18" rx="2" fill="#1A1A1A" transform="rotate(-15 53 41)"/>
+  <rect x="56" y="34" width="4" height="16" rx="2" fill="#1A1A1A" transform="rotate(-5 58 42)"/>
+
+  <!-- ══ TAIL ══ -->
+  <path d="M14,58 C6,56 4,66 10,70" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="10" cy="71" rx="4" ry="3" fill="#1A1A1A"/>
+</svg>

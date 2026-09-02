@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    ball — soccer / football. Cream hexagons, navy pentagons, classic seam pattern.
+    Simplified 2D top-view: central navy pentagon + 5 surrounding patches visible.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <circle cx="52" cy="52" r="34" fill="#3A2A20"/>
+
+  <!-- ══ BASE (cream) ══ -->
+  <circle cx="48" cy="48" r="34" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ NAVY PATCHES ══ -->
+  <!-- Central pentagon (top-centre of ball face) -->
+  <polygon points="48,18  57,24  54,34  42,34  39,24"
+           fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Lower-left patch -->
+  <polygon points="20,38  30,32  38,38  36,50  24,50"
+           fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Lower-right patch -->
+  <polygon points="76,38  66,32  58,38  60,50  72,50"
+           fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Bottom-left patch -->
+  <polygon points="26,64  36,58  44,64  40,76  28,74"
+           fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Bottom-right patch -->
+  <polygon points="70,64  60,58  52,64  56,76  68,74"
+           fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ SEAM CURVES connecting patches ══ -->
+  <!-- Top centre to lower-left -->
+  <path d="M39,24 C32,28 26,34 20,38" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Top centre to lower-right -->
+  <path d="M57,24 C64,28 70,34 76,38" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Lower-left to bottom-left -->
+  <path d="M24,50 C22,56 24,60 26,64" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Lower-right to bottom-right -->
+  <path d="M72,50 C74,56 72,60 70,64" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Lower-left to bottom-right (cross) -->
+  <path d="M36,50 C40,58 48,62 52,64" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Lower-right to bottom-left (cross) -->
+  <path d="M60,50 C56,58 48,62 44,64" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Top pentagon to lower-left -->
+  <path d="M42,34 C38,36 38,38 38,38" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Top pentagon to lower-right -->
+  <path d="M54,34 C58,36 58,38 58,38" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ══ OUTLINE ══ -->
+  <circle cx="48" cy="48" r="34" fill="none" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ HIGHLIGHT ══ -->
+  <ellipse cx="34" cy="28" rx="7" ry="4" fill="#F5E9D0"/>
+</svg>

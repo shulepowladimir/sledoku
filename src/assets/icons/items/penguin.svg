@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    penguin — front-facing tuxedo penguin. Navy body, cream belly, gold beak/feet.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="90" rx="28" ry="7" fill="#3A2A20"/>
+
+  <!-- ══ BODY SHADOW ══ -->
+  <ellipse cx="52" cy="64" rx="28" ry="26" fill="#3A2A20"/>
+
+  <!-- ══ BODY (navy) ══ -->
+  <ellipse cx="48" cy="60" rx="28" ry="26" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ CREAM BELLY ══ -->
+  <ellipse cx="48" cy="62" rx="16" ry="20" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ WINGS ══ -->
+  <!-- Left wing -->
+  <path d="M20,56 Q10,62 14,76 Q18,80 24,72 Q26,64 22,58 Z"
+        fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Right wing -->
+  <path d="M76,56 Q86,62 82,76 Q78,80 72,72 Q70,64 74,58 Z"
+        fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+
+  <!-- ══ HEAD ══ -->
+  <!-- Head shadow -->
+  <circle cx="52" cy="30" r="20" fill="#3A2A20"/>
+  <!-- Head -->
+  <circle cx="48" cy="28" r="20" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- White face patches around eyes -->
+  <ellipse cx="42" cy="26" rx="7" ry="8" fill="#F5E9D0"/>
+  <ellipse cx="54" cy="26" rx="7" ry="8" fill="#F5E9D0"/>
+
+  <!-- ══ EYES ══ -->
+  <circle cx="42" cy="25" r="4" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="41" cy="24" r="1.2" fill="#F5E9D0"/>
+  <circle cx="54" cy="25" r="4" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="53" cy="24" r="1.2" fill="#F5E9D0"/>
+
+  <!-- ══ BEAK ══ -->
+  <polygon points="44,33 52,33 48,40"
+           fill="#E0A94A" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Beak line -->
+  <line x1="44" y1="36" x2="52" y2="36" stroke="#C89830" stroke-width="1.5"/>
+
+  <!-- ══ FEET ══ -->
+  <!-- Left foot -->
+  <ellipse cx="38" cy="88" rx="10" ry="5" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="30" y="84" width="4" height="6" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Right foot -->
+  <ellipse cx="58" cy="88" rx="10" ry="5" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="62" y="84" width="4" height="6" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ BOW TIE (cream, tuxedo touch) ══ -->
+  <polygon points="44,46 48,50 44,54" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <polygon points="52,46 48,50 52,54" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="48" cy="50" r="2" fill="#C8102E" stroke="#1A1A1A" stroke-width="1"/>
+</svg>

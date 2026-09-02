@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    barrel — wooden barrel with metal hoops, front view.
+    Shadow-brown staves, stone-gray metal bands.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="52" cy="26" rx="24" ry="8" fill="#3A2A20"/>
+  <rect x="28" y="22" width="52" height="62" rx="16" fill="#3A2A20"/>
+
+  <!-- ══ BARREL BODY ══ -->
+  <!-- Stave fill -->
+  <rect x="24" y="20" width="52" height="62" rx="14" fill="#E0A94A" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Top ellipse -->
+  <ellipse cx="50" cy="22" rx="26" ry="9" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ METAL HOOPS ══ -->
+  <!-- Top hoop -->
+  <rect x="22" y="28" width="56" height="6" rx="3" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Middle hoop -->
+  <rect x="18" y="46" width="64" height="7" rx="3" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Bottom hoop -->
+  <rect x="22" y="66" width="56" height="6" rx="3" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ STAVE LINES (wood grain) ══ -->
+  <line x1="38" y1="34" x2="36" y2="64" stroke="#3A2A20" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="50" y1="32" x2="50" y2="64" stroke="#3A2A20" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="62" y1="34" x2="64" y2="64" stroke="#3A2A20" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- ══ BUNG HOLE ══ -->
+  <circle cx="50" cy="51" r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="50" cy="51" r="2" fill="#E0824A"/>
+</svg>

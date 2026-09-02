@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!--
+    stairs.svg — seamless 256×256 staircase texture, front profile view.
+    4 steps per tile. Each step = 64px tall:
+      - Tread top face (48px): stone gray #A8A8A0, with left shadow strip.
+      - Nosing line (2px): cream #F5E9D0 (front edge of tread).
+      - Black edge (1px): ink #1A1A1A.
+      - Riser face (13px): navy #1F3A5F (vertical face of step).
+    When tiled vertically, steps repeat continuously.
+    No opacity attributes.
+  -->
+
+  <!-- Navy base (riser faces show through where no tread rect) -->
+  <rect width="256" height="256" fill="#1F3A5F"/>
+
+  <!-- ── STEP 1 (y = 0–63) ── -->
+  <!-- Tread top -->
+  <rect x="0" y="0" width="256" height="48" fill="#A8A8A0"/>
+  <!-- Left shadow strip (depth illusion) -->
+  <rect x="0" y="0" width="18" height="48" fill="#7D7D78"/>
+  <!-- Tread grain texture lines -->
+  <rect x="0" y="16" width="256" height="1" fill="#C0C0B8"/>
+  <rect x="0" y="32" width="256" height="1" fill="#888880"/>
+  <!-- Nosing cream highlight -->
+  <rect x="0" y="48" width="256" height="2" fill="#F5E9D0"/>
+  <!-- Hard ink edge -->
+  <rect x="0" y="50" width="256" height="2" fill="#1A1A1A"/>
+  <!-- Riser face: y=52-64 (navy background) -->
+
+  <!-- ── STEP 2 (y = 64–127) ── -->
+  <rect x="0" y="64" width="256" height="48" fill="#A8A8A0"/>
+  <rect x="0" y="64" width="18" height="48" fill="#7D7D78"/>
+  <rect x="0" y="80" width="256" height="1" fill="#C0C0B8"/>
+  <rect x="0" y="96" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="112" width="256" height="2" fill="#F5E9D0"/>
+  <rect x="0" y="114" width="256" height="2" fill="#1A1A1A"/>
+
+  <!-- ── STEP 3 (y = 128–191) ── -->
+  <rect x="0" y="128" width="256" height="48" fill="#A8A8A0"/>
+  <rect x="0" y="128" width="18" height="48" fill="#7D7D78"/>
+  <rect x="0" y="144" width="256" height="1" fill="#C0C0B8"/>
+  <rect x="0" y="160" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="176" width="256" height="2" fill="#F5E9D0"/>
+  <rect x="0" y="178" width="256" height="2" fill="#1A1A1A"/>
+
+  <!-- ── STEP 4 (y = 192–255) ── -->
+  <rect x="0" y="192" width="256" height="48" fill="#A8A8A0"/>
+  <rect x="0" y="192" width="18" height="48" fill="#7D7D78"/>
+  <rect x="0" y="208" width="256" height="1" fill="#C0C0B8"/>
+  <rect x="0" y="224" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="240" width="256" height="2" fill="#F5E9D0"/>
+  <rect x="0" y="242" width="256" height="2" fill="#1A1A1A"/>
+  <!-- Riser y=244-256: navy background shows (seamlessly connects to step 1 tread of next tile) -->
+</svg>

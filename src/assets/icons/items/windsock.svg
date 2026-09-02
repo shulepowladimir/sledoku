@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Hard shadows -->
+  <!-- Pole shadow -->
+  <rect x="18" y="12" width="5" height="76" rx="2" fill="#3A2A20"/>
+  <!-- Arm shadow -->
+  <rect x="18" y="16" width="26" height="5" rx="2" fill="#3A2A20"/>
+  <!-- Sock shadow -->
+  <polygon points="40,21 80,36 80,52 40,45" fill="#3A2A20"/>
+
+  <!-- Pole -->
+  <rect x="14" y="8" width="5" height="76" rx="2.5" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Horizontal arm -->
+  <rect x="14" y="12" width="26" height="5" rx="2.5" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Ball joint -->
+  <circle cx="40" cy="14" r="5" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- Sock stripe 1 (orange, near end) -->
+  <polygon points="40,17 58,22 58,38 40,41" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Sock stripe 2 (cream) -->
+  <polygon points="58,22 70,27 70,42 58,38" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Sock stripe 3 (orange, tip) -->
+  <polygon points="70,27 80,32 80,38 70,42" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+
+  <!-- Sock outline (redraw over stripe joints for clean look) -->
+  <polygon points="40,17 80,32 80,38 40,41" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    piano — upright piano. Dark wood body, cream/navy keys, gold candlestick holders, red stool.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="92" rx="44" ry="4" fill="#3A2A20"/>
+
+  <!-- ══ LEGS ══ -->
+  <rect x="10" y="78" width="8" height="14" rx="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="78" y="78" width="8" height="14" rx="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ BODY ══ -->
+  <!-- Body shadow -->
+  <rect x="6"  y="4" width="80" height="80" rx="4" fill="#3A2A20"/>
+  <!-- Body -->
+  <rect x="2"  y="0" width="80" height="80" rx="4" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ TOP PANEL (lid) ══ -->
+  <rect x="2"  y="0"  width="80" height="14" rx="4" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Music rest -->
+  <rect x="8"  y="2"  width="68" height="8"  rx="2" fill="#2A1A10"/>
+
+  <!-- ══ FALLBOARD / KEY COVER ══ -->
+  <rect x="2"  y="14" width="80" height="8"  rx="2" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ KEYS (white keys) ══ -->
+  <rect x="4"  y="22" width="76" height="28" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- White key dividers (7 keys visible) -->
+  <line x1="15" y1="22" x2="15" y2="50" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="26" y1="22" x2="26" y2="50" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="37" y1="22" x2="37" y2="50" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="48" y1="22" x2="48" y2="50" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="59" y1="22" x2="59" y2="50" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="70" y1="22" x2="70" y2="50" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- Black keys (5 between 7 white keys) -->
+  <rect x="10" y="22" width="8" height="18" rx="2" fill="#1A1A1A"/>
+  <rect x="21" y="22" width="8" height="18" rx="2" fill="#1A1A1A"/>
+  <rect x="43" y="22" width="8" height="18" rx="2" fill="#1A1A1A"/>
+  <rect x="54" y="22" width="8" height="18" rx="2" fill="#1A1A1A"/>
+  <rect x="65" y="22" width="8" height="18" rx="2" fill="#1A1A1A"/>
+
+  <!-- ══ LOWER PANEL ══ -->
+  <rect x="4"  y="52" width="76" height="26" rx="2" fill="#2A1A10" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Carved panel detail -->
+  <rect x="10" y="56" width="30" height="16" rx="3" fill="none" stroke="#3A2A20" stroke-width="2"/>
+  <rect x="44" y="56" width="30" height="16" rx="3" fill="none" stroke="#3A2A20" stroke-width="2"/>
+
+  <!-- ══ PEDALS ══ -->
+  <ellipse cx="32" cy="78" rx="6"  ry="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <ellipse cx="48" cy="78" rx="6"  ry="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <ellipse cx="64" cy="78" rx="6"  ry="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ CANDLESTICK HOLDERS ══ -->
+  <rect x="84" y="8" width="6" height="30" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <ellipse cx="87" cy="8" rx="6" ry="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="85" y="0" width="4" height="10" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- Flame -->
+  <path d="M86,0 Q87,-4 88,0 Q88.5,3 87,3 Q85.5,3 86,0 Z" fill="#E0A94A"/>
+</svg>

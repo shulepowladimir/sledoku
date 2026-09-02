@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!--
+    cobble.svg — seamless 256×256 cobblestone street.
+    Offset-row pattern: 60×28 stones with 4px mortar.
+    Unit: 64px wide × 32px tall → 4 wide × 8 tall = 256×256. Seamless.
+    Odd rows offset by 32px (half-brick). Partial stones at edges wrap seamlessly.
+    No opacity attributes.
+  -->
+
+  <!-- Mortar base (dark gray) -->
+  <rect width="256" height="256" fill="#888880"/>
+
+  <!-- ══ EVEN ROWS (offset 0): y = 2+j*32, x = 2+i*64 for i=0..3 ══ -->
+  <!-- Row 0 (y=2) -->
+  <rect x="2"   y="2"  width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="66"  y="2"  width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="130" y="2"  width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="194" y="2"  width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <!-- Row 2 (y=66) -->
+  <rect x="2"   y="66" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="66"  y="66" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="130" y="66" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="194" y="66" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <!-- Row 4 (y=130) -->
+  <rect x="2"   y="130" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="66"  y="130" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="130" y="130" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="194" y="130" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <!-- Row 6 (y=194) -->
+  <rect x="2"   y="194" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="66"  y="194" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="130" y="194" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="194" y="194" width="60" height="28" rx="5" fill="#A8A8A0"/>
+
+  <!-- ══ ODD ROWS (offset +32px): y = 34+j*64, x = -30+i*64 ══ -->
+  <!-- Row 1 (y=34): partial at left (-30..30) + 3 full + partial at right (226..286→256) -->
+  <rect x="-30" y="34" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="34"  y="34" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="98"  y="34" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="162" y="34" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="226" y="34" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <!-- Row 3 (y=98) -->
+  <rect x="-30" y="98" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="34"  y="98" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="98"  y="98" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="162" y="98" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="226" y="98" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <!-- Row 5 (y=162) -->
+  <rect x="-30" y="162" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="34"  y="162" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="98"  y="162" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="162" y="162" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="226" y="162" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <!-- Row 7 (y=226) -->
+  <rect x="-30" y="226" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="34"  y="226" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="98"  y="226" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="162" y="226" width="60" height="28" rx="5" fill="#A8A8A0"/>
+  <rect x="226" y="226" width="60" height="28" rx="5" fill="#A8A8A0"/>
+
+  <!-- ══ STONE HIGHLIGHTS (top-left lighter edge) ══ -->
+  <!-- Even rows, top light strip -->
+  <!-- Row 0 -->
+  <rect x="4"   y="3"  width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="68"  y="3"  width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="132" y="3"  width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="196" y="3"  width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <!-- Row 2 -->
+  <rect x="4"   y="67" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="68"  y="67" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="132" y="67" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="196" y="67" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <!-- Row 4 -->
+  <rect x="4"   y="131" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="68"  y="131" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="132" y="131" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="196" y="131" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <!-- Row 6 -->
+  <rect x="4"   y="195" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="68"  y="195" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="132" y="195" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="196" y="195" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <!-- Odd rows -->
+  <rect x="36"  y="35" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="100" y="35" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="164" y="35" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="228" y="35" width="26" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="36"  y="99" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="100" y="99" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="164" y="99" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="228" y="99" width="26" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="36"  y="163" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="100" y="163" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="164" y="163" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="228" y="163" width="26" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="36"  y="227" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="100" y="227" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="164" y="227" width="56" height="3" rx="2" fill="#C0C0B8"/>
+  <rect x="228" y="227" width="26" height="3" rx="2" fill="#C0C0B8"/>
+
+  <!-- ══ SHADOW EDGE (bottom-right of stones, darker) ══ -->
+  <!-- Even rows bottom shadow -->
+  <rect x="2"   y="27" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="66"  y="27" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="130" y="27" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="194" y="27" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="2"   y="91" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="66"  y="91" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="130" y="91" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="194" y="91" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="2"   y="155" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="66"  y="155" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="130" y="155" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="194" y="155" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="2"   y="219" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="66"  y="219" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="130" y="219" width="60" height="3" rx="2" fill="#707068"/>
+  <rect x="194" y="219" width="60" height="3" rx="2" fill="#707068"/>
+</svg>

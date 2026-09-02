@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Base fill -->
+  <rect width="256" height="256" fill="#F5E9D0"/>
+
+  <!-- Main dark veins -->
+  <path d="M0,38 C60,28 100,55 160,35 C200,22 240,48 256,38" stroke="#3A2A20" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M0,82 C50,95 110,70 170,88 C210,100 240,76 256,82" stroke="#3A2A20" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M0,140 C80,125 120,158 180,143 C220,133 245,152 256,140" stroke="#3A2A20" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M0,188 C70,202 130,175 190,195 C225,208 248,183 256,188" stroke="#3A2A20" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M0,228 C90,215 140,240 200,222 C235,212 252,235 256,228" stroke="#3A2A20" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Thinner gold veins -->
+  <path d="M0,58 C80,50 150,68 256,58" stroke="#E0A94A" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+  <path d="M0,162 C100,155 180,172 256,162" stroke="#E0A94A" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+  <path d="M0,210 C90,204 170,218 256,210" stroke="#E0A94A" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    ferrisWheel — classic Ferris wheel. Navy spokes, gold rim, 8 coloured gondolas, A-frame support.
+  -->
+
+  <!-- ══ SUPPORT FRAME (A-frame) ══ -->
+  <!-- Left leg shadow -->
+  <line x1="50" y1="50" x2="20" y2="94" stroke="#3A2A20" stroke-width="7" stroke-linecap="round"/>
+  <!-- Right leg shadow -->
+  <line x1="54" y1="50" x2="82" y2="94" stroke="#3A2A20" stroke-width="7" stroke-linecap="round"/>
+  <!-- Left leg -->
+  <line x1="46" y1="50" x2="16" y2="94" stroke="#1F3A5F" stroke-width="6" stroke-linecap="round"/>
+  <!-- Right leg -->
+  <line x1="50" y1="50" x2="78" y2="94" stroke="#1F3A5F" stroke-width="6" stroke-linecap="round"/>
+  <!-- Cross brace -->
+  <line x1="24" y1="76" x2="72" y2="76" stroke="#1F3A5F" stroke-width="4" stroke-linecap="round"/>
+  <!-- Ground bar -->
+  <rect x="10" y="90" width="74" height="6" rx="3" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ WHEEL ══ -->
+  <!-- Outer rim shadow -->
+  <circle cx="50" cy="46" r="40" fill="none" stroke="#3A2A20" stroke-width="8"/>
+  <!-- Outer rim -->
+  <circle cx="46" cy="44" r="40" fill="none" stroke="#E0A94A" stroke-width="6"/>
+  <!-- Inner rim -->
+  <circle cx="46" cy="44" r="40" fill="none" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ SPOKES (8) ══ -->
+  <!-- Vertical -->
+  <line x1="46" y1="4"  x2="46" y2="84" stroke="#1F3A5F" stroke-width="3"/>
+  <line x1="6"  y1="44" x2="86" y2="44" stroke="#1F3A5F" stroke-width="3"/>
+  <!-- Diagonal -->
+  <line x1="18" y1="16" x2="74" y2="72" stroke="#1F3A5F" stroke-width="3"/>
+  <line x1="74" y1="16" x2="18" y2="72" stroke="#1F3A5F" stroke-width="3"/>
+
+  <!-- ══ HUB ══ -->
+  <circle cx="46" cy="44" r="7" fill="#C8102E" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="46" cy="44" r="3" fill="#E0A94A"/>
+
+  <!-- ══ GONDOLAS (8, at spoke ends) ══ -->
+  <!-- Top -->
+  <rect x="40" y="0"  width="12" height="9" rx="3" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Top-right -->
+  <rect x="68" y="12" width="10" height="8" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Right -->
+  <rect x="80" y="40" width="10" height="8" rx="3" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Bottom-right -->
+  <rect x="68" y="68" width="10" height="8" rx="3" fill="#E0824A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Bottom -->
+  <rect x="40" y="79" width="12" height="9" rx="3" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Bottom-left -->
+  <rect x="14" y="68" width="10" height="8" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Left -->
+  <rect x="2"  y="40" width="10" height="8" rx="3" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Top-left -->
+  <rect x="14" y="12" width="10" height="8" rx="3" fill="#E0824A" stroke="#1A1A1A" stroke-width="1.5"/>
+</svg>

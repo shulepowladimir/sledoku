@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    torch — wall-mounted fire torch. Dark pole, gold bracket, layered flame.
+  -->
+
+  <!-- ══ WALL BRACKET ══ -->
+  <!-- Bracket arm shadow -->
+  <rect x="20" y="28" width="28" height="8" rx="3" fill="#3A2A20"/>
+  <rect x="14" y="10" width="12" height="40" rx="3" fill="#3A2A20"/>
+  <!-- Wall plate -->
+  <rect x="10" y="8" width="12" height="42" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Bracket arm -->
+  <rect x="16" y="26" width="28" height="8" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Wall screws -->
+  <circle cx="16" cy="14" r="2.5" fill="#1A1A1A"/>
+  <circle cx="16" cy="42" r="2.5" fill="#1A1A1A"/>
+
+  <!-- ══ TORCH HANDLE ══ -->
+  <!-- Handle shadow -->
+  <rect x="44" y="28" width="12" height="58" rx="5" fill="#3A2A20"/>
+  <!-- Handle body -->
+  <rect x="40" y="24" width="12" height="58" rx="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Metal bands (gold) -->
+  <rect x="38" y="36" width="16" height="5" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="38" y="50" width="16" height="5" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="38" y="64" width="16" height="5" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ TORCH HEAD ══ -->
+  <!-- Head cup -->
+  <path d="M34,28 L58,28 L54,18 L38,18 Z"
+        fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Ember base -->
+  <ellipse cx="46" cy="18" rx="12" ry="5" fill="#E0824A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ FLAME (layered, no opacity) ══ -->
+  <!-- Outer flame (red) -->
+  <path d="M36,18 Q30,8  38,0  Q42,6  46,2  Q50,6  54,0  Q62,8  56,18 Z"
+        fill="#C8102E" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Mid flame (gold) -->
+  <path d="M38,18 Q34,10 40,4  Q44,8  46,4  Q48,8  52,4  Q58,10 54,18 Z"
+        fill="#E0A94A"/>
+  <!-- Inner flame core (orange) -->
+  <path d="M40,18 Q38,12 42,7  Q46,10 50,7  Q54,12 52,18 Z"
+        fill="#E0824A"/>
+
+  <!-- ══ SPARKS ══ -->
+  <circle cx="32" cy="6"  r="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="62" cy="8"  r="2" fill="#C8102E" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="28" cy="14" r="1.5" fill="#E0A94A"/>
+  <circle cx="66" cy="4"  r="1.5" fill="#E0824A"/>
+</svg>

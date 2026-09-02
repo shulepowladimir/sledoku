@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    trashcan — cylindrical waste bin with lid. Navy can, stone lid, gold rim.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="90" rx="30" ry="7" fill="#3A2A20"/>
+  <rect x="20" y="34" width="60" height="58" rx="6" fill="#3A2A20"/>
+
+  <!-- ══ CAN BODY ══ -->
+  <rect x="16" y="30" width="60" height="58" rx="6" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Body bottom ellipse -->
+  <ellipse cx="46" cy="88" rx="30" ry="8" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ VERTICAL RIBS ══ -->
+  <line x1="30" y1="30" x2="30" y2="88" stroke="#2E5580" stroke-width="2" stroke-linecap="round"/>
+  <line x1="46" y1="30" x2="46" y2="88" stroke="#2E5580" stroke-width="2" stroke-linecap="round"/>
+  <line x1="62" y1="30" x2="62" y2="88" stroke="#2E5580" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ══ GOLD RIM ══ -->
+  <ellipse cx="46" cy="30" rx="30" ry="8" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Rim band -->
+  <rect x="16" y="30" width="60" height="6" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ LID ══ -->
+  <!-- Lid shadow -->
+  <ellipse cx="50" cy="22" rx="34" ry="11" fill="#3A2A20"/>
+  <!-- Lid disc -->
+  <ellipse cx="46" cy="20" rx="34" ry="11" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Lid inner depression -->
+  <ellipse cx="46" cy="20" rx="28" ry="8" fill="#888880" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ LID HANDLE ══ -->
+  <rect x="38" y="8" width="16" height="8" rx="4" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <ellipse cx="46" cy="8" rx="8" ry="4" fill="#C0C0B8" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ RECYCLING SYMBOL (simplified) ══ -->
+  <path d="M36,56 Q34,48 40,44 Q46,48 46,44 Q52,40 58,44 Q60,50 56,56 L52,52 L52,60 L44,60 L44,52 Z"
+        fill="none" stroke="#7EB9D4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Base mortar fill -->
+  <rect width="256" height="256" fill="#1A1A1A"/>
+
+  <!-- Row 0 (y=0, even): cream, gold, cream, gold -->
+  <rect x="4" y="4" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="68" y="4" width="60" height="28" rx="3" fill="#E0A94A"/>
+  <rect x="132" y="4" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="196" y="4" width="60" height="28" rx="3" fill="#E0A94A"/>
+
+  <!-- Row 1 (y=32, odd): gold partial, cream, gold, cream, gold, cream partial -->
+  <rect x="-28" y="36" width="60" height="28" rx="3" fill="#E0A94A"/>
+  <rect x="36" y="36" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="100" y="36" width="60" height="28" rx="3" fill="#E0A94A"/>
+  <rect x="164" y="36" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="228" y="36" width="60" height="28" rx="3" fill="#E0A94A"/>
+
+  <!-- Row 2 (y=64, even): cream, gold, cream, gold -->
+  <rect x="4" y="68" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="68" y="68" width="60" height="28" rx="3" fill="#E0A94A"/>
+  <rect x="132" y="68" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="196" y="68" width="60" height="28" rx="3" fill="#E0A94A"/>
+
+  <!-- Row 3 (y=96, odd): gold partial, cream, gold, cream, gold, cream partial -->
+  <rect x="-28" y="100" width="60" height="28" rx="3" fill="#E0A94A"/>
+  <rect x="36" y="100" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="100" y="100" width="60" height="28" rx="3" fill="#E0A94A"/>
+  <rect x="164" y="100" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="228" y="100" width="60" height="28" rx="3" fill="#E0A94A"/>
+
+  <!-- Row 4 (y=128, even): cream, gold, cream, gold -->
+  <rect x="4" y="132" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="68" y="132" width="60" height="28" rx="3" fill="#E0A94A"/>
+  <rect x="132" y="132" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="196" y="132" width="60" height="28" rx="3" fill="#E0A94A"/>
+
+  <!-- Row 5 (y=160, odd): gold partial, cream, gold, cream, gold, cream partial -->
+  <rect x="-28" y="164" width="60" height="28" rx="3" fill="#E0A94A"/>
+  <rect x="36" y="164" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="100" y="164" width="60" height="28" rx="3" fill="#E0A94A"/>
+  <rect x="164" y="164" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="228" y="164" width="60" height="28" rx="3" fill="#E0A94A"/>
+
+  <!-- Row 6 (y=192, even): cream, gold, cream, gold -->
+  <rect x="4" y="196" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="68" y="196" width="60" height="28" rx="3" fill="#E0A94A"/>
+  <rect x="132" y="196" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="196" y="196" width="60" height="28" rx="3" fill="#E0A94A"/>
+
+  <!-- Row 7 (y=224, odd): gold partial, cream, gold, cream, gold, cream partial -->
+  <rect x="-28" y="228" width="60" height="28" rx="3" fill="#E0A94A"/>
+  <rect x="36" y="228" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="100" y="228" width="60" height="28" rx="3" fill="#E0A94A"/>
+  <rect x="164" y="228" width="60" height="28" rx="3" fill="#F5E9D0"/>
+  <rect x="228" y="228" width="60" height="28" rx="3" fill="#E0A94A"/>
+</svg>

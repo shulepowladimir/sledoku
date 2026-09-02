@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!--
+    grass.svg — seamless 256×256.
+    Palette: #4D8B3A forest-green base, #6AAD52 lighter blade highlights, #3A6B2C dark blade shadows, #3A2A20 dirt accents.
+    No opacity attributes.
+  -->
+
+  <!-- Base: forest green -->
+  <rect width="256" height="256" fill="#4D8B3A"/>
+
+  <!-- Dark blade shadow stripes (irregular spacing) -->
+  <rect x="7"   y="0" width="2" height="256" fill="#3A6B2C"/>
+  <rect x="17"  y="0" width="1" height="256" fill="#3A6B2C"/>
+  <rect x="28"  y="0" width="2" height="256" fill="#3A6B2C"/>
+  <rect x="38"  y="0" width="1" height="256" fill="#3A6B2C"/>
+  <rect x="50"  y="0" width="2" height="256" fill="#3A6B2C"/>
+  <rect x="60"  y="0" width="1" height="256" fill="#3A6B2C"/>
+  <rect x="73"  y="0" width="2" height="256" fill="#3A6B2C"/>
+  <rect x="84"  y="0" width="1" height="256" fill="#3A6B2C"/>
+  <rect x="96"  y="0" width="2" height="256" fill="#3A6B2C"/>
+  <rect x="106" y="0" width="1" height="256" fill="#3A6B2C"/>
+  <rect x="119" y="0" width="2" height="256" fill="#3A6B2C"/>
+  <rect x="130" y="0" width="1" height="256" fill="#3A6B2C"/>
+  <rect x="143" y="0" width="2" height="256" fill="#3A6B2C"/>
+  <rect x="154" y="0" width="1" height="256" fill="#3A6B2C"/>
+  <rect x="166" y="0" width="2" height="256" fill="#3A6B2C"/>
+  <rect x="177" y="0" width="1" height="256" fill="#3A6B2C"/>
+  <rect x="189" y="0" width="2" height="256" fill="#3A6B2C"/>
+  <rect x="200" y="0" width="1" height="256" fill="#3A6B2C"/>
+  <rect x="213" y="0" width="2" height="256" fill="#3A6B2C"/>
+  <rect x="224" y="0" width="1" height="256" fill="#3A6B2C"/>
+  <rect x="236" y="0" width="2" height="256" fill="#3A6B2C"/>
+  <rect x="247" y="0" width="1" height="256" fill="#3A6B2C"/>
+
+  <!-- Light blade highlight stripes (between darks) -->
+  <rect x="12"  y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="23"  y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="44"  y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="55"  y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="67"  y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="79"  y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="90"  y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="101" y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="113" y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="125" y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="136" y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="148" y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="160" y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="172" y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="183" y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="195" y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="207" y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="219" y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="230" y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="242" y="0" width="1" height="256" fill="#6AAD52"/>
+  <rect x="253" y="0" width="1" height="256" fill="#6AAD52"/>
+
+  <!-- Dirt/ground accent dots (scattered) -->
+  <rect x="14"  y="250" width="3" height="2" rx="1" fill="#3A2A20"/>
+  <rect x="44"  y="248" width="2" height="3" rx="1" fill="#3A2A20"/>
+  <rect x="78"  y="252" width="3" height="2" rx="1" fill="#3A2A20"/>
+  <rect x="112" y="249" width="2" height="2" rx="1" fill="#3A2A20"/>
+  <rect x="148" y="251" width="3" height="2" rx="1" fill="#3A2A20"/>
+  <rect x="182" y="248" width="2" height="3" rx="1" fill="#3A2A20"/>
+  <rect x="216" y="252" width="3" height="2" rx="1" fill="#3A2A20"/>
+  <rect x="248" y="250" width="3" height="2" rx="1" fill="#3A2A20"/>
+
+  <!-- Small seed dots (cream, scattered vertically) -->
+  <circle cx="14"  cy="32"  r="1.5" fill="#F5E9D0"/>
+  <circle cx="46"  cy="88"  r="1.5" fill="#F5E9D0"/>
+  <circle cx="72"  cy="22"  r="1.5" fill="#F5E9D0"/>
+  <circle cx="100" cy="145" r="1.5" fill="#F5E9D0"/>
+  <circle cx="128" cy="68"  r="1.5" fill="#F5E9D0"/>
+  <circle cx="155" cy="205" r="1.5" fill="#F5E9D0"/>
+  <circle cx="183" cy="112" r="1.5" fill="#F5E9D0"/>
+  <circle cx="210" cy="46"  r="1.5" fill="#F5E9D0"/>
+  <circle cx="240" cy="172" r="1.5" fill="#F5E9D0"/>
+  <circle cx="26"  cy="192" r="1.5" fill="#F5E9D0"/>
+  <circle cx="88"  cy="232" r="1.5" fill="#F5E9D0"/>
+  <circle cx="165" cy="16"  r="1.5" fill="#F5E9D0"/>
+</svg>

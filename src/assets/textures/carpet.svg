@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Base fill -->
+  <rect width="256" height="256" fill="#1F3A5F"/>
+
+  <!-- Gold trellis connecting lines — horizontal (between diamond left/right tips) -->
+  <!-- y=32 row -->
+  <line x1="12" y1="32" x2="44" y2="32" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="76" y1="32" x2="108" y2="32" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="140" y1="32" x2="172" y2="32" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="204" y1="32" x2="236" y2="32" stroke="#E0A94A" stroke-width="1.5"/>
+  <!-- y=96 row -->
+  <line x1="12" y1="96" x2="44" y2="96" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="76" y1="96" x2="108" y2="96" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="140" y1="96" x2="172" y2="96" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="204" y1="96" x2="236" y2="96" stroke="#E0A94A" stroke-width="1.5"/>
+  <!-- y=160 row -->
+  <line x1="12" y1="160" x2="44" y2="160" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="76" y1="160" x2="108" y2="160" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="140" y1="160" x2="172" y2="160" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="204" y1="160" x2="236" y2="160" stroke="#E0A94A" stroke-width="1.5"/>
+  <!-- y=224 row -->
+  <line x1="12" y1="224" x2="44" y2="224" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="76" y1="224" x2="108" y2="224" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="140" y1="224" x2="172" y2="224" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="204" y1="224" x2="236" y2="224" stroke="#E0A94A" stroke-width="1.5"/>
+
+  <!-- Gold trellis connecting lines — vertical (between diamond top/bottom tips) -->
+  <!-- x=32 column -->
+  <line x1="32" y1="12" x2="32" y2="44" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="32" y1="76" x2="32" y2="108" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="32" y1="140" x2="32" y2="172" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="32" y1="204" x2="32" y2="236" stroke="#E0A94A" stroke-width="1.5"/>
+  <!-- x=96 column -->
+  <line x1="96" y1="12" x2="96" y2="44" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="96" y1="76" x2="96" y2="108" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="96" y1="140" x2="96" y2="172" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="96" y1="204" x2="96" y2="236" stroke="#E0A94A" stroke-width="1.5"/>
+  <!-- x=160 column -->
+  <line x1="160" y1="12" x2="160" y2="44" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="160" y1="76" x2="160" y2="108" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="160" y1="140" x2="160" y2="172" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="160" y1="204" x2="160" y2="236" stroke="#E0A94A" stroke-width="1.5"/>
+  <!-- x=224 column -->
+  <line x1="224" y1="12" x2="224" y2="44" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="224" y1="76" x2="224" y2="108" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="224" y1="140" x2="224" y2="172" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="224" y1="204" x2="224" y2="236" stroke="#E0A94A" stroke-width="1.5"/>
+
+  <!-- Gold outline diamonds (16 cells) -->
+  <!-- Row 1: y=32 -->
+  <polygon points="32,12 52,32 32,52 12,32" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <polygon points="96,12 116,32 96,52 76,32" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <polygon points="160,12 180,32 160,52 140,32" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <polygon points="224,12 244,32 224,52 204,32" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <!-- Row 2: y=96 -->
+  <polygon points="32,76 52,96 32,116 12,96" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <polygon points="96,76 116,96 96,116 76,96" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <polygon points="160,76 180,96 160,116 140,96" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <polygon points="224,76 244,96 224,116 204,96" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <!-- Row 3: y=160 -->
+  <polygon points="32,140 52,160 32,180 12,160" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <polygon points="96,140 116,160 96,180 76,160" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <polygon points="160,140 180,160 160,180 140,160" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <polygon points="224,140 244,160 224,180 204,160" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <!-- Row 4: y=224 -->
+  <polygon points="32,204 52,224 32,244 12,224" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <polygon points="96,204 116,224 96,244 76,224" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <polygon points="160,204 180,224 160,244 140,224" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+  <polygon points="224,204 244,224 224,244 204,224" fill="none" stroke="#E0A94A" stroke-width="1.5"/>
+
+  <!-- Small cream dots at all 16 grid centers -->
+  <circle cx="32" cy="32" r="2.5" fill="#F5E9D0"/>
+  <circle cx="96" cy="32" r="2.5" fill="#F5E9D0"/>
+  <circle cx="160" cy="32" r="2.5" fill="#F5E9D0"/>
+  <circle cx="224" cy="32" r="2.5" fill="#F5E9D0"/>
+  <circle cx="32" cy="96" r="2.5" fill="#F5E9D0"/>
+  <circle cx="96" cy="96" r="2.5" fill="#F5E9D0"/>
+  <circle cx="160" cy="96" r="2.5" fill="#F5E9D0"/>
+  <circle cx="224" cy="96" r="2.5" fill="#F5E9D0"/>
+  <circle cx="32" cy="160" r="2.5" fill="#F5E9D0"/>
+  <circle cx="96" cy="160" r="2.5" fill="#F5E9D0"/>
+  <circle cx="160" cy="160" r="2.5" fill="#F5E9D0"/>
+  <circle cx="224" cy="160" r="2.5" fill="#F5E9D0"/>
+  <circle cx="32" cy="224" r="2.5" fill="#F5E9D0"/>
+  <circle cx="96" cy="224" r="2.5" fill="#F5E9D0"/>
+  <circle cx="160" cy="224" r="2.5" fill="#F5E9D0"/>
+  <circle cx="224" cy="224" r="2.5" fill="#F5E9D0"/>
+</svg>

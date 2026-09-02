@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    apartment — cosy evening apartment facade. Warm-lit windows, balconies, brick panels.
+  -->
+
+  <!-- ══ DUSK SKY ══ -->
+  <rect width="96" height="96" fill="#1F3A5F"/>
+  <!-- Moon -->
+  <circle cx="80" cy="12" r="8" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="83" cy="10" r="5" fill="#1F3A5F"/>
+
+  <!-- ══ GROUND / PAVEMENT ══ -->
+  <rect x="0" y="84" width="96" height="12" fill="#A8A8A0"/>
+  <line x1="0" y1="88" x2="96" y2="88" stroke="#888880" stroke-width="1.5"/>
+
+  <!-- ══ BUILDING SHADOW ══ -->
+  <rect x="6" y="16" width="84" height="72" rx="2" fill="#3A2A20"/>
+
+  <!-- ══ BUILDING BODY ══ -->
+  <rect x="2" y="12" width="84" height="72" rx="2" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Brick course lines -->
+  <line x1="2"  y1="24" x2="86" y2="24" stroke="#C8702E" stroke-width="1.5"/>
+  <line x1="2"  y1="36" x2="86" y2="36" stroke="#C8702E" stroke-width="1.5"/>
+  <line x1="2"  y1="48" x2="86" y2="48" stroke="#C8702E" stroke-width="1.5"/>
+  <line x1="2"  y1="60" x2="86" y2="60" stroke="#C8702E" stroke-width="1.5"/>
+  <line x1="2"  y1="72" x2="86" y2="72" stroke="#C8702E" stroke-width="1.5"/>
+  <!-- Vertical joints -->
+  <line x1="44" y1="12" x2="44" y2="84" stroke="#C8702E" stroke-width="1"/>
+
+  <!-- ══ ROOF PARAPET ══ -->
+  <rect x="2" y="10" width="84" height="6" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ WINDOWS — ROW 3 (top) ══ -->
+  <!-- W1: cream-lit -->
+  <rect x="6"  y="14" width="14" height="10" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="13" y1="14" x2="13" y2="24" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- W2: dark -->
+  <rect x="24" y="14" width="14" height="10" rx="2" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- W3: lit warm -->
+  <rect x="48" y="14" width="14" height="10" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="55" y1="14" x2="55" y2="24" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- W4: teal-lit -->
+  <rect x="66" y="14" width="14" height="10" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ WINDOWS — ROW 2 ══ -->
+  <rect x="6"  y="26" width="14" height="10" rx="2" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Balcony row 2 left -->
+  <rect x="4"  y="36" width="18" height="4" rx="1" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="8"  y1="36" x2="8"  y2="40" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="14" y1="36" x2="14" y2="40" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="20" y1="36" x2="20" y2="40" stroke="#1A1A1A" stroke-width="1"/>
+
+  <rect x="24" y="26" width="14" height="10" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="31" y1="26" x2="31" y2="36" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- Flower box on this balcony -->
+  <rect x="22" y="36" width="18" height="4" rx="1" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="26" cy="36" r="2" fill="#C8102E"/>
+  <circle cx="31" cy="36" r="2" fill="#E0824A"/>
+  <circle cx="36" cy="36" r="2" fill="#C8102E"/>
+
+  <rect x="48" y="26" width="14" height="10" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="66" y="26" width="14" height="10" rx="2" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Balcony right -->
+  <rect x="64" y="36" width="18" height="4" rx="1" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="68" y1="36" x2="68" y2="40" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="74" y1="36" x2="74" y2="40" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="80" y1="36" x2="80" y2="40" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ WINDOWS — ROW 1 ══ -->
+  <rect x="6"  y="50" width="14" height="10" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="13" y1="50" x2="13" y2="60" stroke="#1A1A1A" stroke-width="1"/>
+  <rect x="24" y="50" width="14" height="10" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="48" y="50" width="14" height="10" rx="2" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="66" y="50" width="14" height="10" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="73" y1="50" x2="73" y2="60" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ ENTRANCE ══ -->
+  <rect x="34" y="62" width="20" height="22" rx="3" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M34,62 Q44,54 54,62" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Door intercom box -->
+  <rect x="54" y="68" width="8"  height="10" rx="2" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="58" cy="72" r="2" fill="#E0A94A"/>
+</svg>

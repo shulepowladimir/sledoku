@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    jacuzzi — hot tub/jacuzzi. Navy shell, cream rim, sky-blue bubbling water, gold jets.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="88" rx="44" ry="8" fill="#3A2A20"/>
+
+  <!-- ══ TUB OUTER SHELL ══ -->
+  <!-- Shadow -->
+  <rect x="8" y="38" width="80" height="50" rx="10" fill="#3A2A20"/>
+  <!-- Shell -->
+  <rect x="4" y="34" width="80" height="50" rx="10" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Panelling lines -->
+  <line x1="4"  y1="56" x2="84" y2="56" stroke="#2E5580" stroke-width="1.5"/>
+  <line x1="4"  y1="68" x2="84" y2="68" stroke="#2E5580" stroke-width="1.5"/>
+  <!-- Jets -->
+  <circle cx="14" cy="62" r="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="14" cy="74" r="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="74" cy="62" r="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="74" cy="74" r="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Jet center hole -->
+  <circle cx="14" cy="62" r="1.5" fill="#1A1A1A"/>
+  <circle cx="14" cy="74" r="1.5" fill="#1A1A1A"/>
+  <circle cx="74" cy="62" r="1.5" fill="#1A1A1A"/>
+  <circle cx="74" cy="74" r="1.5" fill="#1A1A1A"/>
+
+  <!-- ══ RIM / DECK ══ -->
+  <rect x="2" y="30" width="84" height="10" rx="5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ WATER SURFACE ══ -->
+  <rect x="8"  y="34" width="72" height="30" rx="6" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Water shimmer -->
+  <path d="M12,44 Q20,40 28,44 Q36,48 44,44 Q52,40 60,44 Q68,48 76,44" fill="none" stroke="#F5E9D0" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M12,50 Q22,46 32,50 Q42,54 52,50 Q62,46 72,50" fill="none" stroke="#F5E9D0" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- ══ BUBBLES ══ -->
+  <circle cx="22" cy="40" r="3" fill="none" stroke="#F5E9D0" stroke-width="1.5"/>
+  <circle cx="34" cy="36" r="2" fill="none" stroke="#F5E9D0" stroke-width="1.5"/>
+  <circle cx="48" cy="38" r="4" fill="none" stroke="#F5E9D0" stroke-width="1.5"/>
+  <circle cx="62" cy="36" r="2" fill="none" stroke="#F5E9D0" stroke-width="1.5"/>
+  <circle cx="72" cy="40" r="3" fill="none" stroke="#F5E9D0" stroke-width="1.5"/>
+  <circle cx="40" cy="42" r="2" fill="none" stroke="#F5E9D0" stroke-width="1"/>
+  <circle cx="56" cy="42" r="2" fill="none" stroke="#F5E9D0" stroke-width="1"/>
+
+  <!-- ══ STEP ══ -->
+  <rect x="34" y="80" width="28" height="10" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ CONTROLS (panel on rim) ══ -->
+  <rect x="70" y="26" width="16" height="8"  rx="3" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="75" cy="30" r="2" fill="#E0A94A"/>
+  <circle cx="82" cy="30" r="2" fill="#C8102E"/>
+</svg>

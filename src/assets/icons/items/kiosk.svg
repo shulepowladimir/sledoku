@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    kiosk — ice cream kiosk. Striped awning, cream booth, ice cream cones on display.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="92" rx="40" ry="5" fill="#3A2A20"/>
+  <rect x="10" y="36" width="78" height="58" rx="4" fill="#3A2A20"/>
+
+  <!-- ══ BOOTH BODY ══ -->
+  <rect x="6"  y="32" width="78" height="58" rx="4" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ COUNTER SHELF ══ -->
+  <rect x="6"  y="52" width="78" height="8" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ ICE CREAM DISPLAY (cones on counter) ══ -->
+  <!-- Cone 1 (left) -->
+  <polygon points="22,52 32,52 27,66"
+           fill="#C89830" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>
+  <circle  cx="27" cy="50" r="8" fill="#C8102E" stroke="#1A1A1A" stroke-width="2"/>
+  <ellipse cx="24" cy="46" rx="3" ry="2" fill="#E0824A"/>
+  <!-- Cone 2 (centre) -->
+  <polygon points="42,52 52,52 47,66"
+           fill="#C89830" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>
+  <circle  cx="47" cy="50" r="8" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <ellipse cx="44" cy="46" rx="3" ry="2" fill="#E0D4B8"/>
+  <!-- Cone 3 (right) -->
+  <polygon points="60,52 70,52 65,66"
+           fill="#C89830" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>
+  <circle  cx="65" cy="50" r="8" fill="#2E6E65" stroke="#1A1A1A" stroke-width="2"/>
+  <ellipse cx="62" cy="46" rx="3" ry="2" fill="#3A8070"/>
+
+  <!-- ══ BACK WALL ══ -->
+  <!-- Window to back -->
+  <rect x="14" y="38" width="58" height="14" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="43" y1="38" x2="43" y2="52" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ BOOTH FRONT PANEL ══ -->
+  <rect x="14" y="60" width="58" height="26" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Price labels (coloured squares) -->
+  <rect x="18" y="64" width="14" height="8" rx="1" fill="#C8102E" stroke="#1A1A1A" stroke-width="1"/>
+  <rect x="36" y="64" width="14" height="8" rx="1" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+  <rect x="54" y="64" width="14" height="8" rx="1" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ AWNING ══ -->
+  <!-- Awning structure -->
+  <rect x="2"  y="14" width="84" height="22" rx="4" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Awning stripes (cream) -->
+  <rect x="10" y="14" width="8" height="22" rx="2" fill="#F5E9D0"/>
+  <rect x="26" y="14" width="8" height="22" rx="2" fill="#F5E9D0"/>
+  <rect x="42" y="14" width="8" height="22" rx="2" fill="#F5E9D0"/>
+  <rect x="58" y="14" width="8" height="22" rx="2" fill="#F5E9D0"/>
+  <rect x="74" y="14" width="8" height="22" rx="2" fill="#F5E9D0"/>
+  <!-- Awning scalloped edge -->
+  <path d="M2,36 Q7,42 12,36 Q17,42 22,36 Q27,42 32,36 Q37,42 42,36 Q47,42 52,36 Q57,42 62,36 Q67,42 72,36 Q77,42 82,36 L86,36 L86,38 L2,38 Z"
+        fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ SIGN ══ -->
+  <rect x="20" y="4" width="48" height="12" rx="4" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="34" cy="10" r="4" fill="#C8102E" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="48" cy="10" r="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="62" cy="10" r="4" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1"/>
+</svg>

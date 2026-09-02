@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    goldStatue — gleaming gold trophy statue on a plinth. Victorious figure, outstretched arm.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="92" rx="28" ry="4" fill="#3A2A20"/>
+
+  <!-- ══ PLINTH ══ -->
+  <!-- Plinth shadow -->
+  <rect x="26" y="76" width="50" height="16" rx="3" fill="#3A2A20"/>
+  <!-- Base step -->
+  <rect x="24" y="80" width="50" height="8"  rx="2" fill="#C89830" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Main plinth -->
+  <rect x="28" y="72" width="42" height="14" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Plinth panel inset -->
+  <rect x="32" y="75" width="34" height="8"  rx="1" fill="#C89830" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ FIGURE BODY SHADOW ══ -->
+  <rect x="40" y="20" width="20" height="54" rx="4" fill="#3A2A20"/>
+
+  <!-- ══ TORSO ══ -->
+  <rect x="36" y="18" width="20" height="54" rx="6" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Chest line -->
+  <line x1="46" y1="20" x2="46" y2="42" stroke="#C89830" stroke-width="2" stroke-linecap="round"/>
+  <!-- Belt -->
+  <rect x="36" y="44" width="20" height="5"  rx="2" fill="#C89830" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ LEGS ══ -->
+  <rect x="36" y="54" width="8"  height="18" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="48" y="54" width="8"  height="18" rx="4" fill="#C89830" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ HEAD ══ -->
+  <!-- Head shadow -->
+  <ellipse cx="50" cy="16" rx="12" ry="14" fill="#3A2A20"/>
+  <!-- Head -->
+  <ellipse cx="46" cy="12" rx="12" ry="14" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Laurel wreath -->
+  <ellipse cx="46" cy="4" rx="10" ry="5" fill="#C89830" stroke="#1A1A1A" stroke-width="1.5"/>
+  <ellipse cx="36" cy="6" rx="4"  ry="3"  fill="#C89830" transform="rotate(-20,36,6)"/>
+  <ellipse cx="56" cy="6" rx="4"  ry="3"  fill="#C89830" transform="rotate(20,56,6)"/>
+  <!-- Face glint lines -->
+  <line x1="42" y1="10" x2="44" y2="8"  stroke="#C89830" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="48" y1="10" x2="50" y2="8"  stroke="#C89830" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M42,16 Q46,19 50,16" fill="none" stroke="#C89830" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- ══ RAISED ARM (left, holding torch/laurel) ══ -->
+  <!-- Arm shadow -->
+  <line x1="40" y1="24" x2="18" y2="6"  stroke="#3A2A20" stroke-width="9" stroke-linecap="round"/>
+  <!-- Arm -->
+  <line x1="36" y1="22" x2="14" y2="4"  stroke="#E0A94A" stroke-width="8" stroke-linecap="round"/>
+  <line x1="36" y1="22" x2="14" y2="4"  stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Torch in hand -->
+  <rect x="8"  y="0" width="8"  height="6" rx="3" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <path d="M9,0 Q12,-4 15,0 Q16,4 12,4 Q8,4 9,0 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ LOWER ARM (right, at side) ══ -->
+  <line x1="56" y1="26" x2="66" y2="44" stroke="#E0A94A" stroke-width="8" stroke-linecap="round"/>
+  <line x1="56" y1="26" x2="66" y2="44" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ══ HIGHLIGHT SHIMMER ══ -->
+  <line x1="38" y1="20" x2="42" y2="16" stroke="#F5E9D0" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="54" y1="30" x2="56" y2="26" stroke="#F5E9D0" stroke-width="2"   stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!--
+    metal.svg — seamless 256×256 brushed-steel / industrial plate texture.
+    Base: #A8A8A0 stone-gray. Brush lines: lighter #C0C0B8 and darker #888880.
+    Rivets at 64px grid: dark circles with cream highlight.
+    No opacity attributes.
+  -->
+
+  <!-- Base plate -->
+  <rect width="256" height="256" fill="#A8A8A0"/>
+
+  <!-- ── Horizontal brush lines (alternating lighter/darker, 2px pitch) ── -->
+  <!-- Pattern: lighter strip (2px) + base (4px) + darker strip (1px) + base (5px) → repeats -->
+  <!-- Row set 1 (y=0-11) -->
+  <rect x="0" y="0"  width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="6"  width="256" height="1" fill="#888880"/>
+  <!-- Row set 2 -->
+  <rect x="0" y="12" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="18" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="24" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="30" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="36" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="42" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="48" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="54" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="60" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="66" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="72" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="78" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="84" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="90" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="96" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="102" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="108" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="114" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="120" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="126" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="132" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="138" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="144" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="150" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="156" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="162" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="168" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="174" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="180" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="186" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="192" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="198" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="204" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="210" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="216" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="222" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="228" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="234" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="240" width="256" height="2" fill="#C0C0B8"/>
+  <rect x="0" y="246" width="256" height="1" fill="#888880"/>
+  <rect x="0" y="252" width="256" height="2" fill="#C0C0B8"/>
+
+  <!-- ── Rivets at 64px grid (4×4 = 16 rivets per tile) ── -->
+  <!-- Row y=32: x = 32, 96, 160, 224 -->
+  <circle cx="32"  cy="32"  r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="32"  cy="32"  r="1.5" fill="#C0C0B8"/>
+  <circle cx="96"  cy="32"  r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="96"  cy="32"  r="1.5" fill="#C0C0B8"/>
+  <circle cx="160" cy="32"  r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="160" cy="32"  r="1.5" fill="#C0C0B8"/>
+  <circle cx="224" cy="32"  r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="224" cy="32"  r="1.5" fill="#C0C0B8"/>
+  <!-- Row y=96 -->
+  <circle cx="32"  cy="96"  r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="32"  cy="96"  r="1.5" fill="#C0C0B8"/>
+  <circle cx="96"  cy="96"  r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="96"  cy="96"  r="1.5" fill="#C0C0B8"/>
+  <circle cx="160" cy="96"  r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="160" cy="96"  r="1.5" fill="#C0C0B8"/>
+  <circle cx="224" cy="96"  r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="224" cy="96"  r="1.5" fill="#C0C0B8"/>
+  <!-- Row y=160 -->
+  <circle cx="32"  cy="160" r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="32"  cy="160" r="1.5" fill="#C0C0B8"/>
+  <circle cx="96"  cy="160" r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="96"  cy="160" r="1.5" fill="#C0C0B8"/>
+  <circle cx="160" cy="160" r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="160" cy="160" r="1.5" fill="#C0C0B8"/>
+  <circle cx="224" cy="160" r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="224" cy="160" r="1.5" fill="#C0C0B8"/>
+  <!-- Row y=224 -->
+  <circle cx="32"  cy="224" r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="32"  cy="224" r="1.5" fill="#C0C0B8"/>
+  <circle cx="96"  cy="224" r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="96"  cy="224" r="1.5" fill="#C0C0B8"/>
+  <circle cx="160" cy="224" r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="160" cy="224" r="1.5" fill="#C0C0B8"/>
+  <circle cx="224" cy="224" r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="224" cy="224" r="1.5" fill="#C0C0B8"/>
+</svg>

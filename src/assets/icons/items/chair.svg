@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Hard shadows -->
+  <!-- Back rail left shadow -->
+  <rect x="26" y="15" width="7" height="54" rx="3" fill="#3A2A20"/>
+  <!-- Back rail right shadow -->
+  <rect x="67" y="15" width="7" height="54" rx="3" fill="#3A2A20"/>
+  <!-- Top crossbar shadow -->
+  <rect x="26" y="15" width="48" height="8" rx="3" fill="#3A2A20"/>
+  <!-- Seat shadow -->
+  <rect x="22" y="56" width="56" height="9" rx="3" fill="#3A2A20"/>
+  <!-- Front legs shadow -->
+  <rect x="26" y="61" width="8" height="26" rx="3" fill="#3A2A20"/>
+  <rect x="66" y="61" width="8" height="26" rx="3" fill="#3A2A20"/>
+
+  <!-- Back left rail -->
+  <rect x="22" y="11" width="7" height="54" rx="3" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Back right rail -->
+  <rect x="67" y="11" width="7" height="54" rx="3" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- Top back rail crossbar -->
+  <rect x="22" y="11" width="52" height="8" rx="3" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Mid back crossbar -->
+  <rect x="22" y="31" width="52" height="6" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Lower back crossbar -->
+  <rect x="22" y="45" width="52" height="6" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- Seat -->
+  <rect x="18" y="52" width="60" height="9" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Seat front lip (slightly darker) -->
+  <rect x="18" y="57" width="60" height="4" rx="2" fill="#E0824A" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- Front left leg -->
+  <rect x="22" y="57" width="8" height="26" rx="3" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Front right leg -->
+  <rect x="66" y="57" width="8" height="26" rx="3" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"/>
+</svg>

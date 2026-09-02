@@ -1,0 +1,32 @@
+interface HowToPlayProps {
+  variant?: 'menu' | 'game';
+}
+
+export function HowToPlay({ variant = 'menu' }: HowToPlayProps) {
+  return (
+    <div className="how-to-play">
+      <button type="button" className="how-to-play__button" aria-label="Как играть">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth={1.6} fill="none">
+          <circle cx="12" cy="12" r="9.5" />
+          <path d="M9.2 9.3c0-1.6 1.3-2.7 2.8-2.7s2.6 1 2.6 2.3c0 1.5-1.4 1.9-2.1 2.6-.5.5-.6.9-.6 1.6" strokeLinecap="round" />
+          <circle cx="12" cy="16.7" r="0.9" fill="currentColor" stroke="none" />
+        </svg>
+      </button>
+      <div className="how-to-play__popover">
+        <p>
+          Следоку — это судоку в детективной обёртке. На карте нужно расставить всех подозреваемых и
+          жертву, опираясь на улики о каждом из них: в любом ряду и любом столбце может находиться
+          только один человек.
+        </p>
+        {variant === 'game' && (
+          <ul className="how-to-play__glossary">
+            <li>Рядом – это соседние клетки по горизонтали и вертикали, в рамках одной комнаты.</li>
+            <li>Восточная (или другие стороны) стена – это все правые (или другие) стены одной зоны.</li>
+            <li>Угол – это клетка персонажа, минимум две стороны которой составляют стены одной зоны.</li>
+            <li>Нумерация рядов идёт сверху вниз, столбцов – слева направо.</li>
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+}

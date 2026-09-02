@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    barCounter — side view. Dark counter with gold rail, taps, back bar bottles.
+  -->
+
+  <!-- ══ BACK BAR SHELF ══ -->
+  <rect x="4" y="8" width="88" height="42" rx="3" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Shelf board -->
+  <rect x="4" y="36" width="88" height="6" rx="2" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ BOTTLES ON SHELF ══ -->
+  <!-- Bottle 1 (teal) -->
+  <rect x="10" y="16" width="8" height="18" rx="3" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="12" y="12" width="4" height="6"  rx="2" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="13" y="10" width="2" height="4"  rx="1" fill="#F5E9D0"/>
+  <!-- Bottle 2 (red) -->
+  <rect x="22" y="14" width="8" height="20" rx="3" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="24" y="10" width="4" height="6"  rx="2" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="25" y="8"  width="2" height="4"  rx="1" fill="#F5E9D0"/>
+  <!-- Bottle 3 (gold/whiskey) -->
+  <rect x="34" y="16" width="10" height="18" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="36" y="12" width="6"  height="6"  rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="38" y="10" width="2"  height="4"  rx="1" fill="#3A2A20"/>
+  <rect x="34" y="22" width="10" height="4" rx="1" fill="#F5E9D0"/>
+  <!-- Bottle 4 (navy gin) -->
+  <rect x="48" y="15" width="8" height="19" rx="3" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="50" y="11" width="4" height="6"  rx="2" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="51" y="9"  width="2" height="4"  rx="1" fill="#F5E9D0"/>
+  <!-- Bottle 5 (orange liqueur) -->
+  <rect x="60" y="17" width="8" height="17" rx="3" fill="#E0824A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="62" y="13" width="4" height="6"  rx="2" fill="#E0824A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Mirror back (teal glass) -->
+  <rect x="72" y="10" width="16" height="24" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="80" y1="10" x2="80" y2="34" stroke="#5A9AB8" stroke-width="1.5"/>
+
+  <!-- ══ COUNTER TOP ══ -->
+  <rect x="2" y="48" width="90" height="8" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ COUNTER BODY ══ -->
+  <rect x="6" y="54" width="86" height="32" rx="4" fill="#3A2A20" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Body panels -->
+  <rect x="10" y="58" width="20" height="22" rx="2" fill="#4A3220"/>
+  <rect x="34" y="58" width="20" height="22" rx="2" fill="#4A3220"/>
+  <rect x="58" y="58" width="20" height="22" rx="2" fill="#4A3220"/>
+
+  <!-- ══ FOOT RAIL ══ -->
+  <rect x="6" y="82" width="86" height="5" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ BEER TAPS ══ -->
+  <rect x="28" y="42" width="6" height="10" rx="3" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <ellipse cx="31" cy="42" rx="5" ry="3" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="44" y="42" width="6" height="10" rx="3" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2"/>
+  <ellipse cx="47" cy="42" rx="5" ry="3" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="1.5"/>
+</svg>

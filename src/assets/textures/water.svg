@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!--
+    water.svg — seamless 256×256.
+    Palette: #7EB9D4 sky-blue base, #5A9AB8 darker mid-water, #1F3A5F navy deep-wave, #F5E9D0 cream foam.
+    No opacity attributes.
+  -->
+
+  <!-- Base: sky blue -->
+  <rect width="256" height="256" fill="#7EB9D4"/>
+
+  <!-- Darker wave bands (alternating mid-water tone) -->
+  <rect x="0" y="0"   width="256" height="28" fill="#5A9AB8"/>
+  <rect x="0" y="60"  width="256" height="28" fill="#5A9AB8"/>
+  <rect x="0" y="120" width="256" height="28" fill="#5A9AB8"/>
+  <rect x="0" y="180" width="256" height="28" fill="#5A9AB8"/>
+  <rect x="0" y="240" width="256" height="16" fill="#5A9AB8"/>
+
+  <!-- Navy deep-wave lines (strong, primary waves) -->
+  <path d="M0,20  C42,12  84,28  128,20  172,12  214,28  256,20" stroke="#1F3A5F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M0,52  C42,60  84,44  128,52  172,60  214,44  256,52" stroke="#1F3A5F" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M0,80  C42,72  84,88  128,80  172,72  214,88  256,80" stroke="#1F3A5F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M0,112 C42,120 84,104 128,112 172,120 214,104 256,112" stroke="#1F3A5F" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M0,140 C42,132 84,148 128,140 172,132 214,148 256,140" stroke="#1F3A5F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M0,172 C42,180 84,164 128,172 172,180 214,164 256,172" stroke="#1F3A5F" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M0,200 C42,192 84,208 128,200 172,192 214,208 256,200" stroke="#1F3A5F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M0,232 C42,240 84,224 128,232 172,240 214,224 256,232" stroke="#1F3A5F" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Cream foam highlights (short, scattered) -->
+  <path d="M8,20   C24,16  44,22  60,20"  stroke="#F5E9D0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M100,80  C116,76 136,82 152,80" stroke="#F5E9D0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M180,20  C196,16 216,22 232,20" stroke="#F5E9D0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M24,140  C40,136 60,142 76,140"  stroke="#F5E9D0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M140,200 C156,196 176,202 192,200" stroke="#F5E9D0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M60,232  C76,228 96,234 112,232" stroke="#F5E9D0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M196,140 C212,136 232,142 252,140" stroke="#F5E9D0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>

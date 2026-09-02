@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    candleStand — tall iron candelabra, three candles. Dark metal stand, cream candles, gold drip.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="92" rx="28" ry="5" fill="#3A2A20"/>
+
+  <!-- ══ BASE ══ -->
+  <ellipse cx="48" cy="88" rx="24" ry="7" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="30" y="82" width="36" height="8" rx="4" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ MAIN SHAFT ══ -->
+  <rect x="44" y="30" width="8" height="54" rx="4" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ ARMS ══ -->
+  <!-- Left arm (curves out) -->
+  <path d="M44,52 Q30,50 24,42" fill="none" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/>
+  <!-- Right arm -->
+  <path d="M52,52 Q66,50 72,42" fill="none" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/>
+  <!-- Central arm (shorter, upward) -->
+  <line x1="48" y1="30" x2="48" y2="24" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- ══ CANDLE CUPS ══ -->
+  <ellipse cx="24" cy="40" rx="7" ry="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <ellipse cx="72" cy="40" rx="7" ry="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <ellipse cx="48" cy="22" rx="7" ry="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ CANDLES ══ -->
+  <!-- Left candle -->
+  <rect x="19" y="16" width="10" height="25" rx="4" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Wax drip left -->
+  <path d="M19,26 Q16,32 18,36" fill="none" stroke="#F5E9D0" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Right candle -->
+  <rect x="67" y="16" width="10" height="25" rx="4" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M77,30 Q80,36 78,40" fill="none" stroke="#F5E9D0" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Centre candle -->
+  <rect x="43" y="0"  width="10" height="23" rx="4" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M43,12 Q40,18 42,22" fill="none" stroke="#F5E9D0" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- ══ FLAMES ══ -->
+  <!-- Left flame -->
+  <path d="M21,16 Q24,8 27,14 Q28,18 24,18 Q20,18 21,16 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+  <path d="M22,16 Q24,11 26,14 Q27,16 24,16 Z" fill="#E0824A"/>
+  <!-- Right flame -->
+  <path d="M69,16 Q72,8 75,14 Q76,18 72,18 Q68,18 69,16 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+  <path d="M70,16 Q72,11 74,14 Q75,16 72,16 Z" fill="#E0824A"/>
+  <!-- Centre flame -->
+  <path d="M45,0  Q48,-8 51,0  Q52,6 48,6 Q44,6 45,0 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+  <path d="M46,0  Q48,-5 50,0  Q51,4 48,4 Z" fill="#E0824A"/>
+
+  <!-- ══ ORNATE MIDDLE RING ══ -->
+  <ellipse cx="48" cy="62" rx="10" ry="4" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="2"/>
+  <ellipse cx="48" cy="62" rx="6"  ry="2.5" fill="#E0A94A"/>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    park — sunny city park. Wrought-iron gate, bench, lamp, flower beds, path.
+  -->
+
+  <!-- ══ SKY ══ -->
+  <rect width="96" height="60" fill="#7EB9D4"/>
+  <!-- Clouds -->
+  <ellipse cx="24" cy="14" rx="16" ry="7" fill="#F5E9D0"/>
+  <ellipse cx="36" cy="12" rx="12" ry="6" fill="#F5E9D0"/>
+  <ellipse cx="76" cy="10" rx="14" ry="6" fill="#F5E9D0"/>
+
+  <!-- ══ GRASS ══ -->
+  <rect x="0"  y="56" width="96" height="40" fill="#4D8B3A"/>
+  <!-- Path (gravel) -->
+  <ellipse cx="48" cy="88" rx="36" ry="10" fill="#A8A8A0"/>
+  <ellipse cx="48" cy="86" rx="34" ry="8"  fill="#C0BCAE"/>
+
+  <!-- ══ BACKGROUND TREES ══ -->
+  <!-- Left tree -->
+  <rect x="6"  y="38" width="6"  height="22" rx="3" fill="#7C5D31" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="9"  cy="34" r="14" fill="#3A6B2C" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="5"  cy="30" r="10" fill="#4D8B3A"/>
+  <circle cx="14" cy="30" r="10" fill="#3A6B2C"/>
+  <!-- Right tree -->
+  <rect x="80" y="38" width="6"  height="22" rx="3" fill="#7C5D31" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="83" cy="34" r="14" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="79" cy="30" r="10" fill="#3A6B2C"/>
+  <circle cx="88" cy="30" r="10" fill="#4D8B3A"/>
+
+  <!-- ══ PARK GATE (ornamental iron) ══ -->
+  <!-- Gate posts -->
+  <rect x="28" y="40" width="8"  height="28" rx="2" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="60" y="40" width="8"  height="28" rx="2" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Post caps (gold) -->
+  <circle cx="32" cy="38" r="5" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="64" cy="38" r="5" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Gate bars -->
+  <line x1="36" y1="42" x2="36" y2="68" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <line x1="42" y1="42" x2="42" y2="68" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <line x1="48" y1="42" x2="48" y2="68" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <line x1="54" y1="42" x2="54" y2="68" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <line x1="60" y1="42" x2="60" y2="68" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <!-- Top rail -->
+  <rect x="36" y="42" width="24" height="4" rx="2" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- Spear tips -->
+  <polygon points="36,38 38,42 34,42" fill="#E0A94A"/>
+  <polygon points="42,38 44,42 40,42" fill="#E0A94A"/>
+  <polygon points="48,36 50,42 46,42" fill="#E0A94A"/>
+  <polygon points="54,38 56,42 52,42" fill="#E0A94A"/>
+  <polygon points="60,38 62,42 58,42" fill="#E0A94A"/>
+
+  <!-- ══ PARK BENCH ══ -->
+  <!-- Bench shadow -->
+  <rect x="4" y="64" width="22" height="16" rx="3" fill="#3A2A20"/>
+  <!-- Legs -->
+  <rect x="4"  y="68" width="4" height="10" rx="2" fill="#1A1A1A"/>
+  <rect x="16" y="68" width="4" height="10" rx="2" fill="#1A1A1A"/>
+  <!-- Seat slats -->
+  <rect x="2"  y="64" width="22" height="4" rx="2" fill="#7C5D31" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="2"  y="68" width="22" height="3" rx="1" fill="#B08020"/>
+  <!-- Back rest -->
+  <rect x="2"  y="56" width="22" height="4" rx="2" fill="#7C5D31" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="4"  y="56" width="3"  height="12" rx="1.5" fill="#1A1A1A"/>
+  <rect x="17" y="56" width="3"  height="12" rx="1.5" fill="#1A1A1A"/>
+
+  <!-- ══ LAMP POST ══ -->
+  <rect x="72" y="46" width="5" height="36" rx="2.5" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Lamp head -->
+  <rect x="68" y="40" width="14" height="8" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <line x1="72" y1="40" x2="72" y2="48" stroke="#C89830" stroke-width="1.5"/>
+  <!-- Lamp glow -->
+  <ellipse cx="75" cy="44" rx="4" ry="3" fill="#F5E9D0"/>
+
+  <!-- ══ FLOWER BED ══ -->
+  <ellipse cx="48" cy="76" rx="10" ry="5" fill="#7C5D31" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="42" cy="72" r="4" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="48" cy="70" r="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="54" cy="72" r="4" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="42" cy="72" r="2" fill="#E0A94A"/>
+  <circle cx="48" cy="70" r="2" fill="#C89830"/>
+  <circle cx="54" cy="72" r="2" fill="#E0A94A"/>
+</svg>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    egypt theme — pyramid, sphinx silhouette, sun disk above.
+    Gold sand, navy sky, cream pyramid, red sun.
+  -->
+
+  <!-- ══ SKY ══ -->
+  <rect width="96" height="96" fill="#1F3A5F"/>
+
+  <!-- ══ DESERT FLOOR ══ -->
+  <rect x="0" y="72" width="96" height="24" fill="#E0A94A"/>
+
+  <!-- ══ SUN DISK ══ -->
+  <circle cx="72" cy="20" r="12" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Sun rays -->
+  <line x1="72" y1="4"  x2="72" y2="8"  stroke="#E0A94A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="82" y1="8"  x2="79" y2="11" stroke="#E0A94A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="88" y1="20" x2="84" y2="20" stroke="#E0A94A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="82" y1="32" x2="79" y2="29" stroke="#E0A94A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="62" y1="8"  x2="65" y2="11" stroke="#E0A94A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="56" y1="20" x2="60" y2="20" stroke="#E0A94A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="62" y1="32" x2="65" y2="29" stroke="#E0A94A" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ══ LARGE PYRAMID (main) ══ -->
+  <!-- Shadow -->
+  <polygon points="20,76 72,76 68,72" fill="#3A2A20"/>
+  <!-- Pyramid -->
+  <polygon points="14,76 72,76 42,22" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Stone course lines -->
+  <line x1="24" y1="66" x2="62" y2="66" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="28" y1="56" x2="56" y2="56" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="32" y1="46" x2="52" y2="46" stroke="#E0A94A" stroke-width="1.5"/>
+  <line x1="36" y1="36" x2="48" y2="36" stroke="#E0A94A" stroke-width="1.5"/>
+  <!-- Gold capstone -->
+  <polygon points="38,28 46,28 42,22" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ SMALL PYRAMID (background right) ══ -->
+  <polygon points="66,76 88,76 77,52" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="70" y1="68" x2="84" y2="68" stroke="#3A2A20" stroke-width="1"/>
+  <line x1="72" y1="60" x2="82" y2="60" stroke="#3A2A20" stroke-width="1"/>
+
+  <!-- ══ SPHINX SILHOUETTE (foreground left) ══ -->
+  <!-- Body -->
+  <rect x="4" y="66" width="28" height="12" rx="4" fill="#E0824A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Paws -->
+  <rect x="4" y="72" width="8" height="8" rx="3" fill="#E0824A" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="14" y="72" width="8" height="8" rx="3" fill="#E0824A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Head -->
+  <circle cx="10" cy="62" r="10" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Headdress (nemes) -->
+  <rect x="4" y="54" width="12" height="16" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Uraeus (snake) at forehead -->
+  <circle cx="10" cy="54" r="3" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Face -->
+  <ellipse cx="13" cy="62" rx="2" ry="1.5" fill="#1A1A1A"/>
+  <path d="M10,66 Q13,68 16,66" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

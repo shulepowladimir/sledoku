@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    sofa — three-seat sofa with armrests and cushion details. Navy upholstery, gold trim.
+  -->
+
+  <!-- ══ SHADOWS ══ -->
+  <rect x="6" y="46" width="88" height="40" rx="6" fill="#3A2A20"/>
+  <rect x="6" y="38" width="12" height="50" rx="5" fill="#3A2A20"/>
+  <rect x="82" y="38" width="12" height="50" rx="5" fill="#3A2A20"/>
+
+  <!-- ══ LEGS ══ -->
+  <rect x="14" y="80" width="8" height="12" rx="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="74" y="80" width="8" height="12" rx="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ ARMRESTS ══ -->
+  <rect x="6" y="34" width="14" height="48" rx="5" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+  <rect x="76" y="34" width="14" height="48" rx="5" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Armrest tops -->
+  <rect x="4" y="34" width="18" height="8" rx="4" fill="#2E6E65" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="74" y="34" width="18" height="8" rx="4" fill="#2E6E65" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ SEAT BASE ══ -->
+  <rect x="18" y="58" width="60" height="26" rx="5" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- ══ BACK REST ══ -->
+  <rect x="18" y="38" width="60" height="26" rx="4" fill="#2E6E65" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Back cushion divisions -->
+  <line x1="38" y1="40" x2="38" y2="62" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="58" y1="40" x2="58" y2="62" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ══ SEAT CUSHIONS ══ -->
+  <rect x="20" y="60" width="18" height="22" rx="4" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="40" y="60" width="18" height="22" rx="4" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="60" y="60" width="16" height="22" rx="4" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ DECORATIVE PIPING ══ -->
+  <rect x="18" y="58" width="60" height="4" rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Throw pillow -->
+  <rect x="60" y="44" width="14" height="14" rx="4" fill="#C8102E" stroke="#1A1A1A" stroke-width="2"/>
+  <line x1="63" y1="47" x2="71" y2="55" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="71" y1="47" x2="63" y2="55" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

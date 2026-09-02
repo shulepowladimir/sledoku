@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    shop — grand department store. Art-deco facade, striped awning, display window, revolving door.
+  -->
+
+  <!-- ══ SKY ══ -->
+  <rect width="96" height="50" fill="#7EB9D4"/>
+
+  <!-- ══ GROUND ══ -->
+  <rect x="0" y="82" width="96" height="14" fill="#A8A8A0"/>
+
+  <!-- ══ BUILDING SHADOW ══ -->
+  <rect x="6" y="14" width="84" height="72" rx="2" fill="#3A2A20"/>
+
+  <!-- ══ BUILDING BODY ══ -->
+  <rect x="2" y="10" width="84" height="72" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ ART-DECO BANDING ══ -->
+  <rect x="2"  y="10" width="84" height="8"  rx="2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="2"  y="30" width="84" height="6"  rx="1" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Vertical relief fins -->
+  <rect x="14" y="10" width="4"  height="22" rx="1" fill="#C89830"/>
+  <rect x="28" y="10" width="4"  height="22" rx="1" fill="#C89830"/>
+  <rect x="54" y="10" width="4"  height="22" rx="1" fill="#C89830"/>
+  <rect x="68" y="10" width="4"  height="22" rx="1" fill="#C89830"/>
+
+  <!-- ══ UPPER WINDOWS (two floors) ══ -->
+  <!-- Floor 3 -->
+  <rect x="6"  y="12" width="6"  height="16" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="76" y="12" width="6"  height="16" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Floor 2 -->
+  <rect x="6"  y="32" width="6"  height="14" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="76" y="32" width="6"  height="14" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="18" y="32" width="8"  height="14" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="30" y="32" width="8"  height="14" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="58" y="32" width="8"  height="14" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="70" y="32" width="4"  height="14" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ STRIPED AWNING ══ -->
+  <rect x="2"  y="48" width="84" height="10" rx="2" fill="#C8102E" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Gold stripes -->
+  <rect x="8"  y="48" width="6"  height="10" rx="1" fill="#E0A94A"/>
+  <rect x="22" y="48" width="6"  height="10" rx="1" fill="#E0A94A"/>
+  <rect x="36" y="48" width="6"  height="10" rx="1" fill="#E0A94A"/>
+  <rect x="50" y="48" width="6"  height="10" rx="1" fill="#E0A94A"/>
+  <rect x="64" y="48" width="6"  height="10" rx="1" fill="#E0A94A"/>
+  <rect x="78" y="48" width="6"  height="10" rx="1" fill="#E0A94A"/>
+  <!-- Scallop fringe -->
+  <path d="M2,58 Q6,63 10,58 Q14,63 18,58 Q22,63 26,58 Q30,63 34,58 Q38,63 42,58 Q46,63 50,58 Q54,63 58,58 Q62,63 66,58 Q70,63 74,58 Q78,63 82,58 Q86,63 86,58" fill="none" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ DISPLAY WINDOW ══ -->
+  <rect x="4"  y="60" width="36" height="22" rx="2" fill="#D4E0E8" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Window mannequin silhouette -->
+  <circle cx="16" cy="66" r="5"  fill="#E0824A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="12" y="70" width="8"  height="8"  rx="2" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="30" cy="66" r="5"  fill="#E0824A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="26" y="70" width="8"  height="8"  rx="2" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <!-- Price tag -->
+  <rect x="6"  y="62" width="8"  height="5"  rx="1" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="7" y1="64" x2="13" y2="64" stroke="#C8102E" stroke-width="1.5"/>
+
+  <!-- ══ REVOLVING DOOR ══ -->
+  <rect x="44" y="60" width="24" height="22" rx="2" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Door cross -->
+  <line x1="56" y1="60" x2="56" y2="82" stroke="#1A1A1A" stroke-width="2.5"/>
+  <line x1="44" y1="71" x2="68" y2="71" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Door handle -->
+  <circle cx="56" cy="71" r="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ SHOPPING BAGS (foreground) ══ -->
+  <rect x="72" y="68" width="12" height="12" rx="2" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <path d="M75,68 Q75,62 79,62 Q83,62 83,68" fill="none" stroke="#1A1A1A" stroke-width="2"/>
+  <line x1="74" y1="72" x2="82" y2="72" stroke="#E0A94A" stroke-width="1.5"/>
+
+  <!-- ══ STORE SIGN (top band) ══ -->
+  <rect x="28" y="12" width="28" height="8" rx="2" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="30" y1="15" x2="54" y2="15" stroke="#E0A94A" stroke-width="2"/>
+  <line x1="30" y1="18" x2="50" y2="18" stroke="#E0A94A" stroke-width="1.5"/>
+</svg>

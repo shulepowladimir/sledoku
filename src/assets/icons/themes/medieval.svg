@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    medieval theme — stone castle with two towers, portcullis gate, battlements.
+  -->
+
+  <!-- ══ SKY ══ -->
+  <rect width="96" height="96" fill="#7EB9D4"/>
+  <!-- Ground -->
+  <rect x="0" y="78" width="96" height="18" fill="#4D8B3A"/>
+  <rect x="0" y="84" width="96" height="12" fill="#3A6B2C"/>
+
+  <!-- ══ CASTLE SHADOW ══ -->
+  <rect x="10" y="28" width="80" height="56" fill="#3A2A20"/>
+  <rect x="8"  y="12" width="22" height="44" fill="#3A2A20"/>
+  <rect x="68" y="12" width="22" height="44" fill="#3A2A20"/>
+
+  <!-- ══ MAIN CURTAIN WALL ══ -->
+  <rect x="6" y="24" width="80" height="56" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ BATTLEMENTS ON WALL ══ -->
+  <rect x="6"  y="16" width="10" height="10" rx="1" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="22" y="16" width="10" height="10" rx="1" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="38" y="16" width="10" height="10" rx="1" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="54" y="16" width="10" height="10" rx="1" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="70" y="16" width="10" height="10" rx="1" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="82" y="16" width="10" height="10" rx="1" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ LEFT TOWER ══ -->
+  <rect x="4"  y="8"  width="24" height="48" rx="2" fill="#888880" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Tower battlements -->
+  <rect x="4"  y="2"  width="6"  height="8"  rx="1" fill="#888880" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="12" y="2"  width="6"  height="8"  rx="1" fill="#888880" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="20" y="2"  width="6"  height="8"  rx="1" fill="#888880" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Tower window -->
+  <rect x="11" y="20" width="10" height="14" rx="5" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ RIGHT TOWER ══ -->
+  <rect x="68" y="8"  width="24" height="48" rx="2" fill="#888880" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Tower battlements -->
+  <rect x="68" y="2"  width="6"  height="8"  rx="1" fill="#888880" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="76" y="2"  width="6"  height="8"  rx="1" fill="#888880" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="84" y="2"  width="6"  height="8"  rx="1" fill="#888880" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Tower window -->
+  <rect x="75" y="20" width="10" height="14" rx="5" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ PORTCULLIS GATE ══ -->
+  <path d="M30,80 L30,48 Q30,38 48,38 Q66,38 66,48 L66,80 Z"
+        fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Gate grid (portcullis bars) -->
+  <line x1="36" y1="48" x2="36" y2="80" stroke="#888880" stroke-width="2"/>
+  <line x1="42" y1="44" x2="42" y2="80" stroke="#888880" stroke-width="2"/>
+  <line x1="48" y1="42" x2="48" y2="80" stroke="#888880" stroke-width="2"/>
+  <line x1="54" y1="44" x2="54" y2="80" stroke="#888880" stroke-width="2"/>
+  <line x1="60" y1="48" x2="60" y2="80" stroke="#888880" stroke-width="2"/>
+  <line x1="30" y1="54" x2="66" y2="54" stroke="#888880" stroke-width="2"/>
+  <line x1="30" y1="64" x2="66" y2="64" stroke="#888880" stroke-width="2"/>
+  <line x1="30" y1="74" x2="66" y2="74" stroke="#888880" stroke-width="2"/>
+
+  <!-- ══ FLAG ON LEFT TOWER ══ -->
+  <rect x="14" y="2"  width="2"  height="12" rx="1" fill="#1A1A1A"/>
+  <polygon points="16,2 26,5 16,8" fill="#C8102E" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ STONE DETAILS (horizontal lines on wall) ══ -->
+  <line x1="6"  y1="36" x2="86" y2="36" stroke="#888880" stroke-width="1.5"/>
+  <line x1="6"  y1="48" x2="28" y2="48" stroke="#888880" stroke-width="1.5"/>
+  <line x1="68" y1="48" x2="86" y2="48" stroke="#888880" stroke-width="1.5"/>
+  <line x1="6"  y1="60" x2="28" y2="60" stroke="#888880" stroke-width="1.5"/>
+  <line x1="68" y1="60" x2="86" y2="60" stroke="#888880" stroke-width="1.5"/>
+  <line x1="6"  y1="70" x2="28" y2="70" stroke="#888880" stroke-width="1.5"/>
+  <line x1="68" y1="70" x2="86" y2="70" stroke="#888880" stroke-width="1.5"/>
+</svg>

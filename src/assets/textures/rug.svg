@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Base fill -->
+  <rect width="256" height="256" fill="#C8102E"/>
+
+  <!-- Gold grid lines -->
+  <line x1="64" y1="0" x2="64" y2="256" stroke="#E0A94A" stroke-width="3"/>
+  <line x1="128" y1="0" x2="128" y2="256" stroke="#E0A94A" stroke-width="3"/>
+  <line x1="192" y1="0" x2="192" y2="256" stroke="#E0A94A" stroke-width="3"/>
+  <line x1="0" y1="64" x2="256" y2="64" stroke="#E0A94A" stroke-width="3"/>
+  <line x1="0" y1="128" x2="256" y2="128" stroke="#E0A94A" stroke-width="3"/>
+  <line x1="0" y1="192" x2="256" y2="192" stroke="#E0A94A" stroke-width="3"/>
+
+  <!-- Navy diamonds in each of 16 cells -->
+  <!-- Row 1: y=32 -->
+  <polygon points="32,14 50,32 32,50 14,32" fill="#1F3A5F"/>
+  <polygon points="96,14 114,32 96,50 78,32" fill="#1F3A5F"/>
+  <polygon points="160,14 178,32 160,50 142,32" fill="#1F3A5F"/>
+  <polygon points="224,14 242,32 224,50 206,32" fill="#1F3A5F"/>
+  <!-- Row 2: y=96 -->
+  <polygon points="32,78 50,96 32,114 14,96" fill="#1F3A5F"/>
+  <polygon points="96,78 114,96 96,114 78,96" fill="#1F3A5F"/>
+  <polygon points="160,78 178,96 160,114 142,96" fill="#1F3A5F"/>
+  <polygon points="224,78 242,96 224,114 206,96" fill="#1F3A5F"/>
+  <!-- Row 3: y=160 -->
+  <polygon points="32,142 50,160 32,178 14,160" fill="#1F3A5F"/>
+  <polygon points="96,142 114,160 96,178 78,160" fill="#1F3A5F"/>
+  <polygon points="160,142 178,160 160,178 142,160" fill="#1F3A5F"/>
+  <polygon points="224,142 242,160 224,178 206,160" fill="#1F3A5F"/>
+  <!-- Row 4: y=224 -->
+  <polygon points="32,206 50,224 32,242 14,224" fill="#1F3A5F"/>
+  <polygon points="96,206 114,224 96,242 78,224" fill="#1F3A5F"/>
+  <polygon points="160,206 178,224 160,242 142,224" fill="#1F3A5F"/>
+  <polygon points="224,206 242,224 224,242 206,224" fill="#1F3A5F"/>
+
+  <!-- Cream dots at interior intersections -->
+  <circle cx="64" cy="64" r="5" fill="#F5E9D0"/>
+  <circle cx="128" cy="64" r="5" fill="#F5E9D0"/>
+  <circle cx="192" cy="64" r="5" fill="#F5E9D0"/>
+  <circle cx="64" cy="128" r="5" fill="#F5E9D0"/>
+  <circle cx="128" cy="128" r="5" fill="#F5E9D0"/>
+  <circle cx="192" cy="128" r="5" fill="#F5E9D0"/>
+  <circle cx="64" cy="192" r="5" fill="#F5E9D0"/>
+  <circle cx="128" cy="192" r="5" fill="#F5E9D0"/>
+  <circle cx="192" cy="192" r="5" fill="#F5E9D0"/>
+
+  <!-- Edge intersection dots (half-visible, SVG clips automatically) -->
+  <!-- Top edge -->
+  <circle cx="64" cy="0" r="5" fill="#F5E9D0"/>
+  <circle cx="128" cy="0" r="5" fill="#F5E9D0"/>
+  <circle cx="192" cy="0" r="5" fill="#F5E9D0"/>
+  <!-- Bottom edge -->
+  <circle cx="64" cy="256" r="5" fill="#F5E9D0"/>
+  <circle cx="128" cy="256" r="5" fill="#F5E9D0"/>
+  <circle cx="192" cy="256" r="5" fill="#F5E9D0"/>
+  <!-- Left edge -->
+  <circle cx="0" cy="64" r="5" fill="#F5E9D0"/>
+  <circle cx="0" cy="128" r="5" fill="#F5E9D0"/>
+  <circle cx="0" cy="192" r="5" fill="#F5E9D0"/>
+  <!-- Right edge -->
+  <circle cx="256" cy="64" r="5" fill="#F5E9D0"/>
+  <circle cx="256" cy="128" r="5" fill="#F5E9D0"/>
+  <circle cx="256" cy="192" r="5" fill="#F5E9D0"/>
+</svg>

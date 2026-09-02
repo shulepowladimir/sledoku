@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    box — shipping crate, 3/4 isometric view.
+    Shadow: #3A2A20. Fills: gold/orange. Red tape cross.
+  -->
+
+  <!-- ══ SHADOWS ══ -->
+  <polygon points="22,24 78,24 82,32 26,32" fill="#3A2A20"/>
+  <rect x="22" y="32" width="60" height="52" rx="2" fill="#3A2A20"/>
+  <polygon points="78,24 88,34 88,86 78,84" fill="#3A2A20"/>
+
+  <!-- ══ RIGHT SIDE FACE ══ -->
+  <polygon points="74,20 84,30 84,82 74,80"
+           fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+
+  <!-- ══ TOP FACE ══ -->
+  <polygon points="18,20 74,20 84,30 28,30"
+           fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Top tape cross -->
+  <line x1="18" y1="25" x2="84" y2="25" stroke="#C8102E" stroke-width="3"/>
+  <line x1="51" y1="20" x2="56" y2="30" stroke="#C8102E" stroke-width="3"/>
+
+  <!-- ══ FRONT FACE ══ -->
+  <rect x="18" y="28" width="56" height="52" rx="2"
+        fill="#E0A94A" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Front tape cross -->
+  <rect x="18" y="51" width="56" height="4" fill="#C8102E"/>
+  <rect x="44" y="28" width="4" height="52" fill="#C8102E"/>
+  <!-- Grain lines -->
+  <line x1="18" y1="40" x2="74" y2="40" stroke="#3A2A20" stroke-width="1.5"/>
+  <line x1="18" y1="66" x2="74" y2="66" stroke="#3A2A20" stroke-width="1.5"/>
+</svg>

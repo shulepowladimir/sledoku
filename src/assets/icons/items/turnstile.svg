@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    turnstile — subway/metro full-height turnstile. Navy frame, gold arms, red card reader.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <rect x="6" y="8" width="76" height="82" rx="6" fill="#3A2A20"/>
+
+  <!-- ══ FRAME BODY ══ -->
+  <rect x="2" y="4" width="76" height="82" rx="6" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ OUTER CAGE / BARS (vertical) ══ -->
+  <!-- Left column -->
+  <rect x="2"  y="4"  width="12" height="82" rx="4" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Right column -->
+  <rect x="66" y="4"  width="12" height="82" rx="4" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- Interior cage bars -->
+  <line x1="18" y1="4"  x2="18" y2="86" stroke="#2E5580" stroke-width="2"/>
+  <line x1="26" y1="4"  x2="26" y2="86" stroke="#2E5580" stroke-width="2"/>
+  <line x1="54" y1="4"  x2="54" y2="86" stroke="#2E5580" stroke-width="2"/>
+  <line x1="62" y1="4"  x2="62" y2="86" stroke="#2E5580" stroke-width="2"/>
+
+  <!-- Horizontal rails -->
+  <rect x="2"  y="4"  width="76" height="8"  rx="4" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="2"  y="82" width="76" height="8"  rx="4" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="2"  y="40" width="76" height="6"  rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ ROTATING ARMS (4-arm cross) ══ -->
+  <!-- Vertical arm -->
+  <rect x="36" y="10" width="8"  height="66" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Horizontal arm -->
+  <rect x="8"  y="36" width="64" height="8"  rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Centre hub -->
+  <circle cx="40" cy="43" r="8" fill="#C89830" stroke="#1A1A1A" stroke-width="2.5"/>
+  <circle cx="40" cy="43" r="4" fill="#E0A94A"/>
+
+  <!-- ══ CARD READER ══ -->
+  <rect x="78" y="24" width="16" height="26" rx="4" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.5"/>
+  <!-- Screen -->
+  <rect x="80" y="26" width="12" height="8"  rx="2" fill="#7EB9D4"/>
+  <!-- Swipe slot -->
+  <rect x="80" y="38" width="12" height="3"  rx="1" fill="#1A1A1A"/>
+  <!-- LED -->
+  <circle cx="86" cy="44" r="2" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- Post -->
+  <rect x="84" y="4"  width="8"  height="22" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+</svg>

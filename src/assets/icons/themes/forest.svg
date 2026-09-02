@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    forest theme — three trees of varying heights, ground, sky.
+    Green canopies, shadow-brown trunks, teal sky.
+  -->
+
+  <!-- ══ SKY ══ -->
+  <rect width="96" height="96" fill="#7EB9D4"/>
+
+  <!-- ══ GROUND ══ -->
+  <rect x="0" y="74" width="96" height="22" fill="#4D8B3A"/>
+  <!-- Ground detail (dark base) -->
+  <rect x="0" y="82" width="96" height="14" fill="#3A6B2C"/>
+  <!-- Grass tufts -->
+  <line x1="8"  y1="74" x2="6"  y2="68" stroke="#4D8B3A" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="22" y1="74" x2="24" y2="68" stroke="#4D8B3A" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="40" y1="74" x2="38" y2="68" stroke="#4D8B3A" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="60" y1="74" x2="62" y2="68" stroke="#4D8B3A" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="78" y1="74" x2="76" y2="68" stroke="#4D8B3A" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="90" y1="74" x2="92" y2="68" stroke="#4D8B3A" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- ══ TREE SHADOWS ══ -->
+  <rect x="16" y="50" width="8" height="26" rx="3" fill="#3A2A20"/>
+  <rect x="44" y="36" width="10" height="40" rx="4" fill="#3A2A20"/>
+  <rect x="70" y="52" width="8" height="24" rx="3" fill="#3A2A20"/>
+
+  <!-- ══ LEFT TREE (medium) ══ -->
+  <rect x="12" y="46" width="8" height="30" rx="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.5"/>
+  <circle cx="20" cy="38" r="22" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <circle cx="16" cy="32" r="12" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="28" cy="30" r="12" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="10" cy="42" r="10" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ CENTRE TREE (tallest) ══ -->
+  <rect x="40" y="32" width="10" height="44" rx="4" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.5"/>
+  <circle cx="48" cy="20" r="26" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Inner teal depth -->
+  <circle cx="44" cy="24" r="14" fill="#2E6E65"/>
+  <circle cx="36" cy="10" r="12" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="60" cy="10" r="12" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="48" cy="4"  r="10" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ RIGHT TREE (smaller) ══ -->
+  <rect x="66" y="48" width="8" height="28" rx="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.5"/>
+  <circle cx="74" cy="40" r="20" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <circle cx="68" cy="34" r="11" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="80" cy="32" r="11" fill="#4D8B3A" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- ══ BIRDS (simple V shapes in sky) ══ -->
+  <path d="M58,12 L62,8 L66,12" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M72,6  L76,2 L80,6"  fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
