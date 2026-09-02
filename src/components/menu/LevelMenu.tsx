@@ -6,6 +6,8 @@ import { formatElapsed } from '../../utils/time';
 import { GameLogo } from './GameLogo';
 import { HowToPlay } from './HowToPlay';
 import { ThemeIcon } from './ThemeIcon';
+import { AuthPanel } from '../auth/AuthPanel';
+import { LeaderboardModal } from '../leaderboard/LeaderboardModal';
 
 // Ascending cell count first, then (ties) the `levels` array order — that array is already
 // chronological (each new level is appended at the end), so a stable sort keeps it as the tie-break.
@@ -17,6 +19,7 @@ export function LevelMenu() {
   const selectLevel = useGameStore((s) => s.selectLevel);
   const [sizeFilter, setSizeFilter] = useState<'all' | number>('all');
   const [hideSolved, setHideSolved] = useState(false);
+  const [leaderboardLevel, setLeaderboardLevel] = useState<{ id: string; title: string } | null>(null);
 
   const visibleLevels = sortedLevels.filter((level) => {
     if (sizeFilter !== 'all' && level.size !== sizeFilter) return false;
@@ -34,7 +37,10 @@ export function LevelMenu() {
             <p className="site-header__subtitle">Выберите дело для расследования</p>
           </div>
         </div>
-        <HowToPlay />
+        <div className="site-header__actions">
+          <AuthPanel />
+          <HowToPlay />
+        </div>
       </header>
       <div className="level-menu__filters" data-testid="level-filters">
         <div className="size-filter" role="group" aria-label="Фильтр по размеру поля">
@@ -78,6 +84,14 @@ export function LevelMenu() {
                   </div>
                 )}
               </button>
+              <button
+                type="button"
+                className="level-card__leaderboard-btn"
+                aria-label="Таблица лидеров"
+                onClick={() => setLeaderboardLevel({ id: level.meta.id, title: level.meta.title })}
+              >
+                🏆
+              </button>
             </li>
           );
         })}
@@ -86,6 +100,13 @@ export function LevelMenu() {
         <p className="level-menu__empty" data-testid="level-menu-empty">
           Под выбранные фильтры уровней нет.
         </p>
+      )}
+      {leaderboardLevel && (
+        <LeaderboardModal
+          levelId={leaderboardLevel.id}
+          levelTitle={leaderboardLevel.title}
+          onClose={() => setLeaderboardLevel(null)}
+        />
       )}
     </div>
   );
