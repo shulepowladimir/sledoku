@@ -932,10 +932,19 @@
   gap: 8px;
 }
 
-.auth-panel__hello {
+.auth-panel__username {
   font-size: 13px;
   color: #2a2a2a;
-  font-weight: 600;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(17, 17, 17, 0.25);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.auth-panel__username:hover {
+  background: #fff;
 }
 
 .auth-popover {
@@ -997,30 +1006,9 @@
   color: #8a2f28;
 }
 
-/* --- Leaderboard --- */
+/* --- Profile modal --- */
 
-.level-card__leaderboard-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 1px solid rgba(17, 17, 17, 0.25);
-  background: rgba(255, 255, 255, 0.85);
-  font-size: 13px;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.level-card__leaderboard-btn:hover {
-  background: #fff;
-}
-
-.leaderboard-overlay {
+.profile-overlay {
   position: fixed;
   inset: 0;
   background: rgba(20, 15, 5, 0.45);
@@ -1031,30 +1019,33 @@
   padding: 20px;
 }
 
-.leaderboard-modal {
+.profile-modal {
   width: 100%;
-  max-width: 380px;
-  max-height: 80vh;
+  max-width: 460px;
+  max-height: 85vh;
   overflow-y: auto;
   background: #faf8f4;
   border-radius: 12px;
   border: 1px solid rgba(17, 17, 17, 0.2);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.leaderboard-modal__header {
+.profile-modal__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.leaderboard-modal__header h2 {
+.profile-modal__header h2 {
   margin: 0;
   font-size: 20px;
 }
 
-.leaderboard-modal__close {
+.profile-modal__close {
   border: none;
   background: none;
   font-size: 22px;
@@ -1063,20 +1054,143 @@
   color: #2a2a2a;
 }
 
-.leaderboard-modal__subtitle {
-  margin: 4px 0 16px;
-  color: #6b6760;
-  font-size: 14px;
+.profile-modal__tabs {
+  display: flex;
+  gap: 4px;
 }
 
-.leaderboard-modal__empty {
+.profile-modal__tab {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  background: #fff;
+  color: #2a2a2a;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.profile-modal__tab--active {
+  background: #2a2a2a;
+  color: #fff;
+  border-color: #2a2a2a;
+}
+
+.profile-modal__body {
+  min-height: 200px;
+}
+
+.profile-modal__footer {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgba(17, 17, 17, 0.12);
+  padding-top: 14px;
+}
+
+.profile-modal__signout {
+  background: none;
+  border: 1px solid rgba(138, 47, 40, 0.4);
+  color: #8a2f28;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.profile-modal__signout:hover {
+  background: rgba(138, 47, 40, 0.08);
+}
+
+/* --- Profile: Статистика --- */
+
+.profile-stats__summary {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.profile-stats__summary-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 10px;
+  padding: 12px 8px;
+}
+
+.profile-stats__summary-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #8a2f28;
+}
+
+.profile-stats__summary-label {
+  font-size: 12px;
+  color: #6b6760;
+}
+
+.profile-stats__toggle {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+  width: 180px;
+}
+
+.profile-stats__toggle-btn {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  background: #fff;
+  color: #2a2a2a;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.profile-stats__toggle-btn--active {
+  background: #2a2a2a;
+  color: #fff;
+  border-color: #2a2a2a;
+}
+
+.profile-stats__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.profile-stats__table th,
+.profile-stats__table td {
+  text-align: left;
+  padding: 8px 6px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.profile-stats__table th {
+  color: #6b6760;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.profile-stats__level-name {
+  color: #6b6760;
+  font-size: 12px;
+}
+
+/* --- Profile: Таблица лидеров --- */
+
+.profile-leaderboard__loading {
   color: #6b6760;
   font-size: 14px;
   text-align: center;
   padding: 20px 0;
 }
 
-.leaderboard-list {
+.profile-leaderboard__list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -1085,29 +1199,88 @@
   gap: 6px;
 }
 
-.leaderboard-list__item {
+.profile-leaderboard__item {
+  background: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.profile-leaderboard__row {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 10px;
-  border-radius: 8px;
-  background: #fff;
-  border: 1px solid rgba(17, 17, 17, 0.12);
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
 }
 
-.leaderboard-list__rank {
-  width: 22px;
+.profile-leaderboard__row-title {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2a2a2a;
+}
+
+.profile-leaderboard__row-size {
+  font-size: 12px;
+  color: #6b6760;
+}
+
+.profile-leaderboard__row-time {
+  font-size: 13px;
+  font-weight: 600;
+  color: #8a2f28;
+  min-width: 44px;
+  text-align: right;
+}
+
+.profile-leaderboard__chevron {
+  color: #6b6760;
+  transition: transform 0.15s;
+}
+
+.profile-leaderboard__chevron--open {
+  transform: rotate(180deg);
+}
+
+.profile-leaderboard__expand {
+  border-top: 1px solid rgba(17, 17, 17, 0.1);
+  padding: 8px 12px 12px;
+  background: #faf8f4;
+}
+
+.profile-leaderboard__top5 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-leaderboard__top5 li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 13px;
+}
+
+.profile-leaderboard__top5-rank {
+  width: 18px;
   font-weight: 700;
   color: #8a2f28;
 }
 
-.leaderboard-list__name {
+.profile-leaderboard__top5-name {
   flex: 1;
-  font-size: 14px;
   font-weight: 600;
 }
 
-.leaderboard-list__time {
-  font-size: 13px;
+.profile-leaderboard__top5-time {
   color: #6b6760;
 }

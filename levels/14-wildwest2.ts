@@ -18,10 +18,10 @@ const floorFeatures: FloorFeature[] = [{ id: 'boardwalk', label: 'Дощатый
 
 const itemTypes: ItemType[] = [
   { id: 'barCounter', label: 'Барная стойка', kind: 'decorative', icon: 'barCounter' },
-  { id: 'piano', label: 'Пианино', kind: 'decorative', icon: 'piano' },
-  { id: 'billiardTable', label: 'Бильярдный стол', kind: 'decorative', icon: 'billiardTable' },
-  { id: 'barStool', label: 'Барный табурет', kind: 'occupiable', icon: 'barStool' },
-  { id: 'hitchingPost', label: 'Коновязь', kind: 'decorative', icon: 'hitchingPost' },
+  ItemLibrary.piano(),
+  ItemLibrary.billiardTable(),
+  ItemLibrary.barStool(),
+  ItemLibrary.hitchingPost(),
   { id: 'haystack', label: 'Стог сена', kind: 'decorative', icon: 'haystack' },
   { id: 'horse', label: 'Лошадь', kind: 'occupiable', icon: 'horse' },
   { id: 'cactus', label: 'Кактус', kind: 'decorative', icon: 'cactus' },
@@ -171,7 +171,6 @@ const clues: Clue[] = [
   { id: 'w2-occupancy', type: 'roomOccupancy', text: 'Ни одна зона городка не осталась пустой.' },
   { id: 'w2-street-population', type: 'roomPopulation', roomId: 'street', comparison: 'most', text: 'На главной улице находилось больше людей, чем в любой другой зоне.' },
   // — Конюшня: шериф и Зоя —
-  { id: 'w2-zoya-room', type: 'roomMembership', subject: { type: 'person', id: 'zoya' }, roomId: 'stable', text: 'Зоя находилась в конюшне.' },
   {
     id: 'w2-zoya-sheriff-zone',
     type: 'sameRoomAsRole',
@@ -189,31 +188,26 @@ const clues: Clue[] = [
   { id: 'w2-bella-room', type: 'roomMembership', subject: { type: 'person', id: 'bella' }, roomId: 'office', text: 'Белла находилась в офисе шерифа.' },
   { id: 'w2-bella-parity', type: 'parity', subject: { type: 'person', id: 'bella' }, axis: 'row', parity: 'even', text: 'Белла находилась в ряду с чётным номером.' },
   { id: 'w2-bella-chair', type: 'adjacency', subject: { type: 'person', id: 'bella' }, itemTypeId: 'chair', text: 'Белла находилась рядом со стулом.' },
-  { id: 'w2-bella-north', type: 'relativePosition', subject: { type: 'person', id: 'bella' }, otherPersonId: 'vladimir', axis: 'row', direction: 'before', text: 'Белла находилась севернее Владимира.' },
   { id: 'w2-vladimir-wall', type: 'wallSide', subject: { type: 'person', id: 'vladimir' }, wallDirection: 'west', text: 'Владимир находился у западной стены своей зоны.' },
   { id: 'w2-vladimir-same', type: 'sameRoomAs', subject: { type: 'person', id: 'vladimir' }, otherPersonId: 'bella', text: 'Владимир находился в той же зоне, что и Белла.' },
   // — Банк —
   { id: 'w2-zhdan-portrait', type: 'adjacency', subject: { type: 'person', id: 'zhdan' }, itemTypeId: 'portrait', text: 'Ждан находился рядом с портретом шерифа.' },
-  { id: 'w2-ksenia-roomsize', type: 'roomSize', subject: { type: 'person', id: 'ksenia' }, comparison: 'smallest', text: 'Ксения находилась в самой маленькой зоне городка.' },
   { id: 'w2-ksenia-south', type: 'relativePosition', subject: { type: 'person', id: 'ksenia' }, otherPersonId: 'zhdan', axis: 'row', direction: 'after', text: 'Ксения находилась южнее Ждана.' },
   { id: 'w2-ksenia-west', type: 'relativePosition', subject: { type: 'person', id: 'ksenia' }, otherPersonId: 'zhdan', axis: 'col', direction: 'before', text: 'Ксения находилась западнее Ждана.' },
-  { id: 'w2-ksenia-parity', type: 'parity', subject: { type: 'person', id: 'ksenia' }, axis: 'row', parity: 'even', text: 'Ксения находилась в ряду с чётным номером.' },
   { id: 'w2-ksenia-wall', type: 'wallSide', subject: { type: 'person', id: 'ksenia' }, wallDirection: 'west', text: 'Ксения находилась у западной стены своей зоны.' },
   // — Салун —
   { id: 'w2-demyan-stool', type: 'occupiesItem', subject: { type: 'person', id: 'demyan' }, itemTypeId: 'barStool', text: 'Демьян сидел на барном табурете.' },
   // — Улица: всадники и пешеходы —
   { id: 'w2-esenia-parity', type: 'parity', subject: { type: 'person', id: 'esenia' }, axis: 'row', parity: 'even', text: 'Есения находилась в ряду с чётным номером.' },
-  { id: 'w2-esenia-west', type: 'relativePosition', subject: { type: 'person', id: 'esenia' }, otherPersonId: 'glafira', axis: 'col', direction: 'before', text: 'Есения находилась западнее Глафиры.' },
   { id: 'w2-glafira-south', type: 'relativePosition', subject: { type: 'person', id: 'glafira' }, otherPersonId: 'esenia', axis: 'row', direction: 'after', text: 'Глафира находилась южнее Есении.' },
   { id: 'w2-glafira-parity', type: 'parity', subject: { type: 'person', id: 'glafira' }, axis: 'col', parity: 'odd', text: 'Глафира находилась в столбце с нечётным номером.' },
-  { id: 'w2-glafira-north', type: 'relativePosition', subject: { type: 'person', id: 'glafira' }, otherPersonId: 'bella', axis: 'row', direction: 'before', text: 'Глафира находилась севернее Беллы.' },
   { id: 'w2-artem-parity', type: 'parity', subject: { type: 'person', id: 'artem' }, axis: 'row', parity: 'odd', text: 'Артём находился в ряду с нечётным номером.' },
   { id: 'w2-zoya-south', type: 'relativePosition', subject: { type: 'person', id: 'zoya' }, otherPersonId: 'ilya', axis: 'row', direction: 'after', text: 'Зоя находилась южнее Ильи.' },
   { id: 'w2-zoya-corner', type: 'corner', subject: { type: 'person', id: 'zoya' }, text: 'Зоя находилась в углу своей зоны.' },
 ];
 
 export const wildwest2Level: Level = {
-  meta: { id: 'wildwest-02', title: 'Тень шерифа', theme: 'wildwest2', difficulty: 9, maxFullyPinnedPeople: 0, clueBalanceExempt: true },
+  meta: { id: 'wildwest-02', title: 'Тень шерифа', theme: 'wildwest2', difficulty: 9, maxFullyPinnedPeople: 0 },
   size,
   rooms,
   itemTypes,

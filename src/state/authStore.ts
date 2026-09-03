@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import type { Session } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase';
-import { syncOnLogin } from '../utils/cloudSync';
+import { useProgressStore } from './progressStore';
 
 interface AuthStore {
   session: Session | null;
@@ -49,45 +49,53 @@ export const useAuthStore = create<AuthStore>((set) => ({
         return;
       }
     }
-    if (data.session) {
-      set({ session: data.session, username: trimmed });
-      void syncOnLogin(data.session.user.id);
-    } else {
+    if (!data.session) {
       set({
         error: 'Проверь почту — нужно подтвердить регистрацию по ссылке в письме, потом войди снова',
       });
     }
+    // Если сессия уже открыта (подтверждение email отключено), useAuthStore и
+    // useProgressStore обновятся сами через onAuthStateChange ниже.
   },
 
   signIn: async (email, password) => {
     set({ error: null });
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
       set({ error: translateAuthError(error.message) });
-      return;
     }
-    if (data.session) {
-      const username = await loadUsername(data.session.user.id);
-      set({ session: data.session, username });
-      void syncOnLogin(data.session.user.id);
-    }
+    // Успешный вход тоже обрабатывается через onAuthStateChange.
   },
 
   signOut: async () => {
     await supabase.auth.signOut();
-    set({ session: null, username: null });
+    // session/username и прогресс сбросятся через onAuthStateChange.
   },
 
   clearError: () => set({ error: null }),
 }));
 
-// Слушаем изменения сессии (в т.ч. восстановление при перезагрузке страницы).
+// Единая точка входа: любое изменение сессии (вход, выход, восстановление
+// при перезагрузке страницы, обновление токена) проходит здесь.
+// Отсюда же управляем тем, откуда progressStore берёт прогресс —
+// это гарантирует, что прогресс всегда привязан к текущему аккаунту (или гостю),
+// а не остаётся "прилипшим" от предыдущего пользователя.
+let lastHandledUserId: string | null = null;
+
 supabase.auth.onAuthStateChange((_event, session) => {
   useAuthStore.setState({ session, status: 'ready' });
+
+  const userId = session?.user.id ?? null;
+  if (userId === lastHandledUserId) return;
+  lastHandledUserId = userId;
+
   if (session) {
+    useAuthStore.setState({ username: null });
     loadUsername(session.user.id).then((username) => useAuthStore.setState({ username }));
+    void useProgressStore.getState().hydrateAccount(session.user.id);
   } else {
     useAuthStore.setState({ username: null });
+    useProgressStore.getState().hydrateGuest();
   }
 });
 

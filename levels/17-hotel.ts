@@ -125,16 +125,18 @@ const cells = buildCells(
   return cell;
 });
 
+// Последний постоялец. Ночная смена: постояльцы — только Зоя и жертва Харитон (буквы З..Х),
+// остальные — персонал. Последний постоялец Харитон ночевал в люксе; гостья Зоя убила его там.
 const people: Person[] = [
-  { id: 'arkady', name: 'Аркадий', initialLetter: 'А', gender: 'male', color: '#4d8dff', isVictim: false, isMurderer: false },
-  { id: 'beata', name: 'Беата', initialLetter: 'Б', gender: 'female', color: '#e0824a', isVictim: false, isMurderer: false },
-  { id: 'vladimir', name: 'Владимир', initialLetter: 'В', gender: 'male', color: '#e0629b', isVictim: false, isMurderer: false },
-  { id: 'glafira', name: 'Глафира', initialLetter: 'Г', gender: 'female', color: '#3cbf7c', isVictim: false, isMurderer: false },
-  { id: 'demyan', name: 'Демьян', initialLetter: 'Д', gender: 'male', color: '#d9a441', isVictim: false, isMurderer: false },
-  { id: 'esenia', name: 'Есения', initialLetter: 'Е', gender: 'female', color: '#2bc4c4', isVictim: false, isMurderer: false },
-  { id: 'zhdan', name: 'Ждан', initialLetter: 'Ж', gender: 'male', color: '#c9536b', isVictim: false, isMurderer: false },
-  { id: 'zoya', name: 'Зоя', initialLetter: 'З', gender: 'female', color: '#9b7ce0', isVictim: false, isMurderer: true },
-  { id: 'khariton', name: 'Харитон', initialLetter: 'Х', gender: 'male', color: '#e0a94a', isVictim: true, isMurderer: false },
+  { id: 'arkady', name: 'Аркадий', initialLetter: 'А', gender: 'male', color: '#4d8dff', isVictim: false, isMurderer: false, roles: ['staff'] },
+  { id: 'beata', name: 'Беата', initialLetter: 'Б', gender: 'female', color: '#e0824a', isVictim: false, isMurderer: false, roles: ['staff'] },
+  { id: 'vladimir', name: 'Владимир', initialLetter: 'В', gender: 'male', color: '#e0629b', isVictim: false, isMurderer: false, roles: ['staff'] },
+  { id: 'glafira', name: 'Глафира', initialLetter: 'Г', gender: 'female', color: '#3cbf7c', isVictim: false, isMurderer: false, roles: ['staff'] },
+  { id: 'demyan', name: 'Демьян', initialLetter: 'Д', gender: 'male', color: '#d9a441', isVictim: false, isMurderer: false, roles: ['staff'] },
+  { id: 'esenia', name: 'Есения', initialLetter: 'Е', gender: 'female', color: '#2bc4c4', isVictim: false, isMurderer: false, roles: ['staff'] },
+  { id: 'zhdan', name: 'Ждан', initialLetter: 'Ж', gender: 'male', color: '#c9536b', isVictim: false, isMurderer: false, roles: ['staff'] },
+  { id: 'zoya', name: 'Зоя', initialLetter: 'З', gender: 'female', color: '#9b7ce0', isVictim: false, isMurderer: true, roles: ['guest'] },
+  { id: 'khariton', name: 'Харитон', initialLetter: 'Х', gender: 'male', color: '#e0a94a', isVictim: true, isMurderer: false, roles: ['guest'] },
 ];
 
 // Перестановка scaffold (suite:2 — жертва+убийца; по 1 на corridor/room1/room2/stairW/lobby/
@@ -157,6 +159,31 @@ const solution: Record<PersonId, CellId> = {
 };
 
 const clues: Clue[] = [
+  // — Правила ночного отеля —
+  {
+    id: 'h-r1',
+    type: 'letterRangeRole',
+    fromLetter: 'З',
+    toLetter: 'Х',
+    roleId: 'guest',
+    text: 'Все с Зои по Харитона были постояльцами отеля, остальные — персоналом ночной смены.',
+  },
+  {
+    id: 'h-r2',
+    type: 'roleZoneLimit',
+    roleId: 'guest',
+    roomIds: ['corridor', 'stairW', 'stairE', 'lobby', 'reception', 'bar'],
+    maxCount: 0,
+    text: 'Ночью постояльцам был закрыт доступ всюду, кроме жилых номеров.',
+  },
+  {
+    id: 'h-r3',
+    type: 'roleZoneMin',
+    roleId: 'guest',
+    roomIds: ['suite'],
+    minCount: 1,
+    text: 'Люкс не пустовал: в нём ночевал постоялец.',
+  },
   // — Общие правила отеля —
   { id: 'h-bed-gender', type: 'itemTypeGender', itemTypeId: 'bed', gender: 'male', text: 'Женщины не ложились в кровати.' },
   { id: 'h-bath-gender', type: 'itemTypeGender', itemTypeId: 'bathtub', gender: 'female', text: 'Мужчины не принимали ванну.' },
@@ -173,20 +200,10 @@ const clues: Clue[] = [
   { id: 'h-glafira-parity', type: 'parity', subject: { type: 'person', id: 'glafira' }, axis: 'col', parity: 'even', text: 'Глафира находилась в столбце с чётным номером.' },
   // — Лобби —
   { id: 'h-esenia-sofa', type: 'adjacency', subject: { type: 'person', id: 'esenia' }, itemTypeId: 'sofa', text: 'Есения находилась рядом с диваном.' },
-  {
-    id: 'h-esenia-north',
-    type: 'relativePosition',
-    subject: { type: 'person', id: 'esenia' },
-    otherPersonId: 'zhdan',
-    axis: 'row',
-    direction: 'before',
-    text: 'Есения находилась севернее Ждана.',
-  },
   // — Ресепшн —
   { id: 'h-zhdan-room', type: 'roomMembership', subject: { type: 'person', id: 'zhdan' }, roomId: 'reception', text: 'Ждан находился на ресепшне.' },
   { id: 'h-zhdan-plant', type: 'adjacency', subject: { type: 'person', id: 'zhdan' }, itemTypeId: 'plant', text: 'Ждан находился рядом с растением.' },
   // — Бар-ресторан —
-  { id: 'h-demyan-chair', type: 'occupiesItem', subject: { type: 'person', id: 'demyan' }, itemTypeId: 'chair', negated: true, text: 'Демьян не сидел на стуле.' },
   {
     id: 'h-demyan-south',
     type: 'relativePosition',
@@ -198,15 +215,6 @@ const clues: Clue[] = [
   },
   // — Люкс —
   { id: 'h-zoya-carpet', type: 'floorFeature', subject: { type: 'person', id: 'zoya' }, featureId: 'suite-carpet', text: 'Зоя находилась на ковре.' },
-  {
-    id: 'h-zoya-south',
-    type: 'relativePosition',
-    subject: { type: 'person', id: 'zoya' },
-    otherPersonId: 'khariton',
-    axis: 'row',
-    direction: 'after',
-    text: 'Зоя находилась южнее Харитона.',
-  },
 ];
 
 export const hotelLevel: Level = {

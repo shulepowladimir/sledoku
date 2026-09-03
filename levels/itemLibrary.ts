@@ -100,4 +100,5 @@ export const ItemLibrary = {
   penguin: item('penguin', 'penguin', 'decorative', 'Пингвин'),
   shootingGallery: item('shootingGallery', 'shootingGallery', 'decorative', 'Тир'),
   popcornStand: item('popcornStand', 'popcornStand', 'decorative', 'Стойка с попкорном'),
+  medicineCabinet: item('medicineCabinet', 'medicineCabinet', 'decorative', 'Шкаф с лекарствами'),
 } satisfies Record<string, (label?: string) => ItemType>;

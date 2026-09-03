@@ -43,7 +43,7 @@ const itemTypes: ItemType[] = [
   ItemLibrary.penguin(),
   ItemLibrary.penguin(),
   ItemLibrary.rock('Скала'),
-  { id: 'medicineCabinet', label: 'Шкаф с лекарствами', kind: 'decorative', icon: 'medicineCabinet' },
+  ItemLibrary.medicineCabinet(),
   ItemLibrary.jacuzzi('Джакузи бегемотов'),
   ItemLibrary.treadmill('Беговая дорожка'),
   { id: 'swing', label: 'Качели обезьян', kind: 'occupiable', icon: 'swing' },

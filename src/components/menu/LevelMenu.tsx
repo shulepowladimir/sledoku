@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { levels } from '../../../levels';
 import { useGameStore } from '../../state/gameStore';
-import { getBestTime } from '../../utils/bestTime';
+import { useProgressStore } from '../../state/progressStore';
 import { formatElapsed } from '../../utils/time';
 import { GameLogo } from './GameLogo';
 import { HowToPlay } from './HowToPlay';
 import { ThemeIcon } from './ThemeIcon';
 import { AuthPanel } from '../auth/AuthPanel';
-import { LeaderboardModal } from '../leaderboard/LeaderboardModal';
 
 // Ascending cell count first, then (ties) the `levels` array order — that array is already
 // chronological (each new level is appended at the end), so a stable sort keeps it as the tie-break.
@@ -17,13 +16,13 @@ const sizeOptions: Array<'all' | number> = ['all', ...new Set(sortedLevels.map((
 
 export function LevelMenu() {
   const selectLevel = useGameStore((s) => s.selectLevel);
+  const bestTimes = useProgressStore((s) => s.bestTimes);
   const [sizeFilter, setSizeFilter] = useState<'all' | number>('all');
   const [hideSolved, setHideSolved] = useState(false);
-  const [leaderboardLevel, setLeaderboardLevel] = useState<{ id: string; title: string } | null>(null);
 
   const visibleLevels = sortedLevels.filter((level) => {
     if (sizeFilter !== 'all' && level.size !== sizeFilter) return false;
-    if (hideSolved && getBestTime(level.meta.id) != null) return false;
+    if (hideSolved && bestTimes[level.meta.id] != null) return false;
     return true;
   });
 
@@ -68,7 +67,7 @@ export function LevelMenu() {
       </div>
       <ul className="level-menu__grid">
         {visibleLevels.map((level) => {
-          const bestMs = getBestTime(level.meta.id);
+          const bestMs = bestTimes[level.meta.id] ?? null;
           return (
             <li key={level.meta.id} className="level-card" data-testid={`level-card-${level.meta.id}`}>
               <button type="button" className="level-card__button" onClick={() => selectLevel(level)}>
@@ -84,14 +83,6 @@ export function LevelMenu() {
                   </div>
                 )}
               </button>
-              <button
-                type="button"
-                className="level-card__leaderboard-btn"
-                aria-label="Таблица лидеров"
-                onClick={() => setLeaderboardLevel({ id: level.meta.id, title: level.meta.title })}
-              >
-                🏆
-              </button>
             </li>
           );
         })}
@@ -100,13 +91,6 @@ export function LevelMenu() {
         <p className="level-menu__empty" data-testid="level-menu-empty">
           Под выбранные фильтры уровней нет.
         </p>
-      )}
-      {leaderboardLevel && (
-        <LeaderboardModal
-          levelId={leaderboardLevel.id}
-          levelTitle={leaderboardLevel.title}
-          onClose={() => setLeaderboardLevel(null)}
-        />
       )}
     </div>
   );

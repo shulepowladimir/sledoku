@@ -88,15 +88,17 @@ const cells = buildCells(
   (row, col) => itemIdByCell.get(cellId(row, col)),
 ).map((cell) => (SCORCH_CELLS.has(cell.id) ? { ...cell, floorFeatureId: 'scorch-mark' } : cell));
 
+// Тайна орбитальной станции. Экипаж — вахтенная смена (Ждан и жертва Христофор, буквы Ж..Х);
+// остальные — пассажиры исследовательской экспедиции. Убийца Есения — пассажирка.
 const people: Person[] = [
-  { id: 'aglaya', name: 'Аглая', initialLetter: 'А', gender: 'female', color: '#4d8dff', isVictim: false, isMurderer: false },
-  { id: 'bogdan', name: 'Богдан', initialLetter: 'Б', gender: 'male', color: '#e0629b', isVictim: false, isMurderer: false },
-  { id: 'vsevolod', name: 'Всеволод', initialLetter: 'В', gender: 'male', color: '#9b7ce0', isVictim: false, isMurderer: false },
-  { id: 'galina', name: 'Галина', initialLetter: 'Г', gender: 'female', color: '#3cbf7c', isVictim: false, isMurderer: false },
-  { id: 'demid', name: 'Демид', initialLetter: 'Д', gender: 'male', color: '#e0824a', isVictim: false, isMurderer: false },
-  { id: 'esenia', name: 'Есения', initialLetter: 'Е', gender: 'female', color: '#2bc4c4', isVictim: false, isMurderer: true },
-  { id: 'zhdan', name: 'Ждан', initialLetter: 'Ж', gender: 'male', color: '#c9536b', isVictim: false, isMurderer: false },
-  { id: 'hristofor', name: 'Христофор', initialLetter: 'Х', gender: 'male', color: '#7cc9e8', isVictim: true, isMurderer: false },
+  { id: 'aglaya', name: 'Аглая', initialLetter: 'А', gender: 'female', color: '#4d8dff', isVictim: false, isMurderer: false, roles: ['passenger'] },
+  { id: 'bogdan', name: 'Богдан', initialLetter: 'Б', gender: 'male', color: '#e0629b', isVictim: false, isMurderer: false, roles: ['passenger'] },
+  { id: 'vsevolod', name: 'Всеволод', initialLetter: 'В', gender: 'male', color: '#9b7ce0', isVictim: false, isMurderer: false, roles: ['passenger'] },
+  { id: 'galina', name: 'Галина', initialLetter: 'Г', gender: 'female', color: '#3cbf7c', isVictim: false, isMurderer: false, roles: ['passenger'] },
+  { id: 'demid', name: 'Демид', initialLetter: 'Д', gender: 'male', color: '#e0824a', isVictim: false, isMurderer: false, roles: ['passenger'] },
+  { id: 'esenia', name: 'Есения', initialLetter: 'Е', gender: 'female', color: '#2bc4c4', isVictim: false, isMurderer: true, roles: ['passenger'] },
+  { id: 'zhdan', name: 'Ждан', initialLetter: 'Ж', gender: 'male', color: '#c9536b', isVictim: false, isMurderer: false, roles: ['crew'] },
+  { id: 'hristofor', name: 'Христофор', initialLetter: 'Х', gender: 'male', color: '#7cc9e8', isVictim: true, isMurderer: false, roles: ['crew'] },
 ];
 
 // `npm run scaffold-level -- levels/12-space.ts bridge:3,greenhouse:3,quarters:2` → row→col
@@ -114,6 +116,23 @@ const solution: Record<PersonId, CellId> = {
 };
 
 const clues: Clue[] = [
+  // — Правила станции —
+  {
+    id: 'sp-r1',
+    type: 'letterRangeRole',
+    fromLetter: 'А',
+    toLetter: 'Е',
+    roleId: 'passenger',
+    text: 'Все с Аглаи по Есению были пассажирами экспедиции, остальные — членами экипажа станции.',
+  },
+  {
+    id: 'sp-r2',
+    type: 'roleZoneMin',
+    roleId: 'crew',
+    roomIds: ['bridge'],
+    minCount: 1,
+    text: 'Рубка управления не оставалась без члена экипажа.',
+  },
   { id: 'sp1', type: 'corner', subject: { type: 'person', id: 'zhdan' }, text: 'Ждан находился в углу своей зоны.' },
   {
     id: 'sp2',
@@ -130,13 +149,11 @@ const clues: Clue[] = [
     text: 'Аглая находилась рядом с пультом управления.',
   },
   {
-    id: 'sp4a',
-    type: 'roomMembership',
+    id: 'sp4',
+    type: 'corner',
     subject: { type: 'person', id: 'demid' },
-    roomId: 'greenhouse',
-    text: 'Демид находился в Оранжерее.',
+    text: 'Демид находился в углу своей зоны.',
   },
-  { id: 'sp4', type: 'corner', subject: { type: 'person', id: 'demid' }, text: 'Демид находился в углу своей зоны.' },
   {
     id: 'sp5',
     type: 'wallSide',
@@ -159,21 +176,6 @@ const clues: Clue[] = [
     parity: 'even',
     text: 'Есения находилась в ряду с чётным номером.',
   },
-  {
-    id: 'sp8',
-    type: 'roomSize',
-    subject: { type: 'person', id: 'zhdan' },
-    comparison: 'smallest',
-    text: 'Ждан находился в самой маленькой по площади зоне станции.',
-  },
-  {
-    id: 'sp9',
-    type: 'itemTypeGender',
-    itemTypeId: 'console',
-    gender: 'female',
-    text: 'Мужчины не садились за пульты управления.',
-  },
-  { id: 'sp10', type: 'roomOccupancy', text: 'Ни одна зона станции не осталась пустой.' },
   {
     id: 'sp11',
     type: 'relativePosition',

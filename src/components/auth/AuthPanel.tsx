@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useAuthStore } from '../../state/authStore';
+import { ProfileModal } from '../profile/ProfileModal';
 
 export function AuthPanel() {
-  const { session, username, error, signIn, signUp, signOut, clearError } = useAuthStore();
+  const { session, username, error, signIn, signUp, clearError } = useAuthStore();
   const [open, setOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,10 +15,10 @@ export function AuthPanel() {
   if (session) {
     return (
       <div className="auth-panel">
-        <span className="auth-panel__hello">Привет, {username ?? '...'}</span>
-        <button type="button" className="menu-button" onClick={() => signOut()}>
-          Выйти
+        <button type="button" className="auth-panel__username" onClick={() => setProfileOpen(true)}>
+          {username ?? '...'}
         </button>
+        {profileOpen && <ProfileModal onClose={() => setProfileOpen(false)} />}
       </div>
     );
   }

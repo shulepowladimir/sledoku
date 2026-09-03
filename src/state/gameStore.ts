@@ -9,9 +9,7 @@ import { toggleMark, toggleManualCross, clearCell } from '../engine/marks';
 import { checkSubmit } from '../engine/check';
 import { occupantOf, isSolved, elapsedMsNow } from '../engine/selectors';
 import { apartmentLevel } from '../../levels/01-apartment';
-import { recordBestTime } from '../utils/bestTime';
-import { useAuthStore } from './authStore';
-import { pushResult } from '../utils/cloudSync';
+import { useProgressStore } from './progressStore';
 
 export type InteractionMode = 'person' | 'cross' | 'erase';
 export type Screen = 'menu' | 'game';
@@ -122,11 +120,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     let isNewRecord = false;
     if (isSolved(next) && !isSolved(player)) {
       const elapsed = elapsedMsNow(next, now);
-      isNewRecord = recordBestTime(level.meta.id, elapsed);
-      const session = useAuthStore.getState().session;
-      if (isNewRecord && session) {
-        void pushResult(session.user.id, level.meta.id, elapsed);
-      }
+      isNewRecord = useProgressStore.getState().recordResult(level.meta.id, elapsed);
     }
     set({ player: next, isNewRecord });
   },

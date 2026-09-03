@@ -19,11 +19,11 @@ const floorFeatures: FloorFeature[] = [{ id: 'sterile-mat', label: 'Стерил
 const STERILE_CELLS = new Set([cellId(0, 3), cellId(2, 5)]);
 
 const itemTypes: ItemType[] = [
-  { id: 'kassa', label: 'Стойка регистратуры', kind: 'decorative', icon: 'kassa' },
-  { id: 'computer', label: 'Компьютер', kind: 'decorative', icon: 'computer' },
-  { id: 'watercooler', label: 'Кулер с водой', kind: 'decorative', icon: 'watercooler' },
+  ItemLibrary.kassa('Стойка регистратуры'),
+  ItemLibrary.computer(),
+  ItemLibrary.watercooler(),
   { id: 'examTable', label: 'Смотровой стол', kind: 'occupiable', icon: 'examTable' },
-  { id: 'medicineCabinet', label: 'Шкаф с лекарствами', kind: 'decorative', icon: 'medicineCabinet' },
+  ItemLibrary.medicineCabinet(),
   ItemLibrary.bench('Скамья для ожидания'),
   ItemLibrary.sofa('Диван для ожидания'),
   ItemLibrary.armchair('Кресло для посетителей'),
