@@ -21,6 +21,14 @@ export function ProfileModal({ onClose }: Props) {
       <div className="profile-modal" onClick={(e) => e.stopPropagation()}>
         <div className="profile-modal__header">
           <h2>{username ?? 'Профиль'}</h2>
+          <button
+            type="button"
+            className="profile-modal__signout"
+            onClick={handleSignOut}
+            title="Прогресс не будет сохраняться, если выйти"
+          >
+            Выйти из аккаунта
+          </button>
           <button type="button" className="profile-modal__close" onClick={onClose} aria-label="Закрыть">
             ×
           </button>
@@ -44,12 +52,6 @@ export function ProfileModal({ onClose }: Props) {
         </div>
 
         <div className="profile-modal__body">{tab === 'stats' ? <ProfileStats /> : <ProfileLeaderboardTab />}</div>
-
-        <div className="profile-modal__footer">
-          <button type="button" className="profile-modal__signout" onClick={handleSignOut}>
-            Выйти
-          </button>
-        </div>
       </div>
     </div>
   );
