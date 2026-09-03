@@ -46,8 +46,8 @@ const itemTypes: ItemType[] = [
   ItemLibrary.medicineCabinet(),
   ItemLibrary.jacuzzi('Джакузи бегемотов'),
   ItemLibrary.treadmill('Беговая дорожка'),
-  { id: 'swing', label: 'Качели обезьян', kind: 'occupiable', icon: 'swing' },
-  { id: 'souvenirRack', label: 'Стойка с сувенирами', kind: 'decorative', icon: 'souvenirRack' },
+  ItemLibrary.swing('Качели обезьян'),
+  ItemLibrary.souvenirRack(),
   ItemLibrary.bench('Скамья'),
   ItemLibrary.bench('Скамья'),
   ItemLibrary.bench('Скамья'),
@@ -62,7 +62,7 @@ const itemTypes: ItemType[] = [
   ItemLibrary.plant('Клумба'),
   ItemLibrary.plant('Клумба'),
   ItemLibrary.plant('Клумба'),
-  { id: 'kassa', label: 'Касса', kind: 'decorative', icon: 'kassa' },
+  ItemLibrary.kassa(),
 ];
 
 const items: Item[] = [
@@ -219,14 +219,11 @@ const clues: Clue[] = [
     text: 'Ни один вольер не остался без работника.',
   },
   // — Посетители (домен — всё поле, вольеры отсекает правило; якорь — мультизонный предмет) —
-  { id: 'zoo-anna-parity', type: 'parity', subject: { type: 'person', id: 'anna' }, axis: 'col', parity: 'even', text: 'Анна находилась в столбце с чётным номером.' },
   { id: 'zoo-anna-bench', type: 'adjacency', subject: { type: 'person', id: 'anna' }, itemTypeId: 'bench', text: 'Анна находилась рядом со скамьёй.' },
-  { id: 'zoo-esenia-parity', type: 'parity', subject: { type: 'person', id: 'esenia' }, axis: 'row', parity: 'even', text: 'Есения находилась в ряду с чётным номером.' },
   { id: 'zoo-esenia-tree', type: 'adjacency', subject: { type: 'person', id: 'esenia' }, itemTypeId: 'tree', text: 'Есения находилась рядом с деревом.' },
   { id: 'zoo-inna-souvenir', type: 'adjacency', subject: { type: 'person', id: 'inna' }, itemTypeId: 'souvenirRack', text: 'Инна находилась рядом со стойкой с сувенирами.' },
   // — Работники вольеров (животные — мультизонные? нет: каждый вид в одном вольере; вместо этого —
   // пруд/фонари/качели в нескольких зонах + реляционные цепочки) —
-  { id: 'zoo-zhdan-north-wall', type: 'wallSide', subject: { type: 'person', id: 'zhdan' }, wallDirection: 'north', text: 'Ждан находился у северной стены своей зоны.' },
   {
     id: 'zoo-zhdan-north-anna',
     type: 'relativePosition',
@@ -238,10 +235,10 @@ const clues: Clue[] = [
     text: 'Ждан находился ровно на три ряда севернее Анны.',
   },
   { id: 'zoo-zakhar-south-wall', type: 'wallSide', subject: { type: 'person', id: 'zakhar' }, wallDirection: 'south', text: 'Захар находился у южной стены своей зоны.' },
-  { id: 'zoo-bogdan-west-wall', type: 'wallSide', subject: { type: 'person', id: 'bogdan' }, wallDirection: 'west', text: 'Богдан находился у западной стены своей зоны.' },
   { id: 'zoo-demid-ice', type: 'floorFeature', subject: { type: 'person', id: 'demid' }, featureId: 'iceFloor', text: 'Демид находился на льду.' },
   { id: 'zoo-vseslav-pool', type: 'floorFeature', subject: { type: 'person', id: 'vseslav' }, featureId: 'hippoPool', text: 'Всеслав находился в бассейне бегемотов.' },
   { id: 'zoo-vseslav-west-bogdan', type: 'relativePosition', subject: { type: 'person', id: 'vseslav' }, otherPersonId: 'bogdan', axis: 'col', direction: 'after', offset: 2, text: 'Всеслав находился ровно на два столбца восточнее Богдана.' },
+  { id: 'zoo-bogdan-parity', type: 'parity', subject: { type: 'person', id: 'bogdan' }, axis: 'row', parity: 'odd', text: 'Богдан находился в ряду с нечётным номером.' },
   // — Кассы: Ксения —
   { id: 'zoo-ksenia-kassa', type: 'adjacency', subject: { type: 'person', id: 'ksenia' }, itemTypeId: 'kassa', text: 'Ксения находилась рядом с кассой.' },
   // — Вольер львов: убийца (жертва не упоминается) —

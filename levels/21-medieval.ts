@@ -19,17 +19,15 @@ const rooms: Room[] = [
 
 const floorFeatures: FloorFeature[] = [
   { id: 'altar-rug', label: 'Ковёр перед алтарём', textureKey: 'rug' },
+  { id: 'yard-puddle', label: 'Лужа', textureKey: 'dirt' },
 ];
 
 const itemTypes: ItemType[] = [
-  ItemLibrary.horse('Боевой конь'),
-  ItemLibrary.horse('Серая кобыла'),
-  ItemLibrary.horse('Караковый жеребец'),
-  ItemLibrary.horse('Рыжий пони'),
+  ItemLibrary.horse(),
   ItemLibrary.throne(),
   ItemLibrary.candleStand(),
   ItemLibrary.chest('Сундук с данью'),
-  ItemLibrary.chest('Королевский сундук'),
+  { id: 'royalChest', label: 'Королевский сундук', kind: 'decorative', icon: 'artifactChest' },
   ItemLibrary.barrel('Бочка с вином'),
   ItemLibrary.table('Пиршественный стол'),
   ItemLibrary.bench('Скамья'),
@@ -51,7 +49,7 @@ const items: Item[] = [
   // Королевские покои (north-center + west ledge): ложе, подсвечник, сундук, бочка
   { id: 'item-bed-q', typeId: 'royalBed', cells: [cellId(1, 4)] },
   { id: 'item-candles-q', typeId: 'candleStand', cells: [cellId(0, 3)] },
-  { id: 'item-chest-q', typeId: 'chest', cells: [cellId(3, 1)] },
+  { id: 'item-chest-q', typeId: 'royalChest', cells: [cellId(3, 1)] },
   { id: 'item-barrel-q', typeId: 'barrel', cells: [cellId(2, 3)] },
   // Тронный зал (center): трон на подиуме 2-кл., пиршественный стол 2-кл., скамья
   { id: 'item-throne', typeId: 'throne', cells: [cellId(4, 2), cellId(5, 2)] },
@@ -103,13 +101,17 @@ export function roomForCell(row: number, col: number): string {
 }
 
 // Ковёр перед алтарём — центр часовни (2 клетки: у алтаря и при входе).
+// Лужа во дворе у западной стены (2 клетки).
 const ALTAR_RUG_CELLS = new Set<CellId>([cellId(1, 1), cellId(2, 1)]);
+const YARD_PUDDLE_CELLS = new Set<CellId>([cellId(7, 0), cellId(7, 1)]);
 
 const cells = buildCells(
   size,
   roomForCell,
   (row, col) => itemIdByCell.get(cellId(row, col)),
-).map((cell) => (ALTAR_RUG_CELLS.has(cell.id) ? { ...cell, floorFeatureId: 'altar-rug' } : cell));
+)
+  .map((cell) => (ALTAR_RUG_CELLS.has(cell.id) ? { ...cell, floorFeatureId: 'altar-rug' } : cell))
+  .map((cell) => (YARD_PUDDLE_CELLS.has(cell.id) ? { ...cell, floorFeatureId: 'yard-puddle' } : cell));
 
 // Расстановка (подобрана скриптом, AllDifferent по рядам/столбцам соблюдён):
 // Андрей(0,4) покои — стражник при короле; Ждан(1,5) казарма — стражник; Вероника(2,1) часовня —
@@ -149,7 +151,8 @@ const clues: Clue[] = [
     text: 'Убийца находился верхом на лошади.',
   },
   // — Королевские покои —
-  { id: 'm-guriy-chest', type: 'adjacency', subject: { type: 'person', id: 'guriy' }, itemTypeId: 'chest', text: 'Гурий находился рядом с королевским сундуком.' },
+  { id: 'm-guriy-room', type: 'roomMembership', subject: { type: 'person', id: 'guriy' }, roomId: 'quarters', text: 'Гурий находился в королевских покоях.' },
+  { id: 'm-guriy-parity', type: 'parity', subject: { type: 'person', id: 'guriy' }, axis: 'row', parity: 'even', text: 'Гурий находился в ряду с чётным номером.' },
   { id: 'm-andrey-bed', type: 'adjacency', subject: { type: 'person', id: 'andrey' }, itemTypeId: 'royalBed', text: 'Андрей находился рядом с королевским ложем.' },
   // — Казарма —
   {

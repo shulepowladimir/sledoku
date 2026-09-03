@@ -33,7 +33,7 @@ const itemTypes: ItemType[] = [
   ItemLibrary.suitcase('Чемодан'),
   { id: 'departureBoard', label: 'Табло вылета', kind: 'decorative', icon: 'departureBoard' },
   { id: 'turnstile', label: 'Рамка досмотра', kind: 'decorative', icon: 'turnstile' },
-  { id: 'kassa', label: 'Стойка регистрации', kind: 'decorative', icon: 'kassa' },
+  ItemLibrary.kassa('Стойка регистрации'),
   ItemLibrary.bench('Скамья зала'),
   ItemLibrary.bench('Скамья зала'),
   ItemLibrary.bench('Скамья зала'),
