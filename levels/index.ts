@@ -1,4 +1,5 @@
 import type { Level } from '../src/types/level';
+import { tutorialLevel } from './00-tutorial';
 import { apartmentLevel } from './01-apartment';
 import { shopLevel } from './02-shop';
 import { museumLevel } from './03-museum';
@@ -25,6 +26,7 @@ import { airportLevel } from './23-airport';
 import { zooLevel } from './24-zoo';
 
 export const levels: Level[] = [
+  tutorialLevel,
   apartmentLevel,
   shopLevel,
   museumLevel,
@@ -50,3 +52,7 @@ export const levels: Level[] = [
   airportLevel,
   zooLevel,
 ];
+
+/** All non-tutorial levels — used by the level menu grid, size filters, profile stats and
+ *  leaderboards. The tutorial level lives outside the common categorization (see LevelMeta.isTutorial). */
+export const gameLevels: Level[] = levels.filter((level) => !level.meta.isTutorial);

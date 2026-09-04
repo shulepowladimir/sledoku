@@ -69,7 +69,7 @@ export function RosterPanel() {
       </section>
 
       {generalClues.length > 0 && (
-        <section className="roster-panel__section">
+        <section className="roster-panel__section" data-testid="roster-general">
           <h3>Общие подсказки</h3>
           <ol className="clue-list">
             {generalClues.map((clue) => (

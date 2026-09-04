@@ -6,7 +6,8 @@ export function VictoryBanner() {
   const player = useGameStore((s) => s.player);
   const goToMenu = useGameStore((s) => s.goToMenu);
   const isNewRecord = useGameStore((s) => s.isNewRecord);
-  if (!isSolved(player)) return null;
+  const isTutorial = useGameStore((s) => s.level.meta.isTutorial);
+  if (!isSolved(player) || isTutorial) return null;
 
   return (
     <div className="victory-banner" data-testid="victory-banner">

@@ -1288,6 +1288,21 @@ function renderIconShape(icon: string): ReactNode {
           <path d="M10 4.2 C10.8 3.4 13.2 3.4 14 4.2" stroke="#20262f" strokeWidth="0.8" fill="none" />
         </>
       );
+    case 'clueBoard':
+      return (
+        <>
+          <rect x="2.5" y="3" width="19" height="17.5" rx="1.2" fill="#c9a876" />
+          <rect x="4" y="4.5" width="16" height="14.5" rx="0.6" fill="#e6cfa8" />
+          <rect x="5.6" y="6.6" width="5.6" height="4" rx="0.5" fill="#f7f3ea" transform="rotate(-6 8.4 8.6)" />
+          <rect x="12.6" y="10.2" width="5.6" height="4" rx="0.5" fill="#f7f3ea" transform="rotate(5 15.4 12.2)" />
+          <path d="M8.9 7.2 L15.1 11.1" stroke="#d9524a" strokeWidth="0.7" opacity="0.85" />
+          <path d="M15.1 11.4 L9.8 16.2" stroke="#d9524a" strokeWidth="0.7" opacity="0.85" />
+          <circle cx="8.7" cy="7" r="0.8" fill="#d9524a" />
+          <circle cx="15.3" cy="11" r="0.8" fill="#d9524a" />
+          <circle cx="9.6" cy="16.4" r="0.8" fill="#5a8fc9" />
+          <path d="M6.2 18.4 L18.2 18.4" stroke="currentColor" strokeWidth="0.8" opacity="0.35" />
+        </>
+      );
     default:
       return <rect x="6" y="6" width="12" height="12" rx="2" fill="#cccccc" />;
   }

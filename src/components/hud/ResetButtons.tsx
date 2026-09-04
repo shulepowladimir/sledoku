@@ -6,10 +6,10 @@ export function ResetButtons() {
 
   return (
     <div className="reset-buttons">
-      <button type="button" className="reset-buttons__btn" onClick={clearBoard}>
+      <button type="button" className="reset-buttons__btn" data-testid="hud-clear" onClick={clearBoard}>
         Очистить
       </button>
-      <button type="button" className="reset-buttons__btn" onClick={restart}>
+      <button type="button" className="reset-buttons__btn" data-testid="hud-restart" onClick={restart}>
         Начать заново
       </button>
     </div>

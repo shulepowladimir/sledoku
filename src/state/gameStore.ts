@@ -9,7 +9,9 @@ import { toggleMark, toggleManualCross, clearCell } from '../engine/marks';
 import { checkSubmit } from '../engine/check';
 import { occupantOf, isSolved, elapsedMsNow } from '../engine/selectors';
 import { apartmentLevel } from '../../levels/01-apartment';
+import { buildTutorialSteps } from '../../levels/00-tutorial.steps';
 import { useProgressStore } from './progressStore';
+import { useTutorialStore } from './tutorialStore';
 
 export type InteractionMode = 'person' | 'cross' | 'erase';
 export type Screen = 'menu' | 'game';
@@ -118,7 +120,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const now = Date.now();
     const next = checkSubmit(player, level, now);
     let isNewRecord = false;
-    if (isSolved(next) && !isSolved(player)) {
+    if (isSolved(next) && !isSolved(player) && !level.meta.isTutorial) {
       const elapsed = elapsedMsNow(next, now);
       isNewRecord = useProgressStore.getState().recordResult(level.meta.id, elapsed);
     }
@@ -135,6 +137,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
       selectedPersonId: null,
       isNewRecord: false,
     });
+    const { start, stop } = useTutorialStore.getState();
+    if (level.meta.isTutorial) start(buildTutorialSteps());
+    else stop();
   },
 
   goToMenu: () => set({ screen: 'menu' }),

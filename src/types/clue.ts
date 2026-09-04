@@ -142,6 +142,13 @@ export interface RoomOccupancyClue extends ClueBase {
   type: 'roomOccupancy';
 }
 
+/** Level-wide: "Every instance of item type T had at least one person standing next to it"
+ *  (orthogonally adjacent cell, same room — same geometry as the adjacency clue). No subject. */
+export interface ItemAdjacencyOccupancyClue extends ClueBase {
+  type: 'itemAdjacencyOccupancy';
+  itemTypeId: ItemTypeId;
+}
+
 /** Level-wide: "Every room had an even/odd headcount." No subject. */
 export interface RoomParityClue extends ClueBase {
   type: 'roomParity';
@@ -269,6 +276,7 @@ export type Clue =
   | ParityClue
   | BetweennessClue
   | RoomOccupancyClue
+  | ItemAdjacencyOccupancyClue
   | RoomParityClue
   | RoomPopulationClue
   | LetterGroupRoomClue

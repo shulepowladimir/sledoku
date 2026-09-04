@@ -21,6 +21,7 @@ export function ModeToggle() {
           key={m}
           type="button"
           className={`mode-toggle__btn${mode === m ? ' mode-toggle__btn--active' : ''}`}
+          data-testid={`hud-mode-${m}`}
           onClick={() => setMode(m)}
         >
           {MODE_LABEL[m]}

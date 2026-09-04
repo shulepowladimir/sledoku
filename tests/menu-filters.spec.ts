@@ -1,19 +1,23 @@
 import { test, expect, type Page } from '@playwright/test';
-import { levels } from '../levels';
+import { gameLevels } from '../levels';
 import { apartmentLevel } from '../levels/01-apartment';
 
 async function seedBestTimes(page: Page, bestTimes: Record<string, number>) {
   await page.addInitScript((payload) => {
-    localStorage.setItem('sledoku:best-times', JSON.stringify(payload));
+    localStorage.setItem('sledoku:guest-best-times', JSON.stringify(payload));
   }, bestTimes);
 }
 
 test('size filter shows only cards of the chosen size', async ({ page }) => {
   await page.goto('/');
 
+  // The tutorial card is pinned outside the grid and hidden by any size filter.
+  await expect(page.getByTestId('level-card-tutorial-00')).toBeVisible();
+
   await page.getByTestId('size-filter-11').click();
 
-  for (const level of levels) {
+  await expect(page.getByTestId('level-card-tutorial-00')).toHaveCount(0);
+  for (const level of gameLevels) {
     const card = page.getByTestId(`level-card-${level.meta.id}`);
     if (level.size === 11) {
       await expect(card).toBeVisible();
@@ -23,11 +27,13 @@ test('size filter shows only cards of the chosen size', async ({ page }) => {
   }
 
   await page.getByTestId('size-filter-all').click();
-  await expect(page.locator('.level-card')).toHaveCount(levels.length);
+  // "Все" also shows the pinned tutorial card (it carries the .level-card class).
+  await expect(page.locator('.level-card')).toHaveCount(gameLevels.length + 1);
+  await expect(page.getByTestId('level-card-tutorial-00')).toBeVisible();
 });
 
 test('hide solved toggle combines with the size filter', async ({ page }) => {
-  const solvedIds = levels.filter((l) => l.size === 6).map((l) => l.meta.id);
+  const solvedIds = gameLevels.filter((l) => l.size === 6).map((l) => l.meta.id);
   const bestTimes = Object.fromEntries(solvedIds.map((id) => [id, 60_000]));
   await seedBestTimes(page, bestTimes);
 
@@ -44,7 +50,7 @@ test('hide solved toggle combines with the size filter', async ({ page }) => {
 
   await page.getByTestId('size-filter-7').click();
   await expect(page.getByTestId('level-menu-empty')).toHaveCount(0);
-  await expect(page.locator('.level-card')).toHaveCount(levels.filter((l) => l.size === 7).length);
+  await expect(page.locator('.level-card')).toHaveCount(gameLevels.filter((l) => l.size === 7).length);
 });
 
 test('hide solved toggle can be turned back off', async ({ page }) => {

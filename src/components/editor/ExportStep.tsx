@@ -45,6 +45,7 @@ export function ExportStep() {
       solution: state.solution,
       victimId: state.victimId,
       murdererId: state.murdererId,
+      clues: state.clues,
       meta: state.meta,
     });
     if ('error' in result) {

@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import type { CellId, Gender } from '../../types/level';
 import { cellId } from '../../types/level';
 import { scaffoldPermutation } from '../../lib/scaffoldSolution';
+import type { EditorClue } from './editorClueTypes';
 
 export interface EditorRoom {
   id: string;
@@ -39,6 +40,7 @@ export interface EditorSnapshot {
   victimRoomCandidateIds: [string, string] | null;
   victimId: string | null;
   murdererId: string | null;
+  clues: EditorClue[];
   meta: { title: string; theme: string; difficulty: number };
 }
 
@@ -53,6 +55,7 @@ interface EditorStore {
   victimRoomCandidateIds: [string, string] | null;
   victimId: string | null;
   murdererId: string | null;
+  clues: EditorClue[];
   meta: { title: string; theme: string; difficulty: number };
   tool: EditorTool | null;
   /** id текущего сохранённого черновика (для повторного сохранения поверх того же слота). */
@@ -77,6 +80,11 @@ interface EditorStore {
   generateSolution: () => boolean;
   setVictim: (id: string) => void;
   setMurderer: (id: string) => void;
+
+  addClue: (clue: Omit<EditorClue, 'id'>) => void;
+  removeClue: (id: string) => void;
+  updateClueText: (id: string, text: string) => void;
+
   setMeta: (patch: Partial<EditorStore['meta']>) => void;
   reset: () => void;
 }
@@ -84,6 +92,7 @@ interface EditorStore {
 let roomCounter = 0;
 let itemCounter = 0;
 let personCounter = 0;
+let clueCounter = 0;
 
 const initialState = {
   size: 6,
@@ -95,6 +104,7 @@ const initialState = {
   victimRoomCandidateIds: null as [string, string] | null,
   victimId: null as string | null,
   murdererId: null as string | null,
+  clues: [] as EditorClue[],
   meta: { title: '', theme: 'apartment', difficulty: 1 },
   tool: null as EditorTool | null,
   currentDraftId: null as string | null,
@@ -211,19 +221,68 @@ export const useEditorStore = create<EditorStore>((set, get) => ({
     set({ murdererId: id, victimId: victimId === id ? other : victimId });
   },
 
+  addClue: (clue) => {
+    clueCounter += 1;
+    set({ clues: [...get().clues, { ...clue, id: `clue-${clueCounter}` }] });
+  },
+
+  removeClue: (id) => {
+    set({ clues: get().clues.filter((c) => c.id !== id) });
+  },
+
+  updateClueText: (id, text) => {
+    set({ clues: get().clues.map((c) => (c.id === id ? { ...c, text } : c)) });
+  },
+
   setMeta: (patch) => set({ meta: { ...get().meta, ...patch } }),
 
   getSnapshot: () => {
-    const { size, rooms, roomByCell, items, people, solution, victimRoomCandidateIds, victimId, murdererId, meta } =
-      get();
-    return { size, rooms, roomByCell, items, people, solution, victimRoomCandidateIds, victimId, murdererId, meta };
+    const {
+      size,
+      rooms,
+      roomByCell,
+      items,
+      people,
+      solution,
+      victimRoomCandidateIds,
+      victimId,
+      murdererId,
+      clues,
+      meta,
+    } = get();
+    return {
+      size,
+      rooms,
+      roomByCell,
+      items,
+      people,
+      solution,
+      victimRoomCandidateIds,
+      victimId,
+      murdererId,
+      clues,
+      meta,
+    };
   },
 
   loadSnapshot: (snapshot, draftId) => {
-    set({ ...snapshot, tool: null, currentDraftId: draftId });
+    set({ ...snapshot, clues: snapshot.clues ?? [], tool: null, currentDraftId: draftId });
   },
 
   setCurrentDraftId: (id) => set({ currentDraftId: id }),
 
-  reset: () => set({ ...initialState, rooms: [], roomByCell: {}, items: [], people: [], solution: null, victimRoomCandidateIds: null, victimId: null, murdererId: null, currentDraftId: null }),
+  reset: () =>
+    set({
+      ...initialState,
+      rooms: [],
+      roomByCell: {},
+      items: [],
+      people: [],
+      solution: null,
+      victimRoomCandidateIds: null,
+      victimId: null,
+      murdererId: null,
+      clues: [],
+      currentDraftId: null,
+    }),
 }));

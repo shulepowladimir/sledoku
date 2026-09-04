@@ -1,5 +1,7 @@
 import { transliterate } from '../../lib/transliterate';
+import { uniqueSlug, camelCase } from './slugify';
 import type { EditorItem, EditorPerson, EditorRoom } from './editorStore';
+import type { EditorClue } from './editorClueTypes';
 
 interface ExportInput {
   size: number;
@@ -10,26 +12,8 @@ interface ExportInput {
   solution: Record<string, string> | null; // editor person id -> cellId
   victimId: string | null;
   murdererId: string | null;
+  clues: EditorClue[];
   meta: { title: string; theme: string; difficulty: number };
-}
-
-function uniqueSlug(base: string, taken: Set<string>): string {
-  let slug = base || 'person';
-  let n = 2;
-  while (taken.has(slug)) {
-    slug = `${base}-${n}`;
-    n += 1;
-  }
-  taken.add(slug);
-  return slug;
-}
-
-function camelCase(slug: string): string {
-  return slug
-    .split('-')
-    .filter(Boolean)
-    .map((part, i) => (i === 0 ? part : part[0].toUpperCase() + part.slice(1)))
-    .join('');
 }
 
 export interface ExportResult {
@@ -38,8 +22,56 @@ export interface ExportResult {
   exportName: string;
 }
 
+function subjectCode(personSlugById: Map<string, string>, editorPersonId: string): string {
+  return `{ type: 'person', id: '${personSlugById.get(editorPersonId) ?? editorPersonId}' }`;
+}
+
+function clueToCode(c: EditorClue, personSlugById: Map<string, string>, roomSlugById: Map<string, string>): string {
+  const d = c.data;
+  const id = `id: '${c.id}'`;
+  const text = `text: ${JSON.stringify(c.text)}`;
+  switch (d.type) {
+    case 'position':
+      return `  { ${id}, type: 'position', subject: ${subjectCode(personSlugById, d.subjectId)}, axis: '${d.axis}', value: ${d.value}, ${text} },`;
+    case 'roomMembership':
+      return `  { ${id}, type: 'roomMembership', subject: ${subjectCode(personSlugById, d.subjectId)}, roomId: '${roomSlugById.get(d.roomId) ?? d.roomId}', negated: ${d.negated}, ${text} },`;
+    case 'adjacency':
+      return `  { ${id}, type: 'adjacency', subject: ${subjectCode(personSlugById, d.subjectId)}, itemTypeId: '${d.itemTypeId}', negated: ${d.negated}, ${text} },`;
+    case 'sharedRoomGender':
+      return `  { ${id}, type: 'sharedRoomGender', subject: ${subjectCode(personSlugById, d.subjectId)}, otherGender: '${d.otherGender}', negated: ${d.negated}, ${text} },`;
+    case 'itemTypeGender':
+      return `  { ${id}, type: 'itemTypeGender', itemTypeId: '${d.itemTypeId}', gender: '${d.gender}', ${text} },`;
+    case 'relativePosition':
+      return `  { ${id}, type: 'relativePosition', subject: ${subjectCode(personSlugById, d.subjectId)}, otherPersonId: '${personSlugById.get(d.otherPersonId) ?? d.otherPersonId}', axis: '${d.axis}', direction: '${d.direction}'${d.offset != null ? `, offset: ${d.offset}` : ''}, ${text} },`;
+    case 'corner':
+      return `  { ${id}, type: 'corner', subject: ${subjectCode(personSlugById, d.subjectId)}, negated: ${d.negated}, ${text} },`;
+    case 'sameRoomAs':
+      return `  { ${id}, type: 'sameRoomAs', subject: ${subjectCode(personSlugById, d.subjectId)}, otherPersonId: '${personSlugById.get(d.otherPersonId) ?? d.otherPersonId}', negated: ${d.negated}, ${text} },`;
+    case 'sameRoomAsItem':
+      return `  { ${id}, type: 'sameRoomAsItem', subject: ${subjectCode(personSlugById, d.subjectId)}, itemTypeId: '${d.itemTypeId}', negated: ${d.negated}, ${text} },`;
+    case 'occupiesItem':
+      return `  { ${id}, type: 'occupiesItem', subject: ${subjectCode(personSlugById, d.subjectId)}, itemTypeId: '${d.itemTypeId}', negated: ${d.negated}, ${text} },`;
+    case 'wallSide':
+      return `  { ${id}, type: 'wallSide', subject: ${subjectCode(personSlugById, d.subjectId)}, wallDirection: '${d.wallDirection}', negated: ${d.negated}, ${text} },`;
+    case 'roomSize':
+      return `  { ${id}, type: 'roomSize', subject: ${subjectCode(personSlugById, d.subjectId)}, comparison: '${d.comparison}', ${text} },`;
+    case 'parity':
+      return `  { ${id}, type: 'parity', subject: ${subjectCode(personSlugById, d.subjectId)}, axis: '${d.axis}', parity: '${d.parity}', ${text} },`;
+    case 'betweenness':
+      return `  { ${id}, type: 'betweenness', subject: ${subjectCode(personSlugById, d.subjectId)}, otherPersonId1: '${personSlugById.get(d.otherPersonId1) ?? d.otherPersonId1}', otherPersonId2: '${personSlugById.get(d.otherPersonId2) ?? d.otherPersonId2}', axis: '${d.axis}', ${text} },`;
+    case 'roomOccupancy':
+      return `  { ${id}, type: 'roomOccupancy', ${text} },`;
+    case 'roomParity':
+      return `  { ${id}, type: 'roomParity', parity: '${d.parity}', ${text} },`;
+    case 'roomPopulation':
+      return `  { ${id}, type: 'roomPopulation', roomId: '${roomSlugById.get(d.roomId) ?? d.roomId}', comparison: '${d.comparison}', ${text} },`;
+    case 'letterGroupRoom':
+      return `  { ${id}, type: 'letterGroupRoom', letterClass: '${d.letterClass}', ${text} },`;
+  }
+}
+
 export function exportLevel(input: ExportInput): ExportResult | { error: string } {
-  const { size, rooms, roomByCell, items, people, solution, victimId, murdererId, meta } = input;
+  const { size, rooms, roomByCell, items, people, solution, victimId, murdererId, clues, meta } = input;
 
   if (!meta.title.trim()) return { error: 'Укажи название уровня' };
   if (rooms.length === 0) return { error: 'Добавь хотя бы одну комнату' };
@@ -99,6 +131,8 @@ export function exportLevel(input: ExportInput): ExportResult | { error: string 
     })
     .join('\n');
 
+  const cluesCode = clues.map((c) => clueToCode(c, personSlugById, roomSlugById)).join('\n');
+
   // roomForCell — строим по roomByCell (клетка -> id комнаты; отсутствующая клетка = вырезана)
   const roomForCellEntries = Object.entries(roomByCell)
     .filter(([, roomId]) => roomIds.has(roomId))
@@ -110,9 +144,8 @@ import { cellId } from '../src/types/level';
 import { ItemLibrary } from './itemLibrary';
 import { buildCells } from './helpers';
 
-// Сгенерировано конструктором уровней (Этап 1: без подсказок).
-// СЛЕДУЮЩИЙ ШАГ: добавь подсказки в массив clues ниже (см. src/types/clue.ts на список типов),
-// затем проверь уровень командой:
+// Сгенерировано конструктором уровней (Этап 2: с подсказками).
+// Перед использованием проверь уровень командой:
 //   npm run validate-level -- levels/<имя-файла>.ts
 
 const size = ${size};
@@ -149,13 +182,17 @@ const solution: Level['solution'] = {
 ${solutionCode}
 };
 
+const clues: Level['clues'] = [
+${cluesCode}
+];
+
 export const ${exportName}: Level = {
   meta: {
     id: '${levelSlug}',
     title: ${JSON.stringify(meta.title)},
     theme: '${meta.theme}',
     difficulty: ${meta.difficulty} as Level['meta']['difficulty'],
-    maxFullyPinnedPeople: 1, // поправь после добавления подсказок и запуска validate-level
+    maxFullyPinnedPeople: 1, // поправь при необходимости после validate-level
   },
   size,
   rooms,
@@ -165,7 +202,7 @@ export const ${exportName}: Level = {
   cells,
   people,
   solution,
-  clues: [], // TODO: добавь подсказки вручную
+  clues,
 };
 `;
 

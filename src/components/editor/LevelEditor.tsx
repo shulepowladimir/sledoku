@@ -4,6 +4,7 @@ import { GridStep } from './GridStep';
 import { ItemsStep } from './ItemsStep';
 import { PeopleStep } from './PeopleStep';
 import { SolutionStep } from './SolutionStep';
+import { ClueStep } from './ClueStep';
 import { ExportStep } from './ExportStep';
 import { SavedLevelsPanel } from './SavedLevelsPanel';
 import { saveDraft, newDraftId } from './savedLevels';
@@ -13,7 +14,8 @@ const STEPS = [
   { id: 'items', label: '2. Предметы' },
   { id: 'people', label: '3. Персонажи' },
   { id: 'solution', label: '4. Решение' },
-  { id: 'export', label: '5. Публикация' },
+  { id: 'clues', label: '5. Подсказки' },
+  { id: 'export', label: '6. Публикация' },
 ] as const;
 
 type StepId = (typeof STEPS)[number]['id'];
@@ -78,13 +80,14 @@ export function LevelEditor() {
         {step === 'items' && <ItemsStep />}
         {step === 'people' && <PeopleStep />}
         {step === 'solution' && <SolutionStep />}
+        {step === 'clues' && <ClueStep />}
         {step === 'export' && <ExportStep />}
       </main>
 
       <footer className="level-editor__footer">
         <p>
-          Этап 1 не включает подсказки — их нужно дописать вручную в экспортированном файле. Полная инструкция: см.
-          сообщение после экспорта.
+          Совет: добавляй подсказки постепенно и жми «Проверить решение» на шаге 5 — как только увидишь «Решение
+          единственно», уровень готов к экспорту.
         </p>
       </footer>
 

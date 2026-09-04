@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { levels } from '../../../levels';
+import { gameLevels } from '../../../levels';
 import { useProgressStore } from '../../state/progressStore';
 import { formatElapsed } from '../../utils/time';
 
@@ -16,16 +16,16 @@ export function ProfileStats() {
   const bestTimes = useProgressStore((s) => s.bestTimes);
   const [mode, setMode] = useState<'best' | 'average'>('best');
 
-  const solvedLevels = levels.filter((l) => bestTimes[l.meta.id] != null);
-  const totalCount = levels.length;
+  const solvedLevels = gameLevels.filter((l) => bestTimes[l.meta.id] != null);
+  const totalCount = gameLevels.length;
   const solvedCount = solvedLevels.length;
   const overallAverageMs =
     solvedCount > 0 ? solvedLevels.reduce((sum, l) => sum + bestTimes[l.meta.id], 0) / solvedCount : null;
 
   const categories = useMemo<CategoryStat[]>(() => {
-    const sizes = [...new Set(levels.map((l) => l.size))].sort((a, b) => a - b);
+    const sizes = [...new Set(gameLevels.map((l) => l.size))].sort((a, b) => a - b);
     return sizes.map((size) => {
-      const levelsInCategory = levels.filter((l) => l.size === size);
+      const levelsInCategory = gameLevels.filter((l) => l.size === size);
       const solvedInCategory = levelsInCategory.filter((l) => bestTimes[l.meta.id] != null);
 
       let bestMs: number | null = null;

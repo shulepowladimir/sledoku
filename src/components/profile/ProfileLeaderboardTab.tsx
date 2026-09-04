@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { levels } from '../../../levels';
+import { gameLevels } from '../../../levels';
 import { fetchGlobalBestPerLevel, fetchLevelLeaderboard, type LeaderboardRow } from '../../utils/cloudSync';
 import { formatElapsed } from '../../utils/time';
 
-const sortedLevels = [...levels].sort((a, b) => a.size - b.size);
+const sortedLevels = [...gameLevels].sort((a, b) => a.size - b.size);
 
 export function ProfileLeaderboardTab() {
   const [bestByLevel, setBestByLevel] = useState<Record<string, LeaderboardRow> | null>(null);

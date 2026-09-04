@@ -78,6 +78,8 @@ export interface LevelMeta {
   maxFullyPinnedPeople: number;
   /** Exempts this level from the ≤20% per-clue-type share gate — reserved for pre-existing accepted debt (02-shop, 03-museum). Never set on new levels. */
   clueBalanceExempt?: boolean;
+  /** Tutorial level: excluded from stats/leaderboards/records, rendered as a pinned "Обучение" card in the menu, runs the step-by-step tutorial scenario. */
+  isTutorial?: boolean;
 }
 
 export interface Level {

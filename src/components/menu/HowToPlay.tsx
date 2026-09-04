@@ -5,7 +5,7 @@ interface HowToPlayProps {
 export function HowToPlay({ variant = 'menu' }: HowToPlayProps) {
   return (
     <div className="how-to-play">
-      <button type="button" className="how-to-play__button" aria-label="Как играть">
+      <button type="button" className="how-to-play__button" data-testid="hud-howto" aria-label="Как играть">
         <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth={1.6} fill="none">
           <circle cx="12" cy="12" r="9.5" />
           <path d="M9.2 9.3c0-1.6 1.3-2.7 2.8-2.7s2.6 1 2.6 2.3c0 1.5-1.4 1.9-2.1 2.6-.5.5-.6.9-.6 1.6" strokeLinecap="round" />

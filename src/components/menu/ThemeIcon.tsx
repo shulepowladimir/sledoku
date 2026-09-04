@@ -246,6 +246,15 @@ function renderIconShape(theme: string): ReactNode {
           <path d="M5.5 21 V18.5 M18.5 21 V18.5" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
         </>
       );
+    case 'agency':
+      return (
+        <>
+          <circle cx="10" cy="10" r="6" fill="#d7e6f5" stroke="currentColor" strokeWidth="1.6" />
+          <path d="M14.5 14.5 L20 20" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+          <path d="M7.5 10 C7.5 8 9 6.8 10.8 6.9" stroke="#ffffff" strokeWidth="1.2" fill="none" strokeLinecap="round" />
+          <circle cx="10" cy="10" r="2.4" fill="#e0a94a" opacity="0.6" />
+        </>
+      );
     default:
       return <rect x="6" y="6" width="12" height="12" rx="2" fill="#cccccc" />;
   }

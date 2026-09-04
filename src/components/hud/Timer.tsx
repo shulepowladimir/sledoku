@@ -13,5 +13,9 @@ export function Timer() {
     return () => clearInterval(id);
   }, [player.timer.running]);
 
-  return <div className="timer">{formatElapsed(elapsedMsNow(player, Date.now()))}</div>;
+  return (
+    <div className="timer" data-testid="hud-timer">
+      {formatElapsed(elapsedMsNow(player, Date.now()))}
+    </div>
+  );
 }

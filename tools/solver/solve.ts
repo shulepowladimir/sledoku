@@ -239,6 +239,25 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
       const occupiedRooms = new Set(level.people.map((p) => index.cellsById.get(getCell(p.id)!)!.roomId));
       return level.rooms.every((r) => occupiedRooms.has(r.id));
     }
+    case 'itemAdjacencyOccupancy': {
+      if (!allAssigned) return undefined;
+      const itemsOfType = level.items.filter((i) => i.typeId === clue.itemTypeId);
+      return itemsOfType.every((item) => {
+        const adjacentPeople = level.people.filter((p) => {
+          const pc = getCell(p.id);
+          if (!pc) return false;
+          const personCell = index.cellsById.get(pc)!;
+          return item.cells.some((cid) => {
+            const itemCell = index.cellsById.get(cid)!;
+            return (
+              personCell.roomId === itemCell.roomId &&
+              Math.abs(personCell.row - itemCell.row) + Math.abs(personCell.col - itemCell.col) === 1
+            );
+          });
+        });
+        return adjacentPeople.length > 0;
+      });
+    }
     case 'roomParity': {
       if (!allAssigned) return undefined;
       const counts = new Map<RoomId, number>();

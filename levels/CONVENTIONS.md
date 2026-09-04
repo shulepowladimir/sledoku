@@ -96,10 +96,11 @@
 - hippo — decorative
 - zebra — decorative
 - penguin — decorative
+- clueBoard — decorative
 
 ## ItemIcon.tsx — существующие иконки (имена case, без кода)
 
-stove, fridge, chair, sofa, bed, wardrobe, bookshelf, kassa, veggieCounter, cart, plant, rack, box, stool, paintingStand, sculpture, souvenirRack, ladder, bench, fountain, swing, lamppost, trashcan, flowerbed, kiosk, barCounter, piano, billiardTable, barStool, barrel, hitchingPost, haystack, safe, cauldron, workbench, spellbookStand, globe, artifactChest, armchair, portrait, telescope, broomRack, computer, watercooler, mannequin, tent, campfire, tree, stump, suitcase, departureBoard, turnstile, clock, sarcophagus, canopicJar, torch, goldStatue, stela, airlock, satelliteDish, cryopod, examTable, medicineCabinet, horse, cactus, wagon, trough, goal, ball, seat, treadmill, exerciseBike, hurdle, table, basketball, toilet, camera, toolbox, bathtub, jacuzzi, tv, floorLamp, keyBox, journal, palm, rock, coconut, hammock, hut, bottle, shell, lamp, boat, berth, samovar, luggageRack, throne, candleStand, armorStand, weaponRack, well, ferrisWheel, carousel, shootingGallery, popcornStand, plane, windsock, baggageCart, lion, giraffe, monkey, hippo, zebra, penguin
+stove, fridge, chair, sofa, bed, wardrobe, bookshelf, kassa, veggieCounter, cart, plant, rack, box, stool, paintingStand, sculpture, souvenirRack, ladder, bench, fountain, swing, lamppost, trashcan, flowerbed, kiosk, barCounter, piano, billiardTable, barStool, barrel, hitchingPost, haystack, safe, cauldron, workbench, spellbookStand, globe, artifactChest, armchair, portrait, telescope, broomRack, computer, watercooler, mannequin, tent, campfire, tree, stump, suitcase, departureBoard, turnstile, clock, sarcophagus, canopicJar, torch, goldStatue, stela, airlock, satelliteDish, cryopod, examTable, medicineCabinet, horse, cactus, wagon, trough, goal, ball, seat, treadmill, exerciseBike, hurdle, table, basketball, toilet, camera, toolbox, bathtub, jacuzzi, tv, floorLamp, keyBox, journal, palm, rock, coconut, hammock, hut, bottle, shell, lamp, boat, berth, samovar, luggageRack, throne, candleStand, armorStand, weaponRack, well, ferrisWheel, carousel, shootingGallery, popcornStand, plane, windsock, baggageCart, lion, giraffe, monkey, hippo, zebra, penguin, clueBoard
 
 ## floorTextures.ts — textureKey
 

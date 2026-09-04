@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { levels } from '../../../levels';
+import { gameLevels } from '../../../levels';
+import { tutorialLevel } from '../../../levels/00-tutorial';
 import { useGameStore } from '../../state/gameStore';
 import { useProgressStore } from '../../state/progressStore';
+import { useTutorialStore } from '../../state/tutorialStore';
 import { formatElapsed } from '../../utils/time';
 import { GameLogo } from './GameLogo';
 import { HowToPlay } from './HowToPlay';
@@ -10,15 +12,21 @@ import { AuthPanel } from '../auth/AuthPanel';
 
 // Ascending cell count first, then (ties) the `levels` array order — that array is already
 // chronological (each new level is appended at the end), so a stable sort keeps it as the tie-break.
-const sortedLevels = [...levels].sort((a, b) => a.size - b.size);
+const sortedLevels = [...gameLevels].sort((a, b) => a.size - b.size);
 
 const sizeOptions: Array<'all' | number> = ['all', ...new Set(sortedLevels.map((level) => level.size))];
 
 export function LevelMenu() {
   const selectLevel = useGameStore((s) => s.selectLevel);
   const bestTimes = useProgressStore((s) => s.bestTimes);
+  const tutorialDone = useTutorialStore((s) => s.tutorialDone);
   const [sizeFilter, setSizeFilter] = useState<'all' | number>('all');
   const [hideSolved, setHideSolved] = useState(false);
+
+  // The tutorial card sits FIRST inside the level grid but outside the common categorization:
+  // it ignores the size filter chips (never contributes a 5×5 chip) and the hide-solved toggle,
+  // and is only rendered on the "Все" tab.
+  const showTutorialCard = sizeFilter === 'all';
 
   const visibleLevels = sortedLevels.filter((level) => {
     if (sizeFilter !== 'all' && level.size !== sizeFilter) return false;
@@ -66,6 +74,16 @@ export function LevelMenu() {
         </button>
       </div>
       <ul className="level-menu__grid">
+        {showTutorialCard && (
+          <li className="level-card level-card--tutorial" data-testid="level-card-tutorial-00">
+            <button type="button" className="level-card__button" onClick={() => selectLevel(tutorialLevel)}>
+              <ThemeIcon theme={tutorialLevel.meta.theme} />
+              <span className="level-card__title">{tutorialLevel.meta.title}</span>
+              <span className="level-card__tutorial-label">Обучение</span>
+              {tutorialDone && <span className="level-card__tutorial-done">Пройдено</span>}
+            </button>
+          </li>
+        )}
         {visibleLevels.map((level) => {
           const bestMs = bestTimes[level.meta.id] ?? null;
           return (
