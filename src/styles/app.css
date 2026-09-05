@@ -12,6 +12,14 @@
   align-items: flex-start;
 }
 
+/* Обнимает доску (не растёт — иначе ростер уезжает к правому краю на маленьких уровнях),
+   но СЖИМАЕТСЯ при нехватке места (широкий ростер) — тогда Board меряет доступную ширину
+   и ужимает поле (fit-by-width). На мобиле ширина приходит из align-items: stretch колонки. */
+.board-wrap {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
 .hud-bar {
   display: flex;
   align-items: center;
@@ -1963,4 +1971,263 @@
   background: rgba(60, 191, 124, 0.1);
   border-radius: 6px;
   padding: 6px 10px;
+}
+
+/* ============================================================
+   МОБИЛЬНАЯ АДАПТАЦИЯ (viewport <= 768px).
+   Всё мобильное живёт ТОЛЬКО здесь: десктопные правила выше не
+   меняются. JS-ветки поведения — src/hooks/useIsMobile.ts.
+   ============================================================ */
+
+@media (max-width: 768px), (max-height: 600px) and (orientation: landscape) {
+  /* Глобально: без резинки/pull-to-refresh, без тап-подсветки, честная высота
+     с учётом адресной строки iOS Safari. */
+  html,
+  body {
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .app-shell {
+    min-height: 100dvh;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .level-menu {
+    min-height: 100dvh;
+    padding: 20px 12px;
+  }
+
+  /* Хедер компактнее. */
+  .site-header {
+    margin-bottom: 16px;
+  }
+
+  .site-header__logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .site-header__title {
+    font-size: 24px;
+  }
+
+  .site-header__subtitle {
+    font-size: 12px;
+  }
+
+  /* Фильтры размеров: горизонтальная лента со скроллом вместо переноса строк. */
+  .level-menu__filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .size-filter {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .size-filter__btn {
+    flex-shrink: 0;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Карточки уровней: одна колонка. */
+  .level-menu__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .level-card__button {
+    min-height: 44px;
+  }
+
+  /* Все интерактивные элементы — тач-таргет минимум 44px. */
+  button {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 768px), (max-height: 600px) and (orientation: landscape) {
+  /* Игровой экран: доска сверху (fit-by-width в Board.tsx сжимает её до ширины),
+     ростер ниже. */
+  .app-layout {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  /* HUD в две строки: слева таймер+меню+режим, справа отмена/очистка/проверка;
+     обёртка растягивается на всю ширину. */
+  .hud-bar {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 10px;
+    justify-content: space-between;
+  }
+
+  .hud-bar > * {
+    flex-shrink: 0;
+  }
+
+  .reset-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* Подсказка об управлении: одна короткая строка без переносов на три экрана. */
+  .control-legend {
+    font-size: 13px;
+    margin: 0;
+  }
+
+  /* Ростер больше не сайдбар: на всю ширину, колонки не нужны (аккордеон — этап 3). */
+  .roster-panel,
+  .roster-panel--cols-2,
+  .roster-panel--cols-3 {
+    width: 100%;
+  }
+
+  .roster-list--cols-2,
+  .roster-list--cols-3 {
+    column-count: 1;
+  }
+}
+
+/* --- Мобильный ростер-аккордеон (JSX-ветка isMobile в RosterPanel.tsx) --- */
+@media (max-width: 768px), (max-height: 600px) and (orientation: landscape) {
+  .roster-panel--mobile {
+    padding: 14px 12px;
+  }
+
+  .roster-panel--mobile .roster-panel__title {
+    font-size: 18px;
+    margin: 0 0 10px;
+  }
+
+  .roster-mobile__general-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(243, 242, 246, 0.25);
+    background: rgba(243, 242, 246, 0.08);
+    color: #f3f2f6;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .roster-mobile__general-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border-radius: 11px;
+    background: rgba(243, 242, 246, 0.18);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .roster-mobile__chevron {
+    margin-left: auto;
+    font-size: 11px;
+    opacity: 0.7;
+  }
+
+  .roster-mobile__general-list {
+    margin-top: 10px;
+  }
+
+  .roster-mobile__list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .roster-mobile__entry {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: rgba(243, 242, 246, 0.05);
+  }
+
+  .roster-mobile__entry--open,
+  .roster-mobile__entry--selected {
+    border-color: rgba(243, 242, 246, 0.35);
+    background: rgba(243, 242, 246, 0.1);
+  }
+
+  .roster-mobile__header {
+    width: 100%;
+    padding: 10px 12px;
+  }
+
+  .roster-mobile__clues {
+    padding: 0 12px 10px;
+    margin: 0;
+  }
+
+  .roster-mobile__clues .roster-entry__clue {
+    font-size: 13px;
+    line-height: 1.45;
+    margin-bottom: 6px;
+  }
+}
+
+/* Мобильный туториал: тултип прижат к низу экрана на всю ширину
+   (позиционирование — JS-ветка isMobile в TutorialOverlay.tsx). */
+@media (max-width: 768px), (max-height: 600px) and (orientation: landscape) {
+  .tutorial-tooltip {
+    max-width: none;
+    padding: 12px 14px;
+  }
+
+  .tutorial-tooltip__text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .tutorial-tooltip__next,
+  .tutorial-tooltip__back {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Мобильные оверлеи: баннер победы и попап «Как играть» в ширину экрана,
+   профильное модальное окно — с компактными паддингами. */
+@media (max-width: 768px), (max-height: 600px) and (orientation: landscape) {
+  .victory-banner {
+    width: calc(100% - 24px);
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 12px 14px;
+  }
+
+  .how-to-play__popover {
+    position: fixed;
+    top: auto;
+    right: 12px;
+    left: 12px;
+    bottom: 12px;
+    width: auto;
+  }
+
+  .profile-modal {
+    width: calc(100vw - 24px);
+    max-width: 460px;
+    max-height: calc(100dvh - 48px);
+  }
+
+  .profile-modal__tabs {
+    flex-wrap: wrap;
+  }
 }

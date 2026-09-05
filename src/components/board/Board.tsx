@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { RoomId } from '../../types/level';
 import { isLegalTarget, cellBoundary } from '../../engine/board';
 import { occupantOf, marksOf, crossKind, personStatus } from '../../engine/selectors';
@@ -72,23 +72,50 @@ export function Board() {
   // Holes must stay empty, so every rendered cell pins itself to its grid track explicitly.
   const hasCutouts = level.cells.length < level.size * level.size;
 
-  // Large boards (11×11, 12×12+) don't fit the viewport next to the roster panel:
-  // scale the whole board down in steps so the player sees it without scrolling.
-  // The wrapper reserves the scaled size so flex layout is not fooled by the untransformed box.
-  const boardScale = level.size >= 12 ? 0.875 : level.size === 11 ? 0.9 : 1;
+  // Масштаб больших полей: базовые ступени для десктопа (11×11 → 0.9, ≥12 → 0.875) плюс мобильная
+  // адаптация fit-by-width/height — обёртка растягивается на всю свободную ширину flex-строки,
+  // ResizeObserver меряет её, и итоговый масштаб не превышает ступень и не выходит ни за доступную
+  // ширину, ни за доступную высоту (телефон-ландшафт: экран широкий, но низкий).
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const [availWidth, setAvailWidth] = useState(0);
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) setAvailWidth(entry.contentRect.width);
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
-  const board = (
-    <div
-      className={`board${hasCutouts ? ' board--cut' : ''}`}
-      style={{
-        gridTemplateColumns: `repeat(${level.size}, ${CELL_SIZE}px)`,
-        gridTemplateRows: `repeat(${level.size}, ${CELL_SIZE}px)`,
-        // explicit size keeps the grid from shrinking to the scaled wrapper's width
-        width: level.size * CELL_SIZE,
-        height: level.size * CELL_SIZE,
-        ...(boardScale !== 1 ? { transform: `scale(${boardScale})`, transformOrigin: 'top left' } : {}),
-      }}
-    >
+  const naturalSize = level.size * CELL_SIZE;
+  const baseScale = level.size >= 12 ? 0.875 : level.size === 11 ? 0.9 : 1;
+  // Fit-by-width AND fit-by-height: in phone landscape the viewport is wide but short —
+  // the board must fit below the HUD bar without spilling over the roster below it.
+  const fitScaleW = availWidth > 0 ? Math.min(1, availWidth / naturalSize) : 1;
+  const availHeight = Math.max(
+    120,
+    window.innerHeight - (wrapperRef.current?.getBoundingClientRect().top ?? 0) - 12,
+  );
+  const fitScaleH = Math.min(1, availHeight / naturalSize);
+  const boardScale = Math.max(0.3, Math.min(baseScale, fitScaleW, fitScaleH));
+
+  return (
+    <div ref={wrapperRef} className="board-wrap" style={{ height: naturalSize * boardScale }}>
+      <div
+        className={`board${hasCutouts ? ' board--cut' : ''}`}
+        style={{
+          gridTemplateColumns: `repeat(${level.size}, ${CELL_SIZE}px)`,
+          gridTemplateRows: `repeat(${level.size}, ${CELL_SIZE}px)`,
+          // явный размер: без него grid внутри блочной обёртки сжимается до её ширины
+          width: naturalSize,
+          height: naturalSize,
+          // transform применять ТОЛЬКО при реальном масштабе: даже scale(1) создаёт stacking
+          // context и роняет z-index трюк туториала (tutorial-highlight клетки z-2001 должны
+          // перекрывать fixed-оверлей z-2000 из root-контекста).
+          ...(boardScale !== 1 ? { transform: `scale(${boardScale})`, transformOrigin: 'top left' } : {}),
+        }}
+      >
       {multiCellOverlays.map(({ item, itemType }) => (
         <ItemOverlay key={item.id} item={item} itemType={itemType} />
       ))}
@@ -127,7 +154,8 @@ export function Board() {
             boundary={cellBoundary(index, cell.id)}
             interactive={isLegalTarget(index, level, cell.id)}
             highlighted={hoveredRoomId === cell.roomId}
-            onClick={() => handleLeftClick(cell.id)}
+            onClick={() => handleRightClick(cell.id)}
+            onDoubleClick={() => handleLeftClick(cell.id)}
             onContextMenu={(event) => {
               event.preventDefault();
               handleRightClick(cell.id);
@@ -140,19 +168,7 @@ export function Board() {
       {roomLabels.map(({ room, position, anchorRow, anchorCol }) => (
         <RoomLabel key={room.id} name={room.name} anchorRow={anchorRow} anchorCol={anchorCol} position={position} />
       ))}
-    </div>
-  );
-
-  if (boardScale === 1) return board;
-
-  return (
-    <div
-      style={{
-        width: level.size * CELL_SIZE * boardScale,
-        height: level.size * CELL_SIZE * boardScale,
-      }}
-    >
-      {board}
+      </div>
     </div>
   );
 }

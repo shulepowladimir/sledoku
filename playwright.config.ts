@@ -7,7 +7,12 @@ export default defineConfig({
   use: {
     baseURL: 'http://localhost:5173',
   },
-  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  projects: [
+    // Десктопная ветка: всё, кроме мобильной спеки (у неё свой проект ниже).
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] }, testIgnore: /mobile\.spec\.ts/ },
+    // Мобильная ветка (390×844, hasTouch): тапы честные.
+    { name: 'mobile', testMatch: /mobile\.spec\.ts/, use: { ...devices['Pixel 7'] } },
+  ],
   webServer: {
     command: 'npm run dev',
     url: 'http://localhost:5173',

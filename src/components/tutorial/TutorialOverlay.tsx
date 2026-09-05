@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTutorialStore, watchTutorial, isStepConditionSatisfied } from '../../state/tutorialStore';
 import { useGameStore } from '../../state/gameStore';
+import { useIsMobile } from '../../hooks/useIsMobile';
 import type { TutorialStep, TooltipSide } from '../../types/tutorial';
 
 /** One spotlight hole per target element (expanded by a small padding).
@@ -154,50 +155,69 @@ export function TutorialOverlay() {
   const next = useTutorialStore((s) => s.next);
   const prev = useTutorialStore((s) => s.prev);
   const player = useGameStore((s) => s.player);
-  const [, setTick] = useState(0);
+  const isMobile = useIsMobile();
+  const [tick, setTick] = useState(0);
 
   useEffect(() => watchTutorial(), []);
 
   useEffect(() => {
     const onResize = () => setTick((t) => t + 1);
     window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    // Spotlight holes use viewport coordinates (fixed overlay); the page scrolls on mobile
+    // (board + roster accordion stack vertically), so the holes must follow the content.
+    window.addEventListener('scroll', onResize, { passive: true, capture: true });
+    return () => {
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('scroll', onResize, { capture: true } as EventListenerOptions);
+    };
   }, []);
 
   const step: TutorialStep | undefined = useMemo(() => steps[stepIndex], [steps, stepIndex]);
 
-  // Measure the targets; re-run on every game-state change (layout may shift) and resize (setTick).
+  // Measure the targets; re-run on every game-state change (layout may shift), resize and
+  // scroll (setTick — the fixed-overlay holes are in viewport coordinates).
+  const tickRef = tick;
   const spotlights = useMemo(() => {
     void player;
-    void setTick;
+    void tickRef;
     return step ? resolveSpotlights(step) : [];
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [step, player]);
+  }, [step, player, tickRef]);
 
   // Rects of the also-highlighted auxiliary targets (e.g. the roster row or mode button the
   // step's action needs) — the tooltip placement must not cover them either.
   const alsoRects = useMemo(() => {
     void player;
-    void setTick;
+    void tickRef;
     if (!step) return [];
     return (step.alsoSelectors ?? [])
       .map((selector) => document.querySelector(selector))
       .filter((el): el is Element => el != null)
       .map((el) => el.getBoundingClientRect());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [step, player]);
+  }, [step, player, tickRef]);
 
   // Final tooltip position: cell-target steps use the board-aware placement (the board must stay
   // visible and every clickable target reachable); selector steps stick to the chosen side.
+  // Mobile: the tooltip is pinned to a screen edge — the one OPPOSITE to the target (target in
+  // the bottom half → tooltip on top, otherwise at the bottom), so the spotlighted element
+  // stays visible (the roster accordion lives below the board on mobile).
   const tooltipPos = useMemo(() => {
     if (!step) return undefined;
+    if (isMobile) {
+      const union = unionRect(spotlights);
+      const targetInBottomHalf = !!union && union.top + union.height / 2 > window.innerHeight / 2;
+      return targetInBottomHalf
+        ? ({ left: 12, right: 12, top: 12, bottom: 'auto' } as React.CSSProperties)
+        : ({ left: 12, right: 12, bottom: 12, top: 'auto' } as React.CSSProperties);
+    }
     if (spotlights.length === 0) return { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' } as React.CSSProperties;
     const union = unionRect(spotlights)!;
     if (step.target.kind === 'cell' || step.target.kind === 'cells') {
       return tooltipStyleForCells(union, [...spotlights, ...alsoRects]);
     }
     return tooltipStyleForSelector(union, step.tooltipSide ?? 'bottom');
-  }, [step, spotlights, alsoRects]);
+  }, [step, spotlights, alsoRects, isMobile]);
 
   // Keep the spotlighted target clickable above the overlay via a z-index class.
   useEffect(() => {
@@ -215,6 +235,11 @@ export function TutorialOverlay() {
       }
     }
     els.forEach((el) => el.classList.add('tutorial-highlight'));
+    // Mobile: the target may live far below the fold (roster accordion) or the tooltip can
+    // cover it — bring the first spotlighted element into view whenever the step changes.
+    if (isMobile && els.length > 0) {
+      els[0].scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
     const alsoEls = (step.alsoSelectors ?? [])
       .map((selector) => document.querySelector(selector))
       .filter((el): el is Element => el != null);
@@ -229,7 +254,7 @@ export function TutorialOverlay() {
       alsoEls.forEach((el) => el.classList.remove('tutorial-highlight'));
       accentEls.forEach((el) => el.classList.remove('tutorial-accent'));
     };
-  }, [step]);
+  }, [step, isMobile]);
 
   if (!active || !step) return null;
 
@@ -249,7 +274,7 @@ export function TutorialOverlay() {
       <div className="tutorial-tooltip__header">
         <span className="tutorial-tooltip__title">{step.title}</span>
       </div>
-      {step.text.map((p, i) => (
+      {(isMobile && step.textMobile ? step.textMobile : step.text).map((p, i) => (
         <p key={i} className="tutorial-tooltip__text">
           {p}
         </p>

@@ -32,6 +32,9 @@ export interface TutorialStep {
   title: string;
   /** Paragraphs; rendered as separate <p>. */
   text: string[];
+  /** Mobile override: when the viewport is in the mobile branch, these paragraphs replace `text`
+   *  (use for copy that references desktop-only layout, e.g. "the list on the right"). */
+  textMobile?: string[];
   target: TutorialTarget;
   advance: TutorialAdvance;
   /** Extra clickable elements highlighted alongside the target (e.g. the mode button needed

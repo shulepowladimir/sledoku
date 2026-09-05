@@ -5,6 +5,7 @@ const step = (page: Page, id: string) => page.getByTestId(`tutorial-step-${id}`)
 const next = (page: Page) => page.getByTestId('tutorial-next').click();
 const click = (page: Page, testId: string) => page.getByTestId(testId).click();
 const rclick = (page: Page, testId: string) => page.getByTestId(testId).click({ button: 'right' });
+const dblclick = (page: Page, testId: string) => page.getByTestId(testId).dblclick();
 
 test('tutorial: full guided playthrough ends with victory and no record', async ({ page }) => {
   await page.goto('/');
@@ -79,20 +80,20 @@ test('tutorial: full guided playthrough ends with victory and no record', async 
   await rclick(page, 'cell-4-0'); // galina-deduce (action): remove wrong marks
   await rclick(page, 'cell-4-1');
   await expect(step(page, 'galina-place')).toBeVisible();
-  await click(page, 'cell-2-0'); // galina-place (action)
+  await dblclick(page, 'cell-2-0'); // galina-place (action)
   await expect(step(page, 'boris-resolved')).toBeVisible();
 
   // Act 5: Boris resolved by Galina's auto-cross → autocross tour → Andrei resolved → undo/clear practice.
   await click(page, 'roster-person-boris'); // boris-resolved (action)
-  await click(page, 'cell-1-4');
+  await dblclick(page, 'cell-1-4');
   await expect(step(page, 'autocross')).toBeVisible();
   await next(page); // autocross
   await expect(step(page, 'andrei-resolved')).toBeVisible();
   await click(page, 'roster-person-andrei'); // andrei-resolved (action)
-  await click(page, 'cell-0-1');
+  await dblclick(page, 'cell-0-1');
   await expect(step(page, 'mistake')).toBeVisible();
   await click(page, 'roster-person-galina'); // mistake (action): deliberate wrong move
-  await click(page, 'cell-4-0');
+  await dblclick(page, 'cell-4-0');
   await expect(step(page, 'undo')).toBeVisible();
   await click(page, 'undo-button'); // undo (action) — Galina is back on 2-0
   await expect(step(page, 'clear')).toBeVisible();
@@ -100,13 +101,13 @@ test('tutorial: full guided playthrough ends with victory and no record', async 
   await click(page, 'hud-clear'); // clear (action)
   await expect(step(page, 'rebuild-boris')).toBeVisible();
   await click(page, 'roster-person-boris'); // rebuild: select + place each
-  await click(page, 'cell-1-4');
+  await dblclick(page, 'cell-1-4');
   await expect(step(page, 'rebuild-galina')).toBeVisible();
   await click(page, 'roster-person-galina');
-  await click(page, 'cell-2-0');
+  await dblclick(page, 'cell-2-0');
   await expect(step(page, 'rebuild-andrei')).toBeVisible();
   await click(page, 'roster-person-andrei');
-  await click(page, 'cell-0-1');
+  await dblclick(page, 'cell-0-1');
   await expect(step(page, 'restart-info')).toBeVisible();
   await next(page); // restart-info
   await expect(step(page, 'vladimir-clues')).toBeVisible();
@@ -120,7 +121,7 @@ test('tutorial: full guided playthrough ends with victory and no record', async 
   await expect(step(page, 'vladimir-deduce')).toBeVisible();
   await rclick(page, 'cell-4-3'); // vladimir-deduce (action)
   await expect(step(page, 'vladimir-place')).toBeVisible();
-  await click(page, 'cell-3-3'); // vladimir-place (action)
+  await dblclick(page, 'cell-3-3'); // vladimir-place (action)
   await expect(step(page, 'victim-deduce')).toBeVisible();
 
   // Act 8: victim + check + finale + bridge to menu.
@@ -129,7 +130,7 @@ test('tutorial: full guided playthrough ends with victory and no record', async 
   await next(page); // victim-reveal
   await click(page, 'roster-person-hristina'); // victim-select (action)
   await expect(step(page, 'victim-place')).toBeVisible();
-  await click(page, 'cell-4-2'); // victim-place (action)
+  await dblclick(page, 'cell-4-2'); // victim-place (action)
   await expect(step(page, 'check')).toBeVisible();
   await click(page, 'check-button'); // check (action)
   await expect(step(page, 'finale')).toBeVisible();

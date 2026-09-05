@@ -2,7 +2,7 @@ import type { InteractionMode } from '../../state/gameStore';
 import { useGameStore } from '../../state/gameStore';
 
 const LEGEND: Record<InteractionMode, string> = {
-  person: 'ЛКМ — поставить/снять человека. ПКМ — поставить/снять метку-кандидата.',
+  person: 'Один клик — поставить/снять метку, двойной клик — поставить/снять человека.',
   cross: 'Клик по клетке — поставить/снять крестик.',
   erase: 'Клик по клетке — полностью очистить её (человека, метки и крестик).',
 };

@@ -35,6 +35,7 @@ interface GridCellProps {
   interactive: boolean;
   highlighted: boolean;
   onClick: () => void;
+  onDoubleClick: () => void;
   onContextMenu: (event: MouseEvent) => void;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
@@ -56,6 +57,7 @@ export function GridCell({
   interactive,
   highlighted,
   onClick,
+  onDoubleClick,
   onContextMenu,
   onMouseEnter,
   onMouseLeave,
@@ -67,6 +69,10 @@ export function GridCell({
     gridRow: row + 1,
     gridColumn: col + 1,
     cursor: interactive ? 'pointer' : 'default',
+    // Без этого мобильные браузеры ждут ~300мс перед обычным кликом (проверяя,
+    // не двойной ли это тап для зума) — из-за этого двойной тап для установки
+    // персонажа работал бы с ощутимой задержкой или не срабатывал вовсе.
+    touchAction: 'manipulation',
     borderTopWidth: boundary.top ? 3 : 1,
     borderRightWidth: boundary.right ? 3 : 1,
     borderBottomWidth: boundary.bottom ? 3 : 1,
@@ -84,6 +90,7 @@ export function GridCell({
       style={style}
       title={tooltip}
       onClick={interactive ? onClick : undefined}
+      onDoubleClick={interactive ? onDoubleClick : undefined}
       onContextMenu={interactive ? onContextMenu : undefined}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}

@@ -25,7 +25,7 @@ test('stadium-01 board renders cut-out corners, 96 cells, no console errors', as
   // All 10 people are placeable: run the full solution and verify victory.
   for (const [personId, cellId] of Object.entries(stadiumLevel.solution)) {
     await page.getByTestId(`roster-person-${personId}`).click();
-    await page.getByTestId(`cell-${cellId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
   }
   await page.getByTestId('check-button').click();
   const banner = page.getByTestId('victory-banner');
