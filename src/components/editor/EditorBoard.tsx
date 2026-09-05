@@ -13,6 +13,8 @@ interface EditorBoardProps {
   itemTypesById: Map<string, ItemType>;
   /** Персонажи на клетках — для шага "Решение" (клетка -> персонаж). */
   peopleAtCell?: Map<CellId, EditorPerson>;
+  /** id персонажа, выделенного для перестановки местами (шаг "Решение"). */
+  selectedPersonId?: string | null;
   onCellClick?: (cell: CellId) => void;
   onCellEnter?: (cell: CellId) => void;
   interactive?: boolean;
@@ -36,6 +38,7 @@ export function EditorBoard({
   items,
   itemTypesById,
   peopleAtCell,
+  selectedPersonId,
   onCellClick,
   onCellEnter,
   interactive = true,
@@ -92,8 +95,16 @@ export function EditorBoard({
                 <ItemIcon itemType={itemType} size={30} />
               </span>
             )}
+            {itemType && person && (
+              <span className="editor-cell__item-under">
+                <ItemIcon itemType={itemType} size={20} />
+              </span>
+            )}
             {person && (
-              <span className="editor-cell__person" style={{ backgroundColor: person.color }}>
+              <span
+                className={`editor-cell__person${person.id === selectedPersonId ? ' editor-cell__person--selected' : ''}`}
+                style={{ backgroundColor: person.color }}
+              >
                 {person.initialLetter}
               </span>
             )}

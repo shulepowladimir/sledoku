@@ -23,11 +23,12 @@ function shuffledColumns(size: number): number[] {
 export function scaffoldPermutation(
   size: number,
   roomForCell: (row: number, col: number) => string | null,
+  isLegalCell: (row: number, col: number) => boolean = () => true,
   maxAttempts = 50_000,
 ): ScaffoldResult | null {
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
     const colByRow = shuffledColumns(size);
-    if (colByRow.some((col, row) => roomForCell(row, col) === null)) continue;
+    if (colByRow.some((col, row) => roomForCell(row, col) === null || !isLegalCell(row, col))) continue;
     const roomByRow = colByRow.map((col, row) => roomForCell(row, col) as string);
 
     const roomCounts: Record<string, number> = {};

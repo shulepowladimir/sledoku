@@ -1,22 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import type { ItemType, CellId } from '../../types/level';
 import { useEditorStore } from './editorStore';
 import { CLUE_TYPE_DEFS, CLUE_TYPE_BY_ID, type ClueTypeId, type EditorClueData, type ClueField } from './editorClueTypes';
+import { computeClueFacts } from './clueFacts';
 import { buildLevelObject } from './buildLevelObject';
+import { EditorBoard } from './EditorBoard';
 import { ItemLibrary } from '../../../levels/itemLibrary';
 import { lintLevel } from '../../../tools/solver/lint';
 import { checkPuzzleQuality } from '../../../tools/solver/puzzleQuality';
 import { solveLevel, findRedundantClues } from '../../../tools/solver/solve';
 
 const CATEGORIES = ['Личная', 'Про двух людей', 'Общая (для всего уровня)'] as const;
-
 const WALL_LABELS: Record<string, string> = { north: 'Север', south: 'Юг', east: 'Восток', west: 'Запад' };
+const VOWELS = 'АЕЁИОУЫЭЮЯ';
 
 export function ClueStep() {
-  const { people, rooms, items, clues } = useEditorStore();
+  const { people, rooms, items, clues, roomByCell, solution, size } = useEditorStore();
   const addClue = useEditorStore((s) => s.addClue);
   const removeClue = useEditorStore((s) => s.removeClue);
   const updateClueText = useEditorStore((s) => s.updateClueText);
   const getSnapshot = useEditorStore((s) => s.getSnapshot);
+
+  const facts = useMemo(
+    () => computeClueFacts(rooms, roomByCell, items, people, solution),
+    [rooms, roomByCell, items, people, solution],
+  );
 
   const [type, setType] = useState<ClueTypeId>('position');
   const [text, setText] = useState('');
@@ -37,6 +45,7 @@ export function ClueStep() {
   const [parity, setParity] = useState<'even' | 'odd'>('even');
   const [letterClass, setLetterClass] = useState<'vowel' | 'consonant'>('vowel');
   const [negated, setNegated] = useState(false);
+  const [autoNote, setAutoNote] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
 
   const [checkReport, setCheckReport] = useState<string[] | null>(null);
@@ -45,8 +54,214 @@ export function ClueStep() {
   const usedItemTypeIds = [...new Set(items.map((i) => i.typeId))];
   const def = CLUE_TYPE_BY_ID.get(type)!;
   const needs = (f: ClueField) => def.fields.includes(f);
-
   const itemLabel = (typeId: string) => (ItemLibrary as Record<string, () => { label: string }>)[typeId]?.().label ?? typeId;
+
+  // --- Автоподстановка правдивых значений на основе реальной расстановки ---
+  useEffect(() => {
+    setAutoNote(null);
+    if (!solution) return;
+
+    switch (type) {
+      case 'position': {
+        if (!subjectId) return;
+        const rc = facts.rowColOf(subjectId);
+        if (!rc) return;
+        setValue(axis === 'row' ? rc.row : rc.col);
+        setAutoNote(`Подставлено настоящее значение: ${axis === 'row' ? 'ряд' : 'столбец'} ${axis === 'row' ? rc.row : rc.col}.`);
+        break;
+      }
+      case 'roomMembership': {
+        if (!subjectId) return;
+        const r = facts.roomIdOf(subjectId);
+        if (r) {
+          setRoomId(r);
+          setNegated(false);
+          setAutoNote(`Подставлена настоящая комната: «${rooms.find((x) => x.id === r)?.name}».`);
+        }
+        break;
+      }
+      case 'adjacency': {
+        if (!subjectId) return;
+        const t = facts.adjacentItemTypeId(subjectId);
+        if (t) {
+          setItemTypeId(t);
+          setNegated(false);
+          setAutoNote(`Рядом действительно есть: «${itemLabel(t)}».`);
+        } else {
+          setAutoNote('Рядом нет предметов — если хочешь подсказку, выбери «НЕ» и любой предмет.');
+        }
+        break;
+      }
+      case 'sameRoomAsItem': {
+        if (!subjectId) return;
+        const t = facts.sameRoomItemTypeId(subjectId);
+        if (t) {
+          setItemTypeId(t);
+          setNegated(false);
+          setAutoNote(`В той же комнате действительно есть: «${itemLabel(t)}».`);
+        } else {
+          setAutoNote('В этой комнате нет предметов — если хочешь подсказку, выбери «НЕ».');
+        }
+        break;
+      }
+      case 'occupiesItem': {
+        if (!subjectId) return;
+        const t = facts.ownCellItemTypeId(subjectId);
+        if (t) {
+          setItemTypeId(t);
+          setNegated(false);
+          setAutoNote(`На клетке действительно есть: «${itemLabel(t)}».`);
+        } else {
+          setAutoNote('На этой клетке нет предмета — если хочешь подсказку, выбери «НЕ».');
+        }
+        break;
+      }
+      case 'sharedRoomGender': {
+        if (!subjectId) return;
+        const genders = facts.otherOccupantGenders(subjectId);
+        if (genders.length === 1) {
+          setGender(genders[0]);
+          setNegated(false);
+          setAutoNote(`В комнате действительно есть ${genders[0] === 'male' ? 'мужчина' : 'женщина'}.`);
+        } else if (genders.length === 0) {
+          setNegated(true);
+          setAutoNote('В комнате больше никого нет — можно использовать только «НЕ».');
+        } else {
+          setAutoNote('В комнате есть и мужчина, и женщина — обе подсказки без «НЕ» подойдут.');
+        }
+        break;
+      }
+      case 'corner': {
+        if (!subjectId) return;
+        const inCorner = facts.isCorner(subjectId);
+        setNegated(!inCorner);
+        setAutoNote(inCorner ? 'Персонаж действительно стоит в углу.' : 'Персонаж НЕ в углу — подставлено «НЕ».');
+        break;
+      }
+      case 'wallSide': {
+        if (!subjectId) return;
+        const sides = facts.trueWallSides(subjectId);
+        if (sides.length > 0) {
+          setWallDirection(sides[0]);
+          setNegated(false);
+          setAutoNote(`Персонаж действительно стоит у стены: ${WALL_LABELS[sides[0]]}${sides.length > 1 ? ` (и ещё: ${sides.slice(1).map((s) => WALL_LABELS[s]).join(', ')})` : ''}.`);
+        } else {
+          setNegated(true);
+          setAutoNote('Персонаж не стоит ни у одной стены — подставлено «НЕ».');
+        }
+        break;
+      }
+      case 'roomSize': {
+        if (!subjectId) return;
+        const cmp = facts.roomSizeComparison(subjectId);
+        if (cmp) {
+          setComparisonSize(cmp);
+          setAutoNote(`Комната персонажа действительно ${cmp === 'largest' ? 'самая большая' : 'самая маленькая'}.`);
+        } else {
+          setAutoNote('Комната персонажа не самая большая и не самая маленькая — эта подсказка не подойдёт.');
+        }
+        break;
+      }
+      case 'parity': {
+        if (!subjectId) return;
+        const rc = facts.rowColOf(subjectId);
+        if (!rc) return;
+        const n = axis === 'row' ? rc.row : rc.col;
+        setParity(n % 2 === 0 ? 'even' : 'odd');
+        setAutoNote(`Настоящая чётность: ${n % 2 === 0 ? 'чётный' : 'нечётный'} (${n}).`);
+        break;
+      }
+      case 'relativePosition': {
+        if (!subjectId || !otherPersonId || subjectId === otherPersonId) return;
+        const a = facts.rowColOf(subjectId);
+        const b = facts.rowColOf(otherPersonId);
+        if (!a || !b) return;
+        const diff = axis === 'row' ? a.row - b.row : a.col - b.col;
+        if (diff === 0) {
+          setAutoNote('У обоих одинаковое значение по этой оси — попробуй другую ось.');
+          return;
+        }
+        setDirection(diff < 0 ? 'before' : 'after');
+        setOffset(String(Math.abs(diff)));
+        setAutoNote(`Настоящая разница: ${Math.abs(diff)}.`);
+        break;
+      }
+      case 'betweenness': {
+        if (!subjectId || !otherPersonId1 || !otherPersonId2) return;
+        const s = facts.rowColOf(subjectId);
+        const o1 = facts.rowColOf(otherPersonId1);
+        const o2 = facts.rowColOf(otherPersonId2);
+        if (!s || !o1 || !o2) return;
+        const between = (v: number, a: number, b: number) => (v > Math.min(a, b) && v < Math.max(a, b));
+        if (between(s.row, o1.row, o2.row)) {
+          setAxis('row');
+          setAutoNote('Верно для ряда.');
+        } else if (between(s.col, o1.col, o2.col)) {
+          setAxis('col');
+          setAutoNote('Верно для столбца.');
+        } else {
+          setAutoNote('Персонаж не находится между этими двумя ни по ряду, ни по столбцу.');
+        }
+        break;
+      }
+      case 'roomParity': {
+        const p = facts.allRoomsParity();
+        if (p) {
+          setParity(p);
+          setAutoNote(`Сейчас во всех комнатах ${p === 'even' ? 'чётное' : 'нечётное'} число людей.`);
+        } else {
+          setAutoNote('Сейчас в комнатах разная чётность — эту подсказку нельзя использовать.');
+        }
+        break;
+      }
+      case 'roomPopulation': {
+        if (!roomId) return;
+        if (facts.mostPopulatedRoomIds().includes(roomId)) {
+          setComparisonPop('most');
+          setAutoNote('В этой комнате действительно больше всего людей.');
+        } else if (facts.leastPopulatedRoomIds().includes(roomId)) {
+          setComparisonPop('least');
+          setAutoNote('В этой комнате действительно меньше всего людей.');
+        } else {
+          setAutoNote('Эта комната не самая населённая и не самая пустая — подсказка не подойдёт.');
+        }
+        break;
+      }
+      case 'letterGroupRoom': {
+        const vowelIds = people.filter((p) => VOWELS.includes(p.initialLetter.toUpperCase())).map((p) => p.id);
+        const consonantIds = people.filter((p) => !VOWELS.includes(p.initialLetter.toUpperCase())).map((p) => p.id);
+        if (facts.allSameRoom(vowelIds)) {
+          setLetterClass('vowel');
+          setAutoNote('Все на гласную букву действительно в одной комнате.');
+        } else if (facts.allSameRoom(consonantIds)) {
+          setLetterClass('consonant');
+          setAutoNote('Все на согласную букву действительно в одной комнате.');
+        } else {
+          setAutoNote('Сейчас ни гласная, ни согласная группа не собрана в одной комнате.');
+        }
+        break;
+      }
+      default:
+        break;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [type, subjectId, otherPersonId, otherPersonId1, otherPersonId2, axis, roomId, solution]);
+
+  const peopleAtCell = useMemo(() => {
+    const map = new Map<CellId, (typeof people)[number]>();
+    if (solution) {
+      for (const p of people) {
+        const cell = solution[p.id];
+        if (cell) map.set(cell as CellId, p);
+      }
+    }
+    return map;
+  }, [people, solution]);
+
+  const itemTypesById = useMemo(
+    () => new Map<string, ItemType>(usedItemTypeIds.map((key) => [key, (ItemLibrary as Record<string, () => ItemType>)[key]()])),
+    [usedItemTypeIds],
+  );
 
   const handleAdd = () => {
     setFormError(null);
@@ -174,11 +389,11 @@ export function ClueStep() {
         solved.violated.forEach((v) => report.push(`  - ${v.text}`));
         break;
       case 'WRONG_SOLUTION':
-        report.push('❌ WRONG_SOLUTION — есть ровно одно решение, но это не то, что подобрано на шаге 4. Пересобери решение или проверь подсказки.');
+        report.push('❌ WRONG_SOLUTION — есть ровно одно решение, но это не то, что подобрано на шаге 4.');
         break;
       case 'MULTIPLE':
         report.push(
-          `❌ MULTIPLE — решений больше одного (${solved.matchesAuthored ? 'подобранное решение среди них' : 'подобранное решение вообще не подходит'}). Добавь ещё подсказок, чтобы сузить.`,
+          `❌ MULTIPLE — решений больше одного (${solved.matchesAuthored ? 'подобранное решение среди них' : 'подобранное решение вообще не подходит'}). Добавь ещё подсказок.`,
         );
         break;
       case 'INCONCLUSIVE':
@@ -229,7 +444,7 @@ export function ClueStep() {
               <span>Второй человек</span>
               <select value={otherPersonId} onChange={(e) => setOtherPersonId(e.target.value)}>
                 <option value="">— выбери —</option>
-                {people.map((p) => (
+                {people.filter((p) => p.id !== subjectId).map((p) => (
                   <option key={p.id} value={p.id}>
                     {p.name}
                   </option>
@@ -242,7 +457,7 @@ export function ClueStep() {
               <span>Первый из двух</span>
               <select value={otherPersonId1} onChange={(e) => setOtherPersonId1(e.target.value)}>
                 <option value="">— выбери —</option>
-                {people.map((p) => (
+                {people.filter((p) => p.id !== subjectId).map((p) => (
                   <option key={p.id} value={p.id}>
                     {p.name}
                   </option>
@@ -255,7 +470,7 @@ export function ClueStep() {
               <span>Второй из двух</span>
               <select value={otherPersonId2} onChange={(e) => setOtherPersonId2(e.target.value)}>
                 <option value="">— выбери —</option>
-                {people.map((p) => (
+                {people.filter((p) => p.id !== subjectId && p.id !== otherPersonId1).map((p) => (
                   <option key={p.id} value={p.id}>
                     {p.name}
                   </option>
@@ -387,6 +602,8 @@ export function ClueStep() {
           )}
         </div>
 
+        {autoNote && <p className="editor-auto-note">✨ {autoNote}</p>}
+
         <label className="editor-field">
           <span>Текст подсказки (как увидит игрок)</span>
           <input
@@ -402,6 +619,18 @@ export function ClueStep() {
         <button type="button" className="menu-button" onClick={handleAdd}>
           Добавить подсказку
         </button>
+      </div>
+
+      <div className="editor-step__board">
+        <EditorBoard
+          size={size}
+          rooms={rooms}
+          roomByCell={roomByCell}
+          items={items}
+          itemTypesById={itemTypesById}
+          peopleAtCell={peopleAtCell}
+          interactive={false}
+        />
       </div>
 
       <div className="editor-step__panel editor-step__panel--wide">

@@ -3,6 +3,7 @@ import type { CellId, Gender } from '../../types/level';
 import { cellId } from '../../types/level';
 import { scaffoldPermutation } from '../../lib/scaffoldSolution';
 import type { EditorClue } from './editorClueTypes';
+import { ItemLibrary } from '../../../levels/itemLibrary';
 
 export interface EditorRoom {
   id: string;
@@ -78,6 +79,7 @@ interface EditorStore {
   removePerson: (id: string) => void;
 
   generateSolution: () => boolean;
+  swapPeople: (idA: string, idB: string) => void;
   setVictim: (id: string) => void;
   setMurderer: (id: string) => void;
 
@@ -179,10 +181,19 @@ export const useEditorStore = create<EditorStore>((set, get) => ({
   },
 
   generateSolution: () => {
-    const { size, people, roomByCell } = get();
+    const { size, people, roomByCell, items } = get();
     if (people.length !== size) return false;
     const roomForCell = (row: number, col: number): string | null => roomByCell[cellId(row, col)] ?? null;
-    const result = scaffoldPermutation(size, roomForCell);
+
+    const itemTypeIdByCell = new Map(items.map((it) => [it.cellId as string, it.typeId]));
+    const isLegalCell = (row: number, col: number): boolean => {
+      const typeId = itemTypeIdByCell.get(cellId(row, col));
+      if (!typeId) return true; // пустая клетка — всегда можно
+      const itemType = (ItemLibrary as Record<string, () => { kind: string }>)[typeId]?.();
+      return itemType?.kind !== 'decorative';
+    };
+
+    const result = scaffoldPermutation(size, roomForCell, isLegalCell);
     if (!result) {
       set({ solution: null, victimRoomCandidateIds: null, victimId: null, murdererId: null });
       return false;
@@ -205,6 +216,42 @@ export const useEditorStore = create<EditorStore>((set, get) => ({
       murdererId: candidateIds ? candidateIds[1] : null,
     });
     return true;
+  },
+
+  swapPeople: (idA, idB) => {
+    if (idA === idB) return;
+    const { solution, roomByCell, people } = get();
+    if (!solution) return;
+    const cellA = solution[idA];
+    const cellB = solution[idB];
+    if (!cellA || !cellB) return;
+
+    const nextSolution = { ...solution, [idA]: cellB, [idB]: cellA };
+
+    // Пересчитываем, в какой комнате теперь ровно 2 человека (это может измениться после перестановки).
+    const roomCounts: Record<string, string[]> = {};
+    for (const person of people) {
+      const cell = nextSolution[person.id];
+      const roomId = cell ? roomByCell[cell] : undefined;
+      if (roomId) {
+        (roomCounts[roomId] ??= []).push(person.id);
+      }
+    }
+    const twoOccupantRooms = Object.values(roomCounts).filter((list) => list.length === 2);
+
+    const { victimId, murdererId } = get();
+    if (twoOccupantRooms.length === 1) {
+      const candidateIds = twoOccupantRooms[0] as [string, string];
+      const stillValid = candidateIds.includes(victimId ?? '') && candidateIds.includes(murdererId ?? '');
+      set({
+        solution: nextSolution,
+        victimRoomCandidateIds: candidateIds,
+        victimId: stillValid ? victimId : candidateIds[0],
+        murdererId: stillValid ? murdererId : candidateIds[1],
+      });
+    } else {
+      set({ solution: nextSolution, victimRoomCandidateIds: null, victimId: null, murdererId: null });
+    }
   },
 
   setVictim: (id) => {

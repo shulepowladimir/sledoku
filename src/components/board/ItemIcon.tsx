@@ -1303,6 +1303,51 @@ function renderIconShape(icon: string): ReactNode {
           <path d="M6.2 18.4 L18.2 18.4" stroke="currentColor" strokeWidth="0.8" opacity="0.35" />
         </>
       );
+    case 'clapperboard':
+      return (
+        <>
+          <path d="M3.5 7 H20.5 V19.5 H3.5 Z" fill="#2a2a2a" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" />
+          <path d="M3.5 7 L20.5 10.6 V7 Z" fill="#e8edf2" stroke="currentColor" strokeWidth="0.9" strokeLinejoin="round" />
+          <path d="M6.4 6.9 L10.9 7.5 M11.9 7.6 L16.4 8.2 M17.4 8.3 L20.5 8.7" stroke="#2a2a2a" strokeWidth="0.8" />
+          <path d="M3.5 7 L20.5 10.6" stroke="#c9536b" strokeWidth="1.2" />
+          <path d="M6 13.5 H12 M6 16.2 H9" stroke="#e8edf2" strokeWidth="1" strokeLinecap="round" />
+        </>
+      );
+    case 'spotlight':
+      return (
+        <>
+          <path d="M9 4.5 H17 L18.5 10 H7.5 Z" fill="#3f4550" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" />
+          <circle cx="13" cy="7.2" r="2" fill="#ffe9a8" stroke="#e0a94a" strokeWidth="0.8" />
+          <rect x="10.5" y="10" width="5" height="3" rx="0.8" fill="#5a6270" stroke="currentColor" strokeWidth="0.9" />
+          <path d="M13 13 V17.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+          <path d="M9.5 20.5 H16.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+          <path d="M6.5 4 C4.8 5.5 3.8 7.6 3.7 9.8 M4.6 3.2 C2.6 5 1.4 7.5 1.3 10.2" stroke="#e0a94a" strokeWidth="0.9" strokeLinecap="round" fill="none" />
+        </>
+      );
+    case 'makeupMirror':
+      return (
+        <>
+          <circle cx="12" cy="10" r="7.5" fill="#dcefe9" stroke="currentColor" strokeWidth="1.3" />
+          <circle cx="12" cy="10" r="5.6" fill="#f2f8f5" stroke="#8fa89f" strokeWidth="0.9" />
+          <path d="M8.2 6.4 C9.4 5.4 11 5 12.6 5.3" stroke="#fff" strokeWidth="1" strokeLinecap="round" fill="none" />
+          <circle cx="12" cy="10" r="7.5" fill="none" stroke="#e0a94a" strokeWidth="0.7" strokeDasharray="1.6 2.2" />
+          <rect x="10.8" y="17.4" width="2.4" height="3" fill="#8a857c" stroke="currentColor" strokeWidth="0.8" />
+          <path d="M7.5 20.5 H16.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+        </>
+      );
+    case 'movieCamera':
+      return (
+        <>
+          <rect x="3" y="7" width="12.5" height="10" rx="1.5" fill="#3f4550" stroke="currentColor" strokeWidth="1.1" />
+          <circle cx="8.4" cy="12" r="2.6" fill="#5a6270" stroke="currentColor" strokeWidth="0.9" />
+          <circle cx="8.4" cy="12" r="1.1" fill="#ffe9a8" />
+          <circle cx="13.4" cy="10" r="1.2" fill="#c9536b" stroke="#8a3a4e" strokeWidth="0.6" />
+          <path d="M15.5 9.5 L20 7 V17 L15.5 14.5 Z" fill="#5a6270" stroke="currentColor" strokeWidth="1" strokeLinejoin="round" />
+          <rect x="5" y="4.6" width="2.2" height="2.4" rx="0.5" fill="#8a857c" stroke="currentColor" strokeWidth="0.7" />
+          <rect x="8.6" y="4.6" width="2.2" height="2.4" rx="0.5" fill="#8a857c" stroke="currentColor" strokeWidth="0.7" />
+          <path d="M6 17 V19.5 M12 17 V19.5 M4.5 20.5 H13.5" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
+        </>
+      );
     default:
       return <rect x="6" y="6" width="12" height="12" rx="2" fill="#cccccc" />;
   }

@@ -63,7 +63,7 @@ export interface Person {
   gender: Gender;
   color: string; // hex, unique within the level — roster name + on-board marks
   isVictim: boolean;
-  isMurderer: boolean; // solution fact only — never rendered directly in the UI
+  isMurderer: boolean; // solution fact — hidden until the level is solved; revealed by name in the VictoryBanner
   roles?: string[]; // ground truth for role-based clues (e.g. 'doctor', 'patient') — free-form per level, no registry
 }
 

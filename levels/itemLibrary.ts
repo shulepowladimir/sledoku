@@ -100,6 +100,10 @@ export const ItemLibrary = {
   penguin: item('penguin', 'penguin', 'decorative', 'Пингвин'),
   shootingGallery: item('shootingGallery', 'shootingGallery', 'decorative', 'Тир'),
   popcornStand: item('popcornStand', 'popcornStand', 'decorative', 'Стойка с попкорном'),
+  clapperboard: item('clapperboard', 'clapperboard', 'decorative', 'Хлопушка'),
+  spotlight: item('spotlight', 'spotlight', 'decorative', 'Прожектор'),
+  makeupMirror: item('makeupMirror', 'makeupMirror', 'decorative', 'Гримёрное зеркало'),
+  movieCamera: item('movieCamera', 'movieCamera', 'decorative', 'Кинокамера'),
   medicineCabinet: item('medicineCabinet', 'medicineCabinet', 'decorative', 'Шкаф с лекарствами'),
   clueBoard: item('clueBoard', 'clueBoard', 'decorative', 'Доска для записей'),
 } satisfies Record<string, (label?: string) => ItemType>;

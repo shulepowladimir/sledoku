@@ -10,7 +10,7 @@ const rooms: Room[] = [
   { id: 'beach', name: 'Пляж', floorTexture: 'sand' },
   { id: 'jungle', name: 'Джунгли', floorTexture: 'grass' },
   { id: 'lagoon', name: 'Лагуна', floorTexture: 'water' },
-  { id: 'rocks', name: 'Скалы', floorTexture: 'stone' },
+  { id: 'rocks', name: 'Скалы', floorTexture: 'cliff' },
 ];
 
 const floorFeatures: FloorFeature[] = [{ id: 'tidepool', label: 'Приливная лужа', textureKey: 'water' }];

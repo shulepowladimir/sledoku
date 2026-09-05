@@ -1,15 +1,26 @@
+import { useMemo, useState } from 'react';
 import type { CellId, ItemType } from '../../types/level';
 import { useEditorStore } from './editorStore';
 import { EditorBoard } from './EditorBoard';
+import { ItemLibrary } from '../../../levels/itemLibrary';
 
 export function SolutionStep() {
   const { size, rooms, roomByCell, items, people, solution, victimRoomCandidateIds, victimId, murdererId } =
     useEditorStore();
   const generateSolution = useEditorStore((s) => s.generateSolution);
+  const swapPeople = useEditorStore((s) => s.swapPeople);
   const setVictim = useEditorStore((s) => s.setVictim);
   const setMurderer = useEditorStore((s) => s.setMurderer);
 
-  const itemTypesById = new Map<string, ItemType>();
+  const [selectedPersonId, setSelectedPersonId] = useState<string | null>(null);
+
+  const itemTypesById = useMemo(() => {
+    const usedItemTypeIds = [...new Set(items.map((i) => i.typeId))];
+    return new Map<string, ItemType>(
+      usedItemTypeIds.map((key) => [key, (ItemLibrary as Record<string, () => ItemType>)[key]()]),
+    );
+  }, [items]);
+
   const peopleAtCell = new Map<CellId, (typeof people)[number]>();
   if (solution) {
     for (const person of people) {
@@ -22,6 +33,19 @@ export function SolutionStep() {
   const candidatePeople = victimRoomCandidateIds
     ? people.filter((p) => victimRoomCandidateIds.includes(p.id))
     : [];
+
+  const handleCellClick = (cell: CellId) => {
+    const person = peopleAtCell.get(cell);
+    if (!person) return; // клетка без человека — игнорируем
+    if (selectedPersonId === null) {
+      setSelectedPersonId(person.id);
+    } else if (selectedPersonId === person.id) {
+      setSelectedPersonId(null); // повторный клик — снять выделение
+    } else {
+      swapPeople(selectedPersonId, person.id);
+      setSelectedPersonId(null);
+    }
+  };
 
   return (
     <div className="editor-step">
@@ -37,14 +61,25 @@ export function SolutionStep() {
           type="button"
           className="menu-button"
           disabled={sizeMismatch}
-          onClick={() => generateSolution()}
+          onClick={() => {
+            generateSolution();
+            setSelectedPersonId(null);
+          }}
         >
           {solution ? 'Подобрать заново' : 'Подобрать решение'}
         </button>
 
+        {solution && (
+          <p className="editor-hint">
+            Или кликни по одному персонажу на карте справа, потом по другому — они поменяются местами.
+            {selectedPersonId && ` Сейчас выбран: ${people.find((p) => p.id === selectedPersonId)?.name}.`}
+          </p>
+        )}
+
         {solution && !victimRoomCandidateIds && (
           <p className="editor-hint editor-hint--warning">
-            Не получилось найти комнату ровно с двумя людьми — добавь/измени комнаты и попробуй снова.
+            Сейчас нет комнаты ровно с двумя людьми — подбери заново или поменяй местами ещё раз, пока такая комната
+            не появится.
           </p>
         )}
 
@@ -90,7 +125,9 @@ export function SolutionStep() {
           items={items}
           itemTypesById={itemTypesById}
           peopleAtCell={peopleAtCell}
-          interactive={false}
+          selectedPersonId={selectedPersonId}
+          onCellClick={handleCellClick}
+          interactive={!!solution}
         />
       </div>
     </div>

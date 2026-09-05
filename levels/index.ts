@@ -24,6 +24,7 @@ import { medievalLevel } from './21-medieval';
 import { amusementParkLevel } from './22-amusementpark';
 import { airportLevel } from './23-airport';
 import { zooLevel } from './24-zoo';
+import { hollywoodLevel } from './25-hollywood';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -51,6 +52,7 @@ export const levels: Level[] = [
   amusementParkLevel,
   airportLevel,
   zooLevel,
+  hollywoodLevel,
 ];
 
 /** All non-tutorial levels — used by the level menu grid, size filters, profile stats and

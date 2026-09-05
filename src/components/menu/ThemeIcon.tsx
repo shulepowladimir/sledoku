@@ -11,6 +11,7 @@ interface ThemeIconProps {
 const THEME_ITEM_ICONS: Record<string, ItemType> = {
   airport: { id: 'theme-airport', label: 'Самолёт', kind: 'decorative', icon: 'plane' },
   zoo: { id: 'theme-zoo', label: 'Пингвин', kind: 'decorative', icon: 'penguin' },
+  hollywood: { id: 'theme-hollywood', label: 'Хлопушка', kind: 'decorative', icon: 'clapperboard' },
 };
 
 function renderIconShape(theme: string): ReactNode {

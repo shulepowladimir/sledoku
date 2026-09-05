@@ -16,6 +16,8 @@ test('menu -> full playthrough of apartment-01 -> victory -> back to menu', asyn
   const banner = page.getByTestId('victory-banner');
   await expect(banner).toBeVisible();
   await expect(banner).toContainText('Дело раскрыто!');
+  const murderer = apartmentLevel.people.find((p) => p.isMurderer);
+  await expect(banner).toContainText(`Убийцей оказался ${murderer?.name}.`);
 
   await page.getByTestId('menu-button').click();
 

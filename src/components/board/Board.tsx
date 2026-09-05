@@ -72,12 +72,21 @@ export function Board() {
   // Holes must stay empty, so every rendered cell pins itself to its grid track explicitly.
   const hasCutouts = level.cells.length < level.size * level.size;
 
-  return (
+  // Large boards (11×11, 12×12+) don't fit the viewport next to the roster panel:
+  // scale the whole board down in steps so the player sees it without scrolling.
+  // The wrapper reserves the scaled size so flex layout is not fooled by the untransformed box.
+  const boardScale = level.size >= 12 ? 0.875 : level.size === 11 ? 0.9 : 1;
+
+  const board = (
     <div
       className={`board${hasCutouts ? ' board--cut' : ''}`}
       style={{
         gridTemplateColumns: `repeat(${level.size}, ${CELL_SIZE}px)`,
         gridTemplateRows: `repeat(${level.size}, ${CELL_SIZE}px)`,
+        // explicit size keeps the grid from shrinking to the scaled wrapper's width
+        width: level.size * CELL_SIZE,
+        height: level.size * CELL_SIZE,
+        ...(boardScale !== 1 ? { transform: `scale(${boardScale})`, transformOrigin: 'top left' } : {}),
       }}
     >
       {multiCellOverlays.map(({ item, itemType }) => (
@@ -131,6 +140,19 @@ export function Board() {
       {roomLabels.map(({ room, position, anchorRow, anchorCol }) => (
         <RoomLabel key={room.id} name={room.name} anchorRow={anchorRow} anchorCol={anchorCol} position={position} />
       ))}
+    </div>
+  );
+
+  if (boardScale === 1) return board;
+
+  return (
+    <div
+      style={{
+        width: level.size * CELL_SIZE * boardScale,
+        height: level.size * CELL_SIZE * boardScale,
+      }}
+    >
+      {board}
     </div>
   );
 }
