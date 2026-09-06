@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+<!-- Hard shadow -->
+<path d="M18 78h60v6H18zM22 26h6v50h-6zM68 26h6v50h-6zM20 24h56v9H20z" fill="#3A2A20"/>
+<!-- rack -->
+<path d="M19 21h58v10H19z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.8"/>
+<path d="M23 27v49M73 27v49" stroke="#1A1A1A" stroke-width="3.5"/>
+<path d="M24 27v48M72 27v48" stroke="#E0A94A" stroke-width="4"/>
+<path d="M17 75h62v9H17z" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.5"/>
+<!-- broom handles -->
+<path d="M31 28v34M45 28v34M59 28v34" stroke="#3A2A20" stroke-width="4"/>
+<path d="M31 28v34M45 28v34M59 28v34" stroke="#E0A94A" stroke-width="2.3"/>
+<!-- broom heads -->
+<path d="M25 60h12l3 13H22z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+<path d="M39 60h12l3 13H36z" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.5"/>
+<path d="M53 60h12l3 13H50z" fill="#2E6E65" stroke="#1A1A1A" stroke-width="2.5"/>
+</svg>

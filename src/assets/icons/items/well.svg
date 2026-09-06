@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+<path d="M22 78h62v6H22z" fill="#3A2A20"/>
+<!-- roof --> <path d="M24 27l8-13h44l9 13z" fill="#2E6E65" stroke="#1A1A1A" stroke-width="3"/>
+<!-- posts --> <path d="M31 27v43M72 27v43" stroke="#1A1A1A" stroke-width="6"/><path d="M31 27v43M72 27v43" stroke="#E0824A" stroke-width="3.5"/>
+<!-- beam --> <path d="M31 36h41v8H31z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"/>
+<!-- crank --> <path d="M52 36v18M52 53h10v4" fill="none" stroke="#1A1A1A" stroke-width="3"/><circle cx="52" cy="54" r="5" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+<!-- bucket --> <path d="M48 54h10l-1 12h-8z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+<!-- stone base --> <ellipse cx="52" cy="72" rx="29" ry="8" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="3"/>
+<path d="M23 72v12c3 5 20 8 29 8s26-3 29-8V72" fill="#A8A8A0" stroke="#1A1A1A" stroke-width="3"/>
+<path d="M26 78h52M30 85h44" stroke="#3A2A20" stroke-width="2"/>
+<ellipse cx="52" cy="72" rx="20" ry="5" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+</svg>

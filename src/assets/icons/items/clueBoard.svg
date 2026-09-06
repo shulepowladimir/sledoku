@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- clueBoard — detective evidence board with pinned notes and red string -->
+  <path d="M14 14 H82 Q85 14 85 17 V76 Q85 79 82 79 H14 Q11 79 11 76 V17 Q11 14 14 14Z" fill="#3A2A20"/>
+  <path d="M11 11 H79 Q82 11 82 14 V73 Q82 76 79 76 H11 Q8 76 8 73 V14 Q8 11 11 11Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="3"/>
+  <rect x="17" y="19" width="22" height="25" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="49" y="18" width="24" height="18" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="22" y="53" width="30" height="16" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="24" cy="21" r="3" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="69" cy="20" r="3" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="49" cy="67" r="3" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <path d="M24 21 L69 20 L49 67 L24 21" fill="none" stroke="#C8102E" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M21 26 H34 M21 31 H32 M53 24 H68 M53 29 H64 M27 58 H46 M27 63 H43" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="56" cy="45" r="6" fill="#2E6E65" stroke="#1A1A1A" stroke-width="2.5"/>
+  <circle cx="56" cy="45" r="2" fill="#F5E9D0"/>
+  <path d="M20 82 H76" stroke="#3A2A20" stroke-width="4" stroke-linecap="round"/>
+</svg>

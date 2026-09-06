@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- movieCamera — vintage cinema camera, 3/4 view -->
+  <ellipse cx="48" cy="87" rx="28" ry="4" fill="#3A2A20"/>
+  <path d="M44 62 H52 V83 H44 Z" fill="#2E6E65" stroke="#1A1A1A" stroke-width="3"/>
+  <path d="M30 82 H66 L70 87 H26 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M27 34 Q27 27 34 27 H66 Q74 27 76 34 V57 Q76 64 69 64 H34 Q27 64 27 57Z" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+  <circle cx="48" cy="46" r="12" fill="#3A2A20" stroke="#1A1A1A" stroke-width="3"/>
+  <circle cx="48" cy="46" r="7" fill="#2E6E65" stroke="#E0A94A" stroke-width="2"/>
+  <circle cx="50" cy="43" r="2" fill="#F5E9D0"/>
+  <circle cx="69" cy="34" r="3" fill="#C8102E" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M31 28 C24 18 27 11 36 11 C43 11 46 18 43 26 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="3"/>
+  <circle cx="35" cy="19" r="7" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+  <path d="M60 27 C57 17 61 11 70 11 C78 12 81 19 77 28 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="3"/>
+  <circle cx="69" cy="20" r="7" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+  <path d="M75 39 L87 34 L87 57 L75 52 Z" fill="#2E6E65" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+</svg>

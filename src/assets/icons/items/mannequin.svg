@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+<!-- shadow --> <path d="M42 78h31v5H39zM49 45h9v34h-9z" fill="#3A2A20"/>
+<!-- head --> <circle cx="54" cy="14" r="6" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.8"/>
+<!-- torso -->
+<path d="M48 20 C47 25 40 27 39 34 L37 46 C37 53 43 57 48 58 L48 65 L60 65 L60 58 C66 57 71 53 70 46 L68 34 C67 27 61 25 60 20Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+<path d="M54 21v35" stroke="#E0A94A" stroke-width="1.8" opacity=".8"/>
+<!-- neck/pole --> <path d="M50 59h9v13h-9z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.5"/>
+<!-- stand --> <path d="M54 70v8M54 77l-12 7M54 77l12 7M54 77l1 9" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+<path d="M54 71v7" stroke="#E0A94A" stroke-width="2"/>
+</svg>
