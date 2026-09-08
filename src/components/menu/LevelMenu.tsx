@@ -25,9 +25,9 @@ export function LevelMenu() {
   const [hideSolved, setHideSolved] = useState(false);
 
   // The tutorial card sits FIRST inside the level grid but outside the common categorization:
-  // it ignores the size filter chips (never contributes a 5×5 chip) and the hide-solved toggle,
-  // and is only rendered on the "Все" tab.
-  const showTutorialCard = sizeFilter === 'all';
+  // it ignores the size filter chips (never contributes a 5×5 chip) and is only rendered on
+  // the "Все" tab. The hide-solved toggle hides it too — but only once it's actually done.
+  const showTutorialCard = sizeFilter === 'all' && (!hideSolved || !tutorialDone);
 
   const visibleLevels = sortedLevels.filter((level) => {
     if (sizeFilter !== 'all' && level.size !== sizeFilter) return false;

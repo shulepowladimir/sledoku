@@ -65,6 +65,35 @@ test('hide solved toggle can be turned back off', async ({ page }) => {
   await expect(page.getByTestId(`level-card-${apartmentLevel.meta.id}`)).toBeVisible();
 });
 
+test('hide solved toggle also hides the completed tutorial card', async ({ page }) => {
+  // Пройденное обучение («Пройдено» на карточке) скрывается вместе с остальными.
+  await page.addInitScript(() => {
+    localStorage.setItem('sledoku:tutorial-done', '1');
+  });
+
+  await page.goto('/');
+  await expect(page.getByTestId('level-card-tutorial-00')).toBeVisible();
+  await expect(page.getByTestId('level-card-tutorial-00')).toContainText('Пройдено');
+
+  await page.getByTestId('hide-solved-toggle').click();
+  await expect(page.getByTestId('level-card-tutorial-00')).toHaveCount(0);
+
+  // Тумблер обратно — карточка возвращается.
+  await page.getByTestId('hide-solved-toggle').click();
+  await expect(page.getByTestId('level-card-tutorial-00')).toBeVisible();
+});
+
+test('hide solved toggle keeps the unfinished tutorial card visible', async ({ page }) => {
+  await seedBestTimes(page, { [apartmentLevel.meta.id]: 60_000 });
+
+  await page.goto('/');
+
+  await page.getByTestId('hide-solved-toggle').click();
+  await expect(page.getByTestId(`level-card-${apartmentLevel.meta.id}`)).toHaveCount(0);
+  // Обучение ещё не пройдено — карточка остаётся на месте.
+  await expect(page.getByTestId('level-card-tutorial-00')).toBeVisible();
+});
+
 test('timer starts as soon as the level opens', async ({ page }) => {
   await page.goto('/');
   await page.getByTestId(`level-card-${apartmentLevel.meta.id}`).click();
