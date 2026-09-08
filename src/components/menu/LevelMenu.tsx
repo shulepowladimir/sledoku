@@ -10,6 +10,7 @@ import { HowToPlay } from './HowToPlay';
 import { ThemeIcon } from './ThemeIcon';
 import { AuthPanel } from '../auth/AuthPanel';
 import { NoirToggle } from '../hud/NoirToggle';
+import { SiteFooter } from './SiteFooter';
 
 // Ascending cell count first, then (ties) the `levels` array order — that array is already
 // chronological (each new level is appended at the end), so a stable sort keeps it as the tie-break.
@@ -112,6 +113,7 @@ export function LevelMenu() {
           Под выбранные фильтры уровней нет.
         </p>
       )}
+      <SiteFooter />
     </div>
   );
 }

@@ -12,6 +12,7 @@
     "validate-all": "tsx tools/solver/validateAll.ts",
     "audit-icons": "tsx tools/icons/audit.ts",
     "validate-art": "node art/tools/validate-art.mjs",
+    "generate-og": "tsx tools/og/generate-og-image.ts",
     "scaffold-level": "tsx tools/solver/scaffold.ts",
     "pretest:smoke": "npm run validate-art",
     "test:smoke": "playwright test"

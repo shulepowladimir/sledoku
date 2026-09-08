@@ -606,6 +606,68 @@
   text-align: center;
 }
 
+/* --- Подвал сайта (только в меню: юр-минимум + контакт) --- */
+
+/* «Газетный» подвал: двойная линия сверху, как колофон газеты. */
+.site-footer {
+  max-width: 960px;
+  margin: 56px auto 0;
+  padding-top: 18px;
+  border-top: 3px double rgba(17, 17, 17, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  font-size: 13px;
+}
+
+.site-footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.site-footer__name {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.site-footer__tagline {
+  color: #6b6760;
+}
+
+.site-footer__links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+.site-footer__link {
+  color: #8a2f28;
+  text-decoration: none;
+}
+
+.site-footer__link:hover {
+  text-decoration: underline;
+}
+
+/* Ссылки-кнопки выглядят как текстовые ссылки. */
+.site-footer__link--button {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.site-footer__copyright {
+  margin: 0;
+  color: #6b6760;
+}
+
+
 /* ── Нуар-режим (тумблер в меню и на уровне) ─────────────────────────────── */
 
 /* «Нуар-режим» (выкл): чёрная кнопка с белым шрифтом — намекает, куда ведёт. */
@@ -653,6 +715,17 @@ body.noir .site-header__subtitle {
 }
 
 body.noir .level-menu__empty {
+  color: #b5b1aa;
+}
+
+/* Нуар: подвал на чёрном — приглушённые тексты светлые, линия светлая.
+   Ссылки остаются бордовыми: нуар-оверлей сам приглушает их отрисовку. */
+body.noir .site-footer {
+  border-top-color: rgba(243, 242, 246, 0.3);
+}
+
+body.noir .site-footer__tagline,
+body.noir .site-footer__copyright {
   color: #b5b1aa;
 }
 
@@ -1093,6 +1166,9 @@ body.noir .level-menu__empty {
   max-height: 85vh;
   overflow-y: auto;
   background: #faf8f4;
+  /* Явный цвет: без него в нуаре наследуется светлый цвет body — светлый
+     текст на светлом фоне модалки становится нечитаемым. */
+  color: #2a2a2a;
   border-radius: 12px;
   border: 1px solid rgba(17, 17, 17, 0.2);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
@@ -1169,6 +1245,227 @@ body.noir .level-menu__empty {
 .profile-modal__signout:hover {
   background: rgba(138, 47, 40, 0.08);
 }
+
+/* Нуар: профильная модалка тёмная, как меню и правовая модалка.
+   Табы и тумблер статистики инвертированы — активный светлый с тёмным текстом.
+   Бордовые акценты (рекорды, «Выйти») остаются — нуар-оверлей сам приглушает их. */
+body.noir .profile-modal {
+  background: #1a1a1f;
+  color: #f3f2f6;
+  border-color: rgba(243, 242, 246, 0.25);
+}
+
+body.noir .profile-modal__close {
+  color: #f3f2f6;
+}
+
+body.noir .profile-modal__tab {
+  background: transparent;
+  color: #f3f2f6;
+  border-color: rgba(243, 242, 246, 0.3);
+}
+
+body.noir .profile-modal__tab--active {
+  background: #f3f2f6;
+  color: #1a1a1f;
+  border-color: #f3f2f6;
+}
+
+/* Статистика: карточки-сводки и таблица. */
+body.noir .profile-stats__summary-item {
+  background: rgba(243, 242, 246, 0.06);
+  border-color: rgba(243, 242, 246, 0.2);
+}
+
+body.noir .profile-stats__summary-label,
+body.noir .profile-stats__table th,
+body.noir .profile-stats__level-name {
+  color: #b5b1aa;
+}
+
+body.noir .profile-stats__toggle-btn {
+  background: transparent;
+  color: #f3f2f6;
+  border-color: rgba(243, 242, 246, 0.3);
+}
+
+body.noir .profile-stats__toggle-btn--active {
+  background: #f3f2f6;
+  color: #1a1a1f;
+  border-color: #f3f2f6;
+}
+
+body.noir .profile-stats__table th,
+body.noir .profile-stats__table td {
+  border-bottom-color: rgba(243, 242, 246, 0.15);
+}
+
+/* Таблица лидеров: строки-аккордеоны. */
+body.noir .profile-leaderboard__item {
+  background: rgba(243, 242, 246, 0.06);
+  border-color: rgba(243, 242, 246, 0.2);
+}
+
+body.noir .profile-leaderboard__row-title {
+  color: #f3f2f6;
+}
+
+body.noir .profile-leaderboard__row-size,
+body.noir .profile-leaderboard__chevron,
+body.noir .profile-leaderboard__loading,
+body.noir .profile-leaderboard__top5-time {
+  color: #b5b1aa;
+}
+
+body.noir .profile-leaderboard__expand {
+  background: transparent;
+  border-top-color: rgba(243, 242, 246, 0.15);
+}
+
+/* --- Legal modal (правовые тексты из подвала) --- */
+
+.legal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 15, 5, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+.legal-modal {
+  width: 100%;
+  max-width: 520px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #faf8f4;
+  /* Явный цвет: без него в нуаре наследуется светлый цвет body — светлый
+     текст на светлом фоне модалки становится нечитаемым. */
+  color: #2a2a2a;
+  border-radius: 12px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.legal-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.legal-modal__header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.legal-modal__close {
+  border: none;
+  background: none;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: #2a2a2a;
+}
+
+.legal-modal__tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.legal-modal__tab {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  background: #fff;
+  color: #2a2a2a;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.legal-modal__tab--active {
+  background: #2a2a2a;
+  color: #fff;
+  border-color: #2a2a2a;
+}
+
+.legal-modal__body {
+  min-height: 200px;
+}
+
+.legal-modal__section + .legal-modal__section {
+  margin-top: 16px;
+}
+
+.legal-modal__section h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.legal-modal__section p {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.legal-modal__section ul {
+  margin: 0 0 8px;
+  padding-left: 20px;
+}
+
+.legal-modal__section li {
+  font-size: 14px;
+  line-height: 1.55;
+  margin-bottom: 4px;
+}
+
+/* Подпись редакции: под тонкой линией, мельче основного текста. */
+.legal-modal__revision {
+  margin: 16px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid rgba(17, 17, 17, 0.12);
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6b6760;
+}
+
+/* Нуар: правовая модалка тёмная, как меню. Табы инвертированы — активный
+   светлый с тёмным текстом. */
+body.noir .legal-modal {
+  background: #1a1a1f;
+  color: #f3f2f6;
+  border-color: rgba(243, 242, 246, 0.25);
+}
+
+body.noir .legal-modal__close {
+  color: #f3f2f6;
+}
+
+body.noir .legal-modal__tab {
+  background: transparent;
+  color: #f3f2f6;
+  border-color: rgba(243, 242, 246, 0.3);
+}
+
+body.noir .legal-modal__tab--active {
+  background: #f3f2f6;
+  color: #1a1a1f;
+  border-color: #f3f2f6;
+}
+
+body.noir .legal-modal__revision {
+  border-top-color: rgba(243, 242, 246, 0.15);
+  color: #b5b1aa;
+}
+
 
 /* --- Profile: Статистика --- */
 
@@ -2095,6 +2392,17 @@ body.noir .level-menu__empty {
     min-height: 44px;
   }
 
+  /* Подвал: колонки в стопку по центру, ссылки переносятся. */
+  .site-footer {
+    margin-top: 32px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .site-footer__links {
+    justify-content: center;
+  }
+
   /* Все интерактивные элементы — тач-таргет минимум 44px. */
   button {
     min-height: 44px;
@@ -2279,5 +2587,11 @@ body.noir .level-menu__empty {
 
   .profile-modal__tabs {
     flex-wrap: wrap;
+  }
+
+  .legal-modal {
+    width: calc(100vw - 24px);
+    max-width: 520px;
+    max-height: calc(100dvh - 48px);
   }
 }
