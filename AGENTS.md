@@ -7,6 +7,18 @@ Project-specific context:
 - .paiw/README.md
 - ~/.paiw/projects/personal/murdoku/README.md
 
+## Art workflow (мастерская art/)
+
+Канон стиля и воркфлоу: `art/STYLE-GUIDE.md` + `art/README.md` («Новые ассеты для новых уровней»).
+
+- Новые ассеты (предметы/темы/текстуры/архетипы) рисуются **только в `art/<категория>/`**,
+  никогда сразу в `src/assets/`.
+- Цикл: `node art/tools/validate.mjs` → `build-preview.mjs` → `check-preview.mjs` →
+  ревью человеком в `art/preview/index.html` → `cp` в `src/assets/…`.
+- Гейт `npm run validate-art` (в `pretest:smoke`) проверяет конвенции обеих папок и
+  их синхронность: правка «по месту» в игре уронит тесты — чини через мастерскую.
+- Новый цвет = токен в STYLE-GUIDE §1 с пометкой использования; новый приём = эталон в §6.
+
 ## Knowledge, memory, search (~/.paiw)
 
 Read `~/.paiw/resources/shared/knowledge-routing.md` and `~/.paiw/resources/shared/agent-memory-policy.md` (parallel `paiw search` + native rg/Grep; must / should / skip — same intent as the self-improvement `activator.mjs` hook).

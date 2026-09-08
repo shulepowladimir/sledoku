@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    tent — camping dome tent. Teal body, cream fly sheet, navy poles, rope guy-lines.
+  -->
+
+  <!-- ══ SHADOW ══ -->
+  <ellipse cx="50" cy="88" rx="46" ry="8" fill="#3A2A20"/>
+
+  <!-- ══ TENT BODY (dome) ══ -->
+  <!-- Shadow layer -->
+  <path d="M10,84 Q12,40 48,10 Q84,40 86,84 Z" fill="#3A2A20"/>
+  <!-- Main body -->
+  <path d="M6,82 Q8,38 46,8 Q84,38 86,82 Z" fill="#2E6E65" stroke="#1A1A1A" stroke-width="2.5"/>
+
+  <!-- ══ RAIN FLY (cream overhang) ══ -->
+  <path d="M14,68 Q20,30 46,8 Q72,30 78,68 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+
+  <!-- ══ TENT PANELS (darker sides) ══ -->
+  <path d="M6,82  Q8,38  46,8  L46,82 Z" fill="#246058"/>
+  <path d="M86,82 Q84,38 46,8  L46,82 Z" fill="#3A8070"/>
+
+  <!-- ══ DOOR ZIPPER (closed arch) ══ -->
+  <path d="M32,82 Q30,56 46,44 Q62,56 60,82 Z" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Zipper pull -->
+  <circle cx="46" cy="44" r="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="46" y1="47" x2="46" y2="54" stroke="#E0A94A" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ══ MESH WINDOW (side) ══ -->
+  <ellipse cx="14" cy="58" rx="6" ry="10" fill="#7EB9D4" stroke="#1A1A1A" stroke-width="1.5"/>
+  <line x1="14" y1="48" x2="14" y2="68" stroke="#1A1A1A" stroke-width="1"/>
+  <line x1="8"  y1="58" x2="20" y2="58" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ POLE RIDGE ══ -->
+  <line x1="6" y1="82" x2="46" y2="8"  stroke="#1F3A5F" stroke-width="3" stroke-linecap="round"/>
+  <line x1="86" y1="82" x2="46" y2="8" stroke="#1F3A5F" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ══ GUY ROPES ══ -->
+  <line x1="46" y1="8"  x2="4"  y2="50" stroke="#E0A94A" stroke-width="1.5" stroke-dasharray="4,3" stroke-linecap="round"/>
+  <line x1="46" y1="8"  x2="88" y2="50" stroke="#E0A94A" stroke-width="1.5" stroke-dasharray="4,3" stroke-linecap="round"/>
+  <!-- Peg stakes -->
+  <line x1="4"  y1="50" x2="2"  y2="58" stroke="#E0A94A" stroke-width="3" stroke-linecap="round"/>
+  <line x1="88" y1="50" x2="90" y2="58" stroke="#E0A94A" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ══ GROUND FLOOR LINE ══ -->
+  <rect x="6" y="80" width="80" height="4" rx="2" fill="#7C5D31" stroke="#1A1A1A" stroke-width="1.5"/>
+</svg>

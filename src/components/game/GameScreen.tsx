@@ -9,6 +9,7 @@ import { ControlLegend } from '../hud/ControlLegend';
 import { CheckButton } from '../hud/CheckButton';
 import { VictoryBanner } from '../hud/VictoryBanner';
 import { HowToPlay } from '../menu/HowToPlay';
+import { NoirToggle } from '../hud/NoirToggle';
 
 export function GameScreen() {
   return (
@@ -21,6 +22,7 @@ export function GameScreen() {
         <ResetButtons />
         <CheckButton />
         <HowToPlay variant="game" />
+        <NoirToggle />
       </div>
       <ControlLegend />
       <VictoryBanner />

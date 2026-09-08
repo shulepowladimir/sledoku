@@ -9,6 +9,7 @@ import { GameLogo } from './GameLogo';
 import { HowToPlay } from './HowToPlay';
 import { ThemeIcon } from './ThemeIcon';
 import { AuthPanel } from '../auth/AuthPanel';
+import { NoirToggle } from '../hud/NoirToggle';
 
 // Ascending cell count first, then (ties) the `levels` array order — that array is already
 // chronological (each new level is appended at the end), so a stable sort keeps it as the tie-break.
@@ -46,6 +47,7 @@ export function LevelMenu() {
         </div>
         <div className="site-header__actions">
           <AuthPanel />
+          <NoirToggle />
           <HowToPlay />
         </div>
       </header>

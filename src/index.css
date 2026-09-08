@@ -9,10 +9,35 @@
 
 body {
   margin: 0;
-  background: #1b1a1f;
+  /* Цветной режим: светлый фон и в меню, и на уровнях (нуар — ниже). */
+  background: #faf8f4;
+  color: #2a2a2a;
+  transition: background 0.25s, color 0.25s;
+}
+
+/* Нуар-режим: чёрный фон и в меню, и на уровнях. */
+body.noir {
+  background: #0a0a0a;
   color: #f3f2f6;
 }
 
 #root {
   min-height: 100vh;
+}
+
+/* ── Нуар-режим ───────────────────────────────────────────────────────────
+   Невидимый верхний оверлей: backdrop-filter красит всё нарисованное ниже,
+   включая порталы в document.body. filter на #root не годится — он создаёт
+   containing block и ломает position: fixed у модалок/туториала.
+   z-index 10000 — выше всего контента (максимум в приложении 2002), но ниже
+   тумблера .noir-toggle (z-index 10001): кнопка «Цветной режим» обязана
+   оставаться бордовой, а не сереть под оверлеем. */
+body.noir::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  backdrop-filter: grayscale(1);
+  -webkit-backdrop-filter: grayscale(1);
 }

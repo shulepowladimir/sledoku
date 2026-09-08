@@ -606,6 +606,56 @@
   text-align: center;
 }
 
+/* ── Нуар-режим (тумблер в меню и на уровне) ─────────────────────────────── */
+
+/* «Нуар-режим» (выкл): чёрная кнопка с белым шрифтом — намекает, куда ведёт. */
+.noir-toggle {
+  /* Выше нуар-оверлея (10000): бордовая «Цветной режим» не сереет в нуаре.
+     До кнопки нет stacking-контекстов (hud-bar/site-header без fixed/transform). */
+  position: relative;
+  z-index: 10001;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #2a2a2a;
+  background: #2a2a2a;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.noir-toggle:hover {
+  background: #3a3a3a;
+  border-color: #3a3a3a;
+}
+
+/* «Цветной режим» (вкл): бордовая — тон в тон подписям размера сетки. */
+.noir-toggle--active {
+  background: #8a2f28;
+  border-color: #8a2f28;
+  color: #fff;
+}
+
+.noir-toggle--active:hover {
+  background: #9c3a31;
+  border-color: #9c3a31;
+}
+
+/* Нуар: меню тоже на чёрном — текст меню светлый. */
+body.noir .level-menu {
+  background: #0a0a0a;
+  color: #f3f2f6;
+}
+
+body.noir .site-header__subtitle {
+  color: #b5b1aa;
+}
+
+body.noir .level-menu__empty {
+  color: #b5b1aa;
+}
+
 .how-to-play {
   position: relative;
 }

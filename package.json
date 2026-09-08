@@ -11,7 +11,9 @@
     "validate-level": "tsx tools/solver/cli.ts",
     "validate-all": "tsx tools/solver/validateAll.ts",
     "audit-icons": "tsx tools/icons/audit.ts",
+    "validate-art": "node art/tools/validate-art.mjs",
     "scaffold-level": "tsx tools/solver/scaffold.ts",
+    "pretest:smoke": "npm run validate-art",
     "test:smoke": "playwright test"
   },
   "dependencies": {

@@ -99,7 +99,9 @@ function buildReport() {
     return {
       key,
       validName: /^person-(m|f)-\d{2}$/.test(key),
-      hasClothingVar: content.includes('var(--person-clothing)'),
+      // Prefix match: both `var(--person-clothing)` and the recommended
+      // fallback form `var(--person-clothing, #8A8A8A)` are valid.
+      hasClothingVar: content.includes('var(--person-clothing'),
     };
   });
 
