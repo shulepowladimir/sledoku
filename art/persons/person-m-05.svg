@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    person-m-05 — капитан дальнего плавания, бюст.
+    Фуражка (тулья + околыш) и тужурка красятся игрой:
+    fill="var(--person-clothing, #8A8A8A)". Козырёк — глянцевый чёрный,
+    кокарда и пуговицы золотые E0A94A. Кожа обветренная C98B5E
+    (тень 8F5A3A, блик E3B48A). Бакенбарды с проседью, трубка в уголке рта,
+    тельняшка в вырезе. Без drop-теней (гайд §5): объём — cel-тени и контур.
+  -->
+
+  <!-- ══ ТУЖУРКА (var) ══ -->
+  <path d="M10 92 L10 84 Q10 71 26 71 L70 71 Q86 71 86 84 L86 92 Z"
+        fill="var(--person-clothing, #8A8A8A)" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M62 71 L70 71 Q86 71 86 84 L86 92 L62 92 Z" fill="#1A1A1A" opacity="0.15"/>
+
+  <!-- ══ ТЕЛЬНЯШКА В ВЫРЕЗЕ ══ -->
+  <path d="M41 71 L48 81 L55 71 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M43 74.2 Q48 75.8 53 74.2" fill="none" stroke="#1F3A5F" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M44.5 77.4 Q48 78.6 51.5 77.4" fill="none" stroke="#1F3A5F" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- ══ ЛАЦКАНЫ ТУЖУРКИ ══ -->
+  <path d="M40 71 L48 83 L36 92 L26 92 Q26 77 40 71 Z" fill="#1A1A1A" opacity="0.2"/>
+  <path d="M56 71 L48 83 L60 92 L70 92 Q70 77 56 71 Z" fill="#1A1A1A" opacity="0.2"/>
+  <path d="M40 71 L48 83 L36 92 L26 92 Q26 77 40 71 Z" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M56 71 L48 83 L60 92 L70 92 Q70 77 56 71 Z" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
+
+  <!-- ══ ПУГОВИЦЫ (золото) ══ -->
+  <circle cx="48" cy="86" r="1.7" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+  <circle cx="48" cy="90.8" r="1.7" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ ШЕЯ ══ -->
+  <rect x="42" y="60" width="12" height="12" rx="3" fill="#C98B5E" stroke="#1A1A1A" stroke-width="2.4"/>
+  <rect x="42" y="60" width="12" height="4.5" rx="2.2" fill="#8F5A3A"/>
+
+  <!-- ══ УШИ ══ -->
+  <ellipse cx="29.5" cy="49" rx="4" ry="6" fill="#C98B5E" stroke="#1A1A1A" stroke-width="2.4"/>
+  <ellipse cx="66.5" cy="49" rx="4" ry="6" fill="#8F5A3A" stroke="#1A1A1A" stroke-width="2.4"/>
+  <path d="M28.2 46.8 Q30.6 49 28.8 51.4" fill="none" stroke="#8F5A3A" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M67.2 46.8 Q64.8 49 66.6 51.4" fill="none" stroke="#5A4636" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- ══ ГОЛОВА ══ -->
+  <circle cx="48" cy="48" r="19" fill="#C98B5E" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Cel-тень: правая сторона лица -->
+  <path d="M60 33.3 A19 19 0 0 1 60 62.7 A15.5 15.5 0 0 0 60 33.3 Z" fill="#8F5A3A"/>
+  <!-- Cel-тень: полоса лба под козырьком -->
+  <path d="M32 44.5 Q48 40 64 44.5 L63.3 47.5 Q48 43.2 32.7 47.5 Z" fill="#8F5A3A"/>
+
+  <!-- ══ БАКЕНБАРДЫ С ПРОСЕДЬЮ ══ -->
+  <path d="M29.2 50.5 Q27.8 58 31.5 63.5 Q34 66 36.5 64.5 Q33.5 59.5 33.8 52.5 Z"
+        fill="#5A4636" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M66.8 50.5 Q68.2 58 64.5 63.5 Q62 66 59.5 64.5 Q62.5 59.5 62.2 52.5 Z"
+        fill="#5A4636" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <g fill="none" stroke="#C9A24A" stroke-width="1.3" stroke-linecap="round">
+    <path d="M30.8 55 Q30.2 58.5 31.8 61"/>
+    <path d="M65.2 55 Q65.8 58.5 64.2 61"/>
+    <path d="M32.6 52.5 Q32.2 54.5 32.6 56.5"/>
+  </g>
+
+  <!-- ══ БРОВИ (густые, прямые, суровые) ══ -->
+  <path d="M35 44.8 Q37.6 43 40.6 43.4 L40.3 45.8 Q37.8 45.4 35.8 46.6 Z" fill="#3A2A20"/>
+  <path d="M50.8 43.4 Q54.4 43 58.6 44.8 L57.8 46.6 Q54.2 45.2 51.1 45.8 Z" fill="#3A2A20"/>
+
+  <!-- ══ ГЛАЗА (синие, морские) ══ -->
+  <!-- Левый -->
+  <ellipse cx="40.5" cy="48.4" rx="3.3" ry="3.6" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.3"/>
+  <circle cx="41.2" cy="48.7" r="2.3" fill="#1F3A5F"/>
+  <circle cx="41.3" cy="48.8" r="1.05" fill="#1A1A1A"/>
+  <circle cx="40.5" cy="47.8" r="0.65" fill="#F5E9D0"/>
+  <path d="M37.3 47 Q40.5 44.6 44 46.7" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <path d="M37.8 52.2 Q40.6 53.4 43.6 52.4" fill="none" stroke="#8F5A3A" stroke-width="1.3" stroke-linecap="round"/>
+  <!-- Правый -->
+  <ellipse cx="55.5" cy="48.4" rx="3.3" ry="3.6" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.3"/>
+  <circle cx="54.8" cy="48.7" r="2.3" fill="#1F3A5F"/>
+  <circle cx="54.7" cy="48.8" r="1.05" fill="#1A1A1A"/>
+  <circle cx="54" cy="47.8" r="0.65" fill="#F5E9D0"/>
+  <path d="M52 46.7 Q55.5 44.6 58.7 47" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <path d="M52.4 52.4 Q55.4 53.4 58.2 52.2" fill="none" stroke="#8F5A3A" stroke-width="1.3" stroke-linecap="round"/>
+  <!-- Морщинки у внешних уголков глаз -->
+  <path d="M35.6 49.6 Q34.6 51 34.9 52.6" fill="none" stroke="#8F5A3A" stroke-width="1.1" stroke-linecap="round"/>
+  <path d="M60.4 49.6 Q61.4 51 61.1 52.6" fill="none" stroke="#8F5A3A" stroke-width="1.1" stroke-linecap="round"/>
+
+  <!-- ══ НОС (крупный, обветренный) ══ -->
+  <path d="M47.6 44 Q46.2 49.5 45.7 53" fill="none" stroke="#8F5A3A" stroke-width="1.9" stroke-linecap="round"/>
+  <path d="M45.7 53 Q47.3 56.8 50.5 55.6" fill="none" stroke="#8F5A3A" stroke-width="1.9" stroke-linecap="round"/>
+  <ellipse cx="44.9" cy="55.3" rx="1" ry="0.7" fill="#8F5A3A"/>
+  <ellipse cx="51.6" cy="55" rx="1" ry="0.7" fill="#8F5A3A"/>
+  <circle cx="46.8" cy="53.7" r="0.85" fill="#E3B48A"/>
+
+  <!-- ══ РОТ (сдержанная линия, решительный) + тень подбородка ══ -->
+  <path d="M41.5 60.2 Q48 63 54.5 59.6" fill="none" stroke="#1A1A1A" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M43.8 62.8 Q48 64.8 52.4 62.2 Q48.3 64 43.8 62.8 Z" fill="#C98B5E"/>
+  <ellipse cx="48" cy="64.8" rx="4.5" ry="1.5" fill="#8F5A3A"/>
+
+  <!-- ══ ТРУБКА (в правом уголке рта) ══ -->
+  <path d="M54.5 59.6 Q58.5 60.8 61 64" fill="none" stroke="#3A2A20" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M59.8 62.8 Q65.5 61.5 66.3 66.5 Q66.8 71.5 61.8 71.2 Q57.8 71 58.3 67 Q58.6 64.4 59.8 62.8 Z"
+        fill="#7A4A2A" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M59.6 63.6 Q65 62.6 65.6 66.4" fill="none" stroke="#E0A94A" stroke-width="1.3" stroke-linecap="round"/>
+
+  <!-- ══ ФУРАЖКА ══ -->
+  <!-- Козырёк (глянцевый чёрный) -->
+  <path d="M29 36 Q48 45 67 36 Q67 42.5 57.5 43.5 Q48 44.3 38.5 43.5 Q29 42.5 29 36 Z"
+        fill="#1A1A1A" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M33.5 40.5 Q40 43.8 47 44" fill="none" stroke="#5A4636" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Тулья (var) -->
+  <path d="M28.5 36 L28.5 21 Q28.5 12.5 40 12.5 L56 12.5 Q67.5 12.5 67.5 21 L67.5 36 Z"
+        fill="var(--person-clothing, #8A8A8A)" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M48 12.5 L56 12.5 Q67.5 12.5 67.5 21 L67.5 36 L48 36 Z" fill="#1A1A1A" opacity="0.15"/>
+  <!-- Строчка канта по тулье -->
+  <path d="M31 22 Q48 18.5 65 22" fill="none" stroke="#E0A94A" stroke-width="1.6" stroke-linecap="round"/>
+  <!-- Околыш (var) -->
+  <rect x="27" y="32.5" width="42" height="6.5" rx="2"
+        fill="var(--person-clothing, #8A8A8A)" stroke="#1A1A1A" stroke-width="2.6"/>
+  <rect x="48" y="32.5" width="21" height="6.5" rx="2" fill="#1A1A1A" opacity="0.15"/>
+  <!-- Кокарда (золотой ромб) -->
+  <path d="M48 33.8 L50.8 35.8 L48 37.8 L45.2 35.8 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.2" stroke-linejoin="round"/>
+</svg>

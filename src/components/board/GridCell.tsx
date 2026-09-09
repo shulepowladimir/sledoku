@@ -1,4 +1,4 @@
-import type { CSSProperties, MouseEvent } from 'react';
+import { useRef, type CSSProperties, type MouseEvent, type TouchEvent } from 'react';
 import type { ItemType, Person } from '../../types/level';
 import type { PersonCheckStatus } from '../../types/game';
 import type { CrossKind } from '../../engine/selectors';
@@ -17,6 +17,14 @@ export interface RoomBoundary {
 }
 
 const HOVER_ACCENT = '#ffcf4d';
+
+/** Задержка долгого нажатия: короче нативного contextmenu Android (~500мс). */
+const LONG_PRESS_MS = 450;
+/** Палец сдвинулся больше чем на столько — это скролл, не лонг-пресс. */
+const LONG_PRESS_SLACK_PX = 10;
+/** Сколько живёт подавление клика после лонг-пресса — чтобы проглотить
+ *  синтезированный браузером click сразу после touchend. */
+const SUPPRESS_MS = 600;
 
 interface GridCellProps {
   testId: string;
@@ -39,6 +47,8 @@ interface GridCellProps {
   onContextMenu: (event: MouseEvent) => void;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
+  /** Долгое нажатие на клетке с подписью (предмет/фича пола) — мобильная замена hover. */
+  onLongPress?: (text: string, x: number, y: number) => void;
 }
 
 export function GridCell({
@@ -61,7 +71,75 @@ export function GridCell({
   onContextMenu,
   onMouseEnter,
   onMouseLeave,
+  onLongPress,
 }: GridCellProps) {
+  const longPressTimerRef = useRef<number | null>(null);
+  const suppressClickRef = useRef(false);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+
+  const clearLongPressTimer = () => {
+    if (longPressTimerRef.current != null) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+  };
+
+  // Лонг-пресс подвешивается на ВСЕХ клетках с tooltip — в том числе на
+  // неинтерактивных (decorative-предмет блокирует размещение, но подпись
+  // посмотреть можно). preventDefault на touchstart НЕ звать — он ломает скролл.
+  const handleTouchStart = (event: TouchEvent) => {
+    suppressClickRef.current = false; // новый жест — прежнее подавление снято
+    if (!tooltip || !onLongPress) return;
+    if (event.touches.length > 1) {
+      touchStartRef.current = null;
+      clearLongPressTimer();
+      return;
+    }
+    const touch = event.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+    clearLongPressTimer();
+    longPressTimerRef.current = window.setTimeout(() => {
+      longPressTimerRef.current = null;
+      suppressClickRef.current = true;
+      window.setTimeout(() => {
+        suppressClickRef.current = false;
+      }, SUPPRESS_MS);
+      const start = touchStartRef.current;
+      onLongPress(tooltip, start?.x ?? touch.clientX, start?.y ?? touch.clientY);
+    }, LONG_PRESS_MS);
+  };
+
+  const handleTouchMove = (event: TouchEvent) => {
+    const start = touchStartRef.current;
+    if (!start || longPressTimerRef.current == null) return;
+    const touch = event.touches[0];
+    if (Math.hypot(touch.clientX - start.x, touch.clientY - start.y) > LONG_PRESS_SLACK_PX) {
+      touchStartRef.current = null;
+      clearLongPressTimer();
+    }
+  };
+
+  const handleTouchEnd = () => {
+    touchStartRef.current = null;
+    clearLongPressTimer();
+  };
+
+  const handleClick = () => {
+    if (suppressClickRef.current) return;
+    onClick();
+  };
+
+  // Android стреляет contextmenu посреди долгого нажатия — в этот момент палец
+  // ещё на экране (touchStartRef занят) либо лонг-пресс уже сработал. Оба случая —
+  // НЕ десктопный ПКМ: глотаем, иначе лонг-пресс ставил бы крестик/метку.
+  const handleContextMenu = (event: MouseEvent) => {
+    if (suppressClickRef.current || touchStartRef.current != null || longPressTimerRef.current != null) {
+      event.preventDefault();
+      return;
+    }
+    onContextMenu(event);
+  };
+
   const style: CSSProperties = {
     ...floorStyle,
     width: CELL_SIZE,
@@ -89,9 +167,13 @@ export function GridCell({
       data-testid={testId}
       style={style}
       title={tooltip}
-      onClick={interactive ? onClick : undefined}
+      onClick={interactive ? handleClick : undefined}
       onDoubleClick={interactive ? onDoubleClick : undefined}
-      onContextMenu={interactive ? onContextMenu : undefined}
+      onContextMenu={interactive ? handleContextMenu : undefined}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchEnd}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

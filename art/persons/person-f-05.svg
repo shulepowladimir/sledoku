@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    person-f-05 — дама в косынке, бюст.
+    Косынка (полотно + завязки + узел) и платье красятся игрой:
+    fill="var(--person-clothing, #8A8A8A)". Каштановые локоны у лица,
+    серьги-подвески, зелёные глаза, воротничок с брошью.
+    Кожа F2C9A0 (тень E3B48A). Без drop-теней (гайд §5).
+  -->
+
+  <!-- ══ ПЛАТЬЕ (var) ══ -->
+  <path d="M10 92 L10 84 Q10 71 26 71 L70 71 Q86 71 86 84 L86 92 Z"
+        fill="var(--person-clothing, #8A8A8A)" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M60 71 L70 71 Q86 71 86 84 L86 92 L60 92 Z" fill="#1A1A1A" opacity="0.15"/>
+
+  <!-- ══ ВОРОТНИЧОК (кремовый) + БРОШЬ ══ -->
+  <path d="M41.5 71 Q48 78 54.5 71 L52.5 71 Q48 75.4 43.5 71 Z"
+        fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
+  <circle cx="48" cy="76.8" r="1.7" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- ══ ШЕЯ ══ -->
+  <rect x="43" y="60" width="10" height="12" rx="3" fill="#F2C9A0" stroke="#1A1A1A" stroke-width="2.4"/>
+  <rect x="43" y="60" width="10" height="4.5" rx="2.2" fill="#E3B48A"/>
+
+  <!-- ══ УШИ ══ -->
+  <ellipse cx="30" cy="48.5" rx="4" ry="6" fill="#F2C9A0" stroke="#1A1A1A" stroke-width="2.4"/>
+  <ellipse cx="66" cy="48.5" rx="4" ry="6" fill="#E3B48A" stroke="#1A1A1A" stroke-width="2.4"/>
+  <path d="M28.7 46.3 Q31.1 48.5 29.3 50.9" fill="none" stroke="#E3B48A" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M66.7 46.3 Q64.3 48.5 66.1 50.9" fill="none" stroke="#C98B5E" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- ══ ГОЛОВА ══ -->
+  <circle cx="48" cy="47.5" r="18" fill="#F2C9A0" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Cel-тень: правая сторона лица -->
+  <path d="M59.5 33.7 A18 18 0 0 1 59.5 61.3 A14 14 0 0 0 59.5 33.7 Z" fill="#E3B48A"/>
+
+  <!-- ══ ЛОКОНЫ У ЛИЦА (каштановые) ══ -->
+  <path d="M33.2 41.5 Q31.8 48 34.2 53 Q36 56.5 39.6 55.6 Q36.8 51.8 36.6 47.2 Q36.4 43.6 35.8 41 Z"
+        fill="#5A4636" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M62.8 41.5 Q64.2 48 61.8 53 Q60 56.5 56.4 55.6 Q59.2 51.8 59.4 47.2 Q59.6 43.6 60.2 41 Z"
+        fill="#5A4636" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <g fill="none" stroke="#A9743A" stroke-width="1.2" stroke-linecap="round">
+    <path d="M35 44.5 Q34.4 48.5 35.8 52"/>
+    <path d="M61 44.5 Q61.6 48.5 60.2 52"/>
+  </g>
+
+  <!-- ══ БРОВИ (тонкие дуги) ══ -->
+  <path d="M36.3 41.9 Q40.4 39.6 44.8 41.2 L44.5 42.6 Q40.4 41.2 37 43 Z" fill="#3A2A20"/>
+  <path d="M51.2 41.2 Q55.6 39.6 59.7 41.9 L59 43 Q55.6 41.2 51.5 42.6 Z" fill="#3A2A20"/>
+
+  <!-- ══ ГЛАЗА (зелёные, cat eye, два блика) ══ -->
+  <!-- Левый -->
+  <ellipse cx="40.6" cy="47.9" rx="3.5" ry="4.1" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.3"/>
+  <circle cx="41.3" cy="48.1" r="2.7" fill="#2E6E65"/>
+  <circle cx="41.4" cy="48.2" r="1.2" fill="#1A1A1A"/>
+  <circle cx="40.4" cy="46.9" r="0.95" fill="#F5E9D0"/>
+  <circle cx="42.3" cy="49.3" r="0.5" fill="#F5E9D0"/>
+  <path d="M37 46 Q40.4 43.4 44.3 45.5" fill="none" stroke="#1A1A1A" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M37.2 45.8 Q36 44.6 34.9 44.3" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <path d="M38.2 51.4 Q40.6 52.3 43.4 51.7" fill="none" stroke="#1A1A1A" stroke-width="1.1" stroke-linecap="round"/>
+  <!-- Правый -->
+  <ellipse cx="55.4" cy="47.9" rx="3.5" ry="4.1" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.3"/>
+  <circle cx="54.7" cy="48.1" r="2.7" fill="#2E6E65"/>
+  <circle cx="54.6" cy="48.2" r="1.2" fill="#1A1A1A"/>
+  <circle cx="53.8" cy="46.9" r="0.95" fill="#F5E9D0"/>
+  <circle cx="55.7" cy="49.3" r="0.5" fill="#F5E9D0"/>
+  <path d="M51.7 45.5 Q55.6 43.4 59 46" fill="none" stroke="#1A1A1A" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M58.8 45.8 Q60 44.6 61.1 44.3" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <path d="M52.6 51.7 Q55.4 52.3 57.8 51.4" fill="none" stroke="#1A1A1A" stroke-width="1.1" stroke-linecap="round"/>
+
+  <!-- ══ НОС (изящный) ══ -->
+  <path d="M47.8 44.5 Q47.2 48.5 46.6 51" fill="none" stroke="#E3B48A" stroke-width="1.6" stroke-linecap="round"/>
+  <ellipse cx="46" cy="52.3" rx="0.9" ry="0.6" fill="#E3B48A"/>
+  <ellipse cx="50.6" cy="52.1" rx="0.9" ry="0.6" fill="#E3B48A"/>
+  <circle cx="47.3" cy="51.4" r="0.75" fill="#F5E9D0"/>
+
+  <!-- ══ ГУБЫ (лук Купидона + глянец) ══ -->
+  <path d="M42.3 57.2 Q44.8 55.6 46.6 56.8 Q48 57.7 49.4 56.8 Q51.2 55.6 53.7 57.2 Q51.2 62.8 48 62.8 Q44.8 62.8 42.3 57.2 Z"
+        fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M43.4 57.9 Q48 59.4 52.6 57.9" fill="none" stroke="#1A1A1A" stroke-width="1.4" stroke-linecap="round"/>
+  <ellipse cx="46.2" cy="60.3" rx="1.6" ry="0.9" fill="#F5E9D0"/>
+
+  <!-- ══ РУМЯНЕЦ + хайлайт скулы ══ -->
+  <circle cx="36" cy="52.8" r="2" fill="#E0824A"/>
+  <circle cx="60" cy="52.8" r="2" fill="#E0824A"/>
+  <circle cx="37.8" cy="50.9" r="0.9" fill="#F5E9D0"/>
+
+  <!-- ══ СЕРЬГИ-ПОДВЕСКИ ══ -->
+  <circle cx="30" cy="54" r="1.3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="0.9"/>
+  <path d="M30 56 Q31.6 58.5 30 61 Q28.4 58.5 30 56 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="0.9" stroke-linejoin="round"/>
+  <circle cx="66" cy="54" r="1.3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="0.9"/>
+  <path d="M66 56 Q67.6 58.5 66 61 Q64.4 58.5 66 56 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="0.9" stroke-linejoin="round"/>
+
+  <!-- ══ КОСЫНКА (var) ══ -->
+  <!-- Полотно над лбом -->
+  <path d="M31.5 41 Q29 26.5 42 22.5 Q48 21.5 54 22.5 Q67 26.5 64.5 41 L62 41 Q64.5 30 53.5 27.5 Q48 26 42.5 27.5 Q31.5 30 34 41 Z"
+        fill="var(--person-clothing, #8A8A8A)" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M48 21.8 L54 22.5 Q67 26.5 64.5 41 L56.5 41 Q59.5 30.5 52 28 Q50 27.2 48 27 Z" fill="#1A1A1A" opacity="0.15"/>
+  <!-- Волнистая кромка спереди -->
+  <path d="M34 40 Q38 37.5 42 39 Q46 40.5 50 39 Q54 37.5 58 39 Q60.5 39.8 62.5 41"
+        fill="none" stroke="#1A1A1A" stroke-width="1.4" stroke-linecap="round"/>
+  <!-- Складки на полотне -->
+  <g fill="none" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round">
+    <path d="M38.5 34 Q39.5 29 43 26.5"/>
+    <path d="M57.5 34 Q56.5 29 53 26.5"/>
+  </g>
+  <!-- Cel-тень: полоска лба под кромкой косынки -->
+  <path d="M35 41.5 Q48 38.8 61 41.5 L60.5 43.5 Q48 40.8 35.5 43.5 Z" fill="#E3B48A"/>
+
+  <!-- ══ ЗАВЯЗКИ И УЗЕЛ КОСЫНКИ (var): сходятся ПОД подбородком, не на рту ══ -->
+  <path d="M33.5 41 Q32.8 52 39 62 Q41 65 44.5 66.5 L43.5 63.8 Q40.5 61.5 38.5 55.5 Q36.2 49 36 42.5 Z"
+        fill="var(--person-clothing, #8A8A8A)" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M62.5 41 Q63.2 52 57 62 Q55 65 51.5 66.5 L52.5 63.8 Q55.5 61.5 57.5 55.5 Q59.8 49 60 42.5 Z"
+        fill="var(--person-clothing, #8A8A8A)" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <!-- Узел под подбородком (голова кончается на y=65.5, губы на y≈63) -->
+  <circle cx="48" cy="69" r="3.4" fill="var(--person-clothing, #8A8A8A)" stroke="#1A1A1A" stroke-width="2.4"/>
+  <path d="M45.6 67.4 Q48 69.2 50.4 67.4" fill="none" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- Концы косынки свисают на воротничок -->
+  <path d="M45.8 71.5 Q43.3 73.5 42.8 76 Q45.3 75.5 47 73.5 Z"
+        fill="var(--person-clothing, #8A8A8A)" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M50.2 71.5 Q52.7 73.5 53.2 76 Q50.7 75.5 49 73.5 Z"
+        fill="var(--person-clothing, #8A8A8A)" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+</svg>

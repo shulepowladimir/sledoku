@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import { apartmentLevel } from '../levels/01-apartment';
 import { tutorialLevel } from '../levels/00-tutorial';
 
@@ -102,4 +102,93 @@ test('tutorial: tooltip pinned to the bottom on mobile, steps advance', async ({
   // «Далее» — тач-таргет, шаги двигаются.
   await page.getByTestId('tutorial-next').tap();
   await expect(page.locator('[data-testid^="tutorial-step-"]').first()).toBeVisible();
+});
+
+// ── Долгое нажатие → подпись предмета/фичи пола (мобильная замена hover) ──
+// Touch-события диспетчеризуем руками: new Touch + TouchEvent — Playwright умеет
+// только мгновенный tap, а лонг-пресс — это touchstart + пауза + touchend.
+
+const LONG_PRESS_MS = 450;
+
+async function dispatchTouch(page: Page, testId: string, type: 'touchstart' | 'touchend', x = 180, y = 400) {
+  await page.evaluate(
+    ({ sel, eventType, cx, cy }) => {
+      const el = document.querySelector(sel) as HTMLElement;
+      const touches = eventType === 'touchstart' ? [new Touch({ identifier: 1, target: el, clientX: cx, clientY: cy })] : [];
+      el.dispatchEvent(new TouchEvent(eventType, { touches, bubbles: true, cancelable: true }));
+    },
+    { sel: `[data-testid="${testId}"]`, eventType: type, cx: x, cy: y },
+  );
+}
+
+/** Долгое нажатие: touchstart → пауза (таймер в GridCell — 450мс) → touchend. */
+async function longPress(page: Page, testId: string, x = 180, y = 400) {
+  await dispatchTouch(page, testId, 'touchstart', x, y);
+  await page.waitForTimeout(LONG_PRESS_MS + 200);
+  await dispatchTouch(page, testId, 'touchend');
+}
+
+test('long press: item label popup opens and closes by tap on backdrop', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${apartmentLevel.meta.id}`).tap();
+
+  // cell-0-0 — декоративная плита: клетка НЕинтерактивна (placement запрещён),
+  // но подпись по лонг-прессу обязана работать и на ней.
+  await longPress(page, 'cell-0-0');
+  const popup = page.getByTestId('label-popup');
+  await expect(popup).toBeVisible();
+  await expect(popup).toHaveText('Плита');
+
+  // Попап клампится в вьюпорт (не вылезает за края).
+  const clamped = await popup.evaluate((el) => {
+    const r = el.getBoundingClientRect();
+    return r.left >= 0 && r.right <= window.innerWidth && r.top >= 0 && r.bottom <= window.innerHeight;
+  });
+  expect(clamped).toBe(true);
+
+  // Тап по затемнению закрывает; сама клетка метку не получила.
+  await page.getByTestId('label-popup-backdrop').tap();
+  await expect(popup).toHaveCount(0);
+  await expect(page.getByTestId('cell-0-0')).not.toContainText('✕');
+});
+
+test('long press: floor feature label (rug), empty cell shows nothing', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${apartmentLevel.meta.id}`).tap();
+
+  // cell-4-2 — ковёр в спальне (фича пола, предмета на клетке нет).
+  await longPress(page, 'cell-4-2');
+  await expect(page.getByTestId('label-popup')).toBeVisible();
+  await expect(page.getByTestId('label-popup')).toHaveText('Ковёр');
+  await page.getByTestId('label-popup-backdrop').tap();
+  await expect(page.getByTestId('label-popup')).toHaveCount(0);
+
+  // cell-0-4 — голый пол гостиной: ни предмета, ни фичи — попапа нет.
+  await longPress(page, 'cell-0-4');
+  await expect(page.getByTestId('label-popup')).toHaveCount(0);
+});
+
+test('long press: synthesized click afterwards does not toggle a mark', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${apartmentLevel.meta.id}`).tap();
+
+  // cell-1-3 — интерактивная клетка с диваном (occupiable).
+  await page.getByTestId('roster-person-boris').tap();
+  await longPress(page, 'cell-1-3');
+
+  // Браузер после touchend синтезирует click — эмулируем его вручную:
+  // подавление в GridCell обязано проглотить клик, метки «Б» не появляется.
+  await page.evaluate(() => {
+    const el = document.querySelector('[data-testid="cell-1-3"]') as HTMLElement;
+    el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+  });
+  await expect(page.getByTestId('cell-1-3')).not.toContainText('Б');
+
+  // Попап ещё открыт (бэкдроп над доской) — закрываем, потом тапаем клетку.
+  await page.getByTestId('label-popup-backdrop').tap();
+  await expect(page.getByTestId('label-popup')).toHaveCount(0);
+
+  // Обычный тап после всего — по-прежнему ставит метку (подавление снято).
+  await page.getByTestId('cell-1-3').tap();
+  await expect(page.getByTestId('cell-1-3')).toContainText('Б');
 });

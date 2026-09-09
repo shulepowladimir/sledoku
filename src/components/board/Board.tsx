@@ -6,6 +6,7 @@ import { useGameStore } from '../../state/gameStore';
 import { GridCell } from './GridCell';
 import { RoomLabel } from './RoomLabel';
 import { ItemOverlay } from './ItemOverlay';
+import { LabelPopup } from './LabelPopup';
 import { floorStyle, CELL_SIZE } from '../../styles/floorTextures';
 
 export function Board() {
@@ -16,6 +17,8 @@ export function Board() {
   const handleRightClick = useGameStore((s) => s.handleRightClick);
 
   const [hoveredRoomId, setHoveredRoomId] = useState<RoomId | null>(null);
+  // Подпись предмета/фичи пола по долгому нажатию (мобильные; см. LabelPopup).
+  const [labelPopup, setLabelPopup] = useState<{ text: string; x: number; y: number } | null>(null);
 
   const itemTypesById = new Map(level.itemTypes.map((t) => [t.id, t]));
   const itemsById = new Map(level.items.map((i) => [i.id, i]));
@@ -101,7 +104,8 @@ export function Board() {
   const boardScale = Math.max(0.3, Math.min(baseScale, fitScaleW, fitScaleH));
 
   return (
-    <div ref={wrapperRef} className="board-wrap" style={{ height: naturalSize * boardScale }}>
+    <>
+      <div ref={wrapperRef} className="board-wrap" style={{ height: naturalSize * boardScale }}>
       <div
         className={`board${hasCutouts ? ' board--cut' : ''}`}
         style={{
@@ -162,6 +166,7 @@ export function Board() {
             }}
             onMouseEnter={() => setHoveredRoomId(cell.roomId)}
             onMouseLeave={() => setHoveredRoomId(null)}
+            onLongPress={tooltip ? (text, x, y) => setLabelPopup({ text, x, y }) : undefined}
           />
         );
       })}
@@ -170,5 +175,7 @@ export function Board() {
       ))}
       </div>
     </div>
+      {labelPopup && <LabelPopup {...labelPopup} onClose={() => setLabelPopup(null)} />}
+    </>
   );
 }
