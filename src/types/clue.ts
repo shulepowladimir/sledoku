@@ -87,6 +87,22 @@ export interface SameRoomAsClue extends ClueBase {
   negated?: boolean;
 }
 
+/**
+ * "Person X was north/south/west/east of the (unknown) person sitting on an item of type T"
+ * (e.g. "west of the man in the car"). The occupant of each item instance is resolved from the
+ * ground truth at evaluation time (the same hidden-party pattern as role subjects); meaningful
+ * only when the item type has ≥2 instances so the player must first deduce who sits where.
+ * Direction only — no exact offset (kept for a possible future extension). Not unary: depends
+ * on another person's placement. Item-related: capped by the 30% ITEM_RELATED share.
+ */
+export interface RelativeToItemOccupantClue extends ClueBase {
+  type: 'relativeToItemOccupant';
+  subject: Subject;
+  itemTypeId: ItemTypeId;
+  axis: 'row' | 'col';
+  direction: 'before' | 'after';
+}
+
 /** "Person X was in the same room as an item of type T" — room-wide, not adjacency-limited. */
 export interface SameRoomAsItemClue extends ClueBase {
   type: 'sameRoomAsItem';
@@ -269,6 +285,7 @@ export type Clue =
   | CornerClue
   | FloorFeatureClue
   | SameRoomAsClue
+  | RelativeToItemOccupantClue
   | SameRoomAsItemClue
   | OccupiesItemClue
   | WallSideClue

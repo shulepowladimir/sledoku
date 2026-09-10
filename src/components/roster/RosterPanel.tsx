@@ -51,9 +51,10 @@ export function RosterPanel() {
   // General section: clues without a subject (level-wide rules) plus role-subject clues — their
   // owner is the hidden role holder, unknown to the player, so they cannot hang on a person's row.
   const generalClues = level.clues.filter((clue) => !('subject' in clue) || clue.subject.type === 'role');
-  const columnCount = level.people.length >= 9 ? 3 : level.people.length >= 7 ? 2 : 1;
+  // Desktop roster columns by headcount: 6 people (6×6 levels) → 2 columns of 3;
+  // 7–8 → 2 columns; 9+ (incl. 12×12) → 3 columns of 4. Tutorial (5) stays single-column.
+  const columnCount = level.people.length >= 9 ? 3 : level.people.length >= 6 ? 2 : 1;
   const panelColsClass = columnCount > 1 ? ` roster-panel--cols-${columnCount}` : '';
-  const listColsClass = columnCount > 1 ? ` roster-list--cols-${columnCount}` : '';
 
   const handleMobilePersonTap = (personId: string) => {
     if (expandedPersonId === personId && selectedPersonId === personId) {
@@ -147,37 +148,48 @@ export function RosterPanel() {
 
       <section className="roster-panel__section">
         <h3>Действующие лица</h3>
-        <ul className={`roster-list${listColsClass}`}>
-          {level.people.map((person) => {
-            const { isPlaced, statusClass, selectedClass, placedStatusText, unplacedStatusText } = headerFor(person);
-            const personalClues = person.isVictim ? [] : personalCluesFor(level.clues, person.id);
-            return (
-              <li key={person.id} className={`roster-entry ${statusClass} ${selectedClass}`}>
-                <button
-                  type="button"
-                  className="roster-entry__header"
-                  data-testid={`roster-person-${person.id}`}
-                  onClick={() => selectPerson(person.id)}
-                >
-                  <RosterAvatar person={person} />
-                  <span className="roster-entry__name" style={{ color: person.color }}>{person.name}</span>
-                  <span className="roster-entry__status">{isPlaced ? placedStatusText : unplacedStatusText}</span>
-                </button>
-                <ul className="roster-entry__clues">
-                  {person.isVictim ? (
-                    <li className="roster-entry__clue">{VICTIM_LINE}</li>
-                  ) : (
-                    personalClues.map((clue) => (
-                      <li key={clue.id} className="roster-entry__clue">
-                        {clue.text}
-                      </li>
-                    ))
-                  )}
-                </ul>
-              </li>
-            );
-          })}
-        </ul>
+        {/* Equal desktop columns (e.g. 12 people → 4+4+4): CSS multi-column fills by
+            height (5+5+2), so we split the list into columnCount explicit <ul>s instead.
+            Alphabet runs DOWN each column (А,Б,В / Г,Д,Е / Ж,Х) — contiguous chunks,
+            like the old CSS multi-column did. */}
+        <div className="roster-columns">
+          {(() => {
+            const chunk = Math.ceil(level.people.length / columnCount);
+            return Array.from({ length: columnCount }, (_, col) => (
+              <ul key={col} className={`roster-list${columnCount > 1 ? ' roster-list--stack' : ''}`}>
+                {level.people.slice(col * chunk, col * chunk + chunk).map((person) => {
+                  const { isPlaced, statusClass, selectedClass, placedStatusText, unplacedStatusText } = headerFor(person);
+                  const personalClues = person.isVictim ? [] : personalCluesFor(level.clues, person.id);
+                  return (
+                    <li key={person.id} className={`roster-entry ${statusClass} ${selectedClass}`}>
+                      <button
+                        type="button"
+                        className="roster-entry__header"
+                        data-testid={`roster-person-${person.id}`}
+                        onClick={() => selectPerson(person.id)}
+                      >
+                        <RosterAvatar person={person} />
+                        <span className="roster-entry__name" style={{ color: person.color }}>{person.name}</span>
+                        <span className="roster-entry__status">{isPlaced ? placedStatusText : unplacedStatusText}</span>
+                      </button>
+                      <ul className="roster-entry__clues">
+                        {person.isVictim ? (
+                          <li className="roster-entry__clue">{VICTIM_LINE}</li>
+                        ) : (
+                          personalClues.map((clue) => (
+                            <li key={clue.id} className="roster-entry__clue">
+                              {clue.text}
+                            </li>
+                          ))
+                        )}
+                      </ul>
+                     </li>
+                   );
+                 })}
+             </ul>
+             ));
+           })()}
+        </div>
       </section>
 
       {generalClues.length > 0 && (

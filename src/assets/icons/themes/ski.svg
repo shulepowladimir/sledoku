@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    ski — «Перед лавиной»: заснеженный пик под вечерним небом,
+    срывающийся с гребня лавина, красный флажок, ели у подножия.
+  -->
+  <!-- Вечернее небо-подложка -->
+  <rect x="6" y="6" width="84" height="84" rx="6" fill="#9CC3E0"/>
+
+  <!-- Дальний хребет -->
+  <path d="M6 44 L28 26 L46 44 Z" fill="#9BA5AD"/>
+  <path d="M6 44 L28 26 L34 32 L22 44 Z" fill="#F5E9D0"/>
+
+  <!-- Главный пик -->
+  <path d="M20 82 L46 14 L74 82 Z" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <!-- Снежная шапка -->
+  <path d="M46 14 L60 46 Q54 42 50 47 Q46 42 41 48 Q36 42 31.5 46 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <!-- Снежный язык по склону -->
+  <path d="M46 24 L54 42 L50 40 L48 45 L44 40 L40 44 Z" fill="#F5E9D0"/>
+  <!-- Скальные грани -->
+  <path d="M46 30 L38 52 L46 48 L42 62" fill="none" stroke="#5C6670" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M48 34 L56 50 L50 47 L54 60" fill="none" stroke="#5C6670" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Лавина (срывается с левого склона) -->
+  <path d="M42 46 Q34 52 30 62 Q27 72 32 82 L46 82 Q38 74 40 64 Q42 54 46 50 Z"
+        fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <!-- Пылевые клубы лавины -->
+  <circle cx="34" cy="52" r="4.5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="29" cy="60" r="5.5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="33" cy="70" r="6.5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.8"/>
+  <circle cx="40" cy="78" r="5.5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.8"/>
+
+  <!-- Красный флажок на вершине (акцент) -->
+  <path d="M46 14 L46 4" stroke="#5C6670" stroke-width="2" stroke-linecap="round"/>
+  <path d="M46 4 L56 7 L46 10 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- Ели у подножия -->
+  <g fill="#44663A" stroke="#1A1A1A" stroke-width="1.8">
+    <path d="M70 82 L76 68 L82 82 Z"/>
+    <path d="M71 76 L76 65 L81 76 Z"/>
+  </g>
+  <g fill="#5E8A46" stroke="#1A1A1A" stroke-width="1.8">
+    <path d="M84 82 L88 73 L92 82 Z"/>
+  </g>
+
+  <!-- Снежное подножие -->
+  <path d="M20 82 Q34 76 48 82 Q62 76 74 82 L74 88 L20 88 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+</svg>

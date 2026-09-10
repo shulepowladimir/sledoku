@@ -1,6 +1,6 @@
 import type { Cell, CellId, Level, PersonId, RoomId } from '../../src/types/level';
 import { cellId } from '../../src/types/level';
-import type { Clue, RelativePositionClue, Subject } from '../../src/types/clue';
+import type { Clue, RelativePositionClue, RelativeToItemOccupantClue, Subject } from '../../src/types/clue';
 import { buildLevelIndex, cellBoundary, isCorner, isLegalTarget, type LevelIndex } from '../../src/engine/board';
 
 type Person = Level['people'][number];
@@ -166,6 +166,32 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
       if (!a || !b) return undefined;
       const result = index.cellsById.get(a)!.roomId === index.cellsById.get(b)!.roomId;
       return clue.negated ? !result : result;
+    }
+    case 'relativeToItemOccupant': {
+      // «Западнее человека, сидевшего в машине»: сиделец неизвестен игроку, но резолвится
+      // из расстановки (паттерн роль-субъекта). Семантика направления — как relativePosition:
+      // axis row + before = севернее (меньше ряд), axis col + before = западнее (меньше столбец).
+      const a = getCell(subjectPersonId(clue.subject, level));
+      if (!a) return undefined;
+      const occupantIds = level.people
+        .filter((p) => {
+          const pc = getCell(p.id);
+          if (!pc) return false;
+          const item = level.items.find((i) => i.cells.includes(pc));
+          return item?.typeId === clue.itemTypeId;
+        })
+        .map((p) => p.id);
+      // Ни один экземпляр предмета не занят — на неполной расстановке ждём; на полной это ложь.
+      if (occupantIds.length === 0) return allAssigned ? false : undefined;
+      const ca = index.cellsById.get(a)!;
+      const va = clue.axis === 'row' ? ca.row : ca.col;
+      for (const occupantId of occupantIds) {
+        const oc = getCell(occupantId)!;
+        const occCell = index.cellsById.get(oc)!;
+        const vb = clue.axis === 'row' ? occCell.row : occCell.col;
+        if (clue.direction === 'before' ? va < vb : va > vb) return true;
+      }
+      return false;
     }
     case 'sameRoomAsItem': {
       const subjectCellId = getCell(subjectPersonId(clue.subject, level));
@@ -442,10 +468,20 @@ export function solveLevel(level: Level): SolverResult {
     domains.set(person.id, computeUnaryDomain(level, index, legalCells, person.id));
   }
 
-  const relClues = level.clues.filter((c): c is RelativePositionClue => c.type === 'relativePosition');
-  const relCluesByPerson = new Map<PersonId, RelativePositionClue[]>();
+  // Направленные реляционные клю проверяются по ходу перебора (relConsistent), а не только
+  // на листьях: relativePosition — про двух известных людей, relativeToItemOccupant — про
+  // субъекта и (скрытых) сидельцев предмета. Обе могут отсекать ветку до полной расстановки.
+  const relClues = level.clues.filter(
+    (c): c is RelativePositionClue | RelativeToItemOccupantClue =>
+      c.type === 'relativePosition' || c.type === 'relativeToItemOccupant',
+  );
+  const relCluesByPerson = new Map<PersonId, Array<RelativePositionClue | RelativeToItemOccupantClue>>();
   for (const clue of relClues) {
-    for (const pid of [subjectPersonId(clue.subject, level), clue.otherPersonId]) {
+    const participants: PersonId[] =
+      clue.type === 'relativePosition'
+        ? [subjectPersonId(clue.subject, level), clue.otherPersonId]
+        : [subjectPersonId(clue.subject, level)];
+    for (const pid of participants) {
       if (!relCluesByPerson.has(pid)) relCluesByPerson.set(pid, []);
       relCluesByPerson.get(pid)!.push(clue);
     }

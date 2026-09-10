@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    circus — «Шоу не по плану»: полосатый цирковой шатёр с флагом
+    и помпоном, арка входа откинута, по бокам — флажки-гирлянды.
+  -->
+  <!-- Гирлянда флажков (фон) -->
+  <g stroke="#5C6670" stroke-width="1.2">
+    <path d="M8 34 Q28 24 48 32"/>
+  </g>
+  <path d="M14 31 L18 40 L22 32.5 Z" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.4" stroke-linejoin="round"/>
+  <path d="M24 29 L28 38 L32 30.5 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.4" stroke-linejoin="round"/>
+  <path d="M34 29 L38 37 L42 30.5 Z" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.4" stroke-linejoin="round"/>
+
+  <!-- Шатёр: основной конус -->
+  <path d="M48 6 L86 60 L10 60 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Кремовые сектора шатра -->
+  <path d="M48 6 L61 26.5 L53 31 L56 40 L46.5 38 L47 50 L38 44.5 L40 33.5 L32 34.5 Z" fill="#F5E9D0"/>
+  <path d="M35.5 32.5 L48 6 L28.5 35 Q32 34 35.5 32.5 Z" fill="#F5E9D0"/>
+  <path d="M48 6 L61 26.5 Q58 25 55.5 23.5 Z" fill="#F5E9D0"/>
+  <!-- Швы секторов -->
+  <g stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round">
+    <path d="M48 6 L30 32.5"/>
+    <path d="M48 6 L61 26.5"/>
+  </g>
+
+  <!-- Флаг-вымпел от шпиля (акцент) -->
+  <path d="M50 8 Q57 7.5 62 11 Q57 14.5 51 13 Q49.5 10.8 50 8 Z" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="1.4" stroke-linejoin="round"/>
+  <!-- Шарик-помпон на шпиле -->
+  <circle cx="48" cy="6.5" r="3" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.6"/>
+
+  <!-- Юбка шатра (нижний ярус) -->
+  <path d="M10 60 L86 60 L90 72 L6 72 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- Волнистый край юбки -->
+  <path d="M6 72 Q12 66 18 72 Q24 66 30 72 Q36 66 42 72 Q48 66 54 72 Q60 66 66 72 Q72 66 78 72 Q84 66 90 72"
+        fill="none" stroke="#1A1A1A" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- Кремовые зубцы на юбке -->
+  <g fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.4">
+    <path d="M18 72 Q24 66 30 72 Z"/>
+    <path d="M42 72 Q48 66 54 72 Z"/>
+    <path d="M66 72 Q72 66 78 72 Z"/>
+  </g>
+
+  <!-- Арка входа -->
+  <path d="M36 72 L36 64 Q48 56 60 64 L60 72 Z" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <!-- Откинутый полог -->
+  <path d="M36 64 Q48 55 60 64 L60 60 Q48 50 36 60 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+
+  <!-- Земля -->
+  <path d="M6 78 L90 78 L90 84 L6 84 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M10 81 L86 81" stroke="#B87F33" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

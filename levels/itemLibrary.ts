@@ -4,10 +4,33 @@ function item(id: string, icon: string, kind: ItemType['kind'], defaultLabel: st
   return (label: string = defaultLabel): ItemType => ({ id, label, kind, icon });
 }
 
-// Reusable generic items for new levels (office/mall/forest and beyond). Each entry's `icon`
-// already has a matching case in ItemIcon.tsx. Generate bespoke ItemType objects only for
-// items that are genuinely unique to a level's theme — check here first.
+// Reusable generic items for new levels (office/mall/forest and beyond). Icons are resolved
+// through the SVG registry (import.meta.glob in iconRegistry.ts) — no ItemIcon.tsx cases needed.
+// Generate bespoke ItemType objects only for items that are genuinely unique to a level's
+// theme — check here first.
 export const ItemLibrary = {
+  // ——— Улица (26-street) ———
+  car: item('car', 'car', 'occupiable', 'Машина'),
+  trafficLight: item('trafficLight', 'trafficLight', 'decorative', 'Светофор'),
+  trafficSign: item('trafficSign', 'trafficSign', 'decorative', 'Дорожный знак'),
+  washer: item('washer', 'washingMachine', 'decorative', 'Стиральная машина'),
+  // ——— Дом великана (27-gianthouse) ———
+  kettle: item('kettle', 'kettle', 'decorative', 'Чайник'),
+  fryingPan: item('fryingPan', 'fryingPan', 'occupiable', 'Сковорода'),
+  burner: item('burner', 'burner', 'decorative', 'Конфорка'),
+  pillow: item('pillow', 'pillow', 'occupiable', 'Подушка'),
+  remote: item('remote', 'remote', 'decorative', 'Пульт'),
+  plate: item('plate', 'plate', 'occupiable', 'Тарелка'),
+  cup: item('cup', 'cup', 'decorative', 'Чашка'),
+  slippers: item('slippers', 'slippers', 'decorative', 'Тапки'),
+  cat: item('cat', 'cat', 'decorative', 'Кот'),
+  // ——— Горный отель (28-skihotel) ———
+  fireplace: item('fireplace', 'fireplace', 'decorative', 'Камин'),
+  skiRack: item('skiRack', 'skiRack', 'decorative', 'Стойка с лыжами'),
+  // ——— Цирк (29-circus) ———
+  cage: item('cage', 'cage', 'decorative', 'Клетка'),
+  hoop: item('hoop', 'hoop', 'decorative', 'Обруч'),
+  turnstile: item('turnstile', 'turnstile', 'decorative', 'Турникет'),
   chair: item('chair', 'chair', 'occupiable', 'Стул'),
   armchair: item('armchair', 'armchair', 'occupiable', 'Кресло'),
   sofa: item('sofa', 'sofa', 'occupiable', 'Диван'),

@@ -101,8 +101,29 @@
 - spotlight — decorative
 - makeupMirror — decorative
 - movieCamera — decorative
+- car — occupiable (2-клеточный: единственный предмет с cells.length=2, рендер через ItemOverlay)
+- trafficLight — decorative
+- trafficSign — decorative
+- washer — decorative (icon washingMachine)
+- kettle — decorative
+- fryingPan — occupiable
+- burner — decorative
+- pillow — occupiable
+- remote — decorative
+- plate — occupiable
+- cup — decorative
+- slippers — decorative
+- cat — decorative
+- fireplace — decorative
+- skiRack — decorative
+- cage — decorative
+- hoop — decorative
 
 ## ItemIcon.tsx — существующие иконки (имена case, без кода)
+
+Новые ключи SVG сюда НЕ добавляются: иконки резолвятся через SVG-registry
+(`src/assets/iconRegistry.ts`, `import.meta.glob`) — он выигрывает у switch-case.
+Список ниже — только legacy-ключи fallback-свитча.
 
 stove, fridge, chair, sofa, bed, wardrobe, bookshelf, kassa, veggieCounter, cart, plant, rack, box, stool, paintingStand, sculpture, souvenirRack, ladder, bench, fountain, swing, lamppost, trashcan, flowerbed, kiosk, barCounter, piano, billiardTable, barStool, barrel, hitchingPost, haystack, safe, cauldron, workbench, spellbookStand, globe, artifactChest, armchair, portrait, telescope, broomRack, computer, watercooler, mannequin, tent, campfire, tree, stump, suitcase, departureBoard, turnstile, clock, sarcophagus, canopicJar, torch, goldStatue, stela, airlock, satelliteDish, cryopod, examTable, medicineCabinet, horse, cactus, wagon, trough, goal, ball, seat, treadmill, exerciseBike, hurdle, table, basketball, toilet, camera, toolbox, bathtub, jacuzzi, tv, floorLamp, keyBox, journal, palm, rock, coconut, hammock, hut, bottle, shell, lamp, boat, berth, samovar, luggageRack, throne, candleStand, armorStand, weaponRack, well, ferrisWheel, carousel, shootingGallery, popcornStand, plane, windsock, baggageCart, lion, giraffe, monkey, hippo, zebra, penguin, clueBoard, clapperboard, spotlight, makeupMirror, movieCamera
 

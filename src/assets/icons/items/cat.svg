@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    cat — кот, спящий калачиком: терракотовый с кремовой грудкой
+    и полосками, хвост колечком, ушки, закрытые глаза-дуги.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="80" rx="30" ry="4.5" fill="#3A2A20"/>
+
+  <!-- Хвост колечком -->
+  <path d="M74 72 Q88 70 86 58 Q84 48 74 50" fill="none" stroke="#B85F2E" stroke-width="7" stroke-linecap="round"/>
+  <path d="M76 68 Q84 65 83 57" fill="none" stroke="#E0824A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Кончик хвоста кремовый -->
+  <circle cx="74" cy="50" r="3.6" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.8"/>
+
+  <!-- Тело калачиком -->
+  <path d="M20 74 Q12 58 24 46 Q36 34 52 36 Q68 38 72 52 Q76 68 62 74 Q48 80 34 78 Q24 78 20 74 Z"
+        fill="#E0824A" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Тень по нижней кромке тела -->
+  <path d="M26 72 Q48 80 66 70" fill="none" stroke="#B85F2E" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- Блик сверху-слева -->
+  <path d="M26 50 Q32 40 44 38" fill="none" stroke="#F5E9D0" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Полоски на спине -->
+  <path d="M40 38 Q42 44 40 48 M50 38 Q52 44 50 49 M59 41 Q61 46 59 51" fill="none" stroke="#B85F2E" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- Голова (слева, прижата к телу) -->
+  <circle cx="34" cy="60" r="15" fill="#E0824A" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Ушки -->
+  <path d="M24 51 L20 40 L31 46 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M26 48.5 L24.5 44 L29 46.5 Z" fill="#B85F2E"/>
+  <path d="M42 47 L48 38 L49 49 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M43.5 46 L46.5 42 L46.8 47 Z" fill="#B85F2E"/>
+
+  <!-- Закрытые глаза (дуги) -->
+  <path d="M27 60 Q29 62 31 60 M36 60 Q38 62 40 60" fill="none" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Носик (акцент) -->
+  <path d="M32.5 66 L35.5 66 L34 68.2 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="1"/>
+  <!-- Усики -->
+  <path d="M24 64 L17 63 M24 67 L18 68 M44 64 L51 63 M44 67 L50 68" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- Кремовая грудка -->
+  <path d="M28 70 Q34 76 41 71 Q35 74 28 70 Z" fill="#F5E9D0" stroke="none"/>
+</svg>

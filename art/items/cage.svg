@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    cage — цирковая клетка для зверинца: купольная решётка,
+    вертикальные стальные прутья, деревянное основание, замок-задвижка.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="88" rx="32" ry="4" fill="#3A2A20"/>
+
+  <!-- Деревянное основание -->
+  <path d="M16 70 L80 70 L84 84 L12 84 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- Планки основания -->
+  <path d="M16 76 L80 76" stroke="#B87F33" stroke-width="1.8"/>
+  <path d="M20 72.5 L76 72.5 M18 80 L78 80" stroke="#E8B95F" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- Тёмный интерьер клетки -->
+  <path d="M20 70 L20 34 Q20 12 48 12 Q76 12 76 34 L76 70 Z"
+        fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+
+  <!-- Вертикальные прутья -->
+  <g stroke="#9BA5AD" stroke-width="3" stroke-linecap="round">
+    <path d="M28 66 L28 24"/>
+    <path d="M38 66 L38 16.5"/>
+    <path d="M48 66 L48 13"/>
+    <path d="M58 66 L58 16.5"/>
+    <path d="M68 66 L68 24"/>
+  </g>
+  <!-- Блики на прутьях -->
+  <g stroke="#D5DCE1" stroke-width="1.1" stroke-linecap="round">
+    <path d="M27 60 L27 30"/>
+    <path d="M37 56 L37 24"/>
+    <path d="M47 54 L47 20"/>
+    <path d="M57 56 L57 24"/>
+    <path d="M67 60 L67 30"/>
+  </g>
+
+  <!-- Горизонтальные обручи каркаса -->
+  <path d="M20 34 Q20 12 48 12 Q76 12 76 34" fill="none" stroke="#5C6670" stroke-width="3.4"/>
+  <path d="M20 52 L76 52" stroke="#5C6670" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M20 66 L76 66" stroke="#5C6670" stroke-width="3.4" stroke-linecap="round"/>
+  <!-- Блик на куполе -->
+  <path d="M26 26 Q31 16 42 13" fill="none" stroke="#D5DCE1" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Замок-задвижка (акцент) -->
+  <rect x="44.5" y="66" width="7" height="8" rx="1.5" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.8"/>
+  <circle cx="48" cy="69.5" r="1.4" fill="#1A1A1A"/>
+
+  <!-- Верхнее кольцо-петля -->
+  <circle cx="48" cy="7.5" r="3.6" fill="none" stroke="#5C6670" stroke-width="2.6"/>
+</svg>

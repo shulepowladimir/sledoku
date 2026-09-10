@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    fireplace — каменный камин: терракотовая кирпичная кладка
+    с массивной полкой, топка с поленьями и живым огнём (красный акцент).
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="88" rx="34" ry="4" fill="#3A2A20"/>
+
+  <!-- Тело камина (кладка) -->
+  <path d="M14 88 L14 30 Q14 24 20 24 L76 24 Q82 24 82 30 L82 88 Z"
+        fill="#B85F2E" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+
+  <!-- Кирпичи (левая колонна) -->
+  <g stroke="#1A1A1A" stroke-width="1.6">
+    <path d="M14 36 L34 36 M14 46 L34 46 M14 56 L34 56 M14 66 L34 66 M14 76 L34 76"/>
+    <path d="M24 26 L24 36 M14 41 L19 41 M29 41 L34 41 M24 46 L24 56 M14 61 L19 61 M29 61 L34 61 M24 66 L24 76 M14 81 L19 81 M29 81 L34 81"/>
+  </g>
+  <!-- Кирпичи (правая колонна) -->
+  <g stroke="#1A1A1A" stroke-width="1.6">
+    <path d="M62 36 L82 36 M62 46 L82 46 M62 56 L82 56 M62 66 L82 66 M62 76 L82 76"/>
+    <path d="M72 26 L72 36 M62 41 L67 41 M77 41 L82 41 M72 46 L72 56 M62 61 L67 61 M77 61 L82 61 M72 66 L72 76 M62 81 L67 81 M77 81 L82 81"/>
+  </g>
+  <!-- Светлые кирпичи-блики -->
+  <g fill="#E0824A">
+    <rect x="15.5" y="47.5" width="8" height="7" rx="1"/>
+    <rect x="21" y="67.5" width="8" height="7" rx="1"/>
+    <rect x="67" y="57.5" width="8" height="7" rx="1"/>
+    <rect x="73" y="77.5" width="8" height="7" rx="1"/>
+    <rect x="67" y="27.5" width="8" height="7" rx="1"/>
+  </g>
+
+  <!-- Полка-дымоход -->
+  <rect x="8" y="16" width="80" height="10" rx="2.5" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.8"/>
+  <path d="M11 19 L85 19" stroke="#E8B95F" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Дымоход -->
+  <rect x="34" y="4" width="28" height="12" fill="#B85F2E" stroke="#1A1A1A" stroke-width="2.6"/>
+
+  <!-- Топка (арка) -->
+  <path d="M34 88 L34 62 Q34 48 48 48 Q62 48 62 62 L62 88 Z"
+        fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- Под топки -->
+  <path d="M36 86 Q48 90 60 86 L60 88 L36 88 Z" fill="#5C6670"/>
+
+  <!-- Поленья -->
+  <path d="M38 84 L58 84" stroke="#E0A94A" stroke-width="6" stroke-linecap="round"/>
+  <path d="M40 84 L56 84" stroke="#B87F33" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M44 78 L54 80" stroke="#E0A94A" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Огонь (акцент: красное пламя) -->
+  <path d="M48 56 Q56 62 54 70 Q52 76 48 76 Q44 76 42 70 Q40 62 48 56 Z"
+        fill="#C8102E" stroke="#1A1A1A" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M48 62 Q52 66 51 70 Q50 73 48 73 Q46 73 45 70 Q44 66 48 62 Z" fill="#E0824A"/>
+  <path d="M48 67 Q49.5 69 48.8 71 Q48 72 47.3 71 Q46.6 69 48 67 Z" fill="#E8B95F"/>
+
+  <!-- Кочерга у топки -->
+  <path d="M68 84 L74 66 Q75 62 79 63" fill="none" stroke="#5C6670" stroke-width="2.6" stroke-linecap="round"/>
+</svg>

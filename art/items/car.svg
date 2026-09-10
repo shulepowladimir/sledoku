@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    car — винтажный кабриолет 1940-х (2-клеточный occupiable):
+    открытый салон с кремовым сиденьем по центру (посадочная зона),
+    выраженные крылья над колёсами, фара, красный стоп-сигнал.
+    Силуэт растянут на всю ширину кадра: рендерится в bounding-box 2 клеток.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="86" rx="42" ry="4.5" fill="#3A2A20"/>
+
+  <!-- Колёса -->
+  <circle cx="26" cy="74" r="10" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.6"/>
+  <circle cx="26" cy="74" r="4" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="26" cy="74" r="1.3" fill="#D5DCE1"/>
+  <circle cx="70" cy="74" r="10" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.6"/>
+  <circle cx="70" cy="74" r="4" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="70" cy="74" r="1.3" fill="#D5DCE1"/>
+
+  <!-- Заднее крыло (дуга над колесом) -->
+  <path d="M60 72 Q60 56 74 56 Q88 56 88 70 L88 72 Z" fill="#B85F2E" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <!-- Переднее крыло -->
+  <path d="M8 72 Q8 54 24 54 Q38 54 38 70 L38 72 Z" fill="#B85F2E" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+
+  <!-- Капот -->
+  <path d="M10 56 L10 70 L40 70 L40 60 Q26 54 10 56 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <path d="M13 60 L13 68" stroke="#B85F2E" stroke-width="1.6" stroke-linecap="round"/>
+  <!-- Радиаторная решётка -->
+  <rect x="10" y="58" width="4" height="10" rx="2" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.8"/>
+
+  <!-- Багажник -->
+  <path d="M58 60 L88 60 L88 70 L58 70 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+
+  <!-- Салон: борта (открытый кабриолет) -->
+  <path d="M38 62 Q38 48 48 47 L48 62 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M58 62 L58 47 Q68 48 68 62 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+
+  <!-- Сиденье (посадочная зона) -->
+  <path d="M42 70 L42 56 Q48 52 54 56 L54 70 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M44 66 L52 66" stroke="#D5DCE1" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Ветровое стекло -->
+  <path d="M38 48 L40 38 L46 38 L44 48 Z" fill="#9CC3E0" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M40.5 40.5 L44.5 40.5" stroke="#D5DCE1" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- Фара -->
+  <circle cx="9" cy="60" r="3.4" fill="#E8B95F" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Бампер передний -->
+  <path d="M5 68 Q9 71 13 68" fill="none" stroke="#9BA5AD" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Стоп-сигнал (акцент) -->
+  <rect x="85.5" y="62" width="4" height="4.5" rx="1.5" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.6"/>
+  <!-- Бампер задний -->
+  <path d="M85 68 Q89 71 93 68" fill="none" stroke="#9BA5AD" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Блик на капоте -->
+  <path d="M16 58 L24 57" stroke="#F5E9D0" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

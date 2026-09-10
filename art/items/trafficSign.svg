@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    trafficSign — предупреждающий знак «поворот» на стальном столбе:
+    ромб с изогнутой стрелкой, рифлёный столб, основание.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="88" rx="15" ry="4" fill="#3A2A20"/>
+
+  <!-- Столб -->
+  <rect x="44" y="44" width="8" height="40" rx="2" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.6"/>
+  <!-- Рифление столба -->
+  <path d="M46.5 50 L46.5 78 M49.5 50 L49.5 78" stroke="#9BA5AD" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- Основание -->
+  <path d="M39 82 L57 82 L55 88 L41 88 Z" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+
+  <!-- Ромб знака -->
+  <path d="M48 8 L70 30 L48 52 L26 30 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Внутренняя кайма ромба -->
+  <path d="M48 14 L64 30 L48 46 L32 30 Z" fill="none" stroke="#1A1A1A" stroke-width="1.8" stroke-linejoin="round"/>
+  <!-- Блик на верхней грани -->
+  <path d="M49 12 Q56 16 62 26" fill="none" stroke="#E8B95F" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Стрелка поворота (изогнутая) -->
+  <path d="M40 36 L40 28 Q40 22 48 22 Q56 22 56 30" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <!-- Наконечник стрелки -->
+  <path d="M50 26 L56 30 L50 34 Z" fill="#1A1A1A"/>
+
+  <!-- Заклёпки по углам -->
+  <circle cx="48" cy="11" r="1.4" fill="#1A1A1A"/>
+  <circle cx="67" cy="30" r="1.4" fill="#1A1A1A"/>
+  <circle cx="48" cy="49" r="1.4" fill="#1A1A1A"/>
+  <circle cx="29" cy="30" r="1.4" fill="#1A1A1A"/>
+</svg>

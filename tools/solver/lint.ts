@@ -50,5 +50,27 @@ export function lintLevel(level: Level): string[] {
       violations.push(`Роль "${roleId}" используется в подсказках, но имеет ${count} носителей (должен быть ровно 1).`);
     }
   }
+  // relativeToItemOccupant содержательна только при ≥2 экземплярах occupiable-предмета: с одним
+  // экземпляром клю вырождается в позицию относительно известной клетки предмета, и «скрытый
+  // сиделец» — фикция (игрок и так видит, где предмет; кто на нём сидит, не успевает стать загадкой).
+  for (const clue of level.clues) {
+    if (clue.type !== 'relativeToItemOccupant') continue;
+    const itemType = level.itemTypes.find((t) => t.id === clue.itemTypeId);
+    if (!itemType) {
+      violations.push(`Подсказка "${clue.id}": тип предмета "${clue.itemTypeId}" не описан в level.itemTypes.`);
+      continue;
+    }
+    if (itemType.kind !== 'occupiable') {
+      violations.push(
+        `Подсказка "${clue.id}": предмет "${clue.itemTypeId}" не occupiable — на нём никто не может сидеть.`,
+      );
+    }
+    const instanceCount = level.items.filter((i) => i.typeId === clue.itemTypeId).length;
+    if (instanceCount < 2) {
+      violations.push(
+        `Подсказка "${clue.id}": предмет "${clue.itemTypeId}" встречается ${instanceCount} раз — для relativeToItemOccupant нужно ≥2 экземпляров, иначе клю вырождается в позицию относительно известной клетки.`,
+      );
+    }
+  }
   return violations;
 }

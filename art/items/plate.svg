@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    plate — обеденная тарелка-гигант (occupiable, top-down 3/4):
+    кремовая с синим ободком и золочёной каймой; вся поверхность —
+    посадочная зона. Точка-блик слева-сверху.
+  -->
+  <!-- Толщина (боковина) -->
+  <circle cx="48" cy="53" r="35" fill="#D5DCE1" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- Верхняя поверхность -->
+  <circle cx="48" cy="50" r="35" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Блик по верхней кромке -->
+  <path d="M22 34 Q30 22 44 18" fill="none" stroke="#D5DCE1" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Синий ободок -->
+  <circle cx="48" cy="50" r="27" fill="none" stroke="#1F3A5F" stroke-width="2.6"/>
+  <!-- Золотая кайма (внутри ободка) -->
+  <circle cx="48" cy="50" r="22.5" fill="none" stroke="#E0A94A" stroke-width="1.8"/>
+
+  <!-- Центральное блюдо (посадочная зона) -->
+  <circle cx="48" cy="50" r="17" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Вмятина-углубление в центре -->
+  <circle cx="48" cy="50" r="10" fill="none" stroke="#D5DCE1" stroke-width="2"/>
+
+  <!-- Заводская марка: три точки-клейма -->
+  <path d="M44 74 L48 78 L52 74" fill="none" stroke="#1F3A5F" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

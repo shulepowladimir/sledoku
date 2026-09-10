@@ -35,7 +35,13 @@ const MAX_CLUE_TYPE_SHARE = 0.2;
 const MAX_ITEM_RELATED_CLUE_TYPE_SHARE = 0.3;
 /** Personal clue types whose informational value comes from the level's item layout — get a looser cap
  * to encourage authors to lean on the item library instead of defaulting to positional/parity padding. */
-const ITEM_RELATED_CLUE_TYPES = new Set(['adjacency', 'floorFeature', 'sameRoomAsItem', 'occupiesItem']);
+const ITEM_RELATED_CLUE_TYPES = new Set([
+  'adjacency',
+  'floorFeature',
+  'sameRoomAsItem',
+  'occupiesItem',
+  'relativeToItemOccupant',
+]);
 
 function maxShareFor(type: string): number {
   return ITEM_RELATED_CLUE_TYPES.has(type) ? MAX_ITEM_RELATED_CLUE_TYPE_SHARE : MAX_CLUE_TYPE_SHARE;
