@@ -31,6 +31,17 @@ export const ItemLibrary = {
   cage: item('cage', 'cage', 'decorative', 'Клетка'),
   hoop: item('hoop', 'hoop', 'decorative', 'Обруч'),
   turnstile: item('turnstile', 'turnstile', 'decorative', 'Турникет'),
+  // ——— Дайнер (30-diner) ———
+  jukebox: item('jukebox', 'jukebox', 'decorative', 'Музыкальный автомат'),
+  booth: item('booth', 'booth', 'occupiable', 'Кабинка'),
+  pieDisplay: item('pieDisplay', 'pieDisplay', 'decorative', 'Витрина с пирогами'),
+  neonSign: item('neonSign', 'neonSign', 'decorative', 'Неоновая вывеска'),
+  motorcycle: item('motorcycle', 'motorcycle', 'occupiable', 'Мотоцикл'),
+  // ——— Полярная станция (31-polar) ———
+  polarBear: item('polarBear', 'polarBear', 'decorative', 'Белый медведь'),
+  igloo: item('igloo', 'igloo', 'decorative', 'Иглу'),
+  snowmobile: item('snowmobile', 'snowmobile', 'occupiable', 'Снегоход'),
+  radioStation: item('radioStation', 'radioStation', 'decorative', 'Радиостанция'),
   chair: item('chair', 'chair', 'occupiable', 'Стул'),
   armchair: item('armchair', 'armchair', 'occupiable', 'Кресло'),
   sofa: item('sofa', 'sofa', 'occupiable', 'Диван'),

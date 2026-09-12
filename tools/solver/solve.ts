@@ -98,9 +98,15 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
         [cell.row, cell.col - 1],
         [cell.row, cell.col + 1],
       ];
+      // «Рядом» ≠ «на»: если человек занимает предмет, соседняя клетка ЭТОГО ЖЕ
+      // предмета не делает его «рядом» с предметом (актуально для 2-клеточных
+      // occupiable: мотоцикл/машина/booth). Другой экземпляр того же typeId рядом —
+      // честное «рядом». Канон: Денис на кровати в 01-apartment — «не рядом с кроватью».
+      const ownItem = cell.itemId ? level.items.find((i) => i.id === cell.itemId) : undefined;
       const hasAdjItem = neighbors.some(([r, c]) => {
         const n = index.cellsById.get(cellId(r, c));
         if (!n || n.roomId !== cell.roomId || !n.itemId) return false;
+        if (ownItem && n.itemId === ownItem.id) return false;
         const item = level.items.find((i) => i.id === n.itemId);
         return item?.typeId === clue.itemTypeId;
       });

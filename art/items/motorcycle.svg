@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    motorcycle — винтажный мотоцикл 1940-х (2-клеточный decorative):
+    растянут на всю ширину кадра (рендер в bounding-box 2 клеток, как car).
+    Бирюзовый бензобак, кожаное сиденье-банан, хром-крылья, фара, стоп-сигнал.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="86" rx="42" ry="4.5" fill="#3A2A20"/>
+
+  <!-- Колёса -->
+  <circle cx="21" cy="70" r="11" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.6"/>
+  <circle cx="21" cy="70" r="4.5" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="21" cy="70" r="1.3" fill="#D5DCE1"/>
+  <circle cx="75" cy="70" r="11" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.6"/>
+  <circle cx="75" cy="70" r="4.5" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="75" cy="70" r="1.3" fill="#D5DCE1"/>
+
+  <!-- Крылья над колёсами -->
+  <path d="M9 64 Q9 50 21 50 Q33 50 33 62 L33 64 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M11 59 Q11 53 17 52.5" fill="none" stroke="#9BA5AD" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M63 64 Q63 50 75 50 Q87 50 87 62 L87 64 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M65 59 Q65 53 71 52.5" fill="none" stroke="#9BA5AD" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Рама -->
+  <path d="M26 64 L42 52 L62 52 L72 60" fill="none" stroke="#5C6670" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Выхлопная труба -->
+  <path d="M32 64 L58 67" stroke="#9BA5AD" stroke-width="4" stroke-linecap="round"/>
+  <path d="M33.5 63 L56 65.8" stroke="#D5DCE1" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- Бензобак (бирюза) -->
+  <path d="M43 52 Q42 42 53 43 Q62 44.5 60.5 52 Q57 57 47.5 56 Q43.5 55 43 52 Z"
+        fill="#2E6E65" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <!-- Блик на баке -->
+  <path d="M47 48 Q51 45.5 56 47" fill="none" stroke="#F5E9D0" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Крышка бака -->
+  <circle cx="51" cy="43.5" r="1.6" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.2"/>
+
+  <!-- Сиденье-банан (кожа) -->
+  <path d="M30 52 Q27 45 34 43.5 L44 46 L42.5 54 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M31.5 48.5 Q35 46.5 39 47.5" fill="none" stroke="#B85F2E" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Задняя стойка сиденья -->
+  <path d="M29 52 L26 60" stroke="#5C6670" stroke-width="3.4" stroke-linecap="round"/>
+
+  <!-- Руль -->
+  <path d="M58 44 L63 33 M63 33 L70 30.5" fill="none" stroke="#9BA5AD" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M59.5 41 L63.5 33.5" stroke="#D5DCE1" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- Грипса -->
+  <rect x="69" y="28.5" width="6" height="4" rx="2" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1.6"/>
+
+  <!-- Фара -->
+  <circle cx="64" cy="37.5" r="4.2" fill="#E8B95F" stroke="#1A1A1A" stroke-width="2.2"/>
+  <circle cx="62.8" cy="36.3" r="1.2" fill="#F5E9D0"/>
+
+  <!-- Стоп-сигнал (красный акцент) -->
+  <rect x="26" y="55" width="4.5" height="4.5" rx="1.5" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.6"/>
+</svg>

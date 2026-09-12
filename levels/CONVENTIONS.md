@@ -118,6 +118,15 @@
 - skiRack — decorative
 - cage — decorative
 - hoop — decorative
+- jukebox — decorative
+- booth — occupiable (2-клеточный: стол+скамья, рендер через ItemOverlay)
+- pieDisplay — decorative
+- neonSign — decorative (неон-исключение из палитры, см. art/STYLE-GUIDE §1)
+- motorcycle — occupiable (2-клеточный, как car; рендер через ItemOverlay)
+- polarBear — decorative
+- igloo — decorative
+- snowmobile — occupiable (2-клеточный, как car/motorcycle)
+- radioStation — decorative
 
 ## ItemIcon.tsx — существующие иконки (имена case, без кода)
 

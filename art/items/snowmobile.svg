@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    snowmobile — снегоход (2-клеточный occupiable): растянут на ширину кадра
+    (рендер в bounding-box 2 клеток, как car/motorcycle). Гусеница с траками,
+    лыжи, ветровое стекло, длинное сиденье с посадочной зоной по центру.
+    Красный акцент — фонарь.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="86" rx="42" ry="4.5" fill="#3A2A20"/>
+
+  <!-- Лыжи -->
+  <path d="M8 78 Q6 74 12 73 L40 71 Q44 72 43 75 Q42 78 36 78 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M56 71 L84 73 Q90 74 88 78 L82 78 Q60 78 55 75 Q54 72 56 71 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <!-- Блики на лыжах -->
+  <path d="M12 75 L34 73.5" stroke="#9BA5AD" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M60 73.5 L80 75" stroke="#9BA5AD" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Гусеница -->
+  <rect x="14" y="66" width="46" height="12" rx="6" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.6"/>
+  <!-- Траки -->
+  <path d="M22 68 L22 76 M30 67.5 L30 76.5 M38 67.5 L38 76.5 M46 68 L46 76" stroke="#9BA5AD" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- Заднее колесо гусеницы -->
+  <circle cx="56" cy="72" r="4" fill="#5C6670" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- Рама и капот -->
+  <path d="M16 66 L14 54 Q14 48 22 48 L44 46 Q54 46 58 52 L60 66 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- Блик на капоте -->
+  <path d="M20 54 Q28 50 38 50" stroke="#F5E9D0" stroke-width="2" stroke-linecap="round"/>
+  <!-- Затемнение капота справа -->
+  <path d="M50 48 Q56 50 58 54 L59 64 L50 64 Z" fill="#B85F2E"/>
+
+  <!-- Ветровое стекло -->
+  <path d="M42 48 L45 34 L52 34 L54 48 Z" fill="#9CC3E0" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M46.5 37 L51 37" stroke="#D5DCE1" stroke-width="1.4" stroke-linecap="round"/>
+  <!-- Руль -->
+  <path d="M50 44 L54 34 M54 34 L62 32" fill="none" stroke="#9BA5AD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="61" y="30" width="6" height="4" rx="2" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1.6"/>
+
+  <!-- Фонарь (красный акцент) -->
+  <circle cx="46" cy="39" r="3" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.8"/>
+
+  <!-- Сиденье (посадочная зона) -->
+  <path d="M14 66 Q12 56 22 54 L44 52 Q50 52 50 58 L50 66 Z" fill="#2E6E65" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- Шов сиденья -->
+  <path d="M18 60 Q30 57 44 57.5" fill="none" stroke="#1A1A1A" stroke-width="1.4" stroke-linecap="round"/>
+  <!-- Блик на сиденье -->
+  <path d="M18 58 Q28 55.5 38 56" fill="none" stroke="#9CC3E0" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Подножка -->
+  <path d="M52 66 L66 66 L66 69 L52 69 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2"/>
+</svg>

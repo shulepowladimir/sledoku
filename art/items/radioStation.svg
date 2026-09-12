@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    radioStation — радиорубка полярной станции: стол с ламповым приёмником,
+    шкала настройки, ручки, микрофон на стойке, тёплое свечение лампы.
+    Красный акцент — лампочка «в эфире».
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="88" rx="36" ry="4" fill="#3A2A20"/>
+
+  <!-- Стол -->
+  <rect x="12" y="62" width="72" height="8" rx="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.8"/>
+  <path d="M13 65 L83 65" stroke="#E8B95F" stroke-width="1.4" stroke-linecap="round"/>
+  <!-- Ножки стола -->
+  <path d="M18 70 L16 86 M78 70 L80 86" stroke="#B87F33" stroke-width="4" stroke-linecap="round"/>
+  <path d="M18 70 L16 86" stroke="#8F5A3A" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- Корпус приёмника -->
+  <rect x="18" y="26" width="42" height="36" rx="4" fill="#5C6670" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Передняя панель -->
+  <rect x="22" y="30" width="34" height="28" rx="2.5" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2"/>
+  <!-- Cel-тень панели -->
+  <path d="M22 52 L56 52 L56 58 L22 58 Z" fill="#5C6670"/>
+
+  <!-- Шкала настройки -->
+  <rect x="25" y="34" width="28" height="10" rx="1.5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.8"/>
+  <!-- Деления шкалы -->
+  <path d="M28 37 L28 41 M32 37 L32 41 M36 37 L36 41 M40 37 L40 41 M44 37 L44 41 M48 37 L48 41" stroke="#5C6670" stroke-width="1.2"/>
+  <!-- Стрелка настройки -->
+  <path d="M43 34.5 L43 43.5" stroke="#C8102E" stroke-width="2"/>
+
+  <!-- Ручки -->
+  <circle cx="29" cy="51" r="3.2" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="29" cy="51" r="1.1" fill="#D5DCE1"/>
+  <circle cx="40" cy="51" r="3.2" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="40" cy="51" r="1.1" fill="#D5DCE1"/>
+  <circle cx="51" cy="51" r="3.2" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="51" cy="51" r="1.1" fill="#D5DCE1"/>
+
+  <!-- Динамики-решётка -->
+  <path d="M58 34 L60 34 M58 38 L60 38 M58 42 L60 42 M58 46 L60 46 M58 50 L60 46" stroke="#5C6670" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Ламповое свечение (тёплое, слои) -->
+  <rect x="66" y="30" width="14" height="20" rx="3" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.2"/>
+  <rect x="69" y="33" width="8" height="14" rx="2" fill="#E8B95F"/>
+  <rect x="71" y="35" width="4" height="10" rx="1.5" fill="#F5E9D0"/>
+
+  <!-- Микрофон на стойке -->
+  <path d="M76 62 L76 46" stroke="#5C6670" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="76" cy="40" r="6" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.4"/>
+  <path d="M72.5 37.5 Q76 35 79.5 37.5" fill="none" stroke="#D5DCE1" stroke-width="1.4" stroke-linecap="round"/>
+  <!-- Сетка микрофона -->
+  <path d="M73 40 L79 40 M73.5 42.5 L78.5 42.5" stroke="#5C6670" stroke-width="1.2"/>
+
+  <!-- Лампочка «в эфире» (красный акцент, уже есть стрелка — оставляем одну)?
+       Нет: стрелка шкалы и есть акцент. Лампочка — тёплая. -->
+
+  <!-- Антенный провод к краю -->
+  <path d="M60 28 Q72 20 84 24" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

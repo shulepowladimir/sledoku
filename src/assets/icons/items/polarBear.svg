@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    polarBear — белый медведь на льду: идёт вразвалку, кремовая шкура
+    с серыми cel-тенями (на снегу читается контуром и тенями), чёрный нос,
+    красный акцент — след-мазок? Нет: красный — язычок. Спокойный зверь.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="86" rx="38" ry="4.5" fill="#3A2A20"/>
+
+  <!-- Дальние ноги -->
+  <path d="M30 76 Q28 60 36 58 Q40 62 38 76 Z" fill="#C2C9CB" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M62 76 Q64 60 56 58 Q52 62 54 76 Z" fill="#C2C9CB" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <!-- Лапы дальних ног -->
+  <ellipse cx="35" cy="78" rx="6" ry="3" fill="#C2C9CB" stroke="#1A1A1A" stroke-width="2"/>
+  <ellipse cx="59" cy="78" rx="6" ry="3" fill="#C2C9CB" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- Тело -->
+  <path d="M24 62 Q20 44 34 38 Q50 30 66 36 Q80 42 78 56 Q76 68 62 70 Q46 74 32 70 Q24 68 24 62 Z"
+        fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Cel-тень по нижней кромке тела -->
+  <path d="M30 68 Q48 74 64 66 Q72 62 76 56 Q74 68 62 70 Q46 74 32 70 Z" fill="#D5DCE1"/>
+  <!-- Блик на спине -->
+  <path d="M32 42 Q44 34 58 38" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Ближние ноги -->
+  <path d="M36 78 Q34 58 42 56 Q47 60 45 78 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M56 78 Q58 58 50 56 Q45 60 47 78 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <!-- Лапы ближних ног -->
+  <ellipse cx="42" cy="80" rx="6.5" ry="3.2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.2"/>
+  <ellipse cx="50" cy="80" rx="6.5" ry="3.2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.2"/>
+  <!-- Коготки -->
+  <path d="M38 80.5 L37 82 M41 81 L40.5 82.5 M45 80.5 L44.5 82" stroke="#1A1A1A" stroke-width="1" stroke-linecap="round"/>
+  <path d="M47 80.5 L46.5 82 M51 81 L50.5 82.5 M54 80.5 L53.5 82" stroke="#1A1A1A" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- Голова (справа, опущена к следу) -->
+  <ellipse cx="70" cy="42" rx="14" ry="12" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.8"/>
+  <!-- Морда -->
+  <ellipse cx="80" cy="46" rx="7" ry="5.5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.4"/>
+  <!-- Нос -->
+  <ellipse cx="85" cy="44" rx="2.6" ry="2" fill="#1A1A1A"/>
+  <!-- Уши -->
+  <circle cx="61" cy="32" r="4" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.2"/>
+  <circle cx="72" cy="30" r="4" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.2"/>
+  <circle cx="61" cy="32" r="1.6" fill="#C2C9CB"/>
+  <circle cx="72" cy="30" r="1.6" fill="#C2C9CB"/>
+  <!-- Глаз (прищуренный, спокойный) -->
+  <path d="M74 40 Q76 41.5 78 40" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Язычок (красный акцент) -->
+  <path d="M83 49 Q84.5 52 83 53.5 Q81.5 52 82 49 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.2"/>
+</svg>

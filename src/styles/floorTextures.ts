@@ -263,7 +263,13 @@ const cobble: FloorStyleFn = (row, _col) => {
   };
 };
 
-const FLOOR_TEXTURES: Record<FloorTextureKey, FloorStyleFn> = { tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice };
+// Procedural fallback for `checker` (the designer SVG in src/assets/textures takes
+// precedence in the browser; this keeps the Record complete and CLI-safe).
+const checker: FloorStyleFn = (row, col) => ({
+  backgroundColor: (row + col) % 2 === 0 ? '#DFD6C6' : '#786862',
+});
+
+const FLOOR_TEXTURES: Record<FloorTextureKey, FloorStyleFn> = { tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker };
 
 export const floorTextureKeys: readonly string[] = FLOOR_TEXTURE_KEYS;
 

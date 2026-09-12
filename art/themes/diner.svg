@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    diner — «Кетчуп на рубашке»: ночное придорожное кафе у шоссе, кремовое
+    здание с большой витриной, оранжевая крыша-козырёк, неоновый пончик
+    на стойке над крышей (неон-исключение из палитры, как у neonSign).
+  -->
+  <!-- Ночная подложка -->
+  <rect x="6" y="6" width="84" height="84" rx="6" fill="#1F3A5F"/>
+
+  <!-- Луна и звёзды -->
+  <circle cx="74" cy="17" r="6" fill="#F5E9D0"/>
+  <circle cx="71.5" cy="15" r="1" fill="#D5DCE1"/>
+  <circle cx="24" cy="15" r="1.3" fill="#F5E9D0"/>
+  <circle cx="34" cy="21" r="1" fill="#F5E9D0"/>
+  <circle cx="14" cy="27" r="1" fill="#F5E9D0"/>
+
+  <!-- Стойка вывески -->
+  <path d="M48 34 L48 27" stroke="#5C6670" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M48 27 L44 30" stroke="#5C6670" stroke-width="2.6" stroke-linecap="round"/>
+
+  <!-- НЕОН: пончик на стойке (halo → трубка → ядро) -->
+  <circle cx="48" cy="19" r="7.5" fill="none" stroke="#D62277" stroke-width="6"/>
+  <circle cx="48" cy="19" r="7.5" fill="none" stroke="#FF4FA3" stroke-width="3.2"/>
+  <path d="M42.5 15 Q41 17.5 41.5 20" fill="none" stroke="#F5E9D0" stroke-width="1.4" stroke-linecap="round"/>
+  <!-- Посыпки -->
+  <path d="M45 13.5 L46.5 12 M51.5 13 L52.5 14.5 M45 24.5 L46.5 26 M52 24 L51 25.5"
+        stroke="#29D8F5" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Здание кафе -->
+  <rect x="14" y="40" width="68" height="42" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.6"/>
+  <!-- Крыша-козырёк -->
+  <rect x="10" y="36" width="76" height="8" rx="3.5" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.4"/>
+  <!-- Полосы на козырьке -->
+  <path d="M18 40 L22 40 M30 40 L34 40 M42 40 L46 40 M54 40 L58 40 M66 40 L70 40 M78 40 L82 40"
+        stroke="#B85F2E" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Большая витрина (ночные отражения) -->
+  <rect x="20" y="48" width="30" height="22" rx="2" fill="#4A7BA6" stroke="#1A1A1A" stroke-width="2.2"/>
+  <rect x="24" y="52" width="9" height="6" rx="1" fill="#E8B95F" stroke="#1A1A1A" stroke-width="1.6"/>
+  <rect x="36" y="52" width="9" height="6" rx="1" fill="#E8B95F" stroke="#1A1A1A" stroke-width="1.6"/>
+  <rect x="24" y="61" width="21" height="5" rx="1" fill="#9CC3E0" stroke="#1A1A1A" stroke-width="1.6"/>
+  <!-- Дверь -->
+  <rect x="54" y="48" width="12" height="26" rx="1.5" fill="#B87F33" stroke="#1A1A1A" stroke-width="2.2"/>
+  <rect x="56.5" y="51" width="7" height="12" rx="1" fill="#9CC3E0" stroke="#1A1A1A" stroke-width="1.4"/>
+  <circle cx="64" cy="66" r="1.1" fill="#E8B95F"/>
+  <!-- Окно справа -->
+  <rect x="70" y="48" width="8" height="22" rx="1.5" fill="#E8B95F" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- Земля -->
+  <path d="M6 82 L90 82 L90 84 Q90 90 84 90 L12 90 Q6 90 6 84 Z" fill="#3A2A20"/>
+</svg>
