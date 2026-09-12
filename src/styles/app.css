@@ -838,6 +838,135 @@ body.noir .site-footer__copyright {
   margin-bottom: 0;
 }
 
+/* --- Компас (GameScreen hud): роза ветров в модалке --- */
+
+.compass-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(17, 17, 17, 0.25);
+  background: #fff;
+  color: #2a2a2a;
+  cursor: pointer;
+}
+
+.compass-button:hover {
+  background: rgba(17, 17, 17, 0.06);
+}
+
+.compass-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 15, 5, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+.compass-modal {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  background: #faf8f4;
+  /* Явный цвет: без него в нуаре наследуется светлый color body (урок legal-modal). */
+  color: #2a2a2a;
+  border-radius: 12px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  padding: 24px 20px 18px;
+}
+
+.compass-modal__close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  font-size: 26px;
+  line-height: 1;
+  color: #2a2a2a;
+  cursor: pointer;
+  padding: 4px 6px;
+}
+
+.compass-modal__close:hover {
+  color: #000;
+}
+
+.compass-rose-wrap {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+}
+
+/* Подписи на своих направлениях: Север сверху, Юг снизу, Запад/Восток по бокам розы. */
+.compass-dir {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.compass-dir--north {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  padding-bottom: 4px;
+  color: #C8102E;
+}
+
+.compass-dir--west {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: end;
+  padding-right: 8px;
+}
+
+.compass-rose {
+  grid-column: 2;
+  grid-row: 2;
+  width: 210px;
+}
+
+.compass-dir--east {
+  grid-column: 3;
+  grid-row: 2;
+  justify-self: start;
+  padding-left: 8px;
+}
+
+.compass-dir--south {
+  grid-column: 2;
+  grid-row: 3;
+  justify-self: center;
+  padding-top: 4px;
+}
+
+/* Нуар: тёмная карточка со светлым текстом (паттерн legal-modal). */
+body.noir .compass-modal {
+  background: #1a1a1f;
+  color: #f3f2f6;
+  border-color: rgba(243, 242, 246, 0.25);
+}
+
+body.noir .compass-modal__close {
+  color: #f3f2f6;
+}
+
+body.noir .compass-modal__close:hover {
+  color: #fff;
+}
+
+/* Нуар: фирменный красный «Севера» осветляем — на #1a1a1f иначе нечитаем. */
+body.noir .compass-dir--north {
+  color: #E5566B;
+}
+
 .how-to-play:hover .how-to-play__popover,
 .how-to-play__button:focus-visible + .how-to-play__popover {
   opacity: 1;
@@ -2643,5 +2772,21 @@ body.noir .legal-modal__revision {
     width: calc(100vw - 24px);
     max-width: 520px;
     max-height: calc(100dvh - 48px);
+  }
+}
+
+/* --- Компас: мобильный размер --- */
+@media (max-width: 768px) {
+  .compass-rose {
+    width: min(50vw, 200px);
+  }
+
+  .compass-dir {
+    font-size: 13px;
+  }
+
+  .compass-modal {
+    max-width: 90vw;
+    padding: 18px 14px 14px;
   }
 }
