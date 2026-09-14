@@ -154,6 +154,38 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
       }
       return true;
     }
+    case 'itemTypeFullyOccupied': {
+      // «Ни одна машина не осталась без водителя»: каждый экземпляр типа занят хотя бы
+      // одним человеком. Частичная оценка с прунингом: если незанятых экземпляров больше,
+      // чем ещё не размещённых людей (каждый может закрыть максимум один), — false.
+      const itemsOfType = level.items.filter((i) => i.typeId === clue.itemTypeId);
+      let unoccupied = 0;
+      for (const item of itemsOfType) {
+        const hasOccupant = level.people.some((p) => {
+          const pc = getCell(p.id);
+          return pc != null && item.cells.includes(pc);
+        });
+        if (!hasOccupant) unoccupied++;
+      }
+      if (allAssigned) return unoccupied === 0;
+      const unplaced = level.people.filter((p) => !getCell(p.id)).length;
+      return unoccupied <= unplaced;
+    }
+    case 'edgeColumnEmpty': {
+      // «Первый или последний столбец был пустым»: дизъюнкция. Частичная оценка:
+      // false только если кто-то уже стоит И в первом, И в последнем столбце.
+      const lastCol = Math.max(...level.cells.map((c) => c.col));
+      let firstUsed = false;
+      let lastUsed = false;
+      for (const p of level.people) {
+        const pc = getCell(p.id);
+        if (!pc) continue;
+        const col = index.cellsById.get(pc)!.col;
+        if (col === 0) firstUsed = true;
+        if (col === lastCol) lastUsed = true;
+      }
+      return !(firstUsed && lastUsed);
+    }
     case 'itemTypeGender': {
       if (!allAssigned) return undefined;
       const items = level.items.filter((i) => i.typeId === clue.itemTypeId);
@@ -516,7 +548,10 @@ export function solveLevel(level: Level): SolverResult {
     const victim = people.find((p) => p.isVictim)!;
     const victimRoomId = index.cellsById.get(assignment.get(victim.id)!)!.roomId;
     const occupantsInRoom = people.filter((p) => index.cellsById.get(assignment.get(p.id)!)!.roomId === victimRoomId);
-    return occupantsInRoom.length === 2;
+    // «Жертва находилась наедине с убийцей» (фиксированная строка ростера): ровно двое
+    // в зоне жертвы, и второй — именно убийца. Без проверки убийцы солвер пропускал
+    // расстановки «жертва + случайный свидетель» (прецедент: racing-01, Ефим+Харитина).
+    return occupantsInRoom.length === 2 && occupantsInRoom.some((p) => p.isMurderer);
   }
 
   function search(remaining: Person[]): void {

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    monument — памятник победителю гонок: бронзовый кубок на гранитном
+    постаменте, бронзовая табличка с гравировкой-лавром (живая деталь).
+    Камень — стальная рампа палитры, кубок — золото дерева/терракоты.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="88" rx="34" ry="4" fill="#3A2A20"/>
+
+  <!-- Нижняя ступень постамента -->
+  <path d="M18 84 L78 84 L78 74 L18 74 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M20 81 L76 81" stroke="#9BA5AD" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Верхний блок постамента (3/4: верх светлый, фронт средний, бок тёмный) -->
+  <path d="M24 74 L70 74 L70 50 L24 50 Z" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <path d="M24 50 L70 50 L76 44 L30 44 Z" fill="#D5DCE1" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M70 50 L76 44 L76 68 L70 74 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <!-- Шов облицовки -->
+  <path d="M26 68 L68 68" stroke="#7D878E" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- Бронзовая табличка на фронтальной грани -->
+  <rect x="32" y="56" width="30" height="7" rx="2" fill="#B85F2E" stroke="#1A1A1A" stroke-width="1.8"/>
+  <!-- Лавровая гравировка (живая деталь) -->
+  <path d="M47 59.5 Q43 58 40 60 M47 59.5 Q44 61.5 41 61" fill="none" stroke="#E8B95F" stroke-width="1.3" stroke-linecap="round"/>
+  <path d="M49 59.5 Q53 58 56 60 M49 59.5 Q52 61.5 55 61" fill="none" stroke="#E8B95F" stroke-width="1.3" stroke-linecap="round"/>
+
+  <!-- Кубок (бронза: чаша + ножка) -->
+  <path d="M32 40 Q32 28 48 26 Q64 28 64 40 L58 40 Q58 34 48 32 Q38 34 38 40 Z"
+        fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <!-- Чаша (тело кубка) -->
+  <path d="M34 26 L62 26 L58 42 Q48 45 38 42 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- Затемнение чаши справа-снизу -->
+  <path d="M52 27 L61 27 L57.5 41 Q53 43.5 49 43.7 L52 41 Z" fill="#B87F33"/>
+  <!-- Блики на чаше сверху-слева -->
+  <path d="M37 30 Q43 28.5 49 29" fill="none" stroke="#F5E9D0" stroke-width="2" stroke-linecap="round"/>
+  <!-- Ручки кубка -->
+  <path d="M34 28 Q26 28 27 35 Q28 40 35 39" fill="none" stroke="#E0A94A" stroke-width="2.6"/>
+  <path d="M62 28 Q70 28 69 35 Q68 40 61 39" fill="none" stroke="#B87F33" stroke-width="2.6"/>
+
+  <!-- Ножка и база кубка -->
+  <path d="M46 44 L50 44 L49 50 L47 50 Z" fill="#B87F33" stroke="#1A1A1A" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M42 50 L54 50 L55 44 L41 44 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- Красная лента на кубке (акцент) -->
+  <path d="M44 26 Q46 30 44 34 L48 34 Q47 29 48 26 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.2"/>
+</svg>

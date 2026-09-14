@@ -5,6 +5,8 @@ import { formatElapsed } from '../../utils/time';
 
 interface CategoryStat {
   size: number;
+  /** «10×10» для квадратных категорий; если внутри есть нестандартные карты — «10×10 / 10×11». */
+  sizeLabel: string;
   solvedCount: number;
   totalCount: number;
   bestMs: number | null;
@@ -45,6 +47,7 @@ export function ProfileStats() {
 
       return {
         size,
+        sizeLabel: [...new Set(levelsInCategory.map((l) => `${l.size}×${l.cols ?? l.size}`))].join(' / '),
         solvedCount: solvedInCategory.length,
         totalCount: levelsInCategory.length,
         bestMs,
@@ -101,7 +104,7 @@ export function ProfileStats() {
           {categories.map((cat) => (
             <tr key={cat.size}>
               <td>
-                {cat.size}×{cat.size}
+                {cat.sizeLabel}
               </td>
               <td>
                 {cat.solvedCount}/{cat.totalCount}

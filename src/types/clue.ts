@@ -62,6 +62,25 @@ export interface BareCellBanClue extends ClueBase {
 }
 
 /**
+ * Level-wide: "Every instance of item type T was occupied" — e.g. "no race car was
+ * left without a driver": every item of the type has at least one person standing on
+ * one of its cells. No subject.
+ */
+export interface ItemTypeFullyOccupiedClue extends ClueBase {
+  type: 'itemTypeFullyOccupied';
+  itemTypeId: ItemTypeId;
+}
+
+/**
+ * Level-wide: "The first or the last column was empty." A disjunction: either column 0
+ * or column (cols-1) has no people at all. Eager partial check: false only when someone
+ * is already placed in BOTH edge columns. No subject.
+ */
+export interface EdgeColumnEmptyClue extends ClueBase {
+  type: 'edgeColumnEmpty';
+}
+
+/**
  * "Person X was north/south/west/east of person Y" (row 0 = north, col 0 = west).
  * `offset`, if given, requires an exact distance; otherwise just a strict inequality.
  */
@@ -292,6 +311,8 @@ export type Clue =
   | SharedRoomGenderClue
   | ItemTypeGenderClue
   | BareCellBanClue
+  | ItemTypeFullyOccupiedClue
+  | EdgeColumnEmptyClue
   | RelativePositionClue
   | CornerClue
   | FloorFeatureClue

@@ -48,6 +48,12 @@ export const ItemLibrary = {
   parrot: item('parrot', 'parrot', 'decorative', 'Попугай'),
   lifebuoy: item('lifebuoy', 'lifebuoy', 'occupiable', 'Спасательный круг'),
   lifeboat: item('lifeboat', 'boat', 'occupiable', 'Шлюпка'),
+  // ——— Гонки в городе (33-racing) ———
+  raceCar: item('raceCar', 'raceCar', 'occupiable', 'Гоночная машина'),
+  yacht: item('yacht', 'yacht', 'occupiable', 'Яхта'),
+  monument: item('monument', 'monument', 'decorative', 'Памятник победителю'),
+  townhouse: item('townhouse', 'townhouse', 'decorative', 'Городской дом'),
+  tireStack: item('tireStack', 'tireStack', 'decorative', 'Стопка покрышек'),
   chair: item('chair', 'chair', 'occupiable', 'Стул'),
   armchair: item('armchair', 'armchair', 'occupiable', 'Кресло'),
   sofa: item('sofa', 'sofa', 'occupiable', 'Диван'),

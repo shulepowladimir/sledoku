@@ -32,6 +32,7 @@ import { circusLevel } from './29-circus';
 import { dinerLevel } from './30-diner';
 import { polarLevel } from './31-polar';
 import { piratesLevel } from './32-pirates';
+import { racingLevel } from './33-racing';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -67,6 +68,7 @@ export const levels: Level[] = [
   dinerLevel,
   polarLevel,
   piratesLevel,
+  racingLevel,
 ];
 
 /** All non-tutorial levels — used by the level menu grid, size filters, profile stats and

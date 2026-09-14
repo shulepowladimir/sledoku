@@ -25,6 +25,9 @@ export function Board() {
   const peopleById = new Map(level.people.map((p) => [p.id, p]));
   const roomsById = new Map(level.rooms.map((r) => [r.id, r]));
   const floorFeaturesById = new Map(level.floorFeatures.map((f) => [f.id, f]));
+  // Нестандартные карты: rows = size, cols = level.cols ?? size (квадрат по умолчанию).
+  const rows = level.size;
+  const cols = level.cols ?? level.size;
 
   const roomOriginById = new Map<RoomId, { minRow: number; minCol: number }>();
   for (const room of level.rooms) {
@@ -71,9 +74,9 @@ export function Board() {
     return { room, position, anchorRow: anchorCell.row, anchorCol: anchorCell.col };
   });
 
-  // Levels with cut-out cells (e.g. rounded map corners) render fewer cells than size*size.
+  // Levels with cut-out cells (e.g. rounded map corners) render fewer cells than rows*cols.
   // Holes must stay empty, so every rendered cell pins itself to its grid track explicitly.
-  const hasCutouts = level.cells.length < level.size * level.size;
+  const hasCutouts = level.cells.length < rows * cols;
 
   // Масштаб больших полей: базовые ступени для десктопа (11×11 → 0.9, ≥12 → 0.875) плюс мобильная
   // адаптация fit-by-width/height — обёртка растягивается на всю свободную ширину flex-строки,
@@ -91,29 +94,31 @@ export function Board() {
     return () => observer.disconnect();
   }, []);
 
-  const naturalSize = level.size * CELL_SIZE;
-  const baseScale = level.size >= 12 ? 0.875 : level.size === 11 ? 0.9 : 1;
+  const naturalWidth = cols * CELL_SIZE;
+  const naturalHeight = rows * CELL_SIZE;
+  const maxDim = Math.max(rows, cols);
+  const baseScale = maxDim >= 12 ? 0.875 : maxDim === 11 ? 0.9 : 1;
   // Fit-by-width AND fit-by-height: in phone landscape the viewport is wide but short —
   // the board must fit below the HUD bar without spilling over the roster below it.
-  const fitScaleW = availWidth > 0 ? Math.min(1, availWidth / naturalSize) : 1;
+  const fitScaleW = availWidth > 0 ? Math.min(1, availWidth / naturalWidth) : 1;
   const availHeight = Math.max(
     120,
     window.innerHeight - (wrapperRef.current?.getBoundingClientRect().top ?? 0) - 12,
   );
-  const fitScaleH = Math.min(1, availHeight / naturalSize);
+  const fitScaleH = Math.min(1, availHeight / naturalHeight);
   const boardScale = Math.max(0.3, Math.min(baseScale, fitScaleW, fitScaleH));
 
   return (
     <>
-      <div ref={wrapperRef} className="board-wrap" style={{ height: naturalSize * boardScale }}>
+      <div ref={wrapperRef} className="board-wrap" style={{ height: naturalHeight * boardScale }}>
       <div
         className={`board${hasCutouts ? ' board--cut' : ''}`}
         style={{
-          gridTemplateColumns: `repeat(${level.size}, ${CELL_SIZE}px)`,
-          gridTemplateRows: `repeat(${level.size}, ${CELL_SIZE}px)`,
+          gridTemplateColumns: `repeat(${cols}, ${CELL_SIZE}px)`,
+          gridTemplateRows: `repeat(${rows}, ${CELL_SIZE}px)`,
           // явный размер: без него grid внутри блочной обёртки сжимается до её ширины
-          width: naturalSize,
-          height: naturalSize,
+          width: naturalWidth,
+          height: naturalHeight,
           // transform применять ТОЛЬКО при реальном масштабе: даже scale(1) создаёт stacking
           // context и роняет z-index трюк туториала (tutorial-highlight клетки z-2001 должны
           // перекрывать fixed-оверлей z-2000 из root-контекста).

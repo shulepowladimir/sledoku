@@ -87,7 +87,8 @@ export interface LevelMeta {
 
 export interface Level {
   meta: LevelMeta;
-  size: number; // N, grid is size x size
+  size: number; // rows count; grid is size x cols (cols defaults to size for square levels)
+  cols?: number; // for non-square maps (e.g. 10 rows x 11 cols); omit for square boards
   rooms: Room[];
   itemTypes: ItemType[];
   items: Item[];

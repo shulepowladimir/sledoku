@@ -151,12 +151,12 @@ const solution: Record<PersonId, CellId> = {
   gena: cellId(8, 2),
   darya: cellId(6, 3),
   andrey: cellId(3, 4),
-  zhanna: cellId(1, 5),
+  zhanna: cellId(4, 1),
   khristofor: cellId(2, 7),
   efim: cellId(10, 8),
   inna: cellId(5, 10),
   klavdia: cellId(9, 6),
-  zahar: cellId(4, 1),
+  zahar: cellId(1, 5),
 };
 
 const clues: Clue[] = [
@@ -189,8 +189,8 @@ const clues: Clue[] = [
   { id: 'p-occupancy', type: 'roomOccupancy', text: 'Ни одна зона тюрьмы не осталась пустой.' },
   // — Камера №1 —
   { id: 'p-boris-corner', type: 'corner', subject: { type: 'person', id: 'boris' }, text: 'Борис находился в углу своей зоны.' },
-  // — Камера №2: убийца —
-  { id: 'p-zahar-bed', type: 'occupiesItem', subject: { type: 'person', id: 'zahar' }, itemTypeId: 'bed', text: 'Захар лежал на койке.' },
+  // — Камера №2: Жанна (убийца Захар — в спортзале с жертвой) —
+  { id: 'p-zahar-ball', type: 'adjacency', subject: { type: 'person', id: 'zahar' }, itemTypeId: 'basketball', text: 'Захар находился рядом с баскетбольным мячом.' },
   // — Камера №3 —
   { id: 'p-gena-room', type: 'roomMembership', subject: { type: 'person', id: 'gena' }, roomId: 'cell3', text: 'Геннадий находился в Камере №3.' },
   {
@@ -207,16 +207,16 @@ const clues: Clue[] = [
   { id: 'p-darya-parity', type: 'parity', subject: { type: 'person', id: 'darya' }, axis: 'row', parity: 'odd', text: 'Дарья находилась в ряду с нечётным номером.' },
   { id: 'p-andrey-clock', type: 'adjacency', subject: { type: 'person', id: 'andrey' }, itemTypeId: 'clock', text: 'Андрей находился рядом с часами.' },
   // — Спортзал —
-  { id: 'p-zhanna-ball', type: 'adjacency', subject: { type: 'person', id: 'zhanna' }, itemTypeId: 'basketball', text: 'Жанна находилась рядом с баскетбольным мячом.' },
+  { id: 'p-zhanna-bed', type: 'occupiesItem', subject: { type: 'person', id: 'zhanna' }, itemTypeId: 'bed', text: 'Жанна лежала на койке.' },
   {
-    id: 'p-zhanna-east-zahar',
+    id: 'p-zhanna-west-zahar',
     type: 'relativePosition',
     subject: { type: 'person', id: 'zhanna' },
     otherPersonId: 'zahar',
     axis: 'col',
-    direction: 'after',
+    direction: 'before',
     offset: 4,
-    text: 'Жанна находилась ровно на четыре столбца восточнее Захара.',
+    text: 'Жанна находилась ровно на четыре столбца западнее Захара.',
   },
   // — Столовая —
   { id: 'p-klavdia-chair', type: 'occupiesItem', subject: { type: 'person', id: 'klavdia' }, itemTypeId: 'chair', text: 'Клавдия сидела на стуле.' },

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    raceCar — гоночная машина «формулы» (2-клеточный occupiable): открытые колёса,
+    узкий нос с передним антикрылом, боковые понтоны, кокпит с кремовым сиденьем
+    (посадочная зона), воздухозаборник над головой, заднее антикрыло (красный акцент).
+    Силуэт растянут на всю ширину кадра: рендерится в bounding-box 2 клеток.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="86" rx="42" ry="4.5" fill="#3A2A20"/>
+
+  <!-- Заднее антикрыло (красный акцент) -->
+  <path d="M64 34 L88 34 L88 41 L64 41 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M68 41 L68 52 M84 41 L84 50" stroke="#5C6670" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Колёса (открытые, крупные) -->
+  <circle cx="24" cy="72" r="12" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.8"/>
+  <circle cx="24" cy="72" r="5" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.6"/>
+  <path d="M24 68 L24 76 M20 72 L28 72 M21 69 L27 75 M27 69 L21 75" stroke="#D5DCE1" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="24" cy="72" r="1.4" fill="#1A1A1A"/>
+  <circle cx="68" cy="72" r="12" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.8"/>
+  <circle cx="68" cy="72" r="5" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.6"/>
+  <path d="M68 68 L68 76 M64 72 L72 72 M65 69 L71 75 M71 69 L65 75" stroke="#D5DCE1" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="68" cy="72" r="1.4" fill="#1A1A1A"/>
+
+  <!-- Нос (узкий клин, смотрит влево) -->
+  <path d="M6 64 Q8 56 20 54 L34 53 L36 66 L12 68 Q6 67 6 64 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- Переднее антикрыло -->
+  <path d="M4 66 L18 66 L18 71 L4 71 Z" fill="#B85F2E" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <!-- Блик на носу -->
+  <path d="M10 60 Q18 57 26 57" fill="none" stroke="#F5E9D0" stroke-width="2" stroke-linecap="round"/>
+  <!-- Номерной ромб на носу (живая деталь) -->
+  <path d="M18 60 L23 63.5 L18 67 L13 63.5 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
+  <circle cx="18" cy="63.5" r="1.4" fill="#C8102E"/>
+
+  <!-- Понтоны (боковые корпуса) -->
+  <path d="M36 52 Q46 48 56 50 L58 68 L36 68 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <path d="M50 52 Q58 52 62 56 L64 68 L58 68 Z" fill="#B85F2E" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <!-- Воздухозаборник над кокпитом -->
+  <path d="M44 48 Q52 38 60 48 L56 52 Q52 46 48 52 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+
+  <!-- Кокпит: кремовое сиденье (посадочная зона) -->
+  <path d="M38 68 L38 57 Q46 52 54 57 L54 68 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M40 64 L52 64" stroke="#D5DCE1" stroke-width="1.6" stroke-linecap="round"/>
+  <!-- Подголовник -->
+  <path d="M50 55 Q52 50 55 52 L55 57 Q52 55 50 57 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.8" stroke-linejoin="round"/>
+
+  <!-- Двигатель-кожух за кокпитом -->
+  <path d="M56 50 L66 48 L70 54 L68 68 L58 68 Z" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M60 54 L66 53" stroke="#D5DCE1" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="63" cy="60" r="1.2" fill="#5C6670"/>
+  <circle cx="63" cy="64" r="1.2" fill="#5C6670"/>
+</svg>

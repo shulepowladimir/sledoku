@@ -95,7 +95,7 @@ export function LevelMenu() {
                 <ThemeIcon theme={level.meta.theme} />
                 <span className="level-card__title">{level.meta.title}</span>
                 <span className="level-card__size">
-                  {level.size}×{level.size}
+                  {level.size}×{level.cols ?? level.size}
                 </span>
                 {bestMs != null && (
                   <div className="level-card__solved">

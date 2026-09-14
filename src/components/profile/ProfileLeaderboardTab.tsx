@@ -47,7 +47,7 @@ export function ProfileLeaderboardTab() {
                 >
                   <span className="profile-leaderboard__row-title">{level.meta.title}</span>
                   <span className="profile-leaderboard__row-size">
-                    {level.size}×{level.size}
+                    {level.size}×{level.cols ?? level.size}
                   </span>
                   <span className="profile-leaderboard__row-time">
                     {best ? formatElapsed(best.elapsedMs) : '—'}

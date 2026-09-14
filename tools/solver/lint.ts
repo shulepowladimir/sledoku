@@ -24,6 +24,15 @@ function referencedRoles(clues: Clue[]): string[] {
  *  player while the solver still counts it — a silent source of player-visible ambiguity (medieval-21). */
 export function lintLevel(level: Level): string[] {
   const violations: string[] = [];
+  // Идентификаторы подсказок обязаны быть уникальны: дубли молча ломают key/ссылки
+  // (прецедент — пираты: c6/c9 дублировались после вставок и прошли валидацию).
+  const seenClueIds = new Set<string>();
+  for (const clue of level.clues) {
+    if (seenClueIds.has(clue.id)) {
+      violations.push(`Подсказка "${clue.id}": дублирующийся идентификатор — id подсказок должны быть уникальны.`);
+    }
+    seenClueIds.add(clue.id);
+  }
   for (const person of level.people) {
     if (person.isVictim) continue;
     const hasPersonalClue = level.clues.some(
