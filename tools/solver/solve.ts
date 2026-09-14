@@ -1,6 +1,6 @@
 import type { Cell, CellId, Level, PersonId, RoomId } from '../../src/types/level';
 import { cellId } from '../../src/types/level';
-import type { Clue, RelativePositionClue, RelativeToItemOccupantClue, Subject } from '../../src/types/clue';
+import type { Clue, Subject } from '../../src/types/clue';
 import { buildLevelIndex, cellBoundary, isCorner, isLegalTarget, type LevelIndex } from '../../src/engine/board';
 
 type Person = Level['people'][number];
@@ -140,6 +140,19 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
       if (hasMatch) return clue.negated ? false : true;
       if (!allAssigned) return undefined;
       return clue.negated ? true : false;
+    }
+    case 'bareCellBan': {
+      // «Никого не было в воде»: в зоне roomId запрещены «голые» клетки — только
+      // предмет (шлюпка, круг) или фича пола (отмель, риф) считаются «не в воде».
+      // Частичная оценка: любое уже размещённое нарушение — немедленный false.
+      for (const p of level.people) {
+        const pc = getCell(p.id);
+        if (!pc) continue;
+        const cell = index.cellsById.get(pc)!;
+        if (cell.roomId !== clue.roomId) continue;
+        if (!cell.itemId && !cell.floorFeatureId) return false;
+      }
+      return true;
     }
     case 'itemTypeGender': {
       if (!allAssigned) return undefined;
@@ -474,23 +487,16 @@ export function solveLevel(level: Level): SolverResult {
     domains.set(person.id, computeUnaryDomain(level, index, legalCells, person.id));
   }
 
-  // Направленные реляционные клю проверяются по ходу перебора (relConsistent), а не только
-  // на листьях: relativePosition — про двух известных людей, relativeToItemOccupant — про
-  // субъекта и (скрытых) сидельцев предмета. Обе могут отсекать ветку до полной расстановки.
-  const relClues = level.clues.filter(
-    (c): c is RelativePositionClue | RelativeToItemOccupantClue =>
-      c.type === 'relativePosition' || c.type === 'relativeToItemOccupant',
-  );
-  const relCluesByPerson = new Map<PersonId, Array<RelativePositionClue | RelativeToItemOccupantClue>>();
-  for (const clue of relClues) {
-    const participants: PersonId[] =
-      clue.type === 'relativePosition'
-        ? [subjectPersonId(clue.subject, level), clue.otherPersonId]
-        : [subjectPersonId(clue.subject, level)];
-    for (const pid of participants) {
-      if (!relCluesByPerson.has(pid)) relCluesByPerson.set(pid, []);
-      relCluesByPerson.get(pid)!.push(clue);
+  // Все клю проверяются по ходу перебора (eagerlyConsistent), а не только на листьях:
+  // evalClue с allAssigned=false возвращает undefined, пока клю неразрешима, и false —
+  // только при уже доказанном нарушении (субъект размещён и условие нарушено; для
+  // level-wide клю вроде bareCellBan — любое размещённое нарушение). Это отсекает
+  // ветки задолго до полной расстановки и держит большие «фоновые» зоны в узде.
+  function eagerlyConsistent(): boolean {
+    for (const clue of level.clues) {
+      if (evalClue(clue, getCell, level, index, false) === false) return false;
     }
+    return true;
   }
 
   const assignment = new Map<PersonId, CellId>();
@@ -502,13 +508,6 @@ export function solveLevel(level: Level): SolverResult {
   let budgetExceeded = false;
 
   const getCell: GetCell = (pid) => assignment.get(pid);
-
-  function relConsistent(personId: PersonId): boolean {
-    for (const clue of relCluesByPerson.get(personId) ?? []) {
-      if (evalClue(clue, getCell, level, index, false) === false) return false;
-    }
-    return true;
-  }
 
   function isValidLeaf(): boolean {
     for (const clue of level.clues) {
@@ -561,7 +560,7 @@ export function solveLevel(level: Level): SolverResult {
       usedRows.add(cell.row);
       usedCols.add(cell.col);
 
-      if (relConsistent(best.id)) {
+      if (eagerlyConsistent()) {
         search(rest);
       }
 

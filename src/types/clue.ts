@@ -52,6 +52,16 @@ export interface ItemTypeGenderClue extends ClueBase {
 }
 
 /**
+ * Level-wide: "Nobody was in the water of room R." Cells of room R without an item
+ * (boat, buoy) or floor feature (ford, reef) are banned for placement — being on a
+ * boat/ford/reef does not count as being in the water. No subject.
+ */
+export interface BareCellBanClue extends ClueBase {
+  type: 'bareCellBan';
+  roomId: RoomId;
+}
+
+/**
  * "Person X was north/south/west/east of person Y" (row 0 = north, col 0 = west).
  * `offset`, if given, requires an exact distance; otherwise just a strict inequality.
  */
@@ -281,6 +291,7 @@ export type Clue =
   | AdjacencyClue
   | SharedRoomGenderClue
   | ItemTypeGenderClue
+  | BareCellBanClue
   | RelativePositionClue
   | CornerClue
   | FloorFeatureClue

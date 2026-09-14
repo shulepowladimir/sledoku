@@ -127,6 +127,11 @@
 - igloo — decorative
 - snowmobile — occupiable (2-клеточный, как car/motorcycle)
 - radioStation — decorative
+- wheel — occupiable
+- cannon — occupiable (2-клеточный, как car/motorcycle/snowmobile)
+- parrot — decorative
+- lifebuoy — decorative
+- lifeboat — occupiable (icon boat, реюз иконки)
 
 ## ItemIcon.tsx — существующие иконки (имена case, без кода)
 

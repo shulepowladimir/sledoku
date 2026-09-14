@@ -80,6 +80,9 @@ export interface LevelMeta {
   clueBalanceExempt?: boolean;
   /** Tutorial level: excluded from stats/leaderboards/records, rendered as a pinned "Обучение" card in the menu, runs the step-by-step tutorial scenario. */
   isTutorial?: boolean;
+  /** Desktop roster column sizes (top to bottom = left to right), e.g. [5, 3, 4] for 12 people.
+   *  Optional — when omitted the roster splits people into even chunks (ceil(N / columnCount)). */
+  rosterColumnCounts?: number[];
 }
 
 export interface Level {

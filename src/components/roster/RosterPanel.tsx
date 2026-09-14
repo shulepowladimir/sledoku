@@ -151,13 +151,25 @@ export function RosterPanel() {
         {/* Equal desktop columns (e.g. 12 people → 4+4+4): CSS multi-column fills by
             height (5+5+2), so we split the list into columnCount explicit <ul>s instead.
             Alphabet runs DOWN each column (А,Б,В / Г,Д,Е / Ж,Х) — contiguous chunks,
-            like the old CSS multi-column did. */}
+            like the old CSS multi-column did. A level may override the split via
+            meta.rosterColumnCounts (e.g. [5, 3, 4]) when an uneven layout reads better. */}
         <div className="roster-columns">
           {(() => {
-            const chunk = Math.ceil(level.people.length / columnCount);
-            return Array.from({ length: columnCount }, (_, col) => (
+            const customCounts = level.meta.rosterColumnCounts;
+            const offsets: Array<[number, number]> = [];
+            if (customCounts && customCounts.reduce((a, b) => a + b, 0) === level.people.length) {
+              let from = 0;
+              for (const count of customCounts) {
+                offsets.push([from, from + count]);
+                from += count;
+              }
+            } else {
+              const chunk = Math.ceil(level.people.length / columnCount);
+              for (let col = 0; col < columnCount; col++) offsets.push([col * chunk, col * chunk + chunk]);
+            }
+            return offsets.map(([from, to], col) => (
               <ul key={col} className={`roster-list${columnCount > 1 ? ' roster-list--stack' : ''}`}>
-                {level.people.slice(col * chunk, col * chunk + chunk).map((person) => {
+                {level.people.slice(from, to).map((person) => {
                   const { isPlaced, statusClass, selectedClass, placedStatusText, unplacedStatusText } = headerFor(person);
                   const personalClues = person.isVictim ? [] : personalCluesFor(level.clues, person.id);
                   return (

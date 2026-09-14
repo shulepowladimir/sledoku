@@ -42,6 +42,12 @@ export const ItemLibrary = {
   igloo: item('igloo', 'igloo', 'decorative', 'Иглу'),
   snowmobile: item('snowmobile', 'snowmobile', 'occupiable', 'Снегоход'),
   radioStation: item('radioStation', 'radioStation', 'decorative', 'Радиостанция'),
+  // ——— Пираты (32-pirates) ———
+  wheel: item('wheel', 'wheel', 'occupiable', 'Штурвал'),
+  cannon: item('cannon', 'cannon', 'decorative', 'Пушка'),
+  parrot: item('parrot', 'parrot', 'decorative', 'Попугай'),
+  lifebuoy: item('lifebuoy', 'lifebuoy', 'occupiable', 'Спасательный круг'),
+  lifeboat: item('lifeboat', 'boat', 'occupiable', 'Шлюпка'),
   chair: item('chair', 'chair', 'occupiable', 'Стул'),
   armchair: item('armchair', 'armchair', 'occupiable', 'Кресло'),
   sofa: item('sofa', 'sofa', 'occupiable', 'Диван'),
