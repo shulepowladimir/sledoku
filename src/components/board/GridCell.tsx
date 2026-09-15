@@ -9,6 +9,13 @@ import { PencilMarks } from './PencilMarks';
 import type { PencilMarkEntry } from './PencilMarks';
 import { CrossOverlay } from './CrossOverlay';
 
+/** Per-item-type icon size override for single-cell items (defaults: decorative 40, occupiable 26).
+ *  Some drawings leave generous safe-area margins in their viewBox and read better
+ *  larger inside the cell — e.g. pokerTable renders at ~cell size. */
+const ITEM_CELL_ICON_SIZE: Partial<Record<string, number>> = {
+  pokerTable: 52,
+};
+
 export interface RoomBoundary {
   top: boolean;
   right: boolean;
@@ -178,7 +185,10 @@ export function GridCell({
       onMouseLeave={onMouseLeave}
     >
       {itemType && !person && !suppressItemIcon && (
-        <ItemIcon itemType={itemType} size={itemType.kind === 'decorative' ? 40 : 26} />
+        <ItemIcon
+          itemType={itemType}
+          size={ITEM_CELL_ICON_SIZE[itemType.id] ?? (itemType.kind === 'decorative' ? 40 : 26)}
+        />
       )}
       {itemType && person && itemType.kind === 'occupiable' && (
         <div className="grid-cell__item-under">

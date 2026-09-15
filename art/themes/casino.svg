@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    casino — «Фишки ва-банк»: колесо рулетки крупно на тёмно-синей панели
+    (золотое кольцо, красные и тёмные сектора, золотые спицы, кремовый шарик),
+    справа — червовый туз и стопки фишек. Приём усиления золота тёмной
+    подложкой — как nightsky-панель у neonSign.
+  -->
+  <!-- Тёмно-синяя панель-подложка -->
+  <rect x="6" y="6" width="84" height="84" rx="6" fill="#1F3A5F"/>
+  <!-- Тёплый отсвет сверху-слева -->
+  <path d="M12 16 Q48 7 84 16" fill="none" stroke="#2E6E65" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="20" cy="17" r="2.4" fill="#F5E9D0"/>
+
+  <!-- Колесо рулетки -->
+  <circle cx="40" cy="48" r="27" fill="#E0A94A" stroke="#1A1A1A" stroke-width="3"/>
+  <circle cx="40" cy="48" r="21.5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.2"/>
+  <!-- Красные сектора (через один) -->
+  <g fill="#C8102E" stroke="#1A1A1A" stroke-width="1.2">
+    <path d="M40 48 L61.5 48 A21.5 21.5 0 0 0 55.2 32.8 Z"/>
+    <path d="M40 48 L40 69.5 A21.5 21.5 0 0 0 24.8 63.2 Z"/>
+    <path d="M40 48 L18.5 48 A21.5 21.5 0 0 0 24.8 32.8 Z"/>
+    <path d="M40 48 L40 26.5 A21.5 21.5 0 0 0 55.2 32.8 Z"/>
+  </g>
+  <!-- Золотые спицы -->
+  <path d="M18.5 48 L61.5 48 M40 26.5 L40 69.5" stroke="#E0A94A" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- Ступица -->
+  <circle cx="40" cy="48" r="5.2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="40" cy="48" r="2" fill="#E0A94A"/>
+  <!-- Кремовый шарик на ободе -->
+  <circle cx="54" cy="33.5" r="2.3" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.2"/>
+
+  <!-- Червовый туз (справа сверху, слегка наклонён) -->
+  <g transform="rotate(11 75 33)">
+    <rect x="66" y="21" width="17" height="23.5" rx="2.5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.2"/>
+    <path d="M74.5 27.5 c-2.4-3.6-7.4-0.7-5 3.2 L74.5 35 l5-4.3 c2.4-3.9-2.6-6.8-5-3.2 Z" fill="#C8102E"/>
+    <path d="M69.8 25 c-1.2-1.8-3.7-0.4-2.5 1.6 l2.5 2.1" fill="#C8102E"/>
+    <circle cx="70.5" cy="24.5" r="0.9" fill="#C8102E"/>
+    <circle cx="78.5" cy="41" r="0.9" fill="#C8102E"/>
+  </g>
+
+  <!-- Стопки фишек (справа снизу): золотая и бирюзовая -->
+  <g stroke="#1A1A1A" stroke-width="1.6">
+    <ellipse cx="70" cy="73" rx="6.6" ry="3" fill="#E0A94A"/>
+    <ellipse cx="70" cy="70" rx="6.6" ry="3" fill="#E8B95F"/>
+    <ellipse cx="70" cy="67" rx="6.6" ry="3" fill="#E0A94A"/>
+  </g>
+  <path d="M64.6 73 Q70 75 75.4 73 M64.6 70 Q70 72 75.4 70" fill="none" stroke="#F5E9D0" stroke-width="1.1" stroke-linecap="round"/>
+  <g stroke="#1A1A1A" stroke-width="1.6">
+    <ellipse cx="81" cy="76" rx="5.6" ry="2.6" fill="#2E6E65"/>
+    <ellipse cx="81" cy="73.4" rx="5.6" ry="2.6" fill="#2E6E65"/>
+  </g>
+  <path d="M76.6 76 Q81 77.6 85.4 76" fill="none" stroke="#F5E9D0" stroke-width="1.1" stroke-linecap="round"/>
+  <ellipse cx="81" cy="73.4" rx="2.6" ry="1.2" fill="none" stroke="#F5E9D0" stroke-width="1"/>
+</svg>

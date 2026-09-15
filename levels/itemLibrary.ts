@@ -54,6 +54,10 @@ export const ItemLibrary = {
   monument: item('monument', 'monument', 'decorative', 'Памятник победителю'),
   townhouse: item('townhouse', 'townhouse', 'decorative', 'Городской дом'),
   tireStack: item('tireStack', 'tireStack', 'decorative', 'Стопка покрышек'),
+  // ——— Казино (34-casino) ———
+  slotMachine: item('slotMachine', 'slotMachine', 'decorative', 'Игровой автомат'),
+  rouletteTable: item('rouletteTable', 'rouletteTable', 'occupiable', 'Стол для рулетки'),
+  pokerTable: item('pokerTable', 'pokerTable', 'occupiable', 'Стол для покера'),
   chair: item('chair', 'chair', 'occupiable', 'Стул'),
   armchair: item('armchair', 'armchair', 'occupiable', 'Кресло'),
   sofa: item('sofa', 'sofa', 'occupiable', 'Диван'),
