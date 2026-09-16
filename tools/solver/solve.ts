@@ -155,9 +155,11 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
       return true;
     }
     case 'itemTypeFullyOccupied': {
-      // «Ни одна машина не осталась без водителя»: каждый экземпляр типа занят хотя бы
-      // одним человеком. Частичная оценка с прунингом: если незанятых экземпляров больше,
-      // чем ещё не размещённых людей (каждый может закрыть максимум один), — false.
+      // «Ни одна машина не осталась без водителя» / «ровно одна осталась пустой»:
+      // незанятых экземпляров типа ровно `vacancies` (по умолчанию 0). Частичная
+      // оценка с прунингом: лишние незанятые сверх вакансий должны быть закрыты
+      // ещё не размещёнными людьми (каждый закрывает максимум один) — иначе false.
+      const vacancies = clue.vacancies ?? 0;
       const itemsOfType = level.items.filter((i) => i.typeId === clue.itemTypeId);
       let unoccupied = 0;
       for (const item of itemsOfType) {
@@ -167,9 +169,9 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
         });
         if (!hasOccupant) unoccupied++;
       }
-      if (allAssigned) return unoccupied === 0;
+      if (allAssigned) return unoccupied === vacancies;
       const unplaced = level.people.filter((p) => !getCell(p.id)).length;
-      return unoccupied <= unplaced;
+      return unoccupied - vacancies <= unplaced;
     }
     case 'edgeColumnEmpty': {
       // «Первый или последний столбец был пустым»: дизъюнкция. Частичная оценка:
@@ -185,6 +187,33 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
         if (col === lastCol) lastUsed = true;
       }
       return !(firstUsed && lastUsed);
+    }
+    case 'zoneEmptyDisjunction': {
+      // «На крыше или на въезде никого не было»: дизъюнкция по зонам — хотя бы одна
+      // из перечисленных пуста. Занятость монотонно растёт, поэтому частичная оценка
+      // совпадает с листовой: false только когда занята КАЖДАЯ зона из списка.
+      const roomSet = new Set(clue.roomIds);
+      const occupiedRooms = new Set<string>();
+      for (const p of level.people) {
+        const pc = getCell(p.id);
+        if (!pc) continue;
+        const roomId = index.cellsById.get(pc)!.roomId;
+        if (roomSet.has(roomId)) occupiedRooms.add(roomId);
+      }
+      return occupiedRooms.size < roomSet.size;
+    }
+    case 'zoneCountParity': {
+      // «На чётных этажах чётное число людей, на нечётных — нечётное»: паритет
+      // населения зон. Проверяется только на листе (частичные расстановки недосчитывают).
+      if (!allAssigned) return undefined;
+      for (const { roomId, parity } of clue.zones) {
+        const count = level.people.filter((p) => {
+          const pc = getCell(p.id);
+          return pc != null && index.cellsById.get(pc)!.roomId === roomId;
+        }).length;
+        if (count % 2 !== (parity === 'even' ? 0 : 1)) return false;
+      }
+      return true;
     }
     case 'itemTypeGender': {
       if (!allAssigned) return undefined;

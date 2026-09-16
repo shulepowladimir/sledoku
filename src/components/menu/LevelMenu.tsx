@@ -5,6 +5,7 @@ import { useGameStore } from '../../state/gameStore';
 import { useProgressStore } from '../../state/progressStore';
 import { useTutorialStore } from '../../state/tutorialStore';
 import { formatElapsed } from '../../utils/time';
+import { isCustomBoard, boardSortKey, CUSTOM_BOARD_LABEL } from '../../utils/boardSize';
 import { GameLogo } from './GameLogo';
 import { HowToPlay } from './HowToPlay';
 import { ThemeIcon } from './ThemeIcon';
@@ -14,15 +15,30 @@ import { SiteFooter } from './SiteFooter';
 
 // Ascending cell count first, then (ties) the `levels` array order — that array is already
 // chronological (each new level is appended at the end), so a stable sort keeps it as the tie-break.
-const sortedLevels = [...gameLevels].sort((a, b) => a.size - b.size);
+// Non-square boards (10×11, 11×10) sort between 10×10 and 11×11 via boardSortKey.
+const sortedLevels = [...gameLevels].sort((a, b) => boardSortKey(a) - boardSortKey(b));
 
-const sizeOptions: Array<'all' | number> = ['all', ...new Set(sortedLevels.map((level) => level.size))];
+// Filter chips: square sizes plus a single shared chip for non-square boards, placed
+// right before the first square size larger than the custom boards' smaller dimension
+// (today: between 10×10 and 11×11).
+const customMinDim = (() => {
+  const custom = gameLevels.filter(isCustomBoard);
+  return custom.length ? Math.min(...custom.map((l) => Math.min(l.size, l.cols!))) : null;
+})();
+const squareSizes = [...new Set(gameLevels.filter((l) => !isCustomBoard(l)).map((l) => l.size))].sort((a, b) => a - b);
+const customInsertAt = customMinDim != null ? squareSizes.findIndex((s) => s > customMinDim) : -1;
+const sizeOptions: Array<'all' | 'custom' | number> = [
+  'all',
+  ...(customInsertAt === -1
+    ? [...squareSizes, ...(customMinDim != null ? (['custom'] as const) : [])]
+    : [...squareSizes.slice(0, customInsertAt), 'custom' as const, ...squareSizes.slice(customInsertAt)]),
+];
 
 export function LevelMenu() {
   const selectLevel = useGameStore((s) => s.selectLevel);
   const bestTimes = useProgressStore((s) => s.bestTimes);
   const tutorialDone = useTutorialStore((s) => s.tutorialDone);
-  const [sizeFilter, setSizeFilter] = useState<'all' | number>('all');
+  const [sizeFilter, setSizeFilter] = useState<'all' | 'custom' | number>('all');
   const [hideSolved, setHideSolved] = useState(false);
 
   // The tutorial card sits FIRST inside the level grid but outside the common categorization:
@@ -31,7 +47,11 @@ export function LevelMenu() {
   const showTutorialCard = sizeFilter === 'all' && (!hideSolved || !tutorialDone);
 
   const visibleLevels = sortedLevels.filter((level) => {
-    if (sizeFilter !== 'all' && level.size !== sizeFilter) return false;
+    if (sizeFilter === 'custom') {
+      if (!isCustomBoard(level)) return false;
+    } else if (sizeFilter !== 'all' && (isCustomBoard(level) || level.size !== sizeFilter)) {
+      return false;
+    }
     if (hideSolved && bestTimes[level.meta.id] != null) return false;
     return true;
   });
@@ -62,7 +82,7 @@ export function LevelMenu() {
               data-testid={`size-filter-${size}`}
               onClick={() => setSizeFilter(size)}
             >
-              {size === 'all' ? 'Все' : `${size}×${size}`}
+              {size === 'all' ? 'Все' : size === 'custom' ? CUSTOM_BOARD_LABEL : `${size}×${size}`}
             </button>
           ))}
         </div>

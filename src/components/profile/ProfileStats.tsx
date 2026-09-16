@@ -2,10 +2,11 @@ import { useMemo, useState } from 'react';
 import { gameLevels } from '../../../levels';
 import { useProgressStore } from '../../state/progressStore';
 import { formatElapsed } from '../../utils/time';
+import { isCustomBoard, CUSTOM_BOARD_LABEL } from '../../utils/boardSize';
 
 interface CategoryStat {
-  size: number;
-  /** «10×10» для квадратных категорий; если внутри есть нестандартные карты — «10×10 / 10×11». */
+  key: string;
+  /** «10×10» для квадратных категорий; нестандартные карты — общая строка CUSTOM_BOARD_LABEL. */
   sizeLabel: string;
   solvedCount: number;
   totalCount: number;
@@ -25,9 +26,7 @@ export function ProfileStats() {
     solvedCount > 0 ? solvedLevels.reduce((sum, l) => sum + bestTimes[l.meta.id], 0) / solvedCount : null;
 
   const categories = useMemo<CategoryStat[]>(() => {
-    const sizes = [...new Set(gameLevels.map((l) => l.size))].sort((a, b) => a - b);
-    return sizes.map((size) => {
-      const levelsInCategory = gameLevels.filter((l) => l.size === size);
+    const build = (key: string, sizeLabel: string, levelsInCategory: typeof gameLevels): CategoryStat => {
       const solvedInCategory = levelsInCategory.filter((l) => bestTimes[l.meta.id] != null);
 
       let bestMs: number | null = null;
@@ -46,15 +45,31 @@ export function ProfileStats() {
           : null;
 
       return {
-        size,
-        sizeLabel: [...new Set(levelsInCategory.map((l) => `${l.size}×${l.cols ?? l.size}`))].join(' / '),
+        key,
+        sizeLabel,
         solvedCount: solvedInCategory.length,
         totalCount: levelsInCategory.length,
         bestMs,
         bestLevelTitle,
         averageMs,
       };
-    });
+    };
+
+    // Квадратные категории по размеру; нестандартные доски (10×11, 11×10…) — одна общая
+    // категория CUSTOM_BOARD_LABEL, вставленная перед первым размером больше их меньшего
+    // измерения (сегодня: между 10×10 и 11×11).
+    const squareLevels = gameLevels.filter((l) => !isCustomBoard(l));
+    const customLevels = gameLevels.filter(isCustomBoard);
+    const sizes = [...new Set(squareLevels.map((l) => l.size))].sort((a, b) => a - b);
+    const result = sizes.map((size) => build(String(size), `${size}×${size}`, squareLevels.filter((l) => l.size === size)));
+    if (customLevels.length) {
+      const minDim = Math.min(...customLevels.map((l) => Math.min(l.size, l.cols!)));
+      const insertAt = sizes.findIndex((s) => s > minDim);
+      const customCategory = build('custom', CUSTOM_BOARD_LABEL, customLevels);
+      if (insertAt === -1) result.push(customCategory);
+      else result.splice(insertAt, 0, customCategory);
+    }
+    return result;
   }, [bestTimes]);
 
   return (
@@ -102,7 +117,7 @@ export function ProfileStats() {
         </thead>
         <tbody>
           {categories.map((cat) => (
-            <tr key={cat.size}>
+            <tr key={cat.key}>
               <td>
                 {cat.sizeLabel}
               </td>

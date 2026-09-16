@@ -69,6 +69,9 @@ export interface BareCellBanClue extends ClueBase {
 export interface ItemTypeFullyOccupiedClue extends ClueBase {
   type: 'itemTypeFullyOccupied';
   itemTypeId: ItemTypeId;
+  /** How many items of the type may stay unoccupied. Default 0 = "every item
+   *  occupied" (racing). E.g. "exactly one car was left empty" — vacancies: 1. */
+  vacancies?: number;
 }
 
 /**
@@ -78,6 +81,28 @@ export interface ItemTypeFullyOccupiedClue extends ClueBase {
  */
 export interface EdgeColumnEmptyClue extends ClueBase {
   type: 'edgeColumnEmpty';
+}
+
+/**
+ * Level-wide: "No one was in zone A or in zone B." A disjunction: at least one of the
+ * listed rooms ends up empty (parking-01: "no one was on the roof OR at the entrance").
+ * Eager partial check: false only when someone is already placed in EVERY listed room.
+ * No subject.
+ */
+export interface ZoneEmptyDisjunctionClue extends ClueBase {
+  type: 'zoneEmptyDisjunction';
+  roomIds: RoomId[];
+}
+
+/**
+ * Level-wide parity of head-count per zone: "even floors held an even number of
+ * people, odd floors an odd number" — one clue covering several rooms at once.
+ * Only fully checkable at the leaf (partial placements under-count), so the eager
+ * pass skips it. No subject.
+ */
+export interface ZoneCountParityClue extends ClueBase {
+  type: 'zoneCountParity';
+  zones: { roomId: RoomId; parity: 'even' | 'odd' }[];
 }
 
 /**
@@ -313,6 +338,8 @@ export type Clue =
   | BareCellBanClue
   | ItemTypeFullyOccupiedClue
   | EdgeColumnEmptyClue
+  | ZoneEmptyDisjunctionClue
+  | ZoneCountParityClue
   | RelativePositionClue
   | CornerClue
   | FloorFeatureClue

@@ -1,6 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import { gameLevels } from '../levels';
 import { apartmentLevel } from '../levels/01-apartment';
+import { isCustomBoard } from '../src/utils/boardSize';
 
 async function seedBestTimes(page: Page, bestTimes: Record<string, number>) {
   await page.addInitScript((payload) => {
@@ -19,7 +20,19 @@ test('size filter shows only cards of the chosen size', async ({ page }) => {
   await expect(page.getByTestId('level-card-tutorial-00')).toHaveCount(0);
   for (const level of gameLevels) {
     const card = page.getByTestId(`level-card-${level.meta.id}`);
-    if (level.size === 11) {
+    // Нестандартные доски (11×10 паркинг) живут в отдельном чипе «10×11», не в «11×11».
+    if (level.size === 11 && !isCustomBoard(level)) {
+      await expect(card).toBeVisible();
+    } else {
+      await expect(card).toHaveCount(0);
+    }
+  }
+
+  // Отдельная категория нестандартных досок (10×11 и 11×10 — гонки и паркинг).
+  await page.getByTestId('size-filter-custom').click();
+  for (const level of gameLevels) {
+    const card = page.getByTestId(`level-card-${level.meta.id}`);
+    if (isCustomBoard(level)) {
       await expect(card).toBeVisible();
     } else {
       await expect(card).toHaveCount(0);
