@@ -67,6 +67,8 @@ function toRuntimeClue(c: EditorClue, personSlugById: Map<string, string>, roomS
         otherPersonId: personSlugById.get(d.otherPersonId) ?? d.otherPersonId,
         negated: d.negated,
       };
+    case 'aloneInRoom':
+      return { ...base, type: 'aloneInRoom', subject: subjectFor(personSlugById, d.subjectId) };
     case 'sameRoomAsItem':
       return { ...base, type: 'sameRoomAsItem', subject: subjectFor(personSlugById, d.subjectId), itemTypeId: d.itemTypeId, negated: d.negated };
     case 'occupiesItem':

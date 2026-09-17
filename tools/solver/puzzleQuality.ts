@@ -38,6 +38,7 @@ const MAX_ITEM_RELATED_CLUE_TYPE_SHARE = 0.3;
 const ITEM_RELATED_CLUE_TYPES = new Set([
   'adjacency',
   'floorFeature',
+  'floorTexture',
   'sameRoomAsItem',
   'occupiesItem',
   'relativeToItemOccupant',

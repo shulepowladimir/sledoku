@@ -58,6 +58,11 @@ export const ItemLibrary = {
   slotMachine: item('slotMachine', 'slotMachine', 'decorative', 'Игровой автомат'),
   rouletteTable: item('rouletteTable', 'rouletteTable', 'occupiable', 'Стол для рулетки'),
   pokerTable: item('pokerTable', 'pokerTable', 'occupiable', 'Стол для покера'),
+  // ——— Музыкальный фестиваль (36-festival) ———
+  guitar: item('guitar', 'guitar', 'decorative', 'Гитара'),
+  micStand: item('micStand', 'micStand', 'decorative', 'Стойка с микрофоном'),
+  speaker: item('speaker', 'speaker', 'decorative', 'Колонка'),
+  veggieCounter: item('veggieCounter', 'veggieCounter', 'decorative', 'Овощной прилавок'),
   chair: item('chair', 'chair', 'occupiable', 'Стул'),
   armchair: item('armchair', 'armchair', 'occupiable', 'Кресло'),
   sofa: item('sofa', 'sofa', 'occupiable', 'Диван'),

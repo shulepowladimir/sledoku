@@ -47,6 +47,8 @@ function clueToCode(c: EditorClue, personSlugById: Map<string, string>, roomSlug
       return `  { ${id}, type: 'corner', subject: ${subjectCode(personSlugById, d.subjectId)}, negated: ${d.negated}, ${text} },`;
     case 'sameRoomAs':
       return `  { ${id}, type: 'sameRoomAs', subject: ${subjectCode(personSlugById, d.subjectId)}, otherPersonId: '${personSlugById.get(d.otherPersonId) ?? d.otherPersonId}', negated: ${d.negated}, ${text} },`;
+    case 'aloneInRoom':
+      return `  { ${id}, type: 'aloneInRoom', subject: ${subjectCode(personSlugById, d.subjectId)}, ${text} },`;
     case 'sameRoomAsItem':
       return `  { ${id}, type: 'sameRoomAsItem', subject: ${subjectCode(personSlugById, d.subjectId)}, itemTypeId: '${d.itemTypeId}', negated: ${d.negated}, ${text} },`;
     case 'occupiesItem':

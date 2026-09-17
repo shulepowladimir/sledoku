@@ -7,6 +7,7 @@ export type ClueTypeId =
   | 'relativePosition'
   | 'corner'
   | 'sameRoomAs'
+  | 'aloneInRoom'
   | 'sameRoomAsItem'
   | 'occupiesItem'
   | 'wallSide'
@@ -34,6 +35,7 @@ export type EditorClueData =
     }
   | { type: 'corner'; subjectId: string; negated: boolean }
   | { type: 'sameRoomAs'; subjectId: string; otherPersonId: string; negated: boolean }
+  | { type: 'aloneInRoom'; subjectId: string }
   | { type: 'sameRoomAsItem'; subjectId: string; itemTypeId: string; negated: boolean }
   | { type: 'occupiesItem'; subjectId: string; itemTypeId: string; negated: boolean }
   | { type: 'wallSide'; subjectId: string; wallDirection: 'north' | 'south' | 'east' | 'west'; negated: boolean }
@@ -84,6 +86,7 @@ export const CLUE_TYPE_DEFS: ClueTypeDef[] = [
   { id: 'sharedRoomGender', label: 'Делил(а) комнату с мужчиной/женщиной', category: 'Личная', fields: ['subject', 'gender', 'negated'] },
   { id: 'corner', label: 'Стоял(а) в углу комнаты', category: 'Личная', fields: ['subject', 'negated'] },
   { id: 'sameRoomAsItem', label: 'Был(а) в одной комнате с предметом (не обязательно рядом)', category: 'Личная', fields: ['subject', 'itemType', 'negated'] },
+  { id: 'aloneInRoom', label: 'Был(а) в своей комнате один (одна)', category: 'Личная', fields: ['subject'] },
   { id: 'occupiesItem', label: 'Сидел(а)/стоял(а) прямо на предмете', category: 'Личная', fields: ['subject', 'itemType', 'negated'] },
   { id: 'wallSide', label: 'Стоял(а) у стены (сторона света)', category: 'Личная', fields: ['subject', 'wallDirection', 'negated'] },
   { id: 'roomSize', label: 'Был(а) в самой большой/маленькой комнате', category: 'Личная', fields: ['subject', 'comparisonSize'] },

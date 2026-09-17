@@ -133,12 +133,32 @@ export interface FloorFeatureClue extends ClueBase {
   negated?: boolean;
 }
 
+/**
+ * "Person X was standing on texture T" (e.g. grass, sand, metal) — the subject's own cell resolved
+ * to its EFFECTIVE texture: the floor feature's texture overrides the room's on feature cells
+ * (festival-01: "was on stage" = the metal stage feature spanning three scene zones — the clue does
+ * not reveal WHICH zone). Unary like floorFeature; decidable purely from the subject's own cell.
+ */
+export interface FloorTextureClue extends ClueBase {
+  type: 'floorTexture';
+  subject: Subject;
+  textureKey: string; // key into the floor-texture registry (rooms' floorTexture / features' textureKey)
+  negated?: boolean;
+}
+
 /** "Person X was in the same room as person Y" — relational, non-directional alternative to relativePosition. */
 export interface SameRoomAsClue extends ClueBase {
   type: 'sameRoomAs';
   subject: Subject;
   otherPersonId: PersonId;
   negated?: boolean;
+}
+
+/** "Person X was alone in their room" — the subject's zone has exactly one occupant (the subject).
+ *  Relational (depends on everyone else's placement) but reads as a personal clue. */
+export interface AloneInRoomClue extends ClueBase {
+  type: 'aloneInRoom';
+  subject: Subject;
 }
 
 /**
@@ -343,7 +363,9 @@ export type Clue =
   | RelativePositionClue
   | CornerClue
   | FloorFeatureClue
+  | FloorTextureClue
   | SameRoomAsClue
+  | AloneInRoomClue
   | RelativeToItemOccupantClue
   | SameRoomAsItemClue
   | OccupiesItemClue

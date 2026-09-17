@@ -299,6 +299,9 @@ export function ClueStep() {
       case 'sameRoomAs':
         data = { type, subjectId, otherPersonId, negated };
         break;
+      case 'aloneInRoom':
+        data = { type, subjectId };
+        break;
       case 'sameRoomAsItem':
         data = { type, subjectId, itemTypeId, negated };
         break;

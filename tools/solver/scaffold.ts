@@ -41,8 +41,13 @@ export function scaffoldPermutation(
     if (colByRow.some((col, row) => roomForCell(row, col) === null)) continue;
     const roomByRow = colByRow.map((col, row) => roomForCell(row, col) as string);
 
-    const roomCounts: Record<string, number> = {};
-    for (const room of roomByRow) roomCounts[room] = (roomCounts[room] ?? 0) + 1;
+      const roomCounts: Record<string, number> = {};
+      // Rooms with an explicit target of 0 must land in roomCounts too — otherwise
+      // the length check below never matches when an empty zone is requested.
+      if (options.targetCounts) {
+        for (const room of Object.keys(options.targetCounts)) roomCounts[room] = 0;
+      }
+      for (const room of roomByRow) roomCounts[room] = (roomCounts[room] ?? 0) + 1;
     const twoOccupantRooms = Object.entries(roomCounts).filter(([, count]) => count === 2);
 
     if (options.targetCounts) {

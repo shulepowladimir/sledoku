@@ -22,6 +22,7 @@ const UNARY_TYPES = new Set([
   'adjacency',
   'corner',
   'floorFeature',
+  'floorTexture',
   'wallSide',
   'roomSize',
   'parity',
@@ -31,6 +32,16 @@ const UNARY_TYPES = new Set([
 ]);
 
 const VOWELS = new Set(['А', 'Е', 'Ё', 'И', 'О', 'У', 'Ы', 'Э', 'Ю', 'Я']);
+
+/** The texture actually shown on a cell: the floor feature's texture fully overrides the room's
+ *  (same rule as rendering — see FloorFeature.textureKey). Used by the `floorTexture` clue. */
+function effectiveTexture(level: Level, cell: Cell): string {
+  if (cell.floorFeatureId) {
+    const feature = level.floorFeatures.find((f) => f.id === cell.floorFeatureId);
+    if (feature) return feature.textureKey;
+  }
+  return level.rooms.find((r) => r.id === cell.roomId)?.floorTexture ?? '';
+}
 
 /** Room cell-count ranking, used by the `roomSize` clue — static per level, independent of the people's assignment. */
 function roomCellCounts(level: Level): Map<RoomId, number> {
@@ -123,6 +134,13 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
       if (!subjectCellId) return undefined;
       const cell = index.cellsById.get(subjectCellId)!;
       const result = cell.floorFeatureId === clue.featureId;
+      return clue.negated ? !result : result;
+    }
+    case 'floorTexture': {
+      const subjectCellId = getCell(subjectPersonId(clue.subject, level));
+      if (!subjectCellId) return undefined;
+      const cell = index.cellsById.get(subjectCellId)!;
+      const result = effectiveTexture(level, cell) === clue.textureKey;
       return clue.negated ? !result : result;
     }
     case 'sharedRoomGender': {
@@ -246,6 +264,19 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
       if (!a || !b) return undefined;
       const result = index.cellsById.get(a)!.roomId === index.cellsById.get(b)!.roomId;
       return clue.negated ? !result : result;
+    }
+    case 'aloneInRoom': {
+      const subjectId = subjectPersonId(clue.subject, level);
+      const subjectCellId = getCell(subjectId);
+      if (!subjectCellId) return undefined;
+      const roomId = index.cellsById.get(subjectCellId)!.roomId;
+      const hasRoommate = level.people.some((p) => {
+        if (p.id === subjectId) return false;
+        const pc = getCell(p.id);
+        return pc != null && index.cellsById.get(pc)!.roomId === roomId;
+      });
+      if (hasRoommate) return false;
+      return allAssigned ? true : undefined;
     }
     case 'relativeToItemOccupant': {
       // «Западнее человека, сидевшего в машине»: сиделец неизвестен игроку, но резолвится
