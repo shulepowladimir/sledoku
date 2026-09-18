@@ -84,7 +84,16 @@ export interface EdgeColumnEmptyClue extends ClueBase {
 }
 
 /**
- * Level-wide: "No one was in zone A or in zone B." A disjunction: at least one of the
+ * Level-wide: "Women and men were never in the same room" — every occupied zone
+ * is single-gender. Eager partial check: false as soon as any room holds both
+ * a placed man and a placed woman (violations are monotone). No subject.
+ */
+export interface ZoneGenderSeparationClue extends ClueBase {
+  type: 'zoneGenderSeparation';
+}
+
+/**
+ * "No one was in zone A or in zone B." A disjunction: at least one of the
  * listed rooms ends up empty (parking-01: "no one was on the roof OR at the entrance").
  * Eager partial check: false only when someone is already placed in EVERY listed room.
  * No subject.
@@ -92,6 +101,20 @@ export interface EdgeColumnEmptyClue extends ClueBase {
 export interface ZoneEmptyDisjunctionClue extends ClueBase {
   type: 'zoneEmptyDisjunction';
   roomIds: RoomId[];
+}
+
+/**
+ * Level-wide: "No one was in a row with an item of type A, or in a row with an item of
+ * type B" — the same empty-edge-row mechanic as edgeColumnEmpty/zoneEmptyDisjunction,
+ * but the rows are derived from item placement instead of geometry/rooms
+ * (bowling-01: no one was in the pins row OR in the bar-counter row). For each item type
+ * the row set is every row holding at least one of its instances; the clue holds when at
+ * least one of those row sets ends up empty. Eager partial check: false only when every
+ * row set already has an occupant (occupancy is monotone). No subject.
+ */
+export interface ItemRowEmptyDisjunctionClue extends ClueBase {
+  type: 'itemRowEmptyDisjunction';
+  itemTypeIds: ItemTypeId[];
 }
 
 /**
@@ -359,6 +382,8 @@ export type Clue =
   | ItemTypeFullyOccupiedClue
   | EdgeColumnEmptyClue
   | ZoneEmptyDisjunctionClue
+  | ZoneGenderSeparationClue
+  | ItemRowEmptyDisjunctionClue
   | ZoneCountParityClue
   | RelativePositionClue
   | CornerClue

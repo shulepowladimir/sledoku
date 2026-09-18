@@ -52,6 +52,18 @@ export function lintLevel(level: Level): string[] {
         `Подсказка "${clue.id}" адресована жертве (${victim.name}) — личные клю жертвы невидимы игроку (сайдбар показывает фиксированную строку). Удалите её или перепринадлежите другому человеку.`,
       );
     }
+    // Канон авторинга: общая клю не может указывать расположение жертвы. Клю с субъектом
+    // role:'victim' всегда позиционна (клю, определяющие роли — roleSingleton/letterRole и
+    // т.п. — субъекта-жертву не используют) и попадает в общие, давая игроку непропорционально
+    // сильный якорь на позицию жертвы, у которой нет личной строки ростера (прецедент: 37-bowling).
+    const victimRoleClues = level.clues.filter(
+      (clue) => 'subject' in clue && clue.subject.type === 'role' && clue.subject.role === 'victim',
+    );
+    for (const clue of victimRoleClues) {
+      violations.push(
+        `Подсказка "${clue.id}" указывает расположение жертвы через субъект role:'victim' — общие клю не могут позиционировать жертву (только определять роли). Переформулируйте через живых людей.`,
+      );
+    }
   }
   for (const roleId of new Set(referencedRoles(level.clues))) {
     const count = roleHolderCount(level, roleId);

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    bowlingBall — шар для боулинга: кремовая сфера с синими мраморными
+    завитками (clip по кругу, приём ball.svg) и тремя отверстиями для
+    пальцев над центром. От футбольного мяча отличается: плавные дуги
+    вместо пятиугольников + треугольник отверстий.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="84" rx="28" ry="5.5" fill="#3A2A20"/>
+
+  <!-- Клип по сфере -->
+  <clipPath id="bowlingBallClip">
+    <circle cx="48" cy="48" r="30.5"/>
+  </clipPath>
+
+  <!-- Сфера -->
+  <circle cx="48" cy="48" r="32" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3"/>
+
+  <g clip-path="url(#bowlingBallClip)">
+    <!-- Синие мраморные завитки -->
+    <g fill="none" stroke="#1F3A5F" stroke-linecap="round">
+      <path d="M22 60 Q40 78 62 68" stroke-width="5"/>
+      <path d="M66 34 Q54 44 58 58" stroke-width="5"/>
+      <path d="M26 28 Q34 22 43 23.5" stroke-width="4"/>
+      <!-- Короткий хвостик нижнего завитка -->
+      <path d="M60 68 Q68 66 72 58" stroke-width="4"/>
+    </g>
+
+    <!-- Отверстия для пальцев (треугольник над центром) -->
+    <g fill="#1A1A1A">
+      <circle cx="40" cy="34" r="2.8"/>
+      <circle cx="48" cy="32" r="2.8"/>
+      <circle cx="44" cy="40" r="2.8"/>
+    </g>
+  </g>
+
+  <!-- Блик (верх-слева) -->
+  <path d="M30 30 Q35 22 44 20" fill="none" stroke="#E8B95F" stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="35" cy="26" r="1.6" fill="#E8B95F"/>
+</svg>

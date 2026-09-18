@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    ballReturn — возвратник шаров: стальная низкая тумба (канон trashcan:
+    D5DCE1/9BA5AD/5C6670), на верхней панели лежат два шара — кремовый
+    с синим завитком (мини-версия bowlingBall) и тёмно-синий. Красная
+    лампочка-индикатор — единственный акцент.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="86" rx="34" ry="5" fill="#3A2A20"/>
+
+  <!-- Корпус тумбы -->
+  <rect x="14" y="44" width="68" height="38" rx="7" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Вертикальный блик слева -->
+  <path d="M22 50 L22 76" stroke="#D5DCE1" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Затемнение правой стороны -->
+  <path d="M68 44 L75 44 Q82 44 82 51 L82 75 Q82 82 75 82 L68 82 Z" fill="#5C6670"/>
+
+  <!-- Верхняя крышка-панель -->
+  <rect x="11" y="37" width="74" height="11" rx="4" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.8"/>
+  <path d="M17 40.5 L64 40.5" stroke="#D5DCE1" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Жёлоб-трек для шаров (тёмная канавка на крышке) -->
+  <path d="M22 44 Q48 40.5 74 44 L74 46 Q48 42.5 22 46 Z" fill="#3A2A20"/>
+
+  <!-- Задний шар (тёмно-синий) -->
+  <circle cx="58" cy="27" r="11" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.6"/>
+  <path d="M52 20 Q55 17.5 59 17" fill="none" stroke="#F5E9D0" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Передний шар (кремовый с синим завитком и отверстиями) -->
+  <circle cx="32" cy="28" r="12" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.6"/>
+  <path d="M24 32 Q32 40 41 35" fill="none" stroke="#1F3A5F" stroke-width="3.4" stroke-linecap="round"/>
+  <g fill="#1A1A1A">
+    <circle cx="29" cy="24" r="1.7"/>
+    <circle cx="34" cy="23" r="1.7"/>
+    <circle cx="31.5" cy="28" r="1.7"/>
+  </g>
+  <path d="M25 23 Q27 20.5 30 19.8" fill="none" stroke="#E8B95F" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Лампочка-индикатор (акцент) -->
+  <circle cx="70" cy="63" r="3.4" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="69" cy="61.8" r="1" fill="#F5E9D0"/>
+  <!-- Заклёпки -->
+  <circle cx="22" cy="63" r="1.4" fill="#5C6670"/>
+  <circle cx="22" cy="72" r="1.4" fill="#5C6670"/>
+</svg>

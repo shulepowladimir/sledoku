@@ -36,6 +36,7 @@ import { racingLevel } from './33-racing';
 import { casinoLevel } from './34-casino';
 import { parkingLevel } from './35-parking';
 import { festivalLevel } from './36-festival';
+import { bowlingLevel } from './37-bowling';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -75,6 +76,7 @@ export const levels: Level[] = [
   casinoLevel,
   parkingLevel,
   festivalLevel,
+  bowlingLevel,
 ];
 
 /** All non-tutorial levels — used by the level menu grid, size filters, profile stats and

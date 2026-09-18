@@ -1,4 +1,4 @@
-import type { Cell, CellId, Level, PersonId, RoomId } from '../../src/types/level';
+import type { Cell, CellId, Gender, Level, PersonId, RoomId } from '../../src/types/level';
 import { cellId } from '../../src/types/level';
 import type { Clue, Subject } from '../../src/types/clue';
 import { buildLevelIndex, cellBoundary, isCorner, isLegalTarget, type LevelIndex } from '../../src/engine/board';
@@ -219,6 +219,48 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
         if (roomSet.has(roomId)) occupiedRooms.add(roomId);
       }
       return occupiedRooms.size < roomSet.size;
+    }
+    case 'itemRowEmptyDisjunction': {
+      // «В ряду с кеглями или в ряду с барной стойкой никого не было»: ряды
+      // выводятся из расстановки предметов (все ряды, где есть клетки экземпляров
+      // типа). Дизъюнкция: хотя бы одно из множеств рядов пусто. Оккупанты
+      // монотонно добавляются, поэтому частичная оценка совпадает с листовой:
+      // false только когда каждое множество рядов уже занято.
+      const rowSets = clue.itemTypeIds.map((itemTypeId) => {
+        const rows = new Set<number>();
+        for (const item of level.items) {
+          if (item.typeId !== itemTypeId) continue;
+          for (const cid of item.cells) rows.add(index.cellsById.get(cid)!.row);
+        }
+        return rows;
+      });
+      const isOccupied = (rows: Set<number>) =>
+        level.people.some((p) => {
+          const pc = getCell(p.id);
+          return pc != null && rows.has(index.cellsById.get(pc)!.row);
+        });
+      return rowSets.some((rows) => !isOccupied(rows));
+    }
+    case 'zoneGenderSeparation': {
+      // «Женщины и мужчины не находились в одной зоне»: каждая занятая зона
+      // однополая. Нарушение монотонно (в зоне уже есть и м, и ж) — частичная
+      // оценка совпадает с листовой.
+      const roomGenders = new Map<RoomId, Set<Gender>>();
+      for (const p of level.people) {
+        const pc = getCell(p.id);
+        if (!pc) continue;
+        const roomId = index.cellsById.get(pc)!.roomId;
+        let genders = roomGenders.get(roomId);
+        if (!genders) {
+          genders = new Set();
+          roomGenders.set(roomId, genders);
+        }
+        genders.add(p.gender);
+      }
+      for (const genders of roomGenders.values()) {
+        if (genders.size > 1) return false;
+      }
+      return true;
     }
     case 'zoneCountParity': {
       // «На чётных этажах чётное число людей, на нечётных — нечётное»: паритет
