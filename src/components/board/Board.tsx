@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import type { CSSProperties } from 'react';
 import type { RoomId } from '../../types/level';
+import { parseCellId } from '../../types/level';
 import { isLegalTarget, cellBoundary } from '../../engine/board';
 import { occupantOf, marksOf, crossKind, personStatus } from '../../engine/selectors';
 import { useGameStore } from '../../state/gameStore';
@@ -8,6 +10,9 @@ import { RoomLabel } from './RoomLabel';
 import { ItemOverlay } from './ItemOverlay';
 import { LabelPopup } from './LabelPopup';
 import { floorStyle, CELL_SIZE } from '../../styles/floorTextures';
+
+/** Сколько живёт вспышка обводки предмета после отпускания пальца (мобайл). */
+const ITEM_OUTLINE_FLASH_MS = 600;
 
 export function Board() {
   const level = useGameStore((s) => s.level);
@@ -19,6 +24,37 @@ export function Board() {
   const [hoveredRoomId, setHoveredRoomId] = useState<RoomId | null>(null);
   // Подпись предмета/фичи пола по долгому нажатию (мобильные; см. LabelPopup).
   const [labelPopup, setLabelPopup] = useState<{ text: string; x: number; y: number } | null>(null);
+  // Обводка предмета при наведении (десктоп) / нажатии (мобайл): красная пунктирная
+  // для decorative («туда нельзя»), зелёная сплошная для occupiable. id предмета
+  // либо null; вспышка после короткого тапа держится до touchend + FLASH_MS.
+  const [outlinedItemId, setOutlinedItemId] = useState<string | null>(null);
+  const outlineFlashTimeoutRef = useRef<number | null>(null);
+  const clearOutlineFlash = () => {
+    if (outlineFlashTimeoutRef.current != null) {
+      clearTimeout(outlineFlashTimeoutRef.current);
+      outlineFlashTimeoutRef.current = null;
+    }
+  };
+  useEffect(() => clearOutlineFlash, []);
+  /** Наведение с мыши: обводка живёт, пока курсор на клетках предмета. */
+  const hoverItem = (itemId: string | null) => {
+    if (itemId === outlinedItemId) return;
+    clearOutlineFlash();
+    setOutlinedItemId(itemId);
+  };
+  /** Тач: палец на клетке — обводка; отпустил — короткая вспышка и снятие. */
+  const pressItem = (itemId: string) => {
+    clearOutlineFlash();
+    setOutlinedItemId(itemId);
+  };
+  const releaseItem = () => {
+    if (outlinedItemId == null) return;
+    clearOutlineFlash();
+    outlineFlashTimeoutRef.current = window.setTimeout(() => {
+      outlineFlashTimeoutRef.current = null;
+      setOutlinedItemId(null);
+    }, ITEM_OUTLINE_FLASH_MS);
+  };
 
   const itemTypesById = new Map(level.itemTypes.map((t) => [t.id, t]));
   const itemsById = new Map(level.items.map((i) => [i.id, i]));
@@ -28,6 +64,25 @@ export function Board() {
   // Нестандартные карты: rows = size, cols = level.cols ?? size (квадрат по умолчанию).
   const rows = level.size;
   const cols = level.cols ?? level.size;
+
+  // Обводка предмета: бокс по крайним клеткам (2кл-предмет — единый прямоугольник,
+  // математика та же, что у ItemOverlay). null, когда ничего не подсвечено.
+  const outlinedItem = outlinedItemId ? itemsById.get(outlinedItemId) : undefined;
+  const outlinedItemType = outlinedItem ? itemTypesById.get(outlinedItem.typeId) : undefined;
+  let outlineStyle: CSSProperties | null = null;
+  if (outlinedItem && outlinedItemType) {
+    const coords = outlinedItem.cells.map(parseCellId);
+    const minRow = Math.min(...coords.map((c) => c.row));
+    const maxRow = Math.max(...coords.map((c) => c.row));
+    const minCol = Math.min(...coords.map((c) => c.col));
+    const maxCol = Math.max(...coords.map((c) => c.col));
+    outlineStyle = {
+      left: minCol * CELL_SIZE,
+      top: minRow * CELL_SIZE,
+      width: (maxCol - minCol + 1) * CELL_SIZE,
+      height: (maxRow - minRow + 1) * CELL_SIZE,
+    };
+  }
 
   const roomOriginById = new Map<RoomId, { minRow: number; minCol: number }>();
   for (const room of level.rooms) {
@@ -128,6 +183,13 @@ export function Board() {
       {multiCellOverlays.map(({ item, itemType }) => (
         <ItemOverlay key={item.id} item={item} itemType={itemType} />
       ))}
+      {outlineStyle && outlinedItemType && (
+        <div
+          className={`item-outline${outlinedItemType.kind === 'decorative' ? ' item-outline--decorative' : ' item-outline--occupiable'}`}
+          style={outlineStyle}
+          data-testid="item-outline"
+        />
+      )}
       {level.cells.map((cell) => {
         const item = cell.itemId ? itemsById.get(cell.itemId) : undefined;
         const itemType = item ? itemTypesById.get(item.typeId) : undefined;
@@ -169,8 +231,16 @@ export function Board() {
               event.preventDefault();
               handleRightClick(cell.id);
             }}
-            onMouseEnter={() => setHoveredRoomId(cell.roomId)}
-            onMouseLeave={() => setHoveredRoomId(null)}
+            onMouseEnter={() => {
+              setHoveredRoomId(cell.roomId);
+              hoverItem(item?.id ?? null);
+            }}
+            onMouseLeave={() => {
+              setHoveredRoomId(null);
+              hoverItem(null);
+            }}
+            onItemPress={item ? () => pressItem(item.id) : undefined}
+            onItemRelease={item ? releaseItem : undefined}
             onLongPress={tooltip ? (text, x, y) => setLabelPopup({ text, x, y }) : undefined}
           />
         );

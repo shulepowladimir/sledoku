@@ -56,6 +56,10 @@ interface GridCellProps {
   onMouseLeave: () => void;
   /** Долгое нажатие на клетке с подписью (предмет/фича пола) — мобильная замена hover. */
   onLongPress?: (text: string, x: number, y: number) => void;
+  /** Мобильная обводка предмета: палец лёг на клетку предмета / поднялся.
+   *  Вызывается только на клетках с предметом — и decorative, и occupiable. */
+  onItemPress?: () => void;
+  onItemRelease?: () => void;
 }
 
 export function GridCell({
@@ -79,6 +83,8 @@ export function GridCell({
   onMouseEnter,
   onMouseLeave,
   onLongPress,
+  onItemPress,
+  onItemRelease,
 }: GridCellProps) {
   const longPressTimerRef = useRef<number | null>(null);
   const suppressClickRef = useRef(false);
@@ -94,17 +100,21 @@ export function GridCell({
   // Лонг-пресс подвешивается на ВСЕХ клетках с tooltip — в том числе на
   // неинтерактивных (decorative-предмет блокирует размещение, но подпись
   // посмотреть можно). preventDefault на touchstart НЕ звать — он ломает скролл.
+  // Обводка предмета при нажатии вешается на клетки С предметом (любым):
+  // красная пунктирная для decorative, зелёная сплошная для occupiable —
+  // игрок сразу видит, куда ставить можно, а куда нет.
   const handleTouchStart = (event: TouchEvent) => {
     suppressClickRef.current = false; // новый жест — прежнее подавление снято
-    if (!tooltip || !onLongPress) return;
     if (event.touches.length > 1) {
       touchStartRef.current = null;
       clearLongPressTimer();
+      onItemRelease?.();
       return;
     }
     const touch = event.touches[0];
     touchStartRef.current = { x: touch.clientX, y: touch.clientY };
     clearLongPressTimer();
+    onItemPress?.();
     longPressTimerRef.current = window.setTimeout(() => {
       longPressTimerRef.current = null;
       suppressClickRef.current = true;
@@ -112,7 +122,7 @@ export function GridCell({
         suppressClickRef.current = false;
       }, SUPPRESS_MS);
       const start = touchStartRef.current;
-      onLongPress(tooltip, start?.x ?? touch.clientX, start?.y ?? touch.clientY);
+      onLongPress?.(tooltip ?? '', start?.x ?? touch.clientX, start?.y ?? touch.clientY);
     }, LONG_PRESS_MS);
   };
 
@@ -123,12 +133,14 @@ export function GridCell({
     if (Math.hypot(touch.clientX - start.x, touch.clientY - start.y) > LONG_PRESS_SLACK_PX) {
       touchStartRef.current = null;
       clearLongPressTimer();
+      onItemRelease?.();
     }
   };
 
   const handleTouchEnd = () => {
     touchStartRef.current = null;
     clearLongPressTimer();
+    onItemRelease?.();
   };
 
   const handleClick = () => {
@@ -153,7 +165,7 @@ export function GridCell({
     height: CELL_SIZE,
     gridRow: row + 1,
     gridColumn: col + 1,
-    cursor: interactive ? 'pointer' : 'default',
+    cursor: !interactive && itemType ? 'not-allowed' : interactive ? 'pointer' : 'default',
     // Без этого мобильные браузеры ждут ~300мс перед обычным кликом (проверяя,
     // не двойной ли это тап для зума) — из-за этого двойной тап для установки
     // персонажа работал бы с ощутимой задержкой или не срабатывал вовсе.

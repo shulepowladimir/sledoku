@@ -277,6 +277,28 @@
   z-index: 1;
 }
 
+/* --- Обводка предмета при наведении (десктоп) / нажатии (мобайл) ---
+   Красная пунктирная = decorative («поставить нельзя»), зелёная сплошная =
+   occupiable («можно ставить»). Цвета — семантика ростера (incorrect/correct);
+   пунктир против сплошного различает и в нуаре (оверлей grayscale), и при
+   красно-зелёной слепоте. z-index 3: выше токена персонажа и 2кл-оверлея,
+   ниже туториала и попапов. */
+.item-outline {
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.item-outline--decorative {
+  border: 2px dashed #e5484d;
+}
+
+.item-outline--occupiable {
+  border: 2px solid #3ecf6b;
+}
+
 .item-icon {
   color: #4a463f;
 }

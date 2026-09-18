@@ -8,7 +8,7 @@ export default defineConfig({
     baseURL: 'http://localhost:5173',
   },
   projects: [
-    // Десктопная ветка: всё, кроме мобильной спеки (у неё свой проект ниже).
+    // Десктопная ветка: всё, кроме мобильских спек (у них свой проект ниже).
     { name: 'chromium', use: { ...devices['Desktop Chrome'] }, testIgnore: /mobile\.spec\.ts/ },
     // Мобильная ветка (390×844, hasTouch): тапы честные.
     { name: 'mobile', testMatch: /mobile\.spec\.ts/, use: { ...devices['Pixel 7'] } },
