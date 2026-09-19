@@ -22,6 +22,11 @@ export interface Room {
    *  room's bottom edge). 'top' places it just below the room's top edge — useful on stripe
    *  maps where bottom-anchored labels of neighbouring zones would collide. */
   labelPosition?: 'top' | 'bottom';
+  /** Horizontal label alignment within the edge row: 'center' (default) anchors at the
+   *  item-free cell closest to the room's mean column; 'left'/'right' hug the zone's
+   *  edge row ends (over items if needed — the label pill carries its own background;
+   *  parkmaze-01: the NW quadrant's only free bottom cell sits on the seam with NE). */
+  labelAlign?: 'left' | 'center' | 'right';
 }
 
 export type ItemKind = 'decorative' | 'occupiable';

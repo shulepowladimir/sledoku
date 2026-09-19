@@ -133,18 +133,28 @@ export function Board() {
   const roomLabels = level.rooms.map((room) => {
     const roomCells = level.cells.filter((c) => c.roomId === room.id);
     const position = room.labelPosition ?? 'bottom';
+    const align = room.labelAlign ?? 'center';
     const edgeRow =
       position === 'top'
         ? Math.min(...roomCells.map((c) => c.row))
         : Math.max(...roomCells.map((c) => c.row));
     const edgeRowCells = roomCells.filter((c) => c.row === edgeRow);
-    const meanCol = roomCells.reduce((sum, c) => sum + c.col, 0) / roomCells.length;
-    const emptyEdgeCells = edgeRowCells.filter((c) => !c.itemId);
-    const candidates = emptyEdgeCells.length > 0 ? emptyEdgeCells : edgeRowCells;
-    const anchorCell = candidates.reduce((best, c) =>
-      Math.abs(c.col - meanCol) < Math.abs(best.col - meanCol) ? c : best,
-    );
-    return { room, position, anchorRow: anchorCell.row, anchorCol: anchorCell.col };
+    let anchorCell;
+    if (align === 'left' || align === 'right') {
+      // Край зоны: плашка с собственным фоном читаема и поверх предмета;
+      // предпочтение пустых клеток — только для центрирования.
+      anchorCell = edgeRowCells.reduce((best, c) =>
+        align === 'left' ? (c.col < best.col ? c : best) : (c.col > best.col ? c : best),
+      );
+    } else {
+      const meanCol = roomCells.reduce((sum, c) => sum + c.col, 0) / roomCells.length;
+      const emptyEdgeCells = edgeRowCells.filter((c) => !c.itemId);
+      const candidates = emptyEdgeCells.length > 0 ? emptyEdgeCells : edgeRowCells;
+      anchorCell = candidates.reduce((best, c) =>
+        Math.abs(c.col - meanCol) < Math.abs(best.col - meanCol) ? c : best,
+      );
+    }
+    return { room, position, align, anchorRow: anchorCell.row, anchorCol: anchorCell.col };
   });
 
   // Levels with cut-out cells (e.g. rounded map corners) render fewer cells than rows*cols.
@@ -270,8 +280,8 @@ export function Board() {
           />
         );
       })}
-      {roomLabels.map(({ room, position, anchorRow, anchorCol }) => (
-        <RoomLabel key={room.id} name={room.name} anchorRow={anchorRow} anchorCol={anchorCol} position={position} />
+      {roomLabels.map(({ room, position, align, anchorRow, anchorCol }) => (
+        <RoomLabel key={room.id} name={room.name} anchorRow={anchorRow} anchorCol={anchorCol} position={position} align={align} />
       ))}
       </div>
     </div>

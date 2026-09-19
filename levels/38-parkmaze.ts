@@ -10,8 +10,10 @@ const size = 12;
 // ломаные кусты-полиомино (render: 'tile', срастаются в непрерывную изгородь).
 // Четыре квадранта 6×6; решение — идеальная перестановка 12×12.
 const rooms: Room[] = [
-  { id: 'nw', name: 'Северо-запад парка', floorTexture: 'dirt', labelPosition: 'top' },
-  { id: 'ne', name: 'Северо-восток парка', floorTexture: 'dirt', labelPosition: 'top' },
+  // СЗ: единственная свободная клетка нижнего ряда (5,5) — у шва с СВ, поэтому
+  // подпись прижата влево (labelAlign), к краю зоны.
+  { id: 'nw', name: 'Северо-запад парка', floorTexture: 'dirt', labelAlign: 'left' },
+  { id: 'ne', name: 'Северо-восток парка', floorTexture: 'dirt' },
   { id: 'sw', name: 'Юго-запад парка', floorTexture: 'dirt' },
   { id: 'se', name: 'Юго-восток парка', floorTexture: 'dirt' },
 ];
@@ -198,14 +200,14 @@ const clues: Clue[] = [
     type: 'sharedRoomGender',
     subject: { type: 'person', id: 'igor' },
     otherGender: 'male',
-    text: 'Игорь делил часть парка с мужчиной.',
+    text: 'В зоне с Игорем был мужчина.',
   },
   {
     id: 'pm15',
     type: 'sharedRoomGender',
     subject: { type: 'person', id: 'zhanna' },
     otherGender: 'male',
-    text: 'Жанна делила часть парка с мужчиной.',
+    text: 'В зоне с Жанной был мужчина.',
   },
   {
     id: 'pm16',

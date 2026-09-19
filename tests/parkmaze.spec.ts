@@ -53,6 +53,14 @@ test('parkmaze-01: bush polyominoes render as seamless tiles with edge decoratio
   // (ItemOverlay) — все многоклеточные предметы уровня тайловые.
   await expect(page.locator('.board .item-overlay')).toHaveCount(0);
 
+  // Регрессия labelAlign: подпись СЗ-зоны прижата к левому краю (её единственная
+  // свободная клетка нижнего ряда — у шва с СВ), а не свисает над швом зон.
+  const boardBox = await page.locator('.board').boundingBox();
+  const nwLabel = await page.locator('.room-label', { hasText: 'Северо-запад парка' }).boundingBox();
+  expect(boardBox).not.toBeNull();
+  expect(nwLabel).not.toBeNull();
+  expect(nwLabel!.x - boardBox!.x).toBeLessThan(boardBox!.width * 0.3);
+
   expect(errors).toEqual([]);
 });
 
