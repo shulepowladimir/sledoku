@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    parkmaze — «Запутанный след»: вид сверху на лабиринт из живой изгороди.
+    Два кольца кустов с проходами в разных сторонах, земляные дорожки,
+    в центре — красная ягодка (цель лабиринта). Рендер 40-64px: стены
+    толстые, проходы читаются сразу. Свет сверху-слева.
+  -->
+  <!-- Земля (подложка) -->
+  <rect x="6" y="6" width="84" height="84" rx="6" fill="#8A786A"/>
+  <!-- Мягкие комки земли в коридорах -->
+  <ellipse cx="23.5" cy="23.5" rx="6" ry="4" fill="#9C8A76"/>
+  <ellipse cx="72.5" cy="72.5" rx="6" ry="4" fill="#9C8A76"/>
+  <ellipse cx="48" cy="55" rx="5" ry="3" fill="#786862"/>
+  <!-- Мелкий крап дорожек -->
+  <circle cx="36" cy="23.5" r="1.8" fill="#786862"/>
+  <circle cx="60" cy="72.5" r="1.8" fill="#786862"/>
+
+  <!-- Внешнее кольцо изгороди (проход сверху) -->
+  <path d="M 54 14 L 70 14 Q 82 14 82 26 L 82 70 Q 82 82 70 82 L 26 82 Q 14 82 14 70 L 14 26 Q 14 14 26 14 L 42 14"
+        fill="none" stroke="#1A1A1A" stroke-width="13"/>
+  <path d="M 54 14 L 70 14 Q 82 14 82 26 L 82 70 Q 82 82 70 82 L 26 82 Q 14 82 14 70 L 14 26 Q 14 14 26 14 L 42 14"
+        fill="none" stroke="#5E8A46" stroke-width="10"/>
+  <!-- Объём внешнего кольца: свет сверху-слева, тень снизу-справа -->
+  <g fill="none" stroke="#7FA85B" stroke-width="2.6" stroke-linecap="round">
+    <path d="M 24 11 L 33 11"/>
+    <path d="M 11 32 L 11 42"/>
+  </g>
+  <g fill="none" stroke="#44663A" stroke-width="2.6" stroke-linecap="round">
+    <path d="M 58 85 L 68 85"/>
+    <path d="M 85 56 L 85 66"/>
+  </g>
+
+  <!-- Внутреннее кольцо изгороди (проход снизу) -->
+  <path d="M 44 63 L 39 63 Q 33 63 33 57 L 33 39 Q 33 33 39 33 L 57 33 Q 63 33 63 39 L 63 57 Q 63 63 57 63 L 52 63"
+        fill="none" stroke="#1A1A1A" stroke-width="13"/>
+  <path d="M 44 63 L 39 63 Q 33 63 33 57 L 33 39 Q 33 33 39 33 L 57 33 Q 63 33 63 39 L 63 57 Q 63 63 57 63 L 52 63"
+        fill="none" stroke="#5E8A46" stroke-width="10"/>
+  <!-- Объём внутреннего кольца -->
+  <g fill="none" stroke="#7FA85B" stroke-width="2.6" stroke-linecap="round">
+    <path d="M 45 31 L 53 31"/>
+    <path d="M 31 44 L 31 50"/>
+  </g>
+  <g fill="none" stroke="#44663A" stroke-width="2.6" stroke-linecap="round">
+    <path d="M 53 65 L 56 65"/>
+    <path d="M 65 50 L 65 55"/>
+  </g>
+
+  <!-- Ягодка в центре лабиринта (цель) -->
+  <path d="M 48 40.5 Q 49 38.5 50.5 38" fill="none" stroke="#44663A" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="48" cy="46" r="5.5" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.8"/>
+  <circle cx="46.3" cy="44.3" r="1.2" fill="#F5E9D0"/>
+</svg>

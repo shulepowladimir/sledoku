@@ -93,5 +93,39 @@ export function lintLevel(level: Level): string[] {
       );
     }
   }
+  // Клетки предмета обязаны существовать на доске и образовывать ортогонально-связное
+  // полиомино (BFS по смежности). Ломаные предметы — штатная фича (лабиринты из кустов),
+  // но опечатка в cellId молча рисовала бы предмет «в двух местах сразу».
+  {
+    const cellIdSet = new Set(level.cells.map((c) => c.id));
+    for (const item of level.items) {
+      const missing = item.cells.filter((cid) => !cellIdSet.has(cid));
+      if (missing.length > 0) {
+        violations.push(
+          `Предмет "${item.id}" ссылается на клетки, которых нет на доске: ${missing.join(', ')}.`,
+        );
+      }
+      const present = item.cells.filter((cid) => cellIdSet.has(cid));
+      if (present.length === 0) continue;
+      const cellSet = new Set<string>(present);
+      const queue: string[] = [present[0]];
+      const seen = new Set<string>([present[0]]);
+      while (queue.length > 0) {
+        const cur = queue.shift()!;
+        const [r, c] = cur.split('-').map(Number);
+        for (const nb of [`${r - 1}-${c}`, `${r + 1}-${c}`, `${r}-${c - 1}`, `${r}-${c + 1}`]) {
+          if (cellSet.has(nb) && !seen.has(nb)) {
+            seen.add(nb);
+            queue.push(nb);
+          }
+        }
+      }
+      if (seen.size !== present.length) {
+        violations.push(
+          `Предмет "${item.id}": клетки не образуют связное целое (${seen.size} из ${present.length} достижимы) — много клеточный предмет должен быть ортогонально-связным полиомино.`,
+        );
+      }
+    }
+  }
   return violations;
 }

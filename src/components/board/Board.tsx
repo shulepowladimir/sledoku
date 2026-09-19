@@ -8,8 +8,10 @@ import { useGameStore } from '../../state/gameStore';
 import { GridCell } from './GridCell';
 import { RoomLabel } from './RoomLabel';
 import { ItemOverlay } from './ItemOverlay';
+import { ItemTileOverlay } from './ItemTileOverlay';
 import { LabelPopup } from './LabelPopup';
 import { floorStyle, CELL_SIZE } from '../../styles/floorTextures';
+import { polyominoOutlinePath } from '../../engine/polyomino';
 
 /** Сколько живёт вспышка обводки предмета после отпускания пальца (мобайл). */
 const ITEM_OUTLINE_FLASH_MS = 600;
@@ -27,6 +29,7 @@ export function Board() {
   // Обводка предмета при наведении (десктоп) / нажатии (мобайл): красная пунктирная
   // для decorative («туда нельзя»), зелёная сплошная для occupiable. id предмета
   // либо null; вспышка после короткого тапа держится до touchend + FLASH_MS.
+  // Контур — точный силуэт полиомино (ломаные предметы), не bbox.
   const [outlinedItemId, setOutlinedItemId] = useState<string | null>(null);
   const outlineFlashTimeoutRef = useRef<number | null>(null);
   const clearOutlineFlash = () => {
@@ -65,11 +68,12 @@ export function Board() {
   const rows = level.size;
   const cols = level.cols ?? level.size;
 
-  // Обводка предмета: бокс по крайним клеткам (2кл-предмет — единый прямоугольник,
-  // математика та же, что у ItemOverlay). null, когда ничего не подсвечено.
+  // Обводка предмета: точный силуэт полиомино (bounding box врал бы на ломаных
+  // формах — подсвечивал пустые клетки в вогнутых углах). null, когда не подсвечено.
   const outlinedItem = outlinedItemId ? itemsById.get(outlinedItemId) : undefined;
   const outlinedItemType = outlinedItem ? itemTypesById.get(outlinedItem.typeId) : undefined;
   let outlineStyle: CSSProperties | null = null;
+  let outlinePath = '';
   if (outlinedItem && outlinedItemType) {
     const coords = outlinedItem.cells.map(parseCellId);
     const minRow = Math.min(...coords.map((c) => c.row));
@@ -82,6 +86,7 @@ export function Board() {
       width: (maxCol - minCol + 1) * CELL_SIZE,
       height: (maxRow - minRow + 1) * CELL_SIZE,
     };
+    outlinePath = polyominoOutlinePath(outlinedItem.cells, CELL_SIZE, minRow, minCol);
   }
 
   const roomOriginById = new Map<RoomId, { minRow: number; minCol: number }>();
@@ -107,8 +112,21 @@ export function Board() {
     .filter((item) => item.cells.length > 1)
     .map((item) => ({ item, itemType: itemTypesById.get(item.typeId) }))
     .filter((entry): entry is { item: (typeof level.items)[number]; itemType: NonNullable<typeof entry.itemType> } => !!entry.itemType)
+    // тайл-предметы (render:'tile') рендерятся своим слоем ItemTileOverlay —
+    // боксовая иконка поверх bbox им не нужна (гигантские квадраты поверх карты)
+    .filter(({ itemType }) => itemType.render !== 'tile')
     .filter(({ item }) => !item.cells.some((cid) => occupantOf(player, cid)));
   for (const { item } of multiCellOverlays) {
+    for (const cid of item.cells) suppressedCellIds.add(cid);
+  }
+
+  // Тайл-предметы (render: 'tile') — свой слой: иконка повторяется per-cell на всю
+  // клетку + постоянный силуэтный контур. Из боксовых оверлеев и подавления иконок
+  // они исключены (GridCell не должен рисовать иконку поверх тайла).
+  const tileOverlays = level.items
+    .map((item) => ({ item, itemType: itemTypesById.get(item.typeId) }))
+    .filter((entry): entry is { item: (typeof level.items)[number]; itemType: NonNullable<typeof entry.itemType> } => !!entry.itemType && entry.itemType.render === 'tile');
+  for (const { item } of tileOverlays) {
     for (const cid of item.cells) suppressedCellIds.add(cid);
   }
 
@@ -180,6 +198,9 @@ export function Board() {
           ...(boardScale !== 1 ? { transform: `scale(${boardScale})`, transformOrigin: 'top left' } : {}),
         }}
       >
+      {tileOverlays.map(({ item, itemType }) => (
+        <ItemTileOverlay key={item.id} item={item} itemType={itemType} />
+      ))}
       {multiCellOverlays.map(({ item, itemType }) => (
         <ItemOverlay key={item.id} item={item} itemType={itemType} />
       ))}
@@ -188,7 +209,11 @@ export function Board() {
           className={`item-outline${outlinedItemType.kind === 'decorative' ? ' item-outline--decorative' : ' item-outline--occupiable'}`}
           style={outlineStyle}
           data-testid="item-outline"
-        />
+        >
+          <svg className="item-outline__svg" viewBox={`0 0 ${outlineStyle.width} ${outlineStyle.height}`} aria-hidden="true">
+            <path d={outlinePath} />
+          </svg>
+        </div>
       )}
       {level.cells.map((cell) => {
         const item = cell.itemId ? itemsById.get(cell.itemId) : undefined;

@@ -31,6 +31,11 @@ export interface ItemType {
   label: string;
   kind: ItemKind;
   icon: string; // key into the icon registry
+  /** Render mode. Absent (default): a single icon centered over the item's bounding box.
+   *  'tile': the icon is repeated per cell at full cell size — for multi-cell "wall"-like
+   *  items (e.g. hedge bushes of a park maze) whose cells tile seamlessly, like floor
+   *  textures, while still being a regular item (clues, tooltip, outline). */
+  render?: 'tile';
 }
 
 export interface Item {
