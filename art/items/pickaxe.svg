@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    pickaxe — шахтёрская кирка, лежит по диагонали: стальная дуга-голова
+    с двумя клювами, деревянная рукоять. Рендер 40-64px — крупно, читается
+    силуэтом.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="78" rx="30" ry="6" fill="#3A2A20"/>
+
+  <g transform="rotate(45 48 48)">
+    <!-- Рукоять (дерево) -->
+    <rect x="43" y="16" width="10" height="68" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="3"/>
+    <!-- Волокна рукояти -->
+    <path d="M46 26 V72 M50 30 V68" stroke="#B87F33" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- Блик слева -->
+    <path d="M44.5 22 V76" stroke="#F5E9D0" stroke-width="1.6" stroke-linecap="round"/>
+
+    <!-- Голова: стальная дуга с клювами -->
+    <path d="M12 22 Q48 2 84 22 L80 30 Q48 14 16 30 Z"
+          fill="#939CA2" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+    <!-- Клювы (заострённые концы) -->
+    <path d="M12 22 Q6 26 4 32 L16 30 Z" fill="#7D878E" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+    <path d="M84 22 Q90 26 92 32 L80 30 Z" fill="#7D878E" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+    <!-- Блик на дуге -->
+    <path d="M22 22 Q48 8 74 22" fill="none" stroke="#C2C9CB" stroke-width="2.4" stroke-linecap="round"/>
+
+    <!-- Обушок-крепление в центре -->
+    <rect x="39" y="12" width="18" height="12" rx="3" fill="#545D65" stroke="#1A1A1A" stroke-width="2.6"/>
+    <circle cx="48" cy="18" r="2.2" fill="#C2C9CB"/>
+    <!-- Заклёпки-клин -->
+    <circle cx="42" cy="24" r="1.4" fill="#1A1A1A"/>
+    <circle cx="54" cy="24" r="1.4" fill="#1A1A1A"/>
+  </g>
+</svg>

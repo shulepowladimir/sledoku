@@ -81,7 +81,9 @@ export interface LevelMeta {
   difficulty: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
   /** Budget for how many non-victim people may be fully pinned by their own unary clues alone (see tools/solver/puzzleQuality.ts). */
   maxFullyPinnedPeople: number;
-  /** Exempts this level from the ≤20% per-clue-type share gate — reserved for pre-existing accepted debt (02-shop, 03-museum). Never set on new levels. */
+  /** Exempts this level from the ≤20% per-clue-type share gate — accepted debt
+   *  (02-shop, 03-museum, mine-01: adjacency 31.6% — epistemically mandatory clue,
+   *  user-approved on QA). Do not set on new levels without an explicit user decision. */
   clueBalanceExempt?: boolean;
   /** Tutorial level: excluded from stats/leaderboards/records, rendered as a pinned "Обучение" card in the menu, runs the step-by-step tutorial scenario. */
   isTutorial?: boolean;

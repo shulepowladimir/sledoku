@@ -418,6 +418,20 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
       const occupiedRooms = new Set(level.people.map((p) => index.cellsById.get(getCell(p.id)!)!.roomId));
       return level.rooms.every((r) => occupiedRooms.has(r.id));
     }
+    case 'zoneOccupancy': {
+      // «Ни одна шахта не осталась пустой»: каждая зона СПИСКА занята хотя бы
+      // одним человеком. Листовая проверка (как roomOccupancy): без пропагации
+      // доменов «зона пока пуста» ≠ «зона не сможет быть занятой», поэтому
+      // частичный прогон возвращает unknown (false отсекал бы живые ветки).
+      if (!allAssigned) return undefined;
+      const listed = new Set(clue.roomIds);
+      const occupiedRooms = new Set<string>();
+      for (const p of level.people) {
+        const roomId = index.cellsById.get(getCell(p.id)!)!.roomId;
+        if (listed.has(roomId)) occupiedRooms.add(roomId);
+      }
+      return occupiedRooms.size >= listed.size;
+    }
     case 'itemAdjacencyOccupancy': {
       if (!allAssigned) return undefined;
       const itemsOfType = level.items.filter((i) => i.typeId === clue.itemTypeId);

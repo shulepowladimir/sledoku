@@ -250,9 +250,22 @@ export interface BetweennessClue extends ClueBase {
   axis: 'row' | 'col';
 }
 
-/** Level-wide: "No room was left empty — every room had at least one occupant." No subject, no params. */
+/**
+ * Level-wide: "No room was left empty — every room had at least one occupant." No subject, no params.
+ */
 export interface RoomOccupancyClue extends ClueBase {
   type: 'roomOccupancy';
+}
+
+/**
+ * Level-wide: "Every LISTED room had at least one occupant" (mine-01: "ни одна
+ * шахта не осталась пустой" — covers only the mine galleries, not the shafts
+ * or the rock). Partial check: occupancy is monotone, so false means some
+ * listed room has all its cells already ruled out for everyone. No subject.
+ */
+export interface ZoneOccupancyClue extends ClueBase {
+  type: 'zoneOccupancy';
+  roomIds: RoomId[];
 }
 
 /** Level-wide: "Every instance of item type T had at least one person standing next to it"
@@ -399,6 +412,7 @@ export type Clue =
   | ParityClue
   | BetweennessClue
   | RoomOccupancyClue
+  | ZoneOccupancyClue
   | ItemAdjacencyOccupancyClue
   | RoomParityClue
   | RoomPopulationClue

@@ -143,7 +143,7 @@ stove, fridge, chair, sofa, bed, wardrobe, bookshelf, kassa, veggieCounter, cart
 
 ## floorTextures.ts — textureKey
 
-tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice
+tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker, rails
 
 ## Имена
 

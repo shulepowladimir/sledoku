@@ -269,7 +269,18 @@ const checker: FloorStyleFn = (row, col) => ({
   backgroundColor: (row + col) % 2 === 0 ? '#DFD6C6' : '#786862',
 });
 
-const FLOOR_TEXTURES: Record<FloorTextureKey, FloorStyleFn> = { tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker };
+// Procedural fallback for `rails` (mine cart track — the designer SVG takes
+// precedence in the browser): dark ballast with a gauge pair per 64px cell and
+// a tie stripe, both cell-periodic.
+const rails: FloorStyleFn = (_row, _col) => ({
+  backgroundColor: '#574D4A',
+  backgroundImage:
+    'linear-gradient(90deg, transparent 0 18px, #939CA2 20px 26px, transparent 28px 38px, #939CA2 40px 46px, transparent 48px 64px), ' +
+    'linear-gradient(0deg, transparent 0 24px, #786862 26px 40px, transparent 42px 64px)',
+  backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
+});
+
+const FLOOR_TEXTURES: Record<FloorTextureKey, FloorStyleFn> = { tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker, rails };
 
 export const floorTextureKeys: readonly string[] = FLOOR_TEXTURE_KEYS;
 

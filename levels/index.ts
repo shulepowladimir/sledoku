@@ -38,6 +38,7 @@ import { parkingLevel } from './35-parking';
 import { festivalLevel } from './36-festival';
 import { bowlingLevel } from './37-bowling';
 import { parkMazeLevel } from './38-parkmaze';
+import { mineLevel } from './39-mine';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -79,6 +80,7 @@ export const levels: Level[] = [
   festivalLevel,
   bowlingLevel,
   parkMazeLevel,
+  mineLevel,
 ];
 
 /** All non-tutorial levels — used by the level menu grid, size filters, profile stats and
