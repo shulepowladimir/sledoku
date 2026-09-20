@@ -14,6 +14,7 @@ function referencedRoles(clues: Clue[]): string[] {
   for (const clue of clues) {
     if ('subject' in clue && clue.subject.type === 'role') roles.push(clue.subject.role);
     if (clue.type === 'roleSingleton' || clue.type === 'sameRoomAsRole') roles.push(clue.roleId);
+    if (clue.type === 'relativePosition' && clue.otherRole != null) roles.push(clue.otherRole);
   }
   return roles;
 }

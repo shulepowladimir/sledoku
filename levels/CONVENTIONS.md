@@ -33,6 +33,7 @@
 - souvenirRack — decorative
 - computer — decorative
 - watercooler — decorative
+- locker — decorative
 - horse — occupiable
 - cactus — decorative
 - wagon — decorative

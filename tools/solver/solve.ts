@@ -289,7 +289,9 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
     }
     case 'relativePosition': {
       const a = getCell(subjectPersonId(clue.subject, level));
-      const b = getCell(clue.otherPersonId);
+      const otherId =
+        clue.otherRole != null ? uniqueRoleHolder(clue.otherRole, level) : clue.otherPersonId!;
+      const b = getCell(otherId);
       if (!a || !b) return undefined;
       const ca = index.cellsById.get(a)!;
       const cb = index.cellsById.get(b)!;
@@ -431,6 +433,15 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
         if (listed.has(roomId)) occupiedRooms.add(roomId);
       }
       return occupiedRooms.size >= listed.size;
+    }
+    case 'zoneExactCount': {
+      // «На ринге ровно двое»: точный headcount зоны. Листовая проверка —
+      // частичная расстановка недосчитывает людей (false душил бы живые ветки).
+      if (!allAssigned) return undefined;
+      const n = level.people.filter(
+        (p) => index.cellsById.get(getCell(p.id)!)!.roomId === clue.roomId,
+      ).length;
+      return n === clue.count;
     }
     case 'itemAdjacencyOccupancy': {
       if (!allAssigned) return undefined;

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    ringCorner — угол боксёрского ринга (2кл горизонтальная, occupiable):
+    стальной столб с красной подушкой-панелью и табурет секунданта рядом.
+    Секундант «сидит» на табурете (occupiable), столб — опора канатов.
+  -->
+  <!-- Тень на полу -->
+  <ellipse cx="48" cy="88" rx="34" ry="5.5" fill="#3A2A20"/>
+
+  <!-- Помост угла (настил) -->
+  <rect x="8" y="72" width="80" height="14" rx="4" fill="#E0A94A" stroke="#1A1A1A" stroke-width="3"/>
+  <path d="M14 76 H82" stroke="#B87F33" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Столб ринга -->
+  <rect x="14" y="14" width="10" height="62" rx="3" fill="#545D65" stroke="#1A1A1A" stroke-width="3"/>
+  <path d="M16.5 18 V72" stroke="#939CA2" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Канаты (три натяжения, уходят вправо к соседним столбам) -->
+  <g stroke-linecap="round" fill="none">
+    <path d="M24 22 H92" stroke="#C8102E" stroke-width="5"/>
+    <path d="M24 38 H92" stroke="#F5E9D0" stroke-width="5"/>
+    <path d="M24 54 H92" stroke="#1F3A5F" stroke-width="5"/>
+  </g>
+
+  <!-- Красная подушка-панель на столбе -->
+  <rect x="4" y="24" width="14" height="30" rx="5" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.6"/>
+  <path d="M7 28 Q11 39 7 50" stroke="#F5E9D0" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Табурет секунданта -->
+  <g>
+    <!-- сиденье -->
+    <ellipse cx="62" cy="66" rx="17" ry="6.5" fill="#454E58" stroke="#1A1A1A" stroke-width="2.8"/>
+    <ellipse cx="62" cy="64.5" rx="17" ry="6.5" fill="#545D65" stroke="#1A1A1A" stroke-width="2.8"/>
+    <!-- блики -->
+    <path d="M52 63 Q58 60.5 66 61.5" stroke="#939CA2" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <!-- ножки -->
+    <path d="M52 69 L49 82 M72 69 L75 82" stroke="#1A1A1A" stroke-width="3.4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Бинт на столбе (живая деталь) -->
+  <path d="M11 58 Q17 62 12 67" stroke="#F5E9D0" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+</svg>

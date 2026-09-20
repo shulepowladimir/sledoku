@@ -131,11 +131,14 @@ export interface ZoneCountParityClue extends ClueBase {
 /**
  * "Person X was north/south/west/east of person Y" (row 0 = north, col 0 = west).
  * `offset`, if given, requires an exact distance; otherwise just a strict inequality.
+ * The other party is either a concrete person (`otherPersonId`) or a role resolved
+ * to its unique ground-truth holder (`otherRole`) — e.g. "Zhanna was north of the judge".
  */
 export interface RelativePositionClue extends ClueBase {
   type: 'relativePosition';
   subject: Subject;
-  otherPersonId: PersonId;
+  otherPersonId?: PersonId;
+  otherRole?: string;
   axis: 'row' | 'col';
   direction: 'before' | 'after';
   offset?: number;
@@ -266,6 +269,17 @@ export interface RoomOccupancyClue extends ClueBase {
 export interface ZoneOccupancyClue extends ClueBase {
   type: 'zoneOccupancy';
   roomIds: RoomId[];
+}
+
+/**
+ * Level-wide: "Room R had exactly N people" (fightclub-01: "на ринге ровно
+ * двое" — the victim and the referee). Leaf-only: partial placements
+ * under-count, so the eager pass skips it. No subject.
+ */
+export interface ZoneExactCountClue extends ClueBase {
+  type: 'zoneExactCount';
+  roomId: RoomId;
+  count: number;
 }
 
 /** Level-wide: "Every instance of item type T had at least one person standing next to it"
@@ -413,6 +427,7 @@ export type Clue =
   | BetweennessClue
   | RoomOccupancyClue
   | ZoneOccupancyClue
+  | ZoneExactCountClue
   | ItemAdjacencyOccupancyClue
   | RoomParityClue
   | RoomPopulationClue

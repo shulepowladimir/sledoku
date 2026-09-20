@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    boxingGloves — пара боксёрских перчаток (1кл, decorative): красная и
+    синяя (углы ринга), лежат манжетами к зрителю, кулаки врозь. Свет
+    сверху-слева.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="80" rx="34" ry="6" fill="#3A2A20"/>
+
+  <!-- Синяя перчатка (слева, чуть дальше) -->
+  <g>
+    <path d="M14 44
+             Q13 34 23 32
+             L37 32
+             Q45 34 45 42
+             Q50 48 46 55
+             Q47 64 38 66
+             L20 66
+             Q12 64 13 55
+             Q10 48 14 44 Z"
+          fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3.2" stroke-linejoin="round"/>
+    <!-- Большой палец -->
+    <path d="M14 48 Q7 48 7 55 Q7 62 16 62 L19 60 Q14 57 15 51 Z"
+          fill="#16293F" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+    <!-- Сгиб кулака -->
+    <path d="M19 39 Q29 44 41 39" stroke="#0F1E33" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M18 51 Q29 56 41 51" stroke="#0F1E33" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <!-- Блик -->
+    <path d="M22 35 Q29 33 36 35" stroke="#939CA2" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <!-- Манжет -->
+    <rect x="16" y="64" width="28" height="9" rx="3" fill="#0F1E33" stroke="#1A1A1A" stroke-width="2.6"/>
+    <path d="M22 66.5 V70.5 M30 66.5 V70.5 M38 66.5 V70.5" stroke="#1A1A1A" stroke-width="1.8"/>
+  </g>
+
+  <!-- Красная перчатка (справа, ближе) -->
+  <g>
+    <path d="M51 38
+             Q50 27 61 25
+             L76 25
+             Q85 27 85 36
+             Q90 42 86 50
+             Q87 60 77 62
+             L57 62
+             Q49 60 50 50
+             Q47 42 51 38 Z"
+          fill="#C8102E" stroke="#1A1A1A" stroke-width="3.4" stroke-linejoin="round"/>
+    <!-- Большой палец -->
+    <path d="M85 44 Q93 44 93 52 Q93 59 83 59 L80 56 Q85 53 84 47 Z"
+          fill="#A50D26" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+    <!-- Сгиб кулака -->
+    <path d="M57 32 Q68 37 80 32" stroke="#7A0E1D" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M56 45 Q68 50 80 45" stroke="#7A0E1D" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <!-- Блик -->
+    <path d="M60 28 Q68 26 75 28" stroke="#F5E9D0" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <circle cx="64" cy="38" r="2.2" fill="#F5E9D0"/>
+    <!-- Манжет -->
+    <rect x="54" y="60" width="28" height="10" rx="3" fill="#7A0E1D" stroke="#1A1A1A" stroke-width="2.8"/>
+    <path d="M60 63 V67 M68 63 V67 M76 63 V67" stroke="#1A1A1A" stroke-width="1.8"/>
+    <!-- Шнуровка-застёжка -->
+    <circle cx="86" cy="65" r="2.2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.6"/>
+  </g>
+</svg>
