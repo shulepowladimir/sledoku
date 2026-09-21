@@ -40,6 +40,7 @@ import { bowlingLevel } from './37-bowling';
 import { parkMazeLevel } from './38-parkmaze';
 import { mineLevel } from './39-mine';
 import { fightClubLevel } from './40-fightclub';
+import { chemLabLevel } from './41-chemlab';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -83,6 +84,7 @@ export const levels: Level[] = [
   parkMazeLevel,
   mineLevel,
   fightClubLevel,
+  chemLabLevel,
 ];
 
 /** All non-tutorial levels — used by the level menu grid, size filters, profile stats and

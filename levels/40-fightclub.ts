@@ -254,6 +254,7 @@ const level: Level = {
     theme: 'fightclub',
     difficulty: 7,
     maxFullyPinnedPeople: 0,
+    rosterColumnCounts: [3, 3, 2],
   },
   size,
   rooms,

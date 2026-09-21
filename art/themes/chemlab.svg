@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    chemlab — «Опасная реакция»: тёмная лаборатория, кафельная сетка, крупная
+    колба Эрленмейера с бурлящей реакцией (пузыри, пар). Рендер 40-64px.
+  -->
+  <!-- Тёмный фон лаборатории -->
+  <rect x="6" y="6" width="84" height="84" rx="6" fill="#453E3B"/>
+  <!-- Кафельная сетка (светлые швы) -->
+  <g stroke="#574D4A" stroke-width="2">
+    <path d="M28 6 V90 M50 6 V90 M72 6 V90"/>
+    <path d="M6 28 H90 M6 50 H90 M6 72 H90"/>
+  </g>
+  <!-- Конус света сверху-слева -->
+  <path d="M10 6 L34 6 L58 44 L40 58 L14 30 Z" fill="#5C5450"/>
+
+  <!-- Тень колбы -->
+  <ellipse cx="50" cy="76" rx="28" ry="7" fill="#3A2A20"/>
+
+  <!-- Штатив-подставка под колбой -->
+  <rect x="26" y="72" width="48" height="7" rx="3.5" fill="#68727A" stroke="#1A1A1A" stroke-width="2.6"/>
+
+  <!-- Колба Эрленмейера -->
+  <path d="M40 20
+           L40 44
+           Q40 50 34 54
+           L24 68
+           Q22 74 28 74
+           L72 74
+           Q78 74 76 68
+           L66 54
+           Q60 50 60 44
+           L60 20
+           Z"
+        fill="#9CC3E0" stroke="#1A1A1A" stroke-width="3.4" stroke-linejoin="round"/>
+  <!-- Жидкость с волнами -->
+  <path d="M30 60
+           Q36 57 42 60
+           Q48 63 54 60
+           Q60 57 66 60
+           L76 68
+           Q78 74 72 74
+           L28 74
+           Q22 74 24 68
+           Z"
+        fill="#4A7BA6" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <!-- Второй тон жидкости (глубина) -->
+  <path d="M26 68 L76 68 L76 68 Q78 74 72 74 L28 74 Q22 74 24 68 Z" fill="#35608A"/>
+
+  <!-- Пузыри реакции -->
+  <circle cx="42" cy="66" r="3" fill="#9CC3E0" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="54" cy="63" r="4" fill="#9CC3E0" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="48" cy="69" r="2.2" fill="#F5E9D0"/>
+  <circle cx="60" cy="67" r="2.4" fill="#9CC3E0" stroke="#1A1A1A" stroke-width="1.6"/>
+
+  <!-- Горловина колбы с пробкой -->
+  <rect x="37" y="12" width="26" height="10" rx="3" fill="#9CC3E0" stroke="#1A1A1A" stroke-width="3"/>
+  <path d="M40 8 Q50 4 60 8 L60 14 Q50 11 40 14 Z" fill="#B87F33" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M44 9.5 Q50 7 56 9.5" stroke="#E0A94A" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+
+  <!-- Пар из колбы (светлые завитки) -->
+  <path d="M46 6 Q44 2 48 -2" fill="none" stroke="#DFD6C6" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M56 8 Q60 4 56 0" fill="none" stroke="#DFD6C6" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- Блики на стекле (свет сверху-слева) -->
+  <path d="M44 26 Q44 42 38 52" fill="none" stroke="#F5E9D0" stroke-width="2.8" stroke-linecap="round"/>
+  <circle cx="57" cy="30" r="1.8" fill="#F5E9D0"/>
+
+  <!-- Красный акцент: ромб опасности на колбе -->
+  <rect x="46" y="46" width="12" height="12" rx="2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2" transform="rotate(45 52 52)"/>
+  <path d="M52 48 V52 M52 54.5 V56.5" stroke="#C8102E" stroke-width="2" stroke-linecap="round"/>
+</svg>

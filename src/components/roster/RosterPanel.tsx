@@ -54,7 +54,13 @@ export function RosterPanel() {
   // Desktop roster columns by headcount: 6 people (6×6 levels) → 2 columns of 3;
   // 7–8 → 2 columns; 9+ (incl. 12×12) → 3 columns of 4. Tutorial (5) stays single-column.
   const columnCount = level.people.length >= 9 ? 3 : level.people.length >= 6 ? 2 : 1;
-  const panelColsClass = columnCount > 1 ? ` roster-panel--cols-${columnCount}` : '';
+  // meta.rosterColumnCounts может задать иное ЧИСЛО колонок, чем даёт headcount
+  // (8 человек → [3,3,2]): ширину панели считаем от фактического числа колонок,
+  // иначе три узкие колонки не влезают в 520px и текст выезжает.
+  const customCounts = level.meta.rosterColumnCounts;
+  const customValid = !!customCounts && customCounts.reduce((a, b) => a + b, 0) === level.people.length;
+  const renderedColumnCount = customValid ? customCounts!.length : columnCount;
+  const panelColsClass = renderedColumnCount > 1 ? ` roster-panel--cols-${renderedColumnCount}` : '';
 
   const handleMobilePersonTap = (personId: string) => {
     if (expandedPersonId === personId && selectedPersonId === personId) {
@@ -155,11 +161,10 @@ export function RosterPanel() {
             meta.rosterColumnCounts (e.g. [5, 3, 4]) when an uneven layout reads better. */}
         <div className="roster-columns">
           {(() => {
-            const customCounts = level.meta.rosterColumnCounts;
             const offsets: Array<[number, number]> = [];
-            if (customCounts && customCounts.reduce((a, b) => a + b, 0) === level.people.length) {
+            if (customValid) {
               let from = 0;
-              for (const count of customCounts) {
+              for (const count of customCounts!) {
                 offsets.push([from, from + count]);
                 from += count;
               }
@@ -168,7 +173,7 @@ export function RosterPanel() {
               for (let col = 0; col < columnCount; col++) offsets.push([col * chunk, col * chunk + chunk]);
             }
             return offsets.map(([from, to], col) => (
-              <ul key={col} className={`roster-list${columnCount > 1 ? ' roster-list--stack' : ''}`}>
+              <ul key={col} className={`roster-list${renderedColumnCount > 1 ? ' roster-list--stack' : ''}`}>
                 {level.people.slice(from, to).map((person) => {
                   const { isPlaced, statusClass, selectedClass, placedStatusText, unplacedStatusText } = headerFor(person);
                   const personalClues = person.isVictim ? [] : personalCluesFor(level.clues, person.id);
