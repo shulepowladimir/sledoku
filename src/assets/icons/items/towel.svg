@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    towel — банное полотенце, скрученное валиком и перевязанное: кремовая
+    ткань, бирюзовая полоса (ткань-компаньон), мягкий залом на сгибе.
+    Мягкий текстиль — без тени-подложки (прецедент б7: slippers/kettle/plate).
+  -->
+  <g transform="rotate(-8 48 48)">
+    <!-- Валик: скруглённый цилиндр -->
+    <path d="M12 36 Q12 24 26 24 L62 24 Q72 24 74 32 Q84 33 84 41 Q84 50 73 50 L28 50 Q12 50 12 38 Z"
+          fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+    <!-- Торец валика (скрутка) -->
+    <path d="M74 32 Q84 33 84 41 Q84 50 73 50 Q77 42 74 32 Z" fill="#EDE0C4" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M77 36.5 Q82 37.5 81.5 41.5" fill="none" stroke="#D5DCE1" stroke-width="1.6" stroke-linecap="round"/>
+
+    <!-- Бирюзовая полоса вдоль валика -->
+    <path d="M20 41.5 L70 41.5" stroke="#2E6E65" stroke-width="4" stroke-linecap="round"/>
+    <!-- Тонкая вторая полоска -->
+    <path d="M20 47 L64 47" stroke="#2E6E65" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Строчка-шов по нижней кромке -->
+    <path d="M16 47.5 Q40 49.5 68 47.5" fill="none" stroke="#D5DCE1" stroke-width="1.4" stroke-linecap="round"/>
+
+    <!-- Мягкий залом на сгибе (свет сверху-слева) -->
+    <path d="M20 31 Q28 28 36 30" fill="none" stroke="#D5DCE1" stroke-width="2" stroke-linecap="round"/>
+    <!-- Блик-точка -->
+    <circle cx="26" cy="35" r="1.6" fill="#D5DCE1"/>
+  </g>
+</svg>

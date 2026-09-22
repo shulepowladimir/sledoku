@@ -51,6 +51,15 @@ export function RosterPanel() {
   // General section: clues without a subject (level-wide rules) plus role-subject clues — their
   // owner is the hidden role holder, unknown to the player, so they cannot hang on a person's row.
   const generalClues = level.clues.filter((clue) => !('subject' in clue) || clue.subject.type === 'role');
+  // Схлопывание по groupId: несколько общих клю с одним groupId читаются как ОДНА
+  // строка (текст первой клю группы). Чисто отображение — солвер видит все клю.
+  const seenGroupIds = new Set<string>();
+  const displayGeneralClues = generalClues.filter((clue) => {
+    if (!clue.groupId) return true;
+    if (seenGroupIds.has(clue.groupId)) return false;
+    seenGroupIds.add(clue.groupId);
+    return true;
+  });
   // Desktop roster columns by headcount: 6 people (6×6 levels) → 2 columns of 3;
   // 7–8 → 2 columns; 9+ (incl. 12×12) → 3 columns of 4. Tutorial (5) stays single-column.
   const columnCount = level.people.length >= 9 ? 3 : level.people.length >= 6 ? 2 : 1;
@@ -87,7 +96,7 @@ export function RosterPanel() {
       <aside className="roster-panel roster-panel--mobile">
         <h2 className="roster-panel__title">{level.meta.title}</h2>
 
-        {generalClues.length > 0 && (
+        {displayGeneralClues.length > 0 && (
           <section className="roster-panel__section" data-testid="roster-general">
             <button
               type="button"
@@ -95,12 +104,12 @@ export function RosterPanel() {
               onClick={() => setGeneralOpen((v) => !v)}
               aria-expanded={generalOpen}
             >
-              Общие подсказки <span className="roster-mobile__general-count">{generalClues.length}</span>
+              Общие подсказки <span className="roster-mobile__general-count">{displayGeneralClues.length}</span>
               <span className="roster-mobile__chevron" aria-hidden>{generalOpen ? '▲' : '▼'}</span>
             </button>
             {generalOpen && (
               <ol className="clue-list roster-mobile__general-list">
-                {generalClues.map((clue) => (
+                {displayGeneralClues.map((clue) => (
                   <li key={clue.id} className="clue-item">{clue.text}</li>
                 ))}
               </ol>
@@ -209,11 +218,11 @@ export function RosterPanel() {
         </div>
       </section>
 
-      {generalClues.length > 0 && (
+      {displayGeneralClues.length > 0 && (
         <section className="roster-panel__section" data-testid="roster-general">
           <h3>Общие подсказки</h3>
           <ol className="clue-list">
-            {generalClues.map((clue) => (
+            {displayGeneralClues.map((clue) => (
               <li key={clue.id} className="clue-item">
                 {clue.text}
               </li>

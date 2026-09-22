@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    venik — дубовый веник для парной: связка резных листьев двух тонов зелени,
+    деревянная ручка в перевязи, слегка откинут назад как прислонённый к полке.
+  -->
+  <g transform="rotate(9 48 50)">
+    <!-- Ручка -->
+    <path d="M43 88 Q42 76 44 62 L52 62 Q54 76 53 88 Q48 91 43 88 Z"
+          fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+    <!-- Затемнение ручки справа -->
+    <path d="M49 62 L52 62 Q54 76 53 88 Q50 89.5 48 89 L49 62 Z" fill="#B87F33"/>
+    <!-- Перевязь на ручке -->
+    <path d="M42.5 78 Q48 81 53.5 78 L53.5 84 Q48 87 42.5 84 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- Листовая масса: три пучка -->
+    <path d="M44 62 Q28 60 22 48 Q17 37 26 30 Q34 24 42 30 Q46 34 45 40 L46 62 Z"
+          fill="#5E8A46" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+    <path d="M52 62 Q68 60 74 48 Q79 37 70 30 Q62 24 54 30 Q50 34 51 40 L50 62 Z"
+          fill="#5E8A46" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+    <path d="M46 60 Q43 42 48 26 Q49 18 54 22 Q58 28 56 40 Q54 52 53 60 Z"
+          fill="#7FA85B" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+
+    <!-- Резные листья (дубовые дольки) -->
+    <g fill="#7FA85B" stroke="#1A1A1A" stroke-width="1.6">
+      <path d="M30 52 Q28 47 32 44 Q36 46 35 51 Q32 54 30 52 Z"/>
+      <path d="M24 42 Q23 37 27 35 Q31 37 29 42 Q26 44 24 42 Z"/>
+      <path d="M36 34 Q35 29 39 27 Q43 29 41 34 Q38 36 36 34 Z"/>
+      <path d="M66 52 Q68 47 64 44 Q60 46 61 51 Q64 54 66 52 Z"/>
+      <path d="M72 42 Q73 37 69 35 Q65 37 67 42 Q70 44 72 42 Z"/>
+      <path d="M60 34 Q61 29 57 27 Q53 29 55 34 Q58 36 60 34 Z"/>
+    </g>
+    <!-- Жилки на листьях (живая деталь) -->
+    <path d="M31 50 Q31 47 32.5 45.5 M26.5 40 Q26.5 38 27.5 36.5 M37.5 32 Q37.5 30 38.5 28.5"
+          stroke="#44663A" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+
+    <!-- Блик на среднем пучке (свет сверху-слева) -->
+    <path d="M50 30 Q49 40 49 50" fill="none" stroke="#7FA85B" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+</svg>

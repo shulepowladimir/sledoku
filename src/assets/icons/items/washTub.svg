@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    washTub — деревянная шайка (вид сверху-сбоку 3/4): клёпки-дощечки двух
+    тонов дерева, стальные обручи, вода внутри с бликом и лёгкой волной.
+    Свет сверху-слева.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="49" cy="84" rx="36" ry="5.5" fill="#3A2A20"/>
+
+  <!-- Стенки шайки (клёпки) -->
+  <path d="M12 42 Q12 78 48 78 Q84 78 84 42 L84 40 Q84 34 48 34 Q12 34 12 40 Z"
+        fill="#E0A94A" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Затемнение стенки справа-снизу (двухтональный объём) -->
+  <path d="M60 35.5 Q84 37 84 40 L84 42 Q84 78 48 78 Q62 74 70 62 Q78 50 74 38 Z"
+        fill="#B87F33"/>
+
+  <!-- Верхний обруч -->
+  <path d="M12 40 Q12 34 48 34 Q84 34 84 40 Q84 46 48 46 Q12 46 12 40 Z"
+        fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- Блик на верхнем обруче слева -->
+  <path d="M18 39 Q22 36.5 30 36" fill="none" stroke="#D5DCE1" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Нижний обруч -->
+  <path d="M17 60 Q20 68 30 72" fill="none" stroke="#9BA5AD" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M79 60 Q76 68 66 72" fill="none" stroke="#5C6670" stroke-width="3.4" stroke-linecap="round"/>
+
+  <!-- Вода (эллипс внутри верхнего обруча) -->
+  <ellipse cx="48" cy="40" rx="30" ry="7.5" fill="#4A7BA6" stroke="#1A1A1A" stroke-width="2.2"/>
+  <!-- Второй тон воды (глубина к нижней кромке) -->
+  <path d="M18 40 Q48 47 78 40 Q78 46 48 47.5 Q18 46 18 40 Z" fill="#35608A"/>
+  <!-- Блик на воде (свет сверху-слева) -->
+  <path d="M28 39 Q34 36.5 42 38" fill="none" stroke="#9CC3E0" stroke-width="2" stroke-linecap="round"/>
+  <!-- Лёгкая волна-деталь -->
+  <path d="M50 42.5 Q54 41 58 43" fill="none" stroke="#9CC3E0" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Швы клёпок (живая деталь) -->
+  <path d="M30 46 Q29 56 27 66 M60 46 Q61 56 64 68" stroke="#B87F33" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+</svg>

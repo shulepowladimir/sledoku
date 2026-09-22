@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    saunaStove — банная каменка: приземистый корпус из тёмной стали, сверху —
+    груда округлых камней, дверца топки с тёплым отблеском (красный акцент),
+    деревянная ручка-задвижка. Свет сверху-слева, блик на переднем камне.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="49" cy="85" rx="37" ry="5" fill="#3A2A20"/>
+
+  <!-- Корпус печи -->
+  <path d="M16 44 L16 74 Q16 80 23 80 L73 80 Q80 80 80 74 L80 44 Q80 40 76 40 L20 40 Q16 40 16 44 Z"
+        fill="#5C6670" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Затемнение корпуса (двухтональный объём) -->
+  <path d="M58 40 L76 40 Q80 40 80 44 L80 74 Q80 80 73 80 L58 80 Z" fill="#4A545E"/>
+  <!-- Блик по верхнему левому ребру корпуса -->
+  <path d="M20 44 Q20 42 22 42 L40 42" fill="none" stroke="#9BA5AD" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Дверца топки -->
+  <rect x="30" y="50" width="24" height="20" rx="3.5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.6"/>
+  <!-- Тёплый отблеск пламени в топке (красный акцент файла) -->
+  <path d="M34 66 Q38 58 42 63 Q45 56 50 66 Q43 70 34 66 Z" fill="#C8102E"/>
+  <path d="M38 65 Q41 61 44 64" fill="none" stroke="#E0824A" stroke-width="1.6" stroke-linecap="round"/>
+  <!-- Деревянная ручка дверцы -->
+  <path d="M57 59 Q60 55.5 63 59 Q60 62.5 57 59 Z" fill="#B87F33" stroke="#1A1A1A" stroke-width="1.8"/>
+
+  <!-- Ножки-опоры -->
+  <path d="M24 80 L22 85 M72 80 L74 85" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Груда камней на своде -->
+  <g stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round">
+    <path d="M24 44 Q22 34 32 32 Q40 30 42 38 Q43 44 38 45 Z" fill="#9BA5AD"/>
+    <path d="M38 45 Q38 34 48 32 Q57 31 57 40 Q57 45 52 46 Z" fill="#D5DCE1"/>
+    <path d="M52 46 Q54 38 62 38 Q69 39 68 45 Q67 48 62 47 Z" fill="#9BA5AD"/>
+    <path d="M27 47 Q26 41 33 41 Q38 42 37 47 Q33 49 29 48 Z" fill="#7B858E"/>
+    <path d="M56 47 Q56 42 61 42 Q66 43 65 47 Q61 49 58 48 Z" fill="#7B858E"/>
+  </g>
+  <!-- Блик-точка на переднем камне -->
+  <circle cx="44" cy="37" r="2" fill="#F5E9D0"/>
+  <!-- Живая деталь: трещинка на дальнем камне -->
+  <path d="M61 40 Q63 42 62 44" fill="none" stroke="#5C6670" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

@@ -10,6 +10,11 @@ export type Subject = { type: 'person'; id: PersonId } | { type: 'role'; role: '
 interface ClueBase {
   id: string;
   text: string; // hand-authored Russian display text
+  /** Roster display only: common clues sharing a groupId collapse into ONE line
+   *  (the first clue's text wins) — e.g. two zoneGenderExclusive rules shown as
+   *  "В парилке и мужской раздевалке находились только мужчины". Solver/lint see
+   *  every clue as before; no gameplay effect. */
+  groupId?: string;
 }
 
 /** "Person X was in row/column N." */
@@ -282,6 +287,17 @@ export interface ZoneExactCountClue extends ClueBase {
   count: number;
 }
 
+/**
+ * Level-wide: "Room R had only men / only women" (bania-01: раздевалки).
+ * Leaf-only: partial placements don't prove a violation (недостающие люди
+ * могут оказаться другого пола), so the eager pass skips it. No subject.
+ */
+export interface ZoneGenderExclusiveClue extends ClueBase {
+  type: 'zoneGenderExclusive';
+  roomId: RoomId;
+  gender: 'male' | 'female';
+}
+
 /** Level-wide: "Every instance of item type T had at least one person standing next to it"
  *  (orthogonally adjacent cell, same room — same geometry as the adjacency clue). No subject. */
 export interface ItemAdjacencyOccupancyClue extends ClueBase {
@@ -428,6 +444,7 @@ export type Clue =
   | RoomOccupancyClue
   | ZoneOccupancyClue
   | ZoneExactCountClue
+  | ZoneGenderExclusiveClue
   | ItemAdjacencyOccupancyClue
   | RoomParityClue
   | RoomPopulationClue

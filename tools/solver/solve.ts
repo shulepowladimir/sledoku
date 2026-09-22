@@ -443,6 +443,15 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
       ).length;
       return n === clue.count;
     }
+    case 'zoneGenderExclusive': {
+      // «В зоне были только мужчины/только женщины»: листовая проверка —
+      // у непосаженных людей пол неизвестен расстановке (false душил бы ветки).
+      if (!allAssigned) return undefined;
+      const occupants = level.people.filter(
+        (p) => index.cellsById.get(getCell(p.id)!)!.roomId === clue.roomId,
+      );
+      return occupants.every((p) => p.gender === clue.gender);
+    }
     case 'itemAdjacencyOccupancy': {
       if (!allAssigned) return undefined;
       const itemsOfType = level.items.filter((i) => i.typeId === clue.itemTypeId);
