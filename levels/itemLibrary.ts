@@ -125,6 +125,7 @@ export const ItemLibrary = {
   bottle: item('bottle', 'bottle', 'decorative', 'Бутылка с письмом'),
   shell: item('shell', 'shell', 'decorative', 'Ракушка'),
   campfire: item('campfire', 'campfire', 'decorative', 'Костёр'),
+  pants: item('pants', 'pants', 'decorative', 'Штаны'),
   chest: item('chest', 'artifactChest', 'decorative', 'Сундук'),
   lamp: item('lamp', 'lamp', 'decorative', 'Маячная лампа'),
   boat: item('boat', 'boat', 'decorative', 'Ял'),

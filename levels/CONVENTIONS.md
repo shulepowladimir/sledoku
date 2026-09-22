@@ -66,6 +66,7 @@
 - bottle — decorative
 - shell — decorative
 - campfire — decorative
+- pants — decorative (бежевые штаны с ремнём, отсылка heavy; без тени-подложки — мягкий текстиль б7)
 - chest — decorative (icon artifactChest)
 - lamp — decorative
 - boat — decorative
