@@ -23,7 +23,7 @@ const floorFeatures: FloorFeature[] = [
 ];
 
 const itemTypes: ItemType[] = [
-  ItemLibrary.stove('Топка'),
+  { id: 'stove', label: 'Топка', kind: 'decorative', icon: 'saunaStove' },
   ItemLibrary.toolbox(),
   ItemLibrary.barrel('Бочка с водой'),
   ItemLibrary.box('Ящик с углем'),

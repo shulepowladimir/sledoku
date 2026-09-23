@@ -39,10 +39,10 @@ test.describe('нуар-режим', () => {
 
     const toggle = page.getByTestId('noir-toggle');
     const body = page.locator('body');
-    await expect(toggle).toHaveText('Нуар-режим');
+    await expect(toggle).toHaveText('Нуар');
     await expect(body).not.toHaveClass(/noir/);
 
-    // Цветной режим: светлый фон, кнопка «Нуар-режим» чёрная с белым шрифтом.
+    // Цвет: светлый фон, кнопка «Нуар» чёрная с белым шрифтом.
     await expect(body).toHaveCSS('background-color', 'rgb(250, 248, 244)');
     await expect(toggle).toHaveCSS('background-color', 'rgb(42, 42, 42)');
     await expect(toggle).toHaveCSS('color', 'rgb(255, 255, 255)');
@@ -50,7 +50,7 @@ test.describe('нуар-режим', () => {
     // Включаем: лейбл меняется, класс вешается, фон чёрный, кнопка бордовая.
     await toggle.click();
     await page.mouse.move(0, 0); // убираем :hover — проверяем базовый цвет кнопки
-    await expect(toggle).toHaveText('Цветной режим');
+    await expect(toggle).toHaveText('Цвет');
     await expect(body).toHaveClass(/noir/);
     await expect(toggle).toHaveAttribute('aria-pressed', 'true');
     await expect(body).toHaveCSS('background-color', 'rgb(10, 10, 10)');
@@ -65,18 +65,18 @@ test.describe('нуар-режим', () => {
     // Тумблер ВИЗУАЛЬНО бордовый: он выше оверлея, а не просто «задекларирован» бордовым.
     const togglePixels = await samplePixels(page, toggle);
     const hasBurgundy = togglePixels.some(([r, g, b]) => r > g + 30 && r > b + 30);
-    expect(hasBurgundy, 'кнопка «Цветной режим» остаётся бордовой поверх нуар-оверлея').toBe(true);
+    expect(hasBurgundy, 'кнопка «Цвет» остаётся бордовой поверх нуар-оверлея').toBe(true);
 
     // Режим сохраняется до следующего переключения (localStorage).
     await page.reload();
     const toggleAfterReload = page.getByTestId('noir-toggle');
-    await expect(toggleAfterReload).toHaveText('Цветной режим');
+    await expect(toggleAfterReload).toHaveText('Цвет');
     await expect(page.locator('body')).toHaveClass(/noir/);
     await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(10, 10, 10)');
 
     // Выключаем: всё возвращается.
     await toggleAfterReload.click();
-    await expect(toggleAfterReload).toHaveText('Нуар-режим');
+    await expect(toggleAfterReload).toHaveText('Нуар');
     await expect(page.locator('body')).not.toHaveClass(/noir/);
     await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(250, 248, 244)');
 
@@ -91,7 +91,7 @@ test.describe('нуар-режим', () => {
     await page.getByTestId('noir-toggle').click();
     await page.getByTestId(`level-card-${apartmentLevel.meta.id}`).click();
     const hudToggle = page.getByTestId('noir-toggle');
-    await expect(hudToggle).toHaveText('Цветной режим');
+    await expect(hudToggle).toHaveText('Цвет');
     await expect(page.locator('body')).toHaveClass(/noir/);
     await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(10, 10, 10)');
 
@@ -110,14 +110,14 @@ test.describe('нуар-режим', () => {
     // Выключаем на уровне: фон сразу светлый, кнопка чёрная.
     await hudToggle.click();
     await page.mouse.move(0, 0); // убираем :hover — проверяем базовый цвет кнопки
-    await expect(hudToggle).toHaveText('Нуар-режим');
+    await expect(hudToggle).toHaveText('Нуар');
     await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(250, 248, 244)');
     await expect(hudToggle).toHaveCSS('background-color', 'rgb(42, 42, 42)');
 
     // Возвращаемся в меню — режим согласован.
     await page.getByTestId('menu-button').click();
     const menuToggle = page.getByTestId('noir-toggle');
-    await expect(menuToggle).toHaveText('Нуар-режим');
+    await expect(menuToggle).toHaveText('Нуар');
     await expect(page.locator('body')).not.toHaveClass(/noir/);
 
     // Чистим за собой, чтобы не влиять на другие спеки (общий localStorage).

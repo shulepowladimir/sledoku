@@ -947,6 +947,55 @@ body.noir .site-footer__copyright {
   background: rgba(17, 17, 17, 0.06);
 }
 
+/* --- Подписи рядов/столбцов (тумблер AxisToggle в hud) --- */
+
+.axis-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: rgba(17, 17, 17, 0.55);
+  /* Подписи — оверлей координат: не перехватывают клики/наведение у клеток. */
+  pointer-events: none;
+  user-select: none;
+}
+
+body.noir .axis-label {
+  color: rgba(243, 242, 246, 0.6);
+}
+
+/* Тумблер подписей координат: круглая кнопка-компас-паттерн; активная —
+   инвертирована (тёмная заливка, светлый символ). */
+.axis-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(17, 17, 17, 0.25);
+  background: #fff;
+  color: #2a2a2a;
+  cursor: pointer;
+}
+
+.axis-toggle:hover {
+  background: rgba(17, 17, 17, 0.06);
+}
+
+.axis-toggle--active {
+  background: #2a2a2a;
+  border-color: #2a2a2a;
+  color: #f3f2f6;
+}
+
+.axis-toggle--active:hover {
+  background: #111;
+}
+
 .compass-overlay {
   position: fixed;
   inset: 0;

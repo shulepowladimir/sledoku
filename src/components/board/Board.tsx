@@ -5,6 +5,7 @@ import { parseCellId } from '../../types/level';
 import { isLegalTarget, cellBoundary } from '../../engine/board';
 import { occupantOf, marksOf, crossKind, personStatus } from '../../engine/selectors';
 import { useGameStore } from '../../state/gameStore';
+import { useAxisLabelsStore } from '../../state/axisLabelsStore';
 import { GridCell } from './GridCell';
 import { RoomLabel } from './RoomLabel';
 import { ItemOverlay } from './ItemOverlay';
@@ -16,12 +17,19 @@ import { polyominoOutlinePath } from '../../engine/polyomino';
 /** Сколько живёт вспышка обводки предмета после отпускания пальца (мобайл). */
 const ITEM_OUTLINE_FLASH_MS = 600;
 
+/** Габарит зоны подписей координат: 22px сверху (столбцы) и справа (ряды). */
+const AXIS_TOP = 22;
+const AXIS_RIGHT = 22;
+/** Отступ чисел-рядов от правой кромки поля. */
+const AXIS_GAP = 6;
+
 export function Board() {
   const level = useGameStore((s) => s.level);
   const index = useGameStore((s) => s.index);
   const player = useGameStore((s) => s.player);
   const handleLeftClick = useGameStore((s) => s.handleLeftClick);
   const handleRightClick = useGameStore((s) => s.handleRightClick);
+  const axisLabels = useAxisLabelsStore((s) => s.axisLabels);
 
   const [hoveredRoomId, setHoveredRoomId] = useState<RoomId | null>(null);
   // Подпись предмета/фичи пола по долгому нажатию (мобильные; см. LabelPopup).
@@ -170,8 +178,11 @@ export function Board() {
   useEffect(() => {
     const el = wrapperRef.current;
     if (!el) return;
-    const observer = new ResizeObserver((entries) => {
-      for (const entry of entries) setAvailWidth(entry.contentRect.width);
+    const observer = new ResizeObserver(() => {
+      // clientWidth (а не contentRect): при включённых подписях paddingRight
+      // съедает content-box, и contentRect сжимался бы на собственный padding —
+      // масштабирующая спираль. clientWidth стабилен: padding внутри него.
+      setAvailWidth(el.clientWidth);
     });
     observer.observe(el);
     return () => observer.disconnect();
@@ -179,21 +190,36 @@ export function Board() {
 
   const naturalWidth = cols * CELL_SIZE;
   const naturalHeight = rows * CELL_SIZE;
+  // Подписи координат живут над картой и справа от неё (absolute внутри .board):
+  // их габарит учитывается в fit-расчёте и в высоте обёртки, иначе на мобиле
+  // правые номера уедут за экран, а верхние перекроют ControlLegend.
+  const axisTopExtra = axisLabels ? AXIS_TOP : 0;
+  const axisRightExtra = axisLabels ? AXIS_RIGHT : 0;
+  const effectiveWidth = naturalWidth + axisRightExtra;
+  const effectiveHeight = naturalHeight + axisTopExtra;
   const maxDim = Math.max(rows, cols);
   const baseScale = maxDim >= 12 ? 0.875 : maxDim === 11 ? 0.9 : 1;
   // Fit-by-width AND fit-by-height: in phone landscape the viewport is wide but short —
   // the board must fit below the HUD bar without spilling over the roster below it.
-  const fitScaleW = availWidth > 0 ? Math.min(1, availWidth / naturalWidth) : 1;
+  const fitScaleW = availWidth > 0 ? Math.min(1, availWidth / effectiveWidth) : 1;
   const availHeight = Math.max(
     120,
     window.innerHeight - (wrapperRef.current?.getBoundingClientRect().top ?? 0) - 12,
   );
-  const fitScaleH = Math.min(1, availHeight / naturalHeight);
+  const fitScaleH = Math.min(1, availHeight / effectiveHeight);
   const boardScale = Math.max(0.3, Math.min(baseScale, fitScaleW, fitScaleH));
 
   return (
     <>
-      <div ref={wrapperRef} className="board-wrap" style={{ height: naturalHeight * boardScale }}>
+      <div
+        ref={wrapperRef}
+        className="board-wrap"
+        style={{
+          height: effectiveHeight * boardScale,
+          paddingTop: axisTopExtra * boardScale,
+          paddingRight: axisRightExtra * boardScale,
+        }}
+      >
       <div
         className={`board${hasCutouts ? ' board--cut' : ''}`}
         style={{
@@ -283,6 +309,30 @@ export function Board() {
       {roomLabels.map(({ room, position, align, anchorRow, anchorCol }) => (
         <RoomLabel key={room.id} name={room.name} anchorRow={anchorRow} anchorCol={anchorCol} position={position} align={align} />
       ))}
+      {axisLabels && (
+        <>
+          {Array.from({ length: cols }, (_, c) => (
+            <span
+              key={`axis-col-${c}`}
+              className="axis-label axis-label--col"
+              data-testid={`axis-col-${c + 1}`}
+              style={{ left: c * CELL_SIZE, top: -AXIS_TOP, width: CELL_SIZE }}
+            >
+              {c + 1}
+            </span>
+          ))}
+          {Array.from({ length: rows }, (_, r) => (
+            <span
+              key={`axis-row-${r}`}
+              className="axis-label axis-label--row"
+              data-testid={`axis-row-${r + 1}`}
+              style={{ top: r * CELL_SIZE, left: naturalWidth + AXIS_GAP, height: CELL_SIZE }}
+            >
+              {r + 1}
+            </span>
+          ))}
+        </>
+      )}
       </div>
     </div>
       {labelPopup && <LabelPopup {...labelPopup} onClose={() => setLabelPopup(null)} />}

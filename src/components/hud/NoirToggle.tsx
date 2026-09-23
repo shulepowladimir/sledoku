@@ -14,7 +14,7 @@ export function NoirToggle() {
       title="Чёрно-белый режим детектива"
       onClick={toggle}
     >
-      {noir ? 'Цветной режим' : 'Нуар-режим'}
+      {noir ? 'Цвет' : 'Нуар'}
     </button>
   );
 }

@@ -85,6 +85,13 @@ export function placePerson(
     marks?.pencilMarks.delete(personId);
   }
 
+  // Клетка занята персонажем — остальные метки на ней пропадают (как при
+  // ручном крестике: метки стираются, а не висят под фигуркой).
+  const targetMarks = cellMarks[targetCellId];
+  if (targetMarks && targetMarks.pencilMarks.size > 0) {
+    cellMarks[targetCellId] = { ...targetMarks, pencilMarks: new Set<PersonId>() };
+  }
+
   return { ...state, placements, cellMarks, timer: ensureTimerStarted(state, now) };
 }
 

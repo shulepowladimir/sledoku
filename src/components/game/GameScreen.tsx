@@ -11,6 +11,7 @@ import { VictoryBanner } from '../hud/VictoryBanner';
 import { HowToPlay } from '../menu/HowToPlay';
 import { NoirToggle } from '../hud/NoirToggle';
 import { CompassButton } from '../hud/CompassButton';
+import { AxisToggle } from '../hud/AxisToggle';
 
 export function GameScreen() {
   return (
@@ -24,6 +25,7 @@ export function GameScreen() {
         <CheckButton />
         <HowToPlay variant="game" />
         <CompassButton />
+        <AxisToggle />
         <NoirToggle />
       </div>
       <ControlLegend />
