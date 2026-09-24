@@ -13,7 +13,7 @@
 | `persons/` | архетипы `person-(m\|f)-NN.svg` | `src/assets/icons/persons/` |
 | `textures/` | текстуры пола (`wood.svg`) | `src/assets/textures/` |
 | `tools/` | валидатор, гейт и генератор превью (запускаются из корня репо) | никуда, остаются утилитами |
-| `preview/` | сгенерированная локальная галерея (`index.html`) | никуда |
+| `preview/` | сгенерированная локальная галерея (`index.local.html`, локальный файл) | никуда |
 
 Ключи (что рисовать) и приоритеты: `docs/icon-reference.md` в корне репо — там же
 частота использования каждого предмета в уровнях.
@@ -32,15 +32,16 @@
 ## Рабочий цикл (каждая партия)
 
 ```bash
-node art/tools/validate.mjs        # проверка конвенций art/ (exit 1 = ошибки)
-node art/tools/build-preview.mjs   # пересобрать art/preview/index.html
-node art/tools/check-preview.mjs   # headless-проверка: badKeys/zeroRender/missing/нуар
-open art/preview/index.html        # смотреть глазами (18/40/64px, 3 фона, ч/б,
-                                    # все игровые цвета одежды, тайлы 3×3)
+npm run preview-art
+open art/preview/index.local.html  # смотреть глазами: 18/40/64px, 3 фона, ч/б,
+                                   # все игровые цвета одежды, тайлы 3×3
 ```
 
+`preview-art` обновляет реестр ключей, проверяет мастерскую, строит галерею и запускает
+headless-проверку. Локальный HTML исключён из git.
+
 1. Агент рисует партию файлов по STYLE-GUIDE, ориентируясь на эталоны из пилота.
-2. `validate.mjs` зелёный → превью пересобрано.
+2. `npm run preview-art` зелёный → превью пересобрано и автоматически проверено.
 3. Человек смотрит превью, говорит правки → файлы правятся до утверждения.
 4. Утверждённая партия считается эталоном стиля для следующих.
 
@@ -51,11 +52,11 @@ open art/preview/index.html        # смотреть глазами (18/40/64px
 1. **Рисуем в `art/<категория>/`** по `STYLE-GUIDE.md` (палитра, тени, §7 для полов,
    эталоны §6 — копировать приёмы, не изобретать заново). Имя файла = игровой ключ
    (`docs/icon-reference.md`; новый ключ вводится разработкой игры).
-2. **Цикл мастерской**: `validate.mjs` → `build-preview.mjs` → `check-preview.mjs`
-   → ревью человеком в `art/preview/index.html`.
+2. **Цикл мастерской**: `npm run preview-art` → ревью человеком в
+   `art/preview/index.local.html`.
 3. **Перенос**: `cp art/<cat>/*.svg src/assets/…` (см. таблицу «Структура»).
-4. **Гейт**: `npm run validate-art` — проверяет и мастерскую, и игру, и синхронность
-   между ними (запускается автоматически перед `npm run test:smoke`).
+4. **Гейт**: `npm run verify` — проверяет уровни, сборку, lint, арт и Playwright; в том
+   числе `validate-art` проверяет мастерскую, игру и синхронность между ними.
 
 Запрещено: рисовать/править ассеты сразу в `src/assets/` (гейт увидит рассинхрон
 и уронит тесты); добавлять цвета мимо палитры §1 (новый цвет = новый токен с пометкой
@@ -70,7 +71,7 @@ cp art/items/*.svg    src/assets/icons/items/
 cp art/themes/*.svg   src/assets/icons/themes/
 cp art/persons/*.svg  src/assets/icons/persons/
 cp art/textures/*     src/assets/textures/
-npm run audit-icons && npx playwright test
+npm run verify
 ```
 
 После этого (по желанию, отдельным шагом): удаление fallback-свитча в

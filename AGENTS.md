@@ -4,20 +4,24 @@ Global workspace rules are loaded through the OpenCode global config.
 
 Project-specific context:
 
-- .paiw/README.md
-- ~/.paiw/projects/personal/murdoku/README.md
+- `~/.paiw/projects/personal/murdoku/project-context.md` — compact context; do not load full historical notes by default.
+- `docs/level-workflow.md` — required process for level authoring and changes.
 
-## Art workflow (мастерская art/)
+## Art workflow (`art/` workshop)
 
-Канон стиля и воркфлоу: `art/STYLE-GUIDE.md` + `art/README.md` («Новые ассеты для новых уровней»).
+Style source: `art/STYLE-GUIDE.md`. Operational details: `art/README.md`.
 
-- Новые ассеты (предметы/темы/текстуры/архетипы) рисуются **только в `art/<категория>/`**,
-  никогда сразу в `src/assets/`.
-- Цикл: `node art/tools/validate.mjs` → `build-preview.mjs` → `check-preview.mjs` →
-  ревью человеком в `art/preview/index.html` → `cp` в `src/assets/…`.
-- Гейт `npm run validate-art` (в `pretest:smoke`) проверяет конвенции обеих папок и
-  их синхронность: правка «по месту» в игре уронит тесты — чини через мастерскую.
-- Новый цвет = токен в STYLE-GUIDE §1 с пометкой использования; новый приём = эталон в §6.
+- Create or edit assets only in `art/<category>/`, never directly in `src/assets/`.
+- Run `npm run preview-art`, review `art/preview/index.local.html`, then copy approved assets into the game.
+- Run `npm run verify` after copying. It includes the `validate-art` synchronization gate.
+- Add new colors to STYLE-GUIDE §1 and approved new techniques to §6.
+
+## Working rules
+
+- For a level task, read `docs/level-workflow.md`; do not read full PAIW history unless a specific past case is relevant.
+- One analysis pass per decision. If the next step is unclear, use a targeted search, script, test, or question instead of repeating the same reasoning.
+- For data sets larger than about 20 entries, generate/check them with a script rather than tracing them manually.
+- A passed stage stays closed unless new evidence or a user change invalidates it.
 
 ## Knowledge, memory, search (~/.paiw)
 

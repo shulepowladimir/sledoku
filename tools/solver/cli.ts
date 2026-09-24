@@ -10,9 +10,12 @@ function isLevel(value: unknown): value is Level {
 }
 
 async function main() {
-  const arg = process.argv[2];
+  const args = process.argv.slice(2);
+  const checkRedundancy = args.includes('--redundancy');
+  const arg = args.find((value) => value !== '--redundancy');
   if (!arg) {
     console.error('Использование: npm run validate-level -- <путь-к-файлу-уровня>');
+    console.error('Дополнительно: npm run validate-redundancy -- <путь-к-файлу-уровня>');
     process.exit(1);
   }
 
@@ -51,12 +54,16 @@ async function main() {
   switch (result.status) {
     case 'PROVEN_UNIQUE': {
       console.log('РЕШЕНИЕ: PROVEN_UNIQUE — ровно одно решение, совпадающее с level.solution.');
-      const redundant = findRedundantClues(level);
-      if (redundant.length > 0) {
-        console.warn('ИЗБЫТОЧНОСТЬ (совет, не блокирует): подсказки, которые можно убрать без потери однозначности:');
-        for (const id of redundant) console.warn(`  - ${id}`);
+      if (checkRedundancy) {
+        const redundant = findRedundantClues(level);
+        if (redundant.length > 0) {
+          console.warn('ИЗБЫТОЧНОСТЬ (совет, не блокирует): подсказки, которые можно убрать без потери однозначности:');
+          for (const id of redundant) console.warn(`  - ${id}`);
+        } else {
+          console.log('ИЗБЫТОЧНОСТЬ: чисто (ни одну подсказку нельзя убрать).');
+        }
       } else {
-        console.log('ИЗБЫТОЧНОСТЬ: чисто (ни одну подсказку нельзя убрать).');
+        console.log('ИЗБЫТОЧНОСТЬ: пропущена (необязательный шаг: npm run validate-redundancy -- <файл>).');
       }
       process.exit(0);
       break;

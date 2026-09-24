@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Headless verification of art/preview/index.html (run after build-preview):
+// Headless verification of art/preview/index.local.html (run after build-preview):
 //   badKeys    — staged SVGs whose key doesn't exist in the game (must be 0)
 //   zeroRender — SVGs rendering at zero size / broken images (must be 0)
 //   missing    — game keys without a staged file, per category (must be empty)
@@ -39,7 +39,7 @@ for (const [dir, keys] of cats) {
 
 const browser = await chromium.launch();
 const page = await browser.newPage();
-await page.goto('file://' + encodeURI(join(ART, 'preview', 'index.html')));
+await page.goto('file://' + encodeURI(join(ART, 'preview', 'index.local.html')));
 
 const badKeys = await page.locator('.badge.bad').count();
 const zeroRender = await page.evaluate(() => {

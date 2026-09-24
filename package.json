@@ -9,13 +9,17 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "validate-level": "tsx tools/solver/cli.ts",
+    "validate-redundancy": "tsx tools/solver/cli.ts --redundancy",
     "validate-all": "tsx tools/solver/validateAll.ts",
+    "test:solver": "tsx --test tools/solver/epistemic.test.ts",
     "audit-icons": "tsx tools/icons/audit.ts",
     "validate-art": "node art/tools/validate-art.mjs",
+    "preview-art": "npm run audit-icons && node art/tools/validate.mjs && node art/tools/build-preview.mjs && node art/tools/check-preview.mjs",
     "generate-og": "tsx tools/og/generate-og-image.ts",
     "scaffold-level": "tsx tools/solver/scaffold.ts",
     "pretest:smoke": "npm run validate-art",
-    "test:smoke": "playwright test"
+    "test:smoke": "playwright test",
+    "verify": "npm run validate-all && npm run test:solver && npm run build && npm run lint && npm run test:smoke"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.114.0",

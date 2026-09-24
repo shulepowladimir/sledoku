@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Builds art/preview/index.html — a self-contained local gallery of staged art
+// Builds art/preview/index.local.html — a self-contained local gallery of staged art
 // (mirrors the in-game /?gallery acceptance view: 18/40/64px on light/dark/texture
 // backgrounds, grayscale readability check, every clothing color for persons,
 // 3×3 seamless tiles for textures, plus game-key coverage from docs/icon-reference.md).
@@ -238,7 +238,7 @@ ${texturesSection()}
 </body>
 </html>`;
 
-writeFileSync(join(ART, 'preview', 'index.html'), html);
+writeFileSync(join(ART, 'preview', 'index.local.html'), html);
 console.log(
-  `preview: ${items.length} items, ${themes.length} themes, ${persons.length} persons, ${textures.length} textures → art/preview/index.html`,
+  `preview: ${items.length} items, ${themes.length} themes, ${persons.length} persons, ${textures.length} textures → art/preview/index.local.html`,
 );

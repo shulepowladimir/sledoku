@@ -18,8 +18,9 @@
 1. `npm run dev` → http://localhost:5173/?gallery — галерея всех ассетов
    (размеры 18/40/64px × светлый/тёмный/текстурный фон, статусы «дизайн/fallback»).
 2. `npm run audit-icons` — консольный отчёт покрытия + обновление reference-документа.
-3. Локальная галерея мастерской: `node art/tools/build-preview.mjs` → `art/preview/index.html`
-   (ч/б-режим «Нуар», все игровые цвета одежды, тайлы 3×3, стек клетки).
+3. Мастерская: `npm run preview-art` → открой `art/preview/index.local.html`
+   (ч/б-режим «Нуар», все игровые цвета одежды, тайлы 3×3, стек клетки; HTML локальный,
+   не коммитится).
 
 ## Папки
 
@@ -62,6 +63,5 @@
 ## Приёмка
 
 1. Партия рисуется в мастерской `art/` по STYLE-GUIDE (эталоны §6 — копировать приёмы).
-2. `node art/tools/validate.mjs` → `build-preview.mjs` → ревью в `art/preview/index.html`.
-3. Утверждено → копия в `src/assets/…` (см. таблицу) → `npm run validate-art` (гейт)
-   → `npm run audit-icons` (покрытие).
+2. `npm run preview-art` → ревью в `art/preview/index.local.html`.
+3. Утверждено → копия в `src/assets/…` (см. таблицу) → `npm run verify` (финальный гейт).
