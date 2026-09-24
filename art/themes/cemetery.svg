@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    cemetery — «Тихие соседи»: ночное небо, серп луны, надгробие
+    (та же выверенная отрисовка, что у предмета tombstone — с
+    гравировкой SLED OKU 10-10) и ворона на дуге плиты.
+    Рендер 40–64px: образ крупно.
+  -->
+  <!-- Ночное небо -->
+  <rect x="6" y="6" width="84" height="84" rx="6" fill="#1F3A5F"/>
+  <!-- Звёзды -->
+  <circle cx="18" cy="16" r="1.3" fill="#F5E9D0"/>
+  <circle cx="80" cy="24" r="1.1" fill="#F5E9D0"/>
+  <circle cx="14" cy="44" r="1" fill="#F5E9D0"/>
+  <circle cx="82" cy="52" r="1.2" fill="#F5E9D0"/>
+
+  <!-- Серп луны -->
+  <path d="M73 12 A11 11 0 1 0 73 34 A8.5 8.5 0 1 1 73 12 Z" fill="#F5E9D0"/>
+
+  <!-- Надгробие — копия отрисовки предмета tombstone -->
+  <g transform="translate(5.8, 7.5) scale(0.88)">
+    <!-- Тень-подложка -->
+    <ellipse cx="48" cy="87" rx="33" ry="4.5" fill="#3A2A20"/>
+
+    <!-- Цоколь: верхняя плита 3/4 + фронт -->
+    <path d="M22 76 L74 76 L78 71 L18 71 Z" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+    <path d="M74 76 L78 71 L78 79 L74 84 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M22 84 L74 84 L74 76 L22 76 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M24 80 L72 80" stroke="#7D878E" stroke-width="1.4" stroke-linecap="round"/>
+
+    <!-- Плита со скруглённым верхом -->
+    <path d="M26 74 L26 20 C26 11 36 6 48 6 C60 6 70 11 70 20 L70 74 Z"
+          fill="#9BA5AD" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+    <!-- Затемнение — узкая кромка справа -->
+    <path d="M66 10.4 C68 12.4 70 15.8 70 20 L70 74 L66 74 Z" fill="#5C6670"/>
+    <!-- Блик верхней дуги слева -->
+    <path d="M30 24 C30 14.5 37 10 45 9.2" fill="none" stroke="#D5DCE1" stroke-width="2.2" stroke-linecap="round"/>
+    <!-- Кайма -->
+    <path d="M33 71 L33 22 C33 15 40 11 48 11 C56 11 63 15 63 22 L63 71 Z"
+          fill="none" stroke="#5C6670" stroke-width="1.6"/>
+
+    <!-- Крестик -->
+    <path d="M48 15 V22 M45 17.5 H51" stroke="#5C6670" stroke-width="2.2" stroke-linecap="round"/>
+
+    <!-- SLED -->
+    <g fill="none" stroke="#5C6670" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M37.5 31.5 C36 30 33.5 30.5 33.5 32.5 C33.5 34.5 38.5 34.5 38.5 36.5 C38.5 38.5 36 39 34.5 37.5"/>
+      <path d="M42.5 30.5 V38.5 H47"/>
+      <path d="M54 30.5 H50 V38.5 H54 M50 34.5 H52.8"/>
+      <path d="M58.5 30.5 V38.5 M58.5 30.5 C62 31 63 33 63 34.5 C63 36 62 38 58.5 38.5"/>
+    </g>
+
+    <!-- OKU -->
+    <g fill="none" stroke="#5C6670" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="39.7" cy="47.5" rx="2.9" ry="4.2"/>
+      <path d="M46.5 43.5 V51.5 M51 43.5 L46.5 47.5 L51 51.5"/>
+      <path d="M55.5 43.5 V49 Q55.5 51.8 57.5 51.8 Q59.5 51.8 59.5 49 V43.5"/>
+    </g>
+
+    <!-- 10-10 -->
+    <g fill="none" stroke="#5C6670" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M33.5 57.5 L35.5 56 V64 M31.8 64 H36.2"/>
+      <ellipse cx="42" cy="60.2" rx="2.7" ry="3.6"/>
+      <path d="M47.5 60.2 H51.5"/>
+      <path d="M55 57.5 L57 56 V64 M53.3 64 H57.7"/>
+      <ellipse cx="61.5" cy="60.2" rx="2.7" ry="3.6"/>
+    </g>
+
+    <!-- Мох у подножия -->
+    <ellipse cx="30.5" cy="70.5" rx="3" ry="1.8" fill="#44663A"/>
+    <ellipse cx="34.5" cy="72.5" rx="2" ry="1.3" fill="#5E8A46"/>
+
+    <!-- Трава у цоколя -->
+    <g fill="none" stroke="#5E8A46" stroke-width="1.8" stroke-linecap="round">
+      <path d="M18 85 Q17 81 15 79"/>
+      <path d="M21 85 Q21 80 23 78"/>
+      <path d="M77 85 Q78 81 80 79"/>
+    </g>
+  </g>
+
+  <!-- Ворона на дуге плиты (нуар-деталь) -->
+  <path d="M34 9 Q34 5 38 5 Q42 5 42.5 8 Q46 8.5 46.5 11 L44 12 L45.5 14 L42 13.5 Q42 16 39 16 L35 16 Q33.5 12.5 34 9 Z"
+        fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1.2" stroke-linejoin="round"/>
+  <circle cx="38.5" cy="8" r="0.9" fill="#F5E9D0"/>
+  <path d="M42 14.5 L46.5 17.5 L43 16.3 Z" fill="#1A1A1A"/>
+</svg>

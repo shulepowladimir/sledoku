@@ -25,6 +25,23 @@ function referencedRoles(clues: Clue[]): string[] {
  *  player while the solver still counts it — a silent source of player-visible ambiguity (medieval-21). */
 export function lintLevel(level: Level): string[] {
   const violations: string[] = [];
+  // Ядро судоку: действующих лиц ровно min(рядов, столбцов) — решение живёт в
+  // квадрате people×people (полная перестановка: каждый ряд и столбец квадрата
+  // занят ровно одним человеком). Прямоугольные карты легальны: лишний ряд
+  // (35-parking, 37-bowling — «пустой ряд» как загадка-дизъюнкция) или лишний
+  // столбец (33-racing, 39-mine — edgeColumnEmpty). Меньше людей оставляет
+  // пустой ряд И столбец внутри квадрата — сломанная базовая механика
+  // (прецедент: 44-cemetery вышел с 9 людьми на 10×10 и прошёл все гейты).
+  {
+    const rowCount = new Set(level.cells.map((c) => c.row)).size;
+    const colCount = new Set(level.cells.map((c) => c.col)).size;
+    const expected = Math.min(rowCount, colCount);
+    if (level.people.length !== expected) {
+      violations.push(
+        `Действующих лиц должно быть ровно ${expected} — min(рядов=${rowCount}, столбцов=${colCount}): решение живёт в квадрате полной перестановки, найдено ${level.people.length}.`,
+      );
+    }
+  }
   // Идентификаторы подсказок обязаны быть уникальны: дубли молча ломают key/ссылки
   // (прецедент — пираты: c6/c9 дублировались после вставок и прошли валидацию).
   const seenClueIds = new Set<string>();

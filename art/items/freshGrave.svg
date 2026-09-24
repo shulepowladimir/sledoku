@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    freshGrave — свежая могила: земляной холмик с камешками и
+    венком с красным бантом. Земля — терракотовая рампа (канон
+    cactus), венок — зелёная рампа, бант — единственный акцент.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="87" rx="32" ry="4.5" fill="#3A2A20"/>
+
+  <!-- Венок (стоит за холмиком) -->
+  <ellipse cx="48" cy="44" rx="15.5" ry="14.5" fill="none" stroke="#5E8A46" stroke-width="7"/>
+  <!-- Листовая фактура венка -->
+  <g fill="none" stroke="#44663A" stroke-width="1.8" stroke-linecap="round">
+    <path d="M36 36 L34 33.5"/>
+    <path d="M48 29.5 L48 27"/>
+    <path d="M60 36 L62 33.5"/>
+    <path d="M63.5 47 L66 46.5"/>
+    <path d="M33 47 L30.5 46.5"/>
+    <path d="M56 56 L58 58"/>
+    <path d="M40 56 L38 58"/>
+  </g>
+  <!-- Блики листьев сверху-слева -->
+  <g fill="none" stroke="#7FA85B" stroke-width="2.2" stroke-linecap="round">
+    <path d="M39.5 33.5 Q43 30.5 47.5 30"/>
+    <path d="M34.5 40 Q34.5 37.5 36 35.5"/>
+  </g>
+
+  <!-- Красный бант (акцент) -->
+  <path d="M48 56.5 L41.5 53.5 L41.5 60.5 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M48 56.5 L54.5 53.5 L54.5 60.5 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
+  <circle cx="48" cy="57" r="2.4" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.6"/>
+  <!-- Ленты банта -->
+  <path d="M46 59 Q45 64 46.5 68" fill="none" stroke="#C8102E" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M50 59 Q51.5 63 50.5 67" fill="none" stroke="#C8102E" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- Земляной холмик (перед венком) -->
+  <path d="M20 86 Q22 70 36 66 Q48 62 60 66 Q74 70 76 86 Z"
+        fill="#B85F2E" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Блик на холмике сверху-слева -->
+  <path d="M27 73 Q33 68.5 40 69.5" fill="none" stroke="#E0824A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Свежие комки земли -->
+  <ellipse cx="33" cy="80" rx="3" ry="2.2" fill="#3A2A20"/>
+  <ellipse cx="56" cy="82" rx="2.4" ry="1.8" fill="#3A2A20"/>
+  <ellipse cx="45" cy="84" rx="2" ry="1.5" fill="#E0824A"/>
+  <!-- Бугорки-комки на гребне -->
+  <circle cx="43" cy="69" r="2" fill="#E0824A"/>
+  <circle cx="52" cy="70.5" r="1.6" fill="#3A2A20"/>
+</svg>

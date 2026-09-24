@@ -43,6 +43,7 @@ import { fightClubLevel } from './40-fightclub';
 import { chemLabLevel } from './41-chemlab';
 import { heavyCaseLevel } from './42-heavy';
 import { baniaLevel } from './43-bania';
+import { cemeteryLevel } from './44-cemetery';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -89,6 +90,7 @@ export const levels: Level[] = [
   chemLabLevel,
   heavyCaseLevel,
   baniaLevel,
+  cemeteryLevel,
 ];
 
 /** All non-tutorial levels — used by the level menu grid, size filters, profile stats and

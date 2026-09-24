@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    cemeteryGate — кованые ворота кладбища: два каменных столба
+    (стальная рампа, 3/4), железная арка с пиками, одна перекладина
+    слегка согнута (живая деталь), ворона на арке — нуар.
+  -->
+  <!-- Тень-подложка -->
+  <ellipse cx="48" cy="88" rx="38" ry="4" fill="#3A2A20"/>
+
+  <!-- Столбы: базы -->
+  <path d="M10 86 L30 86 L30 79 L10 79 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M66 86 L86 86 L86 79 L66 79 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <!-- Столбы: стволы (3/4: свет слева, фронт средний, тень справа) -->
+  <path d="M14 79 L26 79 L26 28 L14 28 Z" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <path d="M14 28 L26 28 L26 79 L14 79 Z" fill="none"/>
+  <rect x="15.5" y="30" width="3.5" height="47" fill="#D5DCE1"/>
+  <rect x="22.5" y="30" width="3.5" height="47" fill="#5C6670"/>
+  <path d="M70 79 L82 79 L82 28 L70 28 Z" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <rect x="71.5" y="30" width="3.5" height="47" fill="#D5DCE1"/>
+  <rect x="78.5" y="30" width="3.5" height="47" fill="#5C6670"/>
+  <!-- Швы кладки -->
+  <g stroke="#5C6670" stroke-width="1.4" stroke-linecap="round">
+    <path d="M15 42 H25 M15 56 H25 M15 70 H25"/>
+    <path d="M71 42 H81 M71 56 H81 M71 70 H81"/>
+  </g>
+  <!-- Капители столбов -->
+  <path d="M11 28 L29 28 L29 22 L11 22 Z" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M67 28 L85 28 L85 22 L67 22 Z" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M13.5 24.5 H26.5 M69.5 24.5 H82.5" stroke="#D5DCE1" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Кованая решётка -->
+  <g stroke="#5C6670" stroke-linecap="round">
+    <!-- Вертикальные прутья со стрелами-наконечниками -->
+    <path d="M33 84 V30" stroke-width="3"/>
+    <path d="M33 27 L30.5 32 H35.5 Z" fill="#5C6670" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M40 84 V22" stroke-width="3"/>
+    <path d="M40 19 L37.5 24 H42.5 Z" fill="#5C6670" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M48 84 V18" stroke-width="3"/>
+    <path d="M48 15 L45.5 20 H50.5 Z" fill="#5C6670" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M56 84 V22" stroke-width="3"/>
+    <path d="M56 19 L53.5 24 H58.5 Z" fill="#5C6670" stroke-width="1.6" stroke-linejoin="round"/>
+    <!-- Согнутый прут (живая деталь: старое железо) -->
+    <path d="M63 84 Q63 60 66 52 Q67.5 48 65 44" stroke-width="3" fill="none"/>
+    <path d="M66 41 L68.5 46 L63 47 Z" fill="#5C6670" stroke-width="1.6" stroke-linejoin="round"/>
+    <!-- Горизонтальные перекладины -->
+    <path d="M31 70 H66" stroke-width="2.4"/>
+    <path d="M31 54 H66" stroke-width="2.4"/>
+    <!-- Блики на прутьях -->
+    <path d="M32.2 82 V32 M39.2 82 V24 M47.2 82 V20" stroke="#9BA5AD" stroke-width="1.1"/>
+  </g>
+
+  <!-- Арка над створками -->
+  <path d="M20 30 Q48 4 76 30" fill="none" stroke="#5C6670" stroke-width="5" stroke-linecap="round"/>
+  <path d="M23 29 Q48 8 73 29" fill="none" stroke="#9BA5AD" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Пики на арке -->
+  <path d="M34 15 L32 20 H36 Z M48 6.5 L45.5 11.5 H50.5 Z M62 15 L60 20 H64 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="1.2" stroke-linejoin="round"/>
+
+  <!-- Ворона на арке (нуар-деталь) -->
+  <path d="M44 12.5 Q44 8.5 48 8.5 Q52 8.5 52.5 11.5 Q56 12 56.5 14.5 L54 15.5 L55.5 17.5 L52 17 Q52 19.5 49 19.5 L45 19.5 Q43.5 16 44 12.5 Z"
+        fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1.2" stroke-linejoin="round"/>
+  <circle cx="49" cy="11.5" r="0.9" fill="#F5E9D0"/>
+  <!-- Хвост -->
+  <path d="M52.5 18 L57 21 L53.5 19.8 Z" fill="#1A1A1A"/>
+</svg>

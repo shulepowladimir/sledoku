@@ -134,6 +134,14 @@
 - parrot — decorative
 - lifebuoy — decorative
 - lifeboat — occupiable (icon boat, реюз иконки)
+- saunaStove — decorative (уровневый тип «Каменка», bania)
+- washTub — decorative (Таз)
+- towel — decorative
+- venik — decorative
+- tombstone — decorative (Надгробие с гравировкой «SLED OKU 10-10», cemetery; все экземпляры именные — нуар-юмор)
+- freshGrave — decorative (Свежая могила: холмик + венок с бантом)
+- cemeteryGate — decorative (Ворота: столбы + кованая арка, ворона)
+- bushHedge — decorative, render: 'tile' — полиомино-кусты (как в parkmaze): движок рисует тень юг/восток + волнистую губу север/запад у каждой фигуры; иконка full-bleed, БЕЗ render:'tile' не использовать
 
 ## ItemIcon.tsx — существующие иконки (имена case, без кода)
 

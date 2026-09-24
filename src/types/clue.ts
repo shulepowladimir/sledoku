@@ -298,6 +298,42 @@ export interface ZoneGenderExclusiveClue extends ClueBase {
   gender: 'male' | 'female';
 }
 
+/**
+ * "Person X stood on the boundary of rooms A and B" (cemetery-01): X's cell is in
+ * A or B and orthogonally touches a cell of the OTHER room of the pair. A zonal
+ * wallSide — rare boundary cells make a strong discriminator. Eager: checkable
+ * as soon as the subject is placed.
+ */
+export interface ZoneBoundaryClue extends ClueBase {
+  type: 'zoneBoundary';
+  subject: Subject;
+  roomId: RoomId;
+  otherRoomId: RoomId;
+}
+
+/**
+ * "Person X was in a room adjacent to Y" (strictly NOT in Y) — subject may be a
+ * person or a role. Design invariant: Y has ≥2 neighbouring rooms, otherwise the
+ * clue degrades into a roomMembership over the single neighbour. Eager.
+ */
+export interface ZoneNeighborOfClue extends ClueBase {
+  type: 'zoneNeighborOf';
+  subject: Subject;
+  roomId: RoomId;
+}
+
+/**
+ * "Person X and person Y were in adjacent (touching) rooms" — a pair clue over
+ * room adjacency: both placed, different rooms, and the rooms share a wall.
+ * Eager like relativePosition (undefined until both sides are placed).
+ */
+export interface AdjacentZonesPairClue extends ClueBase {
+  type: 'adjacentZonesPair';
+  subject: Subject;
+  otherPersonId?: PersonId;
+  otherRole?: string;
+}
+
 /** Level-wide: "Every instance of item type T had at least one person standing next to it"
  *  (orthogonally adjacent cell, same room — same geometry as the adjacency clue). No subject. */
 export interface ItemAdjacencyOccupancyClue extends ClueBase {
@@ -445,6 +481,9 @@ export type Clue =
   | ZoneOccupancyClue
   | ZoneExactCountClue
   | ZoneGenderExclusiveClue
+  | ZoneBoundaryClue
+  | ZoneNeighborOfClue
+  | AdjacentZonesPairClue
   | ItemAdjacencyOccupancyClue
   | RoomParityClue
   | RoomPopulationClue

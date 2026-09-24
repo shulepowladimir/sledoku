@@ -83,7 +83,27 @@ function subjectPersonId(subject: Subject, level: Level): PersonId {
   return uniqueRoleHolder(subject.role, level);
 }
 
-function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex, allAssigned: boolean): boolean | undefined {
+/** Ортогональные соседи клетки (row/col) как ячейки индекса (undefined — за доской/вырез). */
+function cellNeighborsOf(index: LevelIndex, row: number, col: number) {
+  const dirs: [number, number][] = [
+    [row - 1, col],
+    [row + 1, col],
+    [row, col - 1],
+    [row, col + 1],
+  ];
+  return dirs.map(([r, c]) => index.cellsById.get(cellId(r, c)));
+}
+
+/** Зоны граничат: существует клетка a∈A с ортогональным соседом b∈B. */
+function zonesTouch(level: Level, index: LevelIndex, roomA: RoomId, roomB: RoomId): boolean {
+  return level.cells.some(
+    (cell) =>
+      cell.roomId === roomA &&
+      cellNeighborsOf(index, cell.row, cell.col).some((n) => n?.roomId === roomB),
+  );
+}
+
+export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex, allAssigned: boolean): boolean | undefined {
   switch (clue.type) {
     case 'position': {
       const subjectCellId = getCell(subjectPersonId(clue.subject, level));
@@ -451,6 +471,36 @@ function evalClue(clue: Clue, getCell: GetCell, level: Level, index: LevelIndex,
         (p) => index.cellsById.get(getCell(p.id)!)!.roomId === clue.roomId,
       );
       return occupants.every((p) => p.gender === clue.gender);
+    }
+    case 'zoneBoundary': {
+      // «Стоял на границе зон A и B»: клетка субъекта в одной из пары, И через
+      // стену (ортогональный сосед) — вторая зона пары. Зоновый wallSide.
+      const subjectCellId = getCell(subjectPersonId(clue.subject, level));
+      if (!subjectCellId) return undefined;
+      const cell = index.cellsById.get(subjectCellId)!;
+      if (cell.roomId !== clue.roomId && cell.roomId !== clue.otherRoomId) return false;
+      const wanted = cell.roomId === clue.roomId ? clue.otherRoomId : clue.roomId;
+      return cellNeighborsOf(index, cell.row, cell.col).some((n) => n?.roomId === wanted);
+    }
+    case 'zoneNeighborOf': {
+      // «Находился в соседней от Y зоне» (строго не в Y): eager — субъект
+      // посажен, зона известна, соседство зон — свойство карты.
+      const subjectCellId = getCell(subjectPersonId(clue.subject, level));
+      if (!subjectCellId) return undefined;
+      const cell = index.cellsById.get(subjectCellId)!;
+      if (cell.roomId === clue.roomId) return false;
+      return zonesTouch(level, index, cell.roomId, clue.roomId);
+    }
+    case 'adjacentZonesPair': {
+      // «X и Y были в соседних зонах»: оба посажены, зоны различны и граничат.
+      const a = getCell(subjectPersonId(clue.subject, level));
+      const otherId =
+        clue.otherRole != null ? uniqueRoleHolder(clue.otherRole, level) : clue.otherPersonId!;
+      const b = getCell(otherId);
+      if (!a || !b) return undefined;
+      const roomA = index.cellsById.get(a)!.roomId;
+      const roomB = index.cellsById.get(b)!.roomId;
+      return roomA !== roomB && zonesTouch(level, index, roomA, roomB);
     }
     case 'itemAdjacencyOccupancy': {
       if (!allAssigned) return undefined;
