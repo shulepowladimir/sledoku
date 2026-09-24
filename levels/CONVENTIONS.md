@@ -129,6 +129,11 @@
 - igloo — decorative
 - snowmobile — occupiable (2-клеточный, как car/motorcycle)
 - radioStation — decorative
+- inflatableMattress — occupiable
+- sunLounger — occupiable
+- beachChair — occupiable
+- bathrobe — decorative
+- beachUmbrella — decorative
 - wheel — occupiable
 - cannon — occupiable (2-клеточный, как car/motorcycle/snowmobile)
 - parrot — decorative

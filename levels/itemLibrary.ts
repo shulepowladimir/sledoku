@@ -42,6 +42,12 @@ export const ItemLibrary = {
   igloo: item('igloo', 'igloo', 'decorative', 'Иглу'),
   snowmobile: item('snowmobile', 'snowmobile', 'occupiable', 'Снегоход'),
   radioStation: item('radioStation', 'radioStation', 'decorative', 'Радиостанция'),
+  // ——— Курорт (45-resort) ———
+  inflatableMattress: item('inflatableMattress', 'inflatableMattress', 'occupiable', 'Надувной матрас'),
+  sunLounger: item('sunLounger', 'sunLounger', 'occupiable', 'Шезлонг'),
+  beachChair: item('beachChair', 'beachChair', 'occupiable', 'Пляжный стульчик'),
+  bathrobe: item('bathrobe', 'bathrobe', 'decorative', 'Халат'),
+  beachUmbrella: item('beachUmbrella', 'beachUmbrella', 'decorative', 'Пляжный зонт'),
   // ——— Пираты (32-pirates) ———
   wheel: item('wheel', 'wheel', 'occupiable', 'Штурвал'),
   cannon: item('cannon', 'cannon', 'decorative', 'Пушка'),

@@ -44,6 +44,7 @@ import { chemLabLevel } from './41-chemlab';
 import { heavyCaseLevel } from './42-heavy';
 import { baniaLevel } from './43-bania';
 import { cemeteryLevel } from './44-cemetery';
+import { resortLevel } from './45-resort';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -91,6 +92,7 @@ export const levels: Level[] = [
   heavyCaseLevel,
   baniaLevel,
   cemeteryLevel,
+  resortLevel,
 ];
 
 /** All non-tutorial levels — used by the level menu grid, size filters, profile stats and
