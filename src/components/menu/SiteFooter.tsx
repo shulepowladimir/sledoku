@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { gameLevels } from '../../../levels';
+import { levels } from '../../../levels';
 import { CONTACT_TELEGRAM_URL, COPYRIGHT_NAME } from './legalTexts';
 import { LegalModal, type LegalTab } from './LegalModal';
 
@@ -15,13 +15,13 @@ function plural(n: number, one: string, few: string, many: string): string {
 export function SiteFooter() {
   const [legal, setLegal] = useState<LegalTab | null>(null);
   const year = new Date().getFullYear();
-  const casesWord = plural(gameLevels.length, 'дело', 'дела', 'дел');
+  const casesWord = plural(levels.length, 'дело', 'дела', 'дел');
 
   return (
     <footer className="site-footer" data-testid="site-footer">
       <div className="site-footer__brand">
         <span className="site-footer__name">Следоку</span>
-        <span className="site-footer__tagline">В архиве {gameLevels.length} {casesWord}</span>
+        <span className="site-footer__tagline">В архиве {levels.length} {casesWord}</span>
       </div>
       <nav className="site-footer__links" aria-label="Дополнительно">
         <a

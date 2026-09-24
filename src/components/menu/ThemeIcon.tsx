@@ -12,6 +12,7 @@ const THEME_ITEM_ICONS: Record<string, ItemType> = {
   airport: { id: 'theme-airport', label: 'Самолёт', kind: 'decorative', icon: 'plane' },
   zoo: { id: 'theme-zoo', label: 'Пингвин', kind: 'decorative', icon: 'penguin' },
   hollywood: { id: 'theme-hollywood', label: 'Хлопушка', kind: 'decorative', icon: 'clapperboard' },
+  library: { id: 'theme-library', label: 'Книжный шкаф', kind: 'decorative', icon: 'bookshelf' },
 };
 
 function renderIconShape(theme: string): ReactNode {

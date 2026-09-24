@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { gameLevels } from '../levels';
+import { tutorialLevel } from '../levels/00-tutorial';
 import { apartmentLevel } from '../levels/01-apartment';
 import { PRIVACY_POLICY_TITLE, TERMS_OF_USE_TITLE } from '../src/components/menu/legalTexts';
 
@@ -20,7 +21,9 @@ test.describe('подвал сайта', () => {
 
     const footer = page.getByTestId('site-footer');
     await expect(footer).toBeVisible();
-    await expect(footer).toContainText(`В архиве ${gameLevels.length} ${casesWord(gameLevels.length)}`);
+    expect(gameLevels).not.toContain(tutorialLevel);
+    const archiveCount = gameLevels.length + 1;
+    await expect(footer).toContainText(`В архиве ${archiveCount} ${casesWord(archiveCount)}`);
     await expect(footer).toContainText(`© ${new Date().getFullYear()} Воля Шулепов`);
 
     const telegram = page.getByTestId('footer-telegram');
