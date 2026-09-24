@@ -109,12 +109,17 @@ function buildReport() {
 }
 
 const r = buildReport();
+const allowStaged = process.argv.includes('--allow-staged');
+const stagedItems = new Set(listFiles('art/items', ['.svg']).map(baseName));
+const stagedThemes = new Set(listFiles('art/themes', ['.svg']).map(baseName));
 
 const itemsMissing = r.itemRows.filter((row) => !row.file && !row.fallbackCase);
+const itemsUnstaged = itemsMissing.filter((row) => !stagedItems.has(row.key));
 const itemsCustom = r.itemRows.filter((row) => row.file).length;
 const itemOrphans = [...r.itemFiles].filter((key) => !r.itemRows.some((row) => row.key === key));
 
 const themesMissing = r.themeRows.filter((row) => !row.file && !row.fallbackCase);
+const themesUnstaged = themesMissing.filter((row) => !stagedThemes.has(row.key));
 const themesCustom = r.themeRows.filter((row) => row.file).length;
 const themeOrphans = [...r.themeFiles].filter((key) => !r.themeRows.some((row) => row.key === key));
 
@@ -132,7 +137,13 @@ console.log('=== Audit: asset library ===\n');
 
 console.log(`Items:    ${itemsCustom}/${r.itemRows.length} custom, rest on fallback switch`);
 if (itemsMissing.length) {
-  console.log(`  MISSING (no file, no fallback case): ${itemsMissing.map((x) => x.key).join(', ')}`);
+  const staged = itemsMissing.filter((row) => stagedItems.has(row.key));
+  if (allowStaged && staged.length) {
+    console.log(`  STAGED for preview (not copied to game): ${staged.map((x) => x.key).join(', ')}`);
+  }
+  if (!allowStaged || itemsUnstaged.length) {
+    console.log(`  MISSING (no file, fallback, or staged art): ${(allowStaged ? itemsUnstaged : itemsMissing).map((x) => x.key).join(', ')}`);
+  }
 }
 if (itemOrphans.length) {
   console.log(`  ORPHAN files (no such key): ${itemOrphans.join(', ')}`);
@@ -140,7 +151,13 @@ if (itemOrphans.length) {
 
 console.log(`Themes:   ${themesCustom}/${r.themeRows.length} custom, rest on fallback`);
 if (themesMissing.length) {
-  console.log(`  MISSING (no file, no fallback case): ${themesMissing.map((x) => x.key).join(', ')}`);
+  const staged = themesMissing.filter((row) => stagedThemes.has(row.key));
+  if (allowStaged && staged.length) {
+    console.log(`  STAGED for preview (not copied to game): ${staged.map((x) => x.key).join(', ')}`);
+  }
+  if (!allowStaged || themesUnstaged.length) {
+    console.log(`  MISSING (no file, fallback, or staged art): ${(allowStaged ? themesUnstaged : themesMissing).map((x) => x.key).join(', ')}`);
+  }
 }
 if (themeOrphans.length) {
   console.log(`  ORPHAN files (no such theme): ${themeOrphans.join(', ')}`);
@@ -214,6 +231,6 @@ lines.push('');
 writeFileSync(join(ROOT, 'docs/icon-reference.md'), lines.join('\n'));
 console.log('\ndocs/icon-reference.md обновлён.');
 
-if (itemsMissing.length || themesMissing.length || personInvalid.length) {
+if ((!allowStaged && (itemsMissing.length || themesMissing.length)) || itemsUnstaged.length || themesUnstaged.length || personInvalid.length) {
   process.exitCode = 1;
 }

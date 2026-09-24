@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    studioSoftbox — rectangular studio lamp on a compact tripod;
+    warm diffuser, dark barn doors, steel telescoping stand, cable loop.
+  -->
+  <!-- Floor shadow -->
+  <ellipse cx="52" cy="88" rx="24" ry="4" fill="#3A2A20"/>
+
+  <!-- Tripod and telescoping stand -->
+  <path d="M51 59 L28 86 M51 59 L76 86 M51 59 L53 87" stroke="#5C6670" stroke-width="4.4" stroke-linecap="round"/>
+  <path d="M49.5 64 L32 84 M52.5 67 L72 84 M53 66 L54 84" stroke="#D5DCE1" stroke-width="1.5" stroke-linecap="round"/>
+  <rect x="48" y="38" width="6" height="23" rx="2.5" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="46" y="54" width="10" height="5" rx="2" fill="#5C6670" stroke="#1A1A1A" stroke-width="1.7"/>
+
+  <!-- Softbox hood -->
+  <path d="M18 13 Q20 9 25 10 L73 18 Q78 19 78 24 L73 49 Q72 53 67 52 L21 44 Q16 43 17 38 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M24 16 Q25 14 29 15 L68 22 Q71 23 70 27 L66 42 Q65 45 62 44 L25 38 Q22 37 22 34 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M27 18 L65 24" stroke="#E8B95F" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M20 14 L13 11 M75 20 L83 18" stroke="#1A1A1A" stroke-width="2.6" stroke-linecap="round"/>
+
+  <!-- Tilt joint and safety cable -->
+  <circle cx="50" cy="49" r="4.2" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="50" cy="49" r="1.4" fill="#F5E9D0"/>
+  <path d="M57 48 Q68 58 66 66 Q64 71 60 68" fill="none" stroke="#3A2A20" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    tvStudio — a compact on-air monitor with a friendly anchor silhouette,
+    twin aerials, and a red live tally lamp.
+  -->
+  <!-- Sticker shadow -->
+  <path d="M15 31 Q15 25 22 24 L73 24 Q81 25 82 32 L82 68 Q81 75 74 76 L24 76 Q16 75 15 68 Z" fill="#3A2A20"/>
+
+  <!-- Antennas -->
+  <path d="M40 25 L31 13 M57 25 L67 13" stroke="#5C6670" stroke-width="4" stroke-linecap="round"/>
+  <path d="M39 23 L32 14 M58 23 L66 14" stroke="#D5DCE1" stroke-width="1.3" stroke-linecap="round"/>
+  <circle cx="30" cy="12" r="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="68" cy="12" r="3" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.6"/>
+
+  <!-- Rounded monitor body -->
+  <path d="M12 31 Q12 26 19 25 L74 25 Q83 26 84 33 L84 66 Q83 73 76 75 L21 75 Q13 73 12 67 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M17 32 Q18 30 22 30 L65 30 Q69 31 69 35 L69 62 Q68 66 64 67 L22 67 Q18 66 17 62 Z" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="2.2"/>
+
+  <!-- Simple news-anchor silhouette on the screen -->
+  <path d="M28 62 Q29 52 37 51 L48 51 Q57 53 58 62 Z" fill="#2E6E65" stroke="#1A1A1A" stroke-width="1.8"/>
+  <path d="M34 42 Q35 34 43 34 Q51 35 52 43 L50 51 Q47 55 42 55 Q36 54 34 49 Z" fill="#E3B48A" stroke="#1A1A1A" stroke-width="1.8"/>
+  <path d="M33 42 Q33 33 43 32 Q52 33 53 42 L49 40 L47 37 Q42 41 34 40 Z" fill="#3A3238" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M38 45 Q40 44 42 45 M46 45 Q48 44 49 45" fill="none" stroke="#1A1A1A" stroke-width="1.3" stroke-linecap="round"/>
+  <path d="M41 50 Q44 52 47 50" fill="none" stroke="#8F5A3A" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M41 57 L44 61 L47 57" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.2" stroke-linejoin="round"/>
+
+  <!-- Side controls and live tally -->
+  <circle cx="76" cy="39" r="4" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.8"/>
+  <circle cx="75" cy="38" r="1.2" fill="#F5E9D0"/>
+  <circle cx="76" cy="52" r="2.5" fill="#E8B95F" stroke="#1A1A1A" stroke-width="1.5"/>
+  <path d="M73 61 H79" stroke="#D5DCE1" stroke-width="2" stroke-linecap="round"/>
+</svg>

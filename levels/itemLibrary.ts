@@ -48,6 +48,10 @@ export const ItemLibrary = {
   beachChair: item('beachChair', 'beachChair', 'occupiable', 'Пляжный стульчик'),
   bathrobe: item('bathrobe', 'bathrobe', 'decorative', 'Халат'),
   beachUmbrella: item('beachUmbrella', 'beachUmbrella', 'decorative', 'Пляжный зонт'),
+  // ——— Телестудия (46-tvstudio) ———
+  directorConsole: item('directorConsole', 'directorConsole', 'decorative', 'Режиссёрский пульт'),
+  studioSoftbox: item('studioSoftbox', 'studioSoftbox', 'decorative', 'Софтбокс'),
+  newsDesk: item('newsDesk', 'newsDesk', 'decorative', 'Стол ведущего'),
   // ——— Пираты (32-pirates) ———
   wheel: item('wheel', 'wheel', 'occupiable', 'Штурвал'),
   cannon: item('cannon', 'cannon', 'decorative', 'Пушка'),

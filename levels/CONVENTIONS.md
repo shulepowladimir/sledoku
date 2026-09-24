@@ -134,6 +134,9 @@
 - beachChair — occupiable
 - bathrobe — decorative
 - beachUmbrella — decorative
+- directorConsole — decorative
+- studioSoftbox — decorative
+- newsDesk — decorative
 - wheel — occupiable
 - cannon — occupiable (2-клеточный, как car/motorcycle/snowmobile)
 - parrot — decorative

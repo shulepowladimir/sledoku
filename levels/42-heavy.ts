@@ -44,7 +44,7 @@ const itemTypes: ItemType[] = [
   ItemLibrary.toolbox(),
   ItemLibrary.fridge(),
   ItemLibrary.bed(),
-  ItemLibrary.stool(),
+  ItemLibrary.beachChair('Складной стул'),
   ItemLibrary.cactus(),
   ItemLibrary.barrel(),
   ItemLibrary.rock(),
@@ -53,12 +53,12 @@ const itemTypes: ItemType[] = [
 ];
 
 const items: Item[] = [
-  // — Пустыня: трейлер, костёр, штаны, табуреты, кактусы, бочки, камни —
+  // — Пустыня: трейлер, костёр, штаны, складные стулья, кактусы, бочки, камни —
   { id: 'item-trailer', typeId: 'trailer', cells: [cellId(7, 2), cellId(7, 3)] },
   { id: 'item-campfire', typeId: 'campfire', cells: [cellId(6, 2)] },
   { id: 'item-pants', typeId: 'pants', cells: [cellId(7, 1)] },
-  { id: 'item-stool-1', typeId: 'stool', cells: [cellId(4, 2)] },
-  { id: 'item-stool-2', typeId: 'stool', cells: [cellId(6, 3)] },
+  { id: 'item-beach-chair-1', typeId: 'beachChair', cells: [cellId(4, 2)] },
+  { id: 'item-beach-chair-2', typeId: 'beachChair', cells: [cellId(6, 3)] },
   { id: 'item-cactus-1', typeId: 'cactus', cells: [cellId(0, 0)] },
   { id: 'item-cactus-2', typeId: 'cactus', cells: [cellId(2, 1)] },
   { id: 'item-cactus-3', typeId: 'cactus', cells: [cellId(3, 2)] },
@@ -303,8 +303,8 @@ const clues: Clue[] = [
     id: 'hv16',
     type: 'adjacency',
     subject: { type: 'person', id: 'jessie' },
-    itemTypeId: 'stool',
-    text: 'Жесси находился рядом с табуретом.',
+    itemTypeId: 'beachChair',
+    text: 'Жесси находился рядом со складным стулом.',
   },
   {
     id: 'hv18',

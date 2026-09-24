@@ -45,6 +45,7 @@ import { heavyCaseLevel } from './42-heavy';
 import { baniaLevel } from './43-bania';
 import { cemeteryLevel } from './44-cemetery';
 import { resortLevel } from './45-resort';
+import { tvStudioLevel } from './46-tvstudio';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -93,6 +94,7 @@ export const levels: Level[] = [
   baniaLevel,
   cemeteryLevel,
   resortLevel,
+  tvStudioLevel,
 ];
 
 /** All non-tutorial levels — used by the level menu grid, size filters, profile stats and
