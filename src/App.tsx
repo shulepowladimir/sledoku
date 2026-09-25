@@ -1,4 +1,8 @@
+import { useEffect, useRef, useState } from 'react';
+import { levels } from '../levels';
 import { useGameStore } from './state/gameStore';
+import { useAuthStore } from './state/authStore';
+import { useLevelDraftStore } from './state/levelDraftStore';
 import { GameScreen } from './components/game/GameScreen';
 import { LevelMenu } from './components/menu/LevelMenu';
 import { AssetGallery } from './components/dev/AssetGallery';
@@ -11,13 +15,101 @@ const isAssetGallery =
 
 function App() {
   const screen = useGameStore((s) => s.screen);
+  const authReady = useAuthStore((s) => s.status === 'ready');
+  const draftsReady = useLevelDraftStore((s) => s.ready);
+  const [routeReady, setRouteReady] = useState(false);
+  const bootstrapped = useRef(false);
+  const applyingHistory = useRef(false);
+
+  useEffect(() => {
+    if (isAssetGallery || !authReady || !draftsReady || bootstrapped.current) return;
+    bootstrapped.current = true;
+    applyLocationRoute();
+    setRouteReady(true);
+  }, [authReady, draftsReady]);
+
+  useEffect(() => {
+    if (isAssetGallery) return;
+
+    const unsubscribe = useGameStore.subscribe((state, previous) => {
+      if (!bootstrapped.current || applyingHistory.current) return;
+      if (state.screen === previous.screen && state.level.meta.id === previous.level.meta.id) return;
+      const nextUrl = urlForRoute(state.screen === 'game' ? state.level.meta.id : null);
+      if (currentRelativeUrl() !== nextUrl) window.history.pushState({ sledoku: true }, '', nextUrl);
+    });
+
+    const handlePopState = () => {
+      applyingHistory.current = true;
+      applyLocationRoute();
+      applyingHistory.current = false;
+    };
+    const handlePageHide = () => useGameStore.getState().pauseForPageExit();
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) useGameStore.getState().resumeAfterPageReturn();
+    };
+    const handleVisibility = () => {
+      if (document.visibilityState === 'hidden') useGameStore.getState().checkpointDraft();
+    };
+    const checkpoint = window.setInterval(() => useGameStore.getState().checkpointDraft(), 5_000);
+
+    window.addEventListener('popstate', handlePopState);
+    window.addEventListener('pagehide', handlePageHide);
+    window.addEventListener('pageshow', handlePageShow);
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      unsubscribe();
+      clearInterval(checkpoint);
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('pagehide', handlePageHide);
+      window.removeEventListener('pageshow', handlePageShow);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  }, []);
+
   if (isAssetGallery) return <AssetGallery />;
+  if (!routeReady || !draftsReady) {
+    return <div className="app-loading" role="status">Загружаем расследование…</div>;
+  }
   return (
     <>
       {screen === 'menu' ? <LevelMenu /> : <GameScreen />}
       <TutorialOverlay />
     </>
   );
+}
+
+function applyLocationRoute() {
+  const url = new URL(window.location.href);
+  if (!url.searchParams.has('level')) {
+    useGameStore.getState().goToMenu();
+    return;
+  }
+
+  const levelId = url.searchParams.get('level');
+  const level = levels.find((candidate) => candidate.meta.id === levelId);
+  if (level) {
+    useGameStore.getState().selectLevel(level);
+    return;
+  }
+
+  url.searchParams.delete('level');
+  window.history.replaceState({ sledoku: true }, '', relativeUrl(url));
+  useGameStore.getState().goToMenu();
+}
+
+function urlForRoute(levelId: string | null): string {
+  const url = new URL(window.location.href);
+  if (levelId) url.searchParams.set('level', levelId);
+  else url.searchParams.delete('level');
+  return relativeUrl(url);
+}
+
+function currentRelativeUrl(): string {
+  return `${window.location.pathname}${window.location.search}${window.location.hash}`;
+}
+
+function relativeUrl(url: URL): string {
+  return `${url.pathname}${url.search}${url.hash}`;
 }
 
 export default App;

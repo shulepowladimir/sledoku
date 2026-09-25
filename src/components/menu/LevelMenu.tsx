@@ -3,6 +3,7 @@ import { gameLevels } from '../../../levels';
 import { tutorialLevel } from '../../../levels/00-tutorial';
 import { useGameStore } from '../../state/gameStore';
 import { useProgressStore } from '../../state/progressStore';
+import { hasInProgressDraft, useLevelDraftStore } from '../../state/levelDraftStore';
 import { useTutorialStore } from '../../state/tutorialStore';
 import { formatElapsed } from '../../utils/time';
 import { isCustomBoard, boardSortKey, CUSTOM_BOARD_LABEL } from '../../utils/boardSize';
@@ -37,6 +38,7 @@ const sizeOptions: Array<'all' | 'custom' | number> = [
 export function LevelMenu() {
   const selectLevel = useGameStore((s) => s.selectLevel);
   const bestTimes = useProgressStore((s) => s.bestTimes);
+  const drafts = useLevelDraftStore((s) => s.drafts);
   const tutorialDone = useTutorialStore((s) => s.tutorialDone);
   const [sizeFilter, setSizeFilter] = useState<'all' | 'custom' | number>('all');
   const [hideSolved, setHideSolved] = useState(false);
@@ -52,7 +54,7 @@ export function LevelMenu() {
     } else if (sizeFilter !== 'all' && (isCustomBoard(level) || level.size !== sizeFilter)) {
       return false;
     }
-    if (hideSolved && bestTimes[level.meta.id] != null) return false;
+    if (hideSolved && bestTimes[level.meta.id] != null && !hasInProgressDraft(drafts[level.meta.id])) return false;
     return true;
   });
 
@@ -109,6 +111,7 @@ export function LevelMenu() {
         )}
         {visibleLevels.map((level) => {
           const bestMs = bestTimes[level.meta.id] ?? null;
+          const inProgress = hasInProgressDraft(drafts[level.meta.id]);
           return (
             <li key={level.meta.id} className="level-card" data-testid={`level-card-${level.meta.id}`}>
               <button type="button" className="level-card__button" onClick={() => selectLevel(level)}>
@@ -121,7 +124,13 @@ export function LevelMenu() {
                   <div className="level-card__solved">
                     <span className="level-card__solved-stamp">Раскрыто</span>
                     <span className="level-card__best-time">Лучшее время: {formatElapsed(bestMs)}</span>
+                    {inProgress && <span className="level-card__progress-stamp" data-testid={`level-in-progress-${level.meta.id}`}>В процессе расследования</span>}
                   </div>
+                )}
+                {bestMs == null && inProgress && (
+                  <span className="level-card__progress-stamp" data-testid={`level-in-progress-${level.meta.id}`}>
+                    В процессе расследования
+                  </span>
                 )}
               </button>
             </li>

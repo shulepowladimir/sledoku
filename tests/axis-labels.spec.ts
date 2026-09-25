@@ -48,10 +48,8 @@ test('axis labels: off by default, toggle shows 1..N above and right of the boar
   expect(col1Box!.y + col1Box!.height).toBeLessThanOrEqual(boardBox!.y + 1);
   expect(row1Box!.x).toBeGreaterThanOrEqual(boardBox!.x + boardBox!.width - 1);
 
-  // Персистентность: после перезагрузки (возврат в меню) и входа в уровень
-  // подписи всё ещё включены.
+  // Персистентность: URL восстанавливает уровень, а настройки — подписи.
   await page.reload();
-  await page.getByTestId(`level-card-${baniaLevel.meta.id}`).click();
   await expect(page.getByTestId('axis-col-1')).toBeVisible();
   await expect(page.getByTestId('axis-toggle')).toHaveAttribute('aria-pressed', 'true');
 

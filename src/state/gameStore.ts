@@ -12,6 +12,8 @@ import { apartmentLevel } from '../../levels/01-apartment';
 import { buildTutorialSteps } from '../../levels/00-tutorial.steps';
 import { useProgressStore } from './progressStore';
 import { useTutorialStore } from './tutorialStore';
+import { useLevelDraftStore } from './levelDraftStore';
+import { isActiveLevelDraft, restoreLevelDraft, serializeLevelDraft } from '../utils/levelDraft';
 
 export type InteractionMode = 'person' | 'cross' | 'erase';
 export type Screen = 'menu' | 'game';
@@ -34,11 +36,33 @@ interface GameStore {
   check: () => void;
   selectLevel: (level: Level) => void;
   goToMenu: () => void;
+  pauseForPageExit: () => void;
+  resumeAfterPageReturn: () => void;
+  checkpointDraft: () => void;
   undo: () => void;
 }
 
 const level = apartmentLevel;
 const index = buildLevelIndex(level);
+
+function pausedPlayer(player: PlayerState, now: number): PlayerState {
+  return {
+    ...player,
+    timer: {
+      ...player.timer,
+      startedAt: null,
+      elapsedMs: elapsedMsNow(player, now),
+      running: false,
+    },
+  };
+}
+
+function saveDraft(level: Level, player: PlayerState, now: number, immediate = false) {
+  const drafts = useLevelDraftStore.getState();
+  if (level.meta.isTutorial) return;
+  if (isSolved(player)) drafts.clearDraft(level.meta.id, now, immediate);
+  else drafts.saveDraft(serializeLevelDraft(level.meta.id, player, now), immediate);
+}
 
 export const useGameStore = create<GameStore>((set, get) => ({
   screen: 'menu',
@@ -128,11 +152,21 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
 
   selectLevel: (level) => {
+    const current = get();
+    const now = Date.now();
+    if (current.screen === 'game') {
+      saveDraft(current.level, pausedPlayer(current.player, now), now, true);
+    }
+    const saved = useLevelDraftStore.getState().drafts[level.meta.id];
+    const restored = isActiveLevelDraft(saved) ? restoreLevelDraft(saved, level, now) : null;
+    if (saved && isActiveLevelDraft(saved) && !restored) {
+      useLevelDraftStore.getState().clearDraft(level.meta.id, now, true);
+    }
     set({
       screen: 'game',
       level,
       index: buildLevelIndex(level),
-      player: { ...emptyPlayerState(), timer: runningTimer(Date.now()) },
+      player: restored ?? { ...emptyPlayerState(), timer: runningTimer(now) },
       undoStack: [],
       selectedPersonId: null,
       isNewRecord: false,
@@ -142,7 +176,35 @@ export const useGameStore = create<GameStore>((set, get) => ({
     else stop();
   },
 
-  goToMenu: () => set({ screen: 'menu' }),
+  goToMenu: () => {
+    const state = get();
+    if (state.screen !== 'game') return;
+    const now = Date.now();
+    const player = pausedPlayer(state.player, now);
+    saveDraft(state.level, player, now, true);
+    set({ screen: 'menu', player, undoStack: [], selectedPersonId: null });
+  },
+
+  pauseForPageExit: () => {
+    const state = get();
+    if (state.screen !== 'game' || !state.player.timer.running) return;
+    const now = Date.now();
+    const player = pausedPlayer(state.player, now);
+    saveDraft(state.level, player, now, true);
+    set({ player });
+  },
+
+  resumeAfterPageReturn: () => {
+    const state = get();
+    if (state.screen !== 'game' || state.player.timer.running || isSolved(state.player)) return;
+    const now = Date.now();
+    set({ player: { ...state.player, timer: { ...state.player.timer, startedAt: now, running: true } } });
+  },
+
+  checkpointDraft: () => {
+    const state = get();
+    if (state.screen === 'game') saveDraft(state.level, state.player, Date.now());
+  },
 
   undo: () =>
     set((s) => {
@@ -159,3 +221,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
       return { player: { ...previous, timer }, undoStack: stack };
     }),
 }));
+
+useGameStore.subscribe((state, previous) => {
+  if (state.screen === 'game' && state.player !== previous.player) {
+    saveDraft(state.level, state.player, Date.now());
+  }
+});

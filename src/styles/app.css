@@ -1,3 +1,13 @@
+.app-loading {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  color: #2a2218;
+  background: #faf8f4;
+  font-weight: 700;
+}
+
 .app-shell {
   display: flex;
   flex-direction: column;
@@ -1208,6 +1218,18 @@ body.noir .compass-dir--north {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   transform: rotate(-8deg);
+}
+
+.level-card__progress-stamp {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1.5px solid #386b57;
+  border-radius: 4px;
+  color: #285744;
+  background: rgba(56, 107, 87, 0.08);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .level-card__best-time {

@@ -2,6 +2,8 @@ import { create } from 'zustand';
 import type { Session } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase';
 import { useProgressStore } from './progressStore';
+import { useLevelDraftStore } from './levelDraftStore';
+import { useGameStore } from './gameStore';
 
 interface AuthStore {
   session: Session | null;
@@ -77,25 +79,30 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
 // Единая точка входа: любое изменение сессии (вход, выход, восстановление
 // при перезагрузке страницы, обновление токена) проходит здесь.
-// Отсюда же управляем тем, откуда progressStore берёт прогресс —
-// это гарантирует, что прогресс всегда привязан к текущему аккаунту (или гостю),
-// а не остаётся "прилипшим" от предыдущего пользователя.
-let lastHandledUserId: string | null = null;
+// Отсюда управляем загрузкой прогресса и черновиков, чтобы данные не оставались
+// "прилипшими" к предыдущему аккаунту при входе или выходе.
+let lastHandledUserId: string | null | undefined;
 
 supabase.auth.onAuthStateChange((_event, session) => {
   useAuthStore.setState({ session, status: 'ready' });
 
   const userId = session?.user.id ?? null;
   if (userId === lastHandledUserId) return;
+  const previousUserId = lastHandledUserId;
   lastHandledUserId = userId;
+  if (previousUserId !== undefined && useGameStore.getState().screen === 'game') {
+    useGameStore.getState().goToMenu();
+  }
 
   if (session) {
     useAuthStore.setState({ username: null });
     loadUsername(session.user.id).then((username) => useAuthStore.setState({ username }));
     void useProgressStore.getState().hydrateAccount(session.user.id);
+    void useLevelDraftStore.getState().hydrateAccount(session.user.id);
   } else {
     useAuthStore.setState({ username: null });
     useProgressStore.getState().hydrateGuest();
+    useLevelDraftStore.getState().hydrateGuest();
   }
 });
 

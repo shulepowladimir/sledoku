@@ -4,7 +4,7 @@ import { tutorialLevel } from '../levels/00-tutorial';
 import { apartmentLevel } from '../levels/01-apartment';
 import { PRIVACY_POLICY_TITLE, TERMS_OF_USE_TITLE } from '../src/components/menu/legalTexts';
 
-const REVISION_TEXT = 'Редакция от 9 сентября 2026 г. Связь: Telegram @shulepowladimir.';
+const REVISION_TEXT = 'Редакция от 25 сентября 2026 г. Связь: Telegram @shulepowladimir.';
 
 /** Русская плюрализация — то же правило, что в SiteFooter («дело/дела/дел»). */
 function casesWord(n: number): string {
