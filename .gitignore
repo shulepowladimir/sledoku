@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Generated art workshop preview
-/art/preview/index.local.html
+/art/preview/*.local.html

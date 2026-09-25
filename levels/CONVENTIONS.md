@@ -155,6 +155,11 @@
 - barberChair — occupiable (парикмахерское кресло)
 - hairDryer — decorative
 - productShelf — decorative (стойка с косметикой)
+- grapeVine — decorative, render: 'tile' (виноградная лоза-полиомино; winery)
+- winePress — decorative (винный пресс; winery)
+- wineRack — decorative (стеллаж с винными бутылками; winery)
+- grapeCrate — decorative (ящик винограда; winery)
+- wineGlass — decorative (бокал с вином; winery)
 
 ## ItemIcon.tsx — существующие иконки (имена case, без кода)
 

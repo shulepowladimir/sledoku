@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    winery — три дубовые бочки пирамидой и лужица пролитого вина;
+    винная капля, не кровь и не след насилия.
+  -->
+  <!-- Винная лужица на полу -->
+  <path d="M5 79 Q13 68 28 72 Q40 64 53 72 Q69 65 85 72 Q94 76 91 81 Q83 88 64 87 Q42 92 23 88 Q9 86 5 79 Z" fill="#7B2431" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M14 79 Q24 73 35 77 M56 77 Q68 71 82 77" fill="none" stroke="#C8102E" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="87" cy="67" r="3.4" fill="#7B2431" stroke="#1A1A1A" stroke-width="1.4"/>
+
+  <!-- Нижние бочки -->
+  <g stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round">
+    <path d="M14 51 Q10 64 15 77 Q32 82 48 77 Q53 64 48 51 Z" fill="#E0A94A"/>
+    <path d="M48 51 Q44 64 49 77 Q66 82 82 77 Q87 64 82 51 Z" fill="#B87F33"/>
+    <ellipse cx="31" cy="51" rx="17" ry="6" fill="#E8B95F"/>
+    <ellipse cx="65" cy="51" rx="17" ry="6" fill="#E0A94A"/>
+  </g>
+  <g fill="none" stroke="#B87F33" stroke-width="2">
+    <path d="M18 59 Q31 63 45 59 M17 70 Q31 74 46 70 M52 59 Q65 63 79 59 M51 70 Q65 74 80 70"/>
+  </g>
+  <g fill="#5C6670" stroke="#1A1A1A" stroke-width="1.5">
+    <path d="M13 56 Q31 61 50 56 L51 60 Q31 65 13 60 Z M13 72 Q31 77 50 72 L50 76 Q31 81 14 76 Z"/>
+    <path d="M47 56 Q65 61 84 56 L85 60 Q65 65 47 60 Z M47 72 Q65 77 84 72 L84 76 Q65 81 48 76 Z"/>
+  </g>
+
+  <!-- Верхняя бочка -->
+  <path d="M32 24 Q28 39 33 53 Q48 59 64 53 Q69 39 64 24 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <ellipse cx="48" cy="24" rx="16" ry="6" fill="#E8B95F" stroke="#1A1A1A" stroke-width="3"/>
+  <path d="M34 33 Q48 38 63 33 M33 46 Q48 51 64 46" fill="none" stroke="#B87F33" stroke-width="2.2"/>
+  <path d="M31 30 Q48 35 65 30 L66 34 Q48 39 30 34 Z M32 47 Q48 52 65 47 L65 51 Q48 56 32 51 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="1.7" stroke-linejoin="round"/>
+  <path d="M38 27 Q45 29 49 28" fill="none" stroke="#F5E9D0" stroke-width="2" stroke-linecap="round"/>
+</svg>

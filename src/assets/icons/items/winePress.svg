@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    winePress — ручной пресс: широкая дубовая станина, резьбовой винт
+    и неглубокая чаша для ягод и сока.
+  -->
+  <ellipse cx="49" cy="86" rx="34" ry="4.5" fill="#3A2A20"/>
+
+  <!-- Станина и опоры -->
+  <path d="M19 27 Q18 23 23 23 H73 Q78 23 77 28 L72 34 H24 Z" fill="#E8B95F" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M23 31 H33 V76 Q33 80 29 80 H24 Z M63 31 H73 V76 Q73 80 69 80 H64 Z" fill="#B87F33" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M26 37 V70 M67 37 V70" stroke="#E8B95F" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M20 75 Q48 80 77 75 L75 84 Q48 89 22 84 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+
+  <!-- Винт, рукоять и прижимная плита -->
+  <path d="M48 12 V54" stroke="#5C6670" stroke-width="7" stroke-linecap="round"/>
+  <path d="M48 13 V52" stroke="#D5DCE1" stroke-width="2" stroke-linecap="round"/>
+  <path d="M33 16 Q48 12 63 16 L60 22 Q48 25 36 22 Z" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+  <circle cx="48" cy="13" r="4" fill="#D5DCE1" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M32 50 Q48 54 64 50 L62 57 Q48 61 34 57 Z" fill="#E8B95F" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+
+  <!-- Чаша с виноградом и соком -->
+  <path d="M35 62 Q48 67 61 62 L58 74 Q48 79 38 74 Z" fill="#B87F33" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M39 65 Q48 69 57 65" fill="none" stroke="#7B2431" stroke-width="3" stroke-linecap="round"/>
+  <g fill="#7B2431" stroke="#1A1A1A" stroke-width="1.4">
+    <circle cx="43" cy="63" r="3.5"/><circle cx="50" cy="64" r="3.5"/><circle cx="56" cy="62" r="3.2"/>
+  </g>
+  <path d="M25 33 H30 M66 33 H71" stroke="#F5E9D0" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="70" cy="79" r="2" fill="#C8102E"/>
+</svg>

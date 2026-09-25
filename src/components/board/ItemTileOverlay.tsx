@@ -12,11 +12,12 @@ interface ItemTileOverlayProps {
 
 /** Multi-cell "wall" items (`render: 'tile'` — hedge mazes, counters): the icon
  *  repeats per cell at full cell size, tiling seamlessly like a floor texture
- *  while remaining a regular item (clues, tooltip, outline). Edge decorations
+ *  while remaining a regular item (clues, tooltip, outline). Foliage depth decorations
  *  (see polyominoEdgeDecorations) make each polyomino read as one solid object:
  *  an inner shadow along south/east edges and a wavy scalloped lip along
  *  north/west — volume under the art style's top-left light, never a flat
- *  texture patch. The lip is trimmed flush on the board's outer border. */
+ *  texture patch. They can be disabled per item type; the silhouette contour remains.
+ *  The lip is trimmed flush on the board's outer border. */
 export function ItemTileOverlay({ item, itemType }: ItemTileOverlayProps) {
   const coords = item.cells.map(parseCellId);
   const minRow = Math.min(...coords.map((c) => c.row));
@@ -26,7 +27,14 @@ export function ItemTileOverlay({ item, itemType }: ItemTileOverlayProps) {
   const width = (maxCol - minCol + 1) * CELL_SIZE;
   const height = (maxRow - minRow + 1) * CELL_SIZE;
   const style: CSSProperties = { left: minCol * CELL_SIZE, top: minRow * CELL_SIZE, width, height };
-  const { shadows, scallops, contourPath } = polyominoEdgeDecorations(item.cells, CELL_SIZE, minRow, minCol);
+  const { shadows: allShadows, scallops: allScallops, contourPath } = polyominoEdgeDecorations(
+    item.cells,
+    CELL_SIZE,
+    minRow,
+    minCol,
+  );
+  const shadows = itemType.tileEdgeDepth === false ? [] : allShadows;
+  const scallops = itemType.tileEdgeDepth === false ? [] : allScallops;
 
   return (
     <div className="item-tile-overlay" style={style} data-testid={`item-tiles-${item.id}`}>

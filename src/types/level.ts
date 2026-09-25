@@ -41,6 +41,9 @@ export interface ItemType {
    *  items (e.g. hedge bushes of a park maze) whose cells tile seamlessly, like floor
    *  textures, while still being a regular item (clues, tooltip, outline). */
   render?: 'tile';
+  /** Whether tiled items get the foliage scallops and shadow bands. Defaults to true;
+   *  false keeps the polyomino contour without those depth decorations. */
+  tileEdgeDepth?: boolean;
 }
 
 export interface Item {
