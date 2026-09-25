@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 import { cemeteryLevel } from '../levels/44-cemetery';
 
 // «Тихие соседи» (cemetery-01): 10×10, 10 действующих лиц, 8 зон. Твист:
-// убийца — смотритель (роль раскрыта person-клю Галины; zoneBoundary
-// склеп×часовня + zEC склеп=2 сплетают «жертва наедине со смотрителем»).
+// убийца — смотритель. roleSingleton, zoneBoundary склеп×часовня, zEC склеп=2
+// и личные улики вместе фиксируют смотрителя и пару «жертва + убийца».
 // Обманка: свежая могила с венком — ложный след, труп в склепе. Дебют
 // F-механик: zoneBoundary / zoneNeighborOf / adjacentZonesPair.
 
@@ -30,6 +30,9 @@ test('cemetery-01: 100 cells, 10 people, tombstone decorative, bush polyomino ti
   // 10 действующих лиц на 10×10 — полная перестановка.
   const rosterPeople = page.locator('[data-testid^="roster-person-"]');
   await expect(rosterPeople).toHaveCount(10);
+  await expect(
+    page.locator('.roster-entry').filter({ has: page.getByTestId('roster-person-galina') }),
+  ).toContainText('Галина находилась в одном ряду или столбце со скамьёй.');
 
   // Ворота кладбища (9,0) на входе; свежая могила с венком (9,5).
   await expect(page.getByTestId('cell-9-0')).toBeVisible();

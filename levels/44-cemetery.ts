@@ -303,6 +303,13 @@ const clues: Clue[] = [
     text: 'Галина находилась у стелы.',
   },
   {
+    id: 'cm29',
+    type: 'sameRowOrColumnAsItem',
+    subject: { type: 'person', id: 'galina' },
+    itemTypeId: 'bench',
+    text: 'Галина находилась в одном ряду или столбце со скамьёй.',
+  },
+  {
     id: 'cm28',
     type: 'adjacency',
     subject: { type: 'person', id: 'ignat' },

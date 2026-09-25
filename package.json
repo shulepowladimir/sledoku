@@ -11,7 +11,7 @@
     "validate-level": "tsx tools/solver/cli.ts",
     "validate-redundancy": "tsx tools/solver/cli.ts --redundancy",
     "validate-all": "tsx tools/solver/validateAll.ts",
-    "test:solver": "tsx --test tools/solver/epistemic.test.ts tools/solver/resort.test.ts tools/solver/tvstudio.test.ts tools/solver/library.test.ts tools/solver/levelDraft.test.ts tools/solver/checkerboardParity.test.ts tools/solver/barbershop.test.ts tools/solver/greenhouse.test.ts tools/solver/winery.test.ts",
+    "test:solver": "tsx --test tools/solver/epistemic.test.ts tools/solver/resort.test.ts tools/solver/tvstudio.test.ts tools/solver/library.test.ts tools/solver/levelDraft.test.ts tools/solver/checkerboardParity.test.ts tools/solver/barbershop.test.ts tools/solver/greenhouse.test.ts tools/solver/winery.test.ts tools/solver/cemetery.test.ts",
     "audit-icons": "tsx tools/icons/audit.ts",
     "validate-art": "node art/tools/validate-art.mjs",
     "preview-art": "npm run audit-icons -- --allow-staged && node art/tools/validate.mjs && node art/tools/build-preview.mjs && node art/tools/check-preview.mjs",

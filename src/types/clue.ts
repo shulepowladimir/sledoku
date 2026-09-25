@@ -208,6 +208,13 @@ export interface RelativeToItemOccupantClue extends ClueBase {
   direction: 'before' | 'after';
 }
 
+/** "Person X shared a row or column with an item of type T." */
+export interface SameRowOrColumnAsItemClue extends ClueBase {
+  type: 'sameRowOrColumnAsItem';
+  subject: Subject;
+  itemTypeId: ItemTypeId;
+}
+
 /** "Person X was in the same room as an item of type T" — room-wide, not adjacency-limited. */
 export interface SameRoomAsItemClue extends ClueBase {
   type: 'sameRoomAsItem';
@@ -481,6 +488,7 @@ export type Clue =
   | SameRoomAsClue
   | AloneInRoomClue
   | RelativeToItemOccupantClue
+  | SameRowOrColumnAsItemClue
   | SameRoomAsItemClue
   | OccupiesItemClue
   | WallSideClue

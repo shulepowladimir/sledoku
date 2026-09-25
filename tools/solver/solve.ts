@@ -20,6 +20,7 @@ const UNARY_TYPES = new Set([
   'position',
   'roomMembership',
   'adjacency',
+  'sameRowOrColumnAsItem',
   'corner',
   'floorFeature',
   'floorTexture',
@@ -143,6 +144,18 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
         return item?.typeId === clue.itemTypeId;
       });
       return clue.negated ? !hasAdjItem : hasAdjItem;
+    }
+    case 'sameRowOrColumnAsItem': {
+      const subjectCellId = getCell(subjectPersonId(clue.subject, level));
+      if (!subjectCellId) return undefined;
+      const subjectCell = index.cellsById.get(subjectCellId)!;
+      return level.items.some((item) => {
+        if (item.typeId !== clue.itemTypeId) return false;
+        return item.cells.some((itemCellId) => {
+          const itemCell = index.cellsById.get(itemCellId)!;
+          return itemCell.row === subjectCell.row || itemCell.col === subjectCell.col;
+        });
+      });
     }
     case 'corner': {
       const subjectCellId = getCell(subjectPersonId(clue.subject, level));
