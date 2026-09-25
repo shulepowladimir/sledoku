@@ -10,6 +10,7 @@ Before editing the level file, record only the decisions that affect implementat
 - Board dimensions, room layout, intended actor count, and victim/murderer room.
 - The player's deduction goal, any hidden role, and the intended decoy.
 - Whether this level introduces a new mechanic or uses existing clue types.
+- Never mention the victim in authored clues or relate another character to the victim (`sameRoomAs`, `relativePosition`, etc.); that directly filters suspects because the victim is known and alone with the murderer.
 
 Check the row/column permutation and decorative-item collisions before writing clues. `scaffold-level` considers room geometry, not item blockers. For large grids or item sets, use a script rather than manual tracing. Use the browser editor only when its documented feature set covers the level; otherwise start in TypeScript.
 

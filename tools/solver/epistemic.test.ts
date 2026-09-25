@@ -2,7 +2,9 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import type { PersonId } from '../../src/types/level';
 import { fightClubLevel } from '../../levels/40-fightclub';
+import { bakeryLevel } from '../../levels/51-bakery';
 import { checkHiddenRoleEpistemics, createEpistemicWorld } from './epistemic';
+import { solveLevel } from './solve';
 
 const judgeCandidates = [
   'andrey',
@@ -40,4 +42,37 @@ test('fight-club judge deduction rejects every alternative role/murderer world',
     alternatives.map((world) => `${world.roleHolderId}/${world.murdererId}:${world.status}${world.reason ? ` (${world.reason})` : ''}`),
     [],
   );
+});
+
+test('bakery deduction rejects every alternative murderer, including Boris', () => {
+  assert.equal(solveLevel(bakeryLevel).status, 'PROVEN_UNIQUE');
+
+  const groupedBoundaryClues = bakeryLevel.clues.filter(
+    (clue) => clue.groupId === 'bakery-vasilisa-two-zones',
+  );
+  assert.equal(groupedBoundaryClues.length, 2);
+  assert.ok(groupedBoundaryClues.every(
+    (clue) => clue.type === 'zoneBoundary' && clue.subject.type === 'person' && clue.subject.id === 'vasilisa',
+  ));
+  assert.deepEqual(
+    groupedBoundaryClues.map((clue) => clue.type === 'zoneBoundary' ? [clue.roomId, clue.otherRoomId] : null),
+    [['cashier', 'bakery'], ['cashier', 'service']],
+  );
+  assert.ok(groupedBoundaryClues.every((clue) =>
+    clue.text === 'Василиса соседствовала с двумя другими зонами.',
+  ));
+
+  for (const candidate of bakeryLevel.people.filter((person) => !person.isVictim)) {
+    const world = {
+      ...bakeryLevel,
+      people: bakeryLevel.people.map((person) => ({
+        ...person,
+        isMurderer: person.id === candidate.id,
+      })),
+    };
+
+    const result = solveLevel(world);
+    assert.equal(result.status, candidate.isMurderer ? 'PROVEN_UNIQUE' : 'NO_SOLUTION',
+      `${candidate.name} must not remain a possible murderer; solver returned ${JSON.stringify(result)}`);
+  }
 });

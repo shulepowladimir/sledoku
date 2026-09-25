@@ -10,10 +10,8 @@ export type Subject = { type: 'person'; id: PersonId } | { type: 'role'; role: '
 interface ClueBase {
   id: string;
   text: string; // hand-authored Russian display text
-  /** Roster display only: common clues sharing a groupId collapse into ONE line
-   *  (the first clue's text wins) — e.g. two zoneGenderExclusive rules shown as
-   *  "В парилке и мужской раздевалке находились только мужчины". Solver/lint see
-   *  every clue as before; no gameplay effect. */
+  /** Roster display only: clues sharing a groupId collapse into ONE line
+   *  (the first clue's text wins). Solver/lint still process every clue. */
   groupId?: string;
 }
 

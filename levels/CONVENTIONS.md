@@ -74,6 +74,7 @@
 - broadleafTree — decorative (лиственное дерево с округлой кроной)
 - stove — decorative (существующая иконка из 01-apartment)
 - fridge — decorative (существующая иконка из 01-apartment)
+- fireExtinguisher — decorative (иконка из chemlab, переиспользуется в bakery)
 - wardrobe — decorative (существующая иконка из 01-apartment)
 - suitcase — decorative (существующая иконка из 10-station)
 - berth — occupiable
@@ -160,6 +161,11 @@
 - wineRack — decorative (стеллаж с винными бутылками; winery)
 - grapeCrate — decorative (ящик винограда; winery)
 - wineGlass — decorative (бокал с вином; winery)
+- breadDisplay — decorative (витрина с хлебом; bakery)
+- pastryDisplay — decorative, 2 клетки (кондитерская витрина; bakery)
+- convectionOven — decorative, 2 клетки (конвекционная печь; bakery)
+- croissant — decorative (круассан; bakery)
+- coffeeMachine — decorative, 2 клетки (кофемашина; bakery)
 
 ## ItemIcon.tsx — существующие иконки (имена case, без кода)
 
@@ -171,7 +177,7 @@ stove, fridge, chair, sofa, bed, wardrobe, bookshelf, kassa, veggieCounter, cart
 
 ## floorTextures.ts — textureKey
 
-tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker, rails
+tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker, rails, bakeryTile
 
 ## Имена
 

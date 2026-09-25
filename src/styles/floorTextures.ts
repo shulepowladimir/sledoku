@@ -280,7 +280,20 @@ const rails: FloorStyleFn = (_row, _col) => ({
   backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
 });
 
-const FLOOR_TEXTURES: Record<FloorTextureKey, FloorStyleFn> = { tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker, rails };
+const bakeryTile: FloorStyleFn = (row, col) => {
+  const courseOffset = row % 2 === 0 ? 0 : -(CELL_SIZE / 2);
+  return {
+    backgroundColor: '#c9a183',
+    backgroundImage:
+      'linear-gradient(0deg, rgba(120,90,80,0.22) 0 2px, transparent 2px), ' +
+      'linear-gradient(90deg, rgba(120,90,80,0.18) 0 2px, transparent 2px), ' +
+      'radial-gradient(ellipse at 18px 17px, rgba(223,214,198,0.18) 0 2px, transparent 2.5px)',
+    backgroundSize: '128px 64px, 128px 64px, 64px 64px',
+    backgroundPosition: `0 ${-(row % 2) * (CELL_SIZE / 2)}px, ${courseOffset}px 0, ${-((col * 17) % CELL_SIZE)}px ${-((row * 23) % CELL_SIZE)}px`,
+  };
+};
+
+const FLOOR_TEXTURES: Record<FloorTextureKey, FloorStyleFn> = { tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker, rails, bakeryTile };
 
 export const floorTextureKeys: readonly string[] = FLOOR_TEXTURE_KEYS;
 

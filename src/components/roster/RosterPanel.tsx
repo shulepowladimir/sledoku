@@ -9,8 +9,20 @@ import { RosterAvatar } from './RosterAvatar';
 
 const VICTIM_LINE = 'Жертва находилась наедине с убийцей';
 
+function collapseGroupedClues(clues: Clue[]): Clue[] {
+  const seenGroupIds = new Set<string>();
+  return clues.filter((clue) => {
+    if (!clue.groupId) return true;
+    if (seenGroupIds.has(clue.groupId)) return false;
+    seenGroupIds.add(clue.groupId);
+    return true;
+  });
+}
+
 function personalCluesFor(clues: Clue[], personId: string): Clue[] {
-  return clues.filter((clue) => 'subject' in clue && clue.subject.type === 'person' && clue.subject.id === personId);
+  return collapseGroupedClues(
+    clues.filter((clue) => 'subject' in clue && clue.subject.type === 'person' && clue.subject.id === personId),
+  );
 }
 
 export function RosterPanel() {
@@ -51,15 +63,7 @@ export function RosterPanel() {
   // General section: clues without a subject (level-wide rules) plus role-subject clues — their
   // owner is the hidden role holder, unknown to the player, so they cannot hang on a person's row.
   const generalClues = level.clues.filter((clue) => !('subject' in clue) || clue.subject.type === 'role');
-  // Схлопывание по groupId: несколько общих клю с одним groupId читаются как ОДНА
-  // строка (текст первой клю группы). Чисто отображение — солвер видит все клю.
-  const seenGroupIds = new Set<string>();
-  const displayGeneralClues = generalClues.filter((clue) => {
-    if (!clue.groupId) return true;
-    if (seenGroupIds.has(clue.groupId)) return false;
-    seenGroupIds.add(clue.groupId);
-    return true;
-  });
+  const displayGeneralClues = collapseGroupedClues(generalClues);
   // Desktop roster columns by headcount: 6 people (6×6 levels) → 2 columns of 3;
   // 7–8 → 2 columns; 9+ (incl. 12×12) → 3 columns of 4. Tutorial (5) stays single-column.
   const columnCount = level.people.length >= 9 ? 3 : level.people.length >= 6 ? 2 : 1;
