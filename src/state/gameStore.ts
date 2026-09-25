@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import type { CellId, Level, PersonId } from '../types/level';
-import type { PlayerState } from '../types/game';
+import type { CheckResult, PlayerState } from '../types/game';
 import { emptyPlayerState, runningTimer } from '../types/game';
 import type { LevelIndex } from '../engine/board';
 import { buildLevelIndex, isLegalTarget } from '../engine/board';
@@ -60,8 +60,21 @@ function pausedPlayer(player: PlayerState, now: number): PlayerState {
 function saveDraft(level: Level, player: PlayerState, now: number, immediate = false) {
   const drafts = useLevelDraftStore.getState();
   if (level.meta.isTutorial) return;
-  if (isSolved(player)) drafts.clearDraft(level.meta.id, now, immediate);
-  else drafts.saveDraft(serializeLevelDraft(level.meta.id, player, now), immediate);
+  drafts.saveDraft(serializeLevelDraft(level.meta.id, player, now), immediate);
+}
+
+function completedPlayerFromBestTime(level: Level, elapsedMs: number, now: number): PlayerState {
+  const lastResult: CheckResult = {
+    checkedAt: now,
+    perPerson: Object.fromEntries(level.people.map((person) => [person.id, 'correct'])),
+    allCorrect: true,
+  };
+  return {
+    placements: { ...level.solution },
+    cellMarks: {},
+    timer: { startedAt: null, elapsedMs, running: false, finishedAt: now },
+    lastResult,
+  };
 }
 
 export const useGameStore = create<GameStore>((set, get) => ({
@@ -74,16 +87,22 @@ export const useGameStore = create<GameStore>((set, get) => ({
   mode: 'person',
   isNewRecord: false,
 
-  selectPerson: (id) =>
+  selectPerson: (id) => {
+    if (isSolved(get().player)) return;
     set((s) => ({
       selectedPersonId: s.selectedPersonId === id ? null : id,
       mode: 'person',
-    })),
+    }));
+  },
 
-  setMode: (mode) => set({ mode, selectedPersonId: null }),
+  setMode: (mode) => {
+    if (isSolved(get().player)) return;
+    set({ mode, selectedPersonId: null });
+  },
 
   handleLeftClick: (cellId) => {
     const { mode, selectedPersonId, player, level, index } = get();
+    if (isSolved(player)) return;
     if (!isLegalTarget(index, level, cellId)) return;
     const now = Date.now();
     if (mode === 'cross') {
@@ -109,6 +128,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
   handleRightClick: (cellId) => {
     const { mode, selectedPersonId, player, level, index } = get();
+    if (isSolved(player)) return;
     if (!isLegalTarget(index, level, cellId)) return;
     const now = Date.now();
     if (mode === 'cross') {
@@ -130,6 +150,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
 
   clearBoard: () => {
+    if (isSolved(get().player)) return;
     if (!window.confirm('Очистить всю доску? Время не сбросится.')) return;
     set((s) => ({ player: { ...emptyPlayerState(), timer: s.player.timer }, undoStack: [] }));
   },
@@ -141,6 +162,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
   check: () => {
     const { player, level } = get();
+    if (isSolved(player)) return;
     const now = Date.now();
     const next = checkSubmit(player, level, now);
     let isNewRecord = false;
@@ -162,11 +184,15 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (saved && isActiveLevelDraft(saved) && !restored) {
       useLevelDraftStore.getState().clearDraft(level.meta.id, now, true);
     }
+    const bestTime = useProgressStore.getState().bestTimes[level.meta.id];
+    const fallbackCompleted = !restored && bestTime != null
+      ? completedPlayerFromBestTime(level, bestTime, now)
+      : null;
     set({
       screen: 'game',
       level,
       index: buildLevelIndex(level),
-      player: restored ?? { ...emptyPlayerState(), timer: runningTimer(now) },
+      player: restored ?? fallbackCompleted ?? { ...emptyPlayerState(), timer: runningTimer(now) },
       undoStack: [],
       selectedPersonId: null,
       isNewRecord: false,
@@ -208,7 +234,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
   undo: () =>
     set((s) => {
-      if (s.undoStack.length === 0) return {};
+      if (isSolved(s.player) || s.undoStack.length === 0) return {};
       const stack = s.undoStack.slice(0, -1);
       const previous = s.undoStack[s.undoStack.length - 1];
       const now = Date.now();
@@ -224,6 +250,6 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
 useGameStore.subscribe((state, previous) => {
   if (state.screen === 'game' && state.player !== previous.player) {
-    saveDraft(state.level, state.player, Date.now());
+    saveDraft(state.level, state.player, Date.now(), isSolved(state.player));
   }
 });

@@ -249,6 +249,13 @@ export interface ParityClue extends ClueBase {
   parity: 'even' | 'odd';
 }
 
+/** "Person X stood on a light/dark square of the board's alternating checkerboard pattern." */
+export interface CheckerboardParityClue extends ClueBase {
+  type: 'checkerboardParity';
+  subject: Subject;
+  tileColor: 'light' | 'dark';
+}
+
 /** "Person X's row/column index was strictly between person Y's and person Z's." */
 export interface BetweennessClue extends ClueBase {
   type: 'betweenness';
@@ -384,12 +391,15 @@ export interface SameRoomAsRoleClue extends ClueBase {
 }
 
 /**
- * Level-wide: "Exactly one person holds role R" (e.g. "there was exactly one sheriff"). No subject —
- * ground-truth-confirming statement about Person.roles; never depends on the placement.
+ * Level-wide: "Exactly one person holds role R". Optional withinRoleId restricts the holder to
+ * role S, and tileColor can constrain that unique holder to a checkerboard tile color.
+ * No subject — the role count confirms ground truth; tileColor additionally depends on placement.
  */
 export interface RoleSingletonClue extends ClueBase {
   type: 'roleSingleton';
   roleId: string;
+  withinRoleId?: string;
+  tileColor?: 'light' | 'dark';
 }
 
 /**
@@ -476,6 +486,7 @@ export type Clue =
   | WallSideClue
   | RoomSizeClue
   | ParityClue
+  | CheckerboardParityClue
   | BetweennessClue
   | RoomOccupancyClue
   | ZoneOccupancyClue

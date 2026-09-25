@@ -26,6 +26,7 @@ const UNARY_TYPES = new Set([
   'wallSide',
   'roomSize',
   'parity',
+  'checkerboardParity',
   'sameRoomAsItem',
   'occupiesItem',
   'role',
@@ -395,7 +396,18 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       return clue.negated ? !result : result;
     }
     case 'roleSingleton': {
-      return roleHolderIds(clue.roleId, level).length === 1;
+      const holders = roleHolderIds(clue.roleId, level);
+      if (holders.length !== 1 ||
+        (clue.withinRoleId != null && !roleHolderIds(clue.withinRoleId, level).includes(holders[0]))) {
+        return false;
+      }
+      if (clue.tileColor == null) return true;
+      const holderCellId = getCell(holders[0]);
+      if (!holderCellId) return undefined;
+      const holderCell = index.cellsById.get(holderCellId);
+      if (!holderCell) return undefined;
+      const light = (holderCell.row + holderCell.col) % 2 === 0;
+      return clue.tileColor === (light ? 'light' : 'dark');
     }
     case 'wallSide': {
       const subjectCellId = getCell(subjectPersonId(clue.subject, level));
@@ -422,6 +434,13 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       const cell = index.cellsById.get(subjectCellId)!;
       const value = (clue.axis === 'row' ? cell.row : cell.col) + 1; // 1-indexed row/column number — matches player-facing numbering
       return clue.parity === 'even' ? value % 2 === 0 : value % 2 === 1;
+    }
+    case 'checkerboardParity': {
+      const subjectCellId = getCell(subjectPersonId(clue.subject, level));
+      if (!subjectCellId) return undefined;
+      const cell = index.cellsById.get(subjectCellId)!;
+      const light = (cell.row + cell.col) % 2 === 0;
+      return clue.tileColor === (light ? 'light' : 'dark');
     }
     case 'betweenness': {
       const a = getCell(subjectPersonId(clue.subject, level));

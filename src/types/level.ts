@@ -101,6 +101,7 @@ export interface Level {
   meta: LevelMeta;
   size: number; // rows count; grid is size x cols (cols defaults to size for square levels)
   cols?: number; // for non-square maps (e.g. 10 rows x 11 cols); omit for square boards
+  tilePattern?: 'checkerboard';
   rooms: Room[];
   itemTypes: ItemType[];
   items: Item[];

@@ -1,5 +1,5 @@
 import { buildLevelIndex, isLegalTarget } from '../engine/board';
-import { elapsedMsNow } from '../engine/selectors';
+import { elapsedMsNow, isSolved } from '../engine/selectors';
 import type { CheckResult, PlayerState } from '../types/game';
 import type { CellId, Level, PersonId } from '../types/level';
 
@@ -13,6 +13,7 @@ export interface LevelDraft {
   version: 1;
   levelId: string;
   savedAt: number;
+  completed?: true;
   player: {
     placements: Record<string, string>;
     cellMarks: Record<string, SerializedCellMarks>;
@@ -39,7 +40,12 @@ export function isActiveLevelDraft(draft: LevelDraftRecord | undefined): draft i
   return draft != null && !('deleted' in draft);
 }
 
+export function isInProgressLevelDraft(draft: LevelDraftRecord | undefined): draft is LevelDraft {
+  return isActiveLevelDraft(draft) && draft.completed !== true;
+}
+
 export function serializeLevelDraft(levelId: string, player: PlayerState, now: number): LevelDraft {
+  const completed = isSolved(player);
   const cellMarks = Object.fromEntries(
     Object.entries(player.cellMarks).flatMap(([cellId, marks]) => {
       if (!marks) return [];
@@ -55,6 +61,7 @@ export function serializeLevelDraft(levelId: string, player: PlayerState, now: n
     version: 1,
     levelId,
     savedAt: now,
+    ...(completed ? { completed: true as const } : {}),
     player: {
       placements: Object.fromEntries(
         Object.entries(player.placements).filter(([, cellId]) => typeof cellId === 'string'),
@@ -70,6 +77,7 @@ export function restoreLevelDraft(draft: unknown, level: Level, now: number): Pl
   if (!isRecord(draft) || draft.version !== 1 || draft.levelId !== level.meta.id || !isFiniteNumber(draft.savedAt)) {
     return null;
   }
+  if (draft.completed != null && draft.completed !== true) return null;
   if (!isRecord(draft.player) || !isFiniteNumber(draft.player.elapsedMs) || draft.player.elapsedMs < 0) return null;
   if (!isRecord(draft.player.placements) || !isRecord(draft.player.cellMarks)) return null;
 
@@ -104,11 +112,17 @@ export function restoreLevelDraft(draft: unknown, level: Level, now: number): Pl
 
   const lastResult = parseCheckResult(draft.player.lastResult, people);
   if (lastResult === undefined) return null;
+  const completed = draft.completed === true;
+  if (completed && (!lastResult?.allCorrect || !level.people.every((person) => placements[person.id] === level.solution[person.id]))) {
+    return null;
+  }
 
   return {
     placements,
     cellMarks,
-    timer: { startedAt: now, elapsedMs: draft.player.elapsedMs, running: true, finishedAt: null },
+    timer: completed
+      ? { startedAt: null, elapsedMs: draft.player.elapsedMs, running: false, finishedAt: now }
+      : { startedAt: now, elapsedMs: draft.player.elapsedMs, running: true, finishedAt: null },
     lastResult,
   };
 }

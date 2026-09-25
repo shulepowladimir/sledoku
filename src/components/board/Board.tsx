@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react';
 import type { RoomId } from '../../types/level';
 import { parseCellId } from '../../types/level';
 import { isLegalTarget, cellBoundary } from '../../engine/board';
-import { occupantOf, marksOf, crossKind, personStatus } from '../../engine/selectors';
+import { occupantOf, marksOf, crossKind, isSolved, personStatus } from '../../engine/selectors';
 import { useGameStore } from '../../state/gameStore';
 import { useAxisLabelsStore } from '../../state/axisLabelsStore';
 import { GridCell } from './GridCell';
@@ -27,6 +27,7 @@ export function Board() {
   const level = useGameStore((s) => s.level);
   const index = useGameStore((s) => s.index);
   const player = useGameStore((s) => s.player);
+  const solved = isSolved(player);
   const handleLeftClick = useGameStore((s) => s.handleLeftClick);
   const handleRightClick = useGameStore((s) => s.handleRightClick);
   const axisLabels = useAxisLabelsStore((s) => s.axisLabels);
@@ -275,6 +276,7 @@ export function Board() {
             testId={`cell-${cell.id}`}
             row={cell.row}
             col={cell.col}
+            checkerboardTone={level.tilePattern === 'checkerboard' ? ((cell.row + cell.col) % 2 === 0 ? 'light' : 'dark') : undefined}
             floorStyle={floorStyle(textureKey, cell.row - origin.minRow, cell.col - origin.minCol)}
             itemType={itemType}
             suppressItemIcon={suppressedCellIds.has(cell.id)}
@@ -282,7 +284,9 @@ export function Board() {
             person={person}
             personStatus={personId ? personStatus(player, personId) : undefined}
             pencilMarks={pencilMarks}
-            crossKind={crossKind(player, cell.id)}
+            crossKind={solved
+              ? (!personId && isLegalTarget(index, level, cell.id) ? 'auto' : 'none')
+              : crossKind(player, cell.id)}
             boundary={cellBoundary(index, cell.id)}
             interactive={isLegalTarget(index, level, cell.id)}
             highlighted={hoveredRoomId === cell.roomId}

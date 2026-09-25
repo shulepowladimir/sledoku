@@ -43,7 +43,7 @@ create policy "results_update_own"
   on public.results for update
   using (auth.uid() = user_id);
 
--- Незавершённые игровые доски приватны и хранятся отдельно от публичных рекордов.
+-- Снимки игровых досок (незавершённые и завершённые) приватны и хранятся отдельно от публичных рекордов.
 create table public.level_drafts (
   user_id uuid not null references auth.users (id) on delete cascade,
   level_id text not null,

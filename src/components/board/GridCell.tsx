@@ -38,6 +38,7 @@ interface GridCellProps {
   /** 0-based board coordinates — pin the cell to its grid track so cut-out (missing) cells leave holes instead of shifting others. */
   row: number;
   col: number;
+  checkerboardTone?: 'light' | 'dark';
   floorStyle: CSSProperties;
   itemType?: ItemType;
   suppressItemIcon?: boolean;
@@ -66,6 +67,7 @@ export function GridCell({
   testId,
   row,
   col,
+  checkerboardTone,
   floorStyle,
   itemType,
   suppressItemIcon,
@@ -182,7 +184,7 @@ export function GridCell({
 
   return (
     <div
-      className="grid-cell"
+      className={`grid-cell${checkerboardTone ? ` grid-cell--checker-${checkerboardTone}` : ''}`}
       data-testid={testId}
       style={style}
       title={tooltip}

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Barber pole: the recognizable emblem of a traditional barbershop. -->
+  <path d="M34 80 L62 80 L65 86 L31 86 Z" fill="#3A2A20"/>
+
+  <!-- Rounded finials -->
+  <path d="M44 12 Q43 7 48 6 Q53 7 52 12 L55 17 L41 17 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <ellipse cx="48" cy="83" rx="18" ry="5" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.4"/>
+
+  <!-- Pole body -->
+  <path d="M36 19 Q36 15 41 15 L55 15 Q60 16 60 20 L62 76 Q61 80 57 81 L39 81 Q35 80 34 76 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M40 20 L56 20 L58 74 Q57 76 54 77 L42 77 Q39 76 39 73 Z" fill="#F5E9D0"/>
+
+  <!-- Red and blue barber-pole ribbons -->
+  <path d="M38 26 L58 20 L59 29 L39 36 Z" fill="#C8102E"/>
+  <path d="M39 43 L59 36 L60 45 L39 52 Z" fill="#1F3A5F"/>
+  <path d="M39 60 L60 53 L60 62 L39 69 Z" fill="#C8102E"/>
+  <path d="M40 75 L60 68 L60 75 L43 78 Z" fill="#1F3A5F"/>
+  <path d="M41 18 L42 77" stroke="#E8B95F" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M55 18 L57 75" stroke="#1A1A1A" stroke-width="1.2"/>
+
+  <!-- Brass bands -->
+  <path d="M36 18 Q48 14 60 18 L60 22 Q48 19 36 23 Z" fill="#E8B95F" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M35 75 Q48 78 61 74 L62 79 Q48 83 35 80 Z" fill="#B87F33" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
+  <circle cx="49" cy="17" r="1.8" fill="#F5E9D0"/>
+</svg>

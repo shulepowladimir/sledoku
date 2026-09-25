@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { levels } from '../../levels';
 import { supabase } from '../lib/supabase';
 import {
-  isActiveLevelDraft,
+  isInProgressLevelDraft,
   mergeLevelDraftMaps,
   restoreLevelDraft,
   tombstoneLevelDraft,
@@ -212,7 +212,7 @@ if (typeof window !== 'undefined') {
 }
 
 export function hasInProgressDraft(draft: LevelDraftRecord | undefined): boolean {
-  return isActiveLevelDraft(draft);
+  return isInProgressLevelDraft(draft);
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

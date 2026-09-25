@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Hand dryer with a flared nozzle, grip, and coiled power lead. -->
+  <path d="M70 55 Q82 62 81 73 Q80 84 68 87" fill="none" stroke="#3A2A20" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M68 54 Q77 61 76 71" fill="none" stroke="#B87F33" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- Handle -->
+  <path d="M47 48 L62 51 L56 78 Q55 82 50 81 L39 78 Q35 76 37 71 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M46 54 L56 56 L52 73 L43 71 Z" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M48 59 L53 60" stroke="#D5DCE1" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Motor body -->
+  <path d="M25 27 Q27 20 35 20 L62 24 Q68 25 69 32 L66 51 Q64 57 57 57 L29 52 Q22 50 22 43 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M31 25 Q42 23 55 27" fill="none" stroke="#E8B95F" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M34 31 L31 45 M40 32 L37 46 M46 33 L43 47" stroke="#B85F2E" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Nozzle and rear intake -->
+  <path d="M58 24 L78 18 Q83 17 85 21 L87 30 Q88 34 83 36 L67 42 Z" fill="#4A7BA6" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <path d="M66 26 L80 22 L82 29 L69 34 Z" fill="#9CC3E0" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M22 28 Q15 31 15 38 L16 45 Q17 50 24 51 Z" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M18 35 L22 36 M18 40 L22 41 M19 45 L22 46" stroke="#5C6670" stroke-width="1.3" stroke-linecap="round"/>
+  <circle cx="55" cy="51" r="2.2" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.2"/>
+</svg>

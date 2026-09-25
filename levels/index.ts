@@ -47,6 +47,7 @@ import { cemeteryLevel } from './44-cemetery';
 import { resortLevel } from './45-resort';
 import { tvStudioLevel } from './46-tvstudio';
 import { libraryLevel } from './47-library';
+import { barbershopLevel } from './48-barbershop';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -97,6 +98,7 @@ export const levels: Level[] = [
   resortLevel,
   tvStudioLevel,
   libraryLevel,
+  barbershopLevel,
 ];
 
 /** All non-tutorial levels — used by the level menu grid, size filters, profile stats and

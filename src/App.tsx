@@ -3,6 +3,7 @@ import { levels } from '../levels';
 import { useGameStore } from './state/gameStore';
 import { useAuthStore } from './state/authStore';
 import { useLevelDraftStore } from './state/levelDraftStore';
+import { useProgressStore } from './state/progressStore';
 import { GameScreen } from './components/game/GameScreen';
 import { LevelMenu } from './components/menu/LevelMenu';
 import { AssetGallery } from './components/dev/AssetGallery';
@@ -17,16 +18,17 @@ function App() {
   const screen = useGameStore((s) => s.screen);
   const authReady = useAuthStore((s) => s.status === 'ready');
   const draftsReady = useLevelDraftStore((s) => s.ready);
+  const progressReady = useProgressStore((s) => s.ready);
   const [routeReady, setRouteReady] = useState(false);
   const bootstrapped = useRef(false);
   const applyingHistory = useRef(false);
 
   useEffect(() => {
-    if (isAssetGallery || !authReady || !draftsReady || bootstrapped.current) return;
+    if (isAssetGallery || !authReady || !draftsReady || !progressReady || bootstrapped.current) return;
     bootstrapped.current = true;
     applyLocationRoute();
     setRouteReady(true);
-  }, [authReady, draftsReady]);
+  }, [authReady, draftsReady, progressReady]);
 
   useEffect(() => {
     if (isAssetGallery) return;
@@ -67,7 +69,7 @@ function App() {
   }, []);
 
   if (isAssetGallery) return <AssetGallery />;
-  if (!routeReady || !draftsReady) {
+  if (!routeReady || !draftsReady || !progressReady) {
     return <div className="app-loading" role="status">Загружаем расследование…</div>;
   }
   return (

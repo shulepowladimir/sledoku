@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Barber chair: broad seat, raised back, and a visible central sitting area. -->
+  <ellipse cx="49" cy="87" rx="31" ry="4" fill="#3A2A20"/>
+
+  <!-- Hydraulic base -->
+  <path d="M46 66 L50 66 L54 81 L42 81 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M48 68 L50 78" stroke="#D5DCE1" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M33 82 Q48 77 63 82 L67 86 Q48 91 29 86 Z" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M37 82 Q48 79 59 82" fill="none" stroke="#D5DCE1" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Backrest -->
+  <path d="M28 13 Q28 8 35 8 L61 8 Q68 9 68 16 L66 38 Q65 44 59 45 L37 45 Q31 44 30 38 Z" fill="#B85F2E" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M34 15 Q35 12 40 12 L59 12 Q63 13 63 17 L62 32 Q61 36 57 37 L39 37 Q35 36 34 32 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M38 16 Q48 13 58 16" fill="none" stroke="#E8B95F" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="48" cy="27" r="2.4" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.2"/>
+
+  <!-- Arms and padded seat -->
+  <path d="M22 37 Q15 37 14 44 L14 58 Q15 64 22 64 L29 61 L29 43 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M74 37 Q81 37 82 44 L82 58 Q81 64 74 64 L67 61 L67 43 Z" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M26 39 Q27 34 34 34 L62 34 Q69 35 70 42 L68 66 Q67 72 61 73 L35 73 Q29 72 28 66 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M34 41 Q47 37 62 41 L61 64 Q48 68 35 64 Z" fill="#B85F2E" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M38 43 Q48 41 58 43" fill="none" stroke="#E8B95F" stroke-width="1.7" stroke-linecap="round"/>
+  <path d="M30 45 L24 48 M66 45 L72 48" stroke="#D5DCE1" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

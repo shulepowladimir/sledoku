@@ -178,4 +178,8 @@ export const ItemLibrary = {
   movieCamera: item('movieCamera', 'movieCamera', 'decorative', 'Кинокамера'),
   medicineCabinet: item('medicineCabinet', 'medicineCabinet', 'decorative', 'Шкаф с лекарствами'),
   clueBoard: item('clueBoard', 'clueBoard', 'decorative', 'Доска для записей'),
+  // ——— Парикмахерская (48-barbershop) ———
+  barberChair: item('barberChair', 'barberChair', 'occupiable', 'Парикмахерское кресло'),
+  hairDryer: item('hairDryer', 'hairDryer', 'decorative', 'Фен'),
+  productShelf: item('productShelf', 'productShelf', 'decorative', 'Стойка с косметикой'),
 } satisfies Record<string, (label?: string) => ItemType>;

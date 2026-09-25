@@ -19,7 +19,19 @@ test('level links open directly and browser history follows menu navigation', as
 test('unfinished draft restores placements, pencil marks, and paused time', async ({ page }) => {
   await page.clock.install({ time: new Date('2026-09-25T12:00:00Z') });
   await page.addInitScript((levelId) => {
-    localStorage.setItem('sledoku:guest-best-times', JSON.stringify({ [levelId]: 60_000 }));
+    if (!localStorage.getItem('sledoku:guest-best-times')) {
+      localStorage.setItem('sledoku:guest-best-times', JSON.stringify({ [levelId]: 60_000 }));
+    }
+    if (!localStorage.getItem('sledoku:guest-level-drafts:v1')) {
+      localStorage.setItem('sledoku:guest-level-drafts:v1', JSON.stringify({
+        [levelId]: {
+          version: 1,
+          levelId,
+          savedAt: Date.now(),
+          player: { placements: {}, cellMarks: {}, elapsedMs: 0, lastResult: null },
+        },
+      }));
+    }
   }, apartmentLevel.meta.id);
 
   const levelUrl = `/?level=${apartmentLevel.meta.id}`;
@@ -52,6 +64,21 @@ test('unfinished draft restores placements, pencil marks, and paused time', asyn
   await expect(page.getByTestId(`cell-${placedCellId}`).locator('.person-token')).toHaveCount(1);
   await expect(page.getByTestId(`cell-${markCell}`).locator('.pencil-chip')).toHaveText(markPerson.initialLetter);
   await expect(page.getByTestId('hud-timer')).toHaveText('0:05');
+});
+
+test('legacy completed best time restores a solved board without an in-progress status', async ({ page }) => {
+  await page.addInitScript((levelId) => {
+    localStorage.setItem('sledoku:guest-best-times', JSON.stringify({ [levelId]: 60_000 }));
+  }, apartmentLevel.meta.id);
+
+  await page.goto(`/?level=${apartmentLevel.meta.id}`);
+  await expect(page.getByTestId('victory-banner')).toBeVisible();
+  await expect(page.locator('.person-token')).toHaveCount(apartmentLevel.people.length);
+
+  await page.getByTestId('menu-button').click();
+  const card = page.getByTestId(`level-card-${apartmentLevel.meta.id}`);
+  await expect(card).toContainText('Раскрыто');
+  await expect(page.getByTestId(`level-in-progress-${apartmentLevel.meta.id}`)).toHaveCount(0);
 });
 
 test('unknown level links return to the menu and remove the invalid level parameter', async ({ page }) => {

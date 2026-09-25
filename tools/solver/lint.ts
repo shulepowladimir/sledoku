@@ -25,6 +25,10 @@ function referencedRoles(clues: Clue[]): string[] {
  *  player while the solver still counts it — a silent source of player-visible ambiguity (medieval-21). */
 export function lintLevel(level: Level): string[] {
   const violations: string[] = [];
+  if (level.clues.some((clue) => clue.type === 'checkerboardParity' ||
+    (clue.type === 'roleSingleton' && clue.tileColor != null)) && level.tilePattern !== 'checkerboard') {
+    violations.push('Подсказки с условием цвета клетки требуют видимый checkerboard-узор на всей доске (level.tilePattern).');
+  }
   // Ядро судоку: действующих лиц ровно min(рядов, столбцов) — решение живёт в
   // квадрате people×people (полная перестановка: каждый ряд и столбец квадрата
   // занят ровно одним человеком). Прямоугольные карты легальны: лишний ряд
@@ -87,6 +91,12 @@ export function lintLevel(level: Level): string[] {
     const count = roleHolderCount(level, roleId);
     if (count !== 1) {
       violations.push(`Роль "${roleId}" используется в подсказках, но имеет ${count} носителей (должен быть ровно 1).`);
+    }
+  }
+  for (const clue of level.clues) {
+    if (clue.type !== 'roleSingleton' || clue.withinRoleId == null) continue;
+    if (roleHolderCount(level, clue.withinRoleId) === 0) {
+      violations.push(`Подсказка "${clue.id}": роль-область "${clue.withinRoleId}" не имеет носителей.`);
     }
   }
   // relativeToItemOccupant содержательна только при ≥2 экземплярах occupiable-предмета: с одним

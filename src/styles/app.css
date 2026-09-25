@@ -250,6 +250,14 @@
   -webkit-touch-callout: none;
 }
 
+.grid-cell--checker-light {
+  box-shadow: inset 0 0 0 100px rgba(255, 248, 230, 0.32);
+}
+
+.grid-cell--checker-dark {
+  box-shadow: inset 0 0 0 100px rgba(18, 12, 10, 0.52);
+}
+
 /* --- Подпись предмета/фичи пола по долгому нажатию (мобильные) ---
    Визуально — родной брат tutorial-tooltip: кремовая плашка, тёмный контур.
    z-index 900/901: выше контента игры, ниже туториала (2000+) и нуар-оверлея

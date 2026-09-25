@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { elapsedMsNow } from '../../src/engine/selectors';
 import { apartmentLevel } from '../../levels/01-apartment';
 import {
+  isInProgressLevelDraft,
   mergeLevelDraftMaps,
   restoreLevelDraft,
   serializeLevelDraft,
@@ -31,6 +33,44 @@ test('level draft serialization preserves placements and marks while freezing el
   assert.equal(restored?.timer.elapsedMs, 6_000);
   assert.equal(restored?.timer.startedAt, 10_000);
   assert.equal(restored?.timer.running, true);
+});
+
+test('completed level snapshots restore the solved board and frozen timer without becoming in-progress', () => {
+  const now = 6_000;
+  const solvedPlayer = {
+    placements: { ...apartmentLevel.solution },
+    cellMarks: {},
+    timer: { startedAt: 1_000, elapsedMs: 30_000, running: false, finishedAt: now },
+    lastResult: {
+      checkedAt: now,
+      perPerson: Object.fromEntries(apartmentLevel.people.map((person) => [person.id, 'correct' as const])),
+      allCorrect: true,
+    },
+  };
+
+  const snapshot = serializeLevelDraft(apartmentLevel.meta.id, solvedPlayer, now);
+  const restored = restoreLevelDraft(snapshot, apartmentLevel, 20_000);
+
+  assert.equal(snapshot.completed, true);
+  assert.ok(restored);
+  assert.deepEqual(restored.placements, apartmentLevel.solution);
+  assert.equal(restored.timer.startedAt, null);
+  assert.equal(restored.timer.running, false);
+  assert.notEqual(restored.timer.finishedAt, null);
+  assert.equal(elapsedMsNow(restored, 30_000), 35_000);
+  assert.equal(isInProgressLevelDraft(snapshot), false);
+});
+
+test('legacy unfinished snapshots remain in-progress when their completion marker is absent', () => {
+  const legacy = serializeLevelDraft(apartmentLevel.meta.id, {
+    placements: {},
+    cellMarks: {},
+    timer: { startedAt: 1_000, elapsedMs: 0, running: true, finishedAt: null },
+    lastResult: null,
+  }, 1_000);
+  delete legacy.completed;
+
+  assert.equal(isInProgressLevelDraft(legacy), true);
 });
 
 test('invalid or wrong-version level drafts are rejected', () => {
