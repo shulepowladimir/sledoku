@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react';
 import type { Person } from '../../types/level';
 import { levels } from '../../../levels';
-import { itemIconRegistry, themeIconRegistry, personArchetypeCount } from '../../assets/iconRegistry';
+import { itemIconRegistry, themeIconRegistry, personArchetypeCount } from '../../assets/galleryIconRegistry';
 import { floorStyle, floorTextureKeys } from '../../styles/floorTextures';
 import { ItemIcon } from '../board/ItemIcon';
 import { ThemeIcon } from '../menu/ThemeIcon';

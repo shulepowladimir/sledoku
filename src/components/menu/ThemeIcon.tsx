@@ -1,7 +1,8 @@
-import type { ReactNode } from 'react';
+import { lazy, Suspense, type ReactNode } from 'react';
 import type { ItemType } from '../../types/level';
-import { themeIconRegistry } from '../../assets/iconRegistry';
-import { ItemIcon } from '../board/ItemIcon';
+import { themeIconRegistry } from '../../assets/themeIconRegistry';
+
+const ItemIcon = lazy(() => import('../board/ItemIcon').then((module) => ({ default: module.ItemIcon })));
 
 interface ThemeIconProps {
   theme: string;
@@ -12,11 +13,30 @@ const THEME_ITEM_ICONS: Record<string, ItemType> = {
   airport: { id: 'theme-airport', label: 'Самолёт', kind: 'decorative', icon: 'plane' },
   zoo: { id: 'theme-zoo', label: 'Пингвин', kind: 'decorative', icon: 'penguin' },
   hollywood: { id: 'theme-hollywood', label: 'Хлопушка', kind: 'decorative', icon: 'clapperboard' },
-  library: { id: 'theme-library', label: 'Книжный шкаф', kind: 'decorative', icon: 'bookshelf' },
 };
 
 function renderIconShape(theme: string): ReactNode {
   switch (theme) {
+    case 'library':
+      return (
+        <>
+          <rect x="4" y="2.5" width="16" height="19" rx="1" fill="#a9764f" />
+          <rect x="5.2" y="3.7" width="13.6" height="4.6" fill="#f4ede2" />
+          <rect x="5.2" y="9.4" width="13.6" height="4.6" fill="#f4ede2" />
+          <rect x="5.2" y="15.1" width="13.6" height="4.6" fill="#f4ede2" />
+          <rect x="6" y="4.2" width="1.4" height="3.6" fill="#c9647a" />
+          <rect x="7.7" y="4.2" width="1.4" height="3.6" fill="#5a8fc9" />
+          <rect x="9.4" y="4.2" width="1.4" height="3.6" fill="#e0a94a" />
+          <rect x="11.1" y="4.2" width="1.4" height="3.6" fill="#6bb88a" />
+          <rect x="6" y="9.9" width="1.4" height="3.6" fill="#8a6bc9" />
+          <rect x="7.7" y="9.9" width="1.4" height="3.6" fill="#e0a94a" />
+          <rect x="9.4" y="9.9" width="1.4" height="3.6" fill="#c9647a" />
+          <rect x="11.6" y="9.9" width="1.4" height="3.6" fill="#5a8fc9" />
+          <rect x="6" y="15.6" width="1.4" height="3.6" fill="#6bb88a" />
+          <rect x="7.7" y="15.6" width="1.4" height="3.6" fill="#c9647a" />
+          <rect x="9.4" y="15.6" width="1.4" height="3.6" fill="#8a6bc9" />
+        </>
+      );
     case 'apartment':
       return (
         <>
@@ -270,7 +290,17 @@ export function ThemeIcon({ theme, size = 40 }: ThemeIconProps) {
     return <Custom className="theme-icon" width={size} height={size} />;
   }
   const itemIcon = THEME_ITEM_ICONS[theme];
-  if (itemIcon) return <ItemIcon itemType={itemIcon} size={size} />;
+  if (itemIcon) {
+    return (
+      <Suspense fallback={<BuiltInThemeIcon theme={theme} size={size} />}>
+        <ItemIcon itemType={itemIcon} size={size} />
+      </Suspense>
+    );
+  }
+  return <BuiltInThemeIcon theme={theme} size={size} />;
+}
+
+function BuiltInThemeIcon({ theme, size }: ThemeIconProps) {
   return (
     <svg
       viewBox="0 0 24 24"

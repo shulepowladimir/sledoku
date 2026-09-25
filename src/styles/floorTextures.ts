@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { textureUrlRegistry } from '../assets/iconRegistry';
+import { textureUrlRegistry } from '../assets/textureUrlRegistry';
 import { FLOOR_TEXTURE_KEYS, type FloorTextureKey } from './floorTextureKeys';
 
 export const CELL_SIZE = 64;

@@ -22,6 +22,7 @@ test('menu: single column, no horizontal scroll', async ({ page }) => {
 test('game: roster below board, board fits, tap marks / double tap places', async ({ page }) => {
   await page.goto('/');
   await page.getByTestId(`level-card-${apartmentLevel.meta.id}`).click();
+  await expect(page.locator('.board .grid-cell')).toHaveCount(apartmentLevel.cells.length);
 
   // Доска влезает в экран, горизонтального скролла нет.
   const noHScroll = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1);
@@ -69,6 +70,7 @@ test('landscape phone stays in the mobile layout (roster below, board fits)', as
   await page.setViewportSize({ width: 844, height: 390 });
   await page.goto('/');
   await page.getByTestId(`level-card-${apartmentLevel.meta.id}`).tap();
+  await expect(page.locator('.board .grid-cell')).toHaveCount(apartmentLevel.cells.length);
 
   // Раскладка остаётся мобильной колонкой (не десктоп «ростер сбоку»).
   const below = await page.evaluate(() => {
@@ -111,6 +113,7 @@ test('tutorial: tooltip pinned to the bottom on mobile, steps advance', async ({
 const LONG_PRESS_MS = 450;
 
 async function dispatchTouch(page: Page, testId: string, type: 'touchstart' | 'touchend', x = 180, y = 400) {
+  await expect(page.getByTestId(testId)).toBeVisible();
   await page.evaluate(
     ({ sel, eventType, cx, cy }) => {
       const el = document.querySelector(sel) as HTMLElement;

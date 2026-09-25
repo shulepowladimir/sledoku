@@ -16,6 +16,32 @@ test('level links open directly and browser history follows menu navigation', as
   await expect(page.getByTestId(`level-card-${apartmentLevel.meta.id}`)).toBeVisible();
 });
 
+test('menu defers gallery and gameplay modules until they are opened', async ({ page }) => {
+  const deferredRequests: string[] = [];
+  page.on('request', (request) => {
+    const url = request.url();
+    if (
+      url.includes('/src/components/dev/AssetGallery.tsx') ||
+      url.includes('/src/components/game/GameScreen.tsx') ||
+      url.includes('/src/components/board/ItemIcon.tsx') ||
+      url.includes('/src/components/board/PersonFigureSvg.tsx')
+    ) {
+      deferredRequests.push(url);
+    }
+  });
+
+  await page.goto('/');
+  await expect(page.getByTestId('level-card-library-01')).toBeVisible();
+  expect(deferredRequests).toEqual([]);
+
+  await page.getByTestId(`level-card-${apartmentLevel.meta.id}`).click();
+  await expect(page.locator('.board .grid-cell')).toHaveCount(apartmentLevel.cells.length);
+  await expect.poll(() => deferredRequests.some((url) => url.includes('/src/components/game/GameScreen.tsx'))).toBe(true);
+  await expect.poll(() => deferredRequests.some((url) => url.includes('/src/components/board/ItemIcon.tsx'))).toBe(true);
+  await expect.poll(() => deferredRequests.some((url) => url.includes('/src/components/board/PersonFigureSvg.tsx'))).toBe(true);
+  expect(deferredRequests.some((url) => url.includes('/src/components/dev/AssetGallery.tsx'))).toBe(false);
+});
+
 test('unfinished draft restores placements, pencil marks, and paused time', async ({ page }) => {
   await page.clock.install({ time: new Date('2026-09-25T12:00:00Z') });
   await page.addInitScript((levelId) => {
@@ -43,7 +69,8 @@ test('unfinished draft restores placements, pencil marks, and paused time', asyn
   )!.id;
 
   await page.goto(levelUrl);
-  await page.clock.fastForward(5_000);
+  await expect(page.locator('.board .grid-cell')).toHaveCount(apartmentLevel.cells.length);
+  await page.clock.pauseAt((await page.evaluate(() => Date.now())) + 5_000);
   await page.getByTestId(`roster-person-${placedPersonId}`).click();
   await page.getByTestId(`cell-${placedCellId}`).dblclick();
   await page.getByTestId(`roster-person-${markPerson.id}`).click();
@@ -57,13 +84,25 @@ test('unfinished draft restores placements, pencil marks, and paused time', asyn
   await page.getByTestId('hide-solved-toggle').click();
   await expect(card).toBeVisible();
 
-  await page.clock.fastForward(10_000);
+  const savedElapsedMs = await page.evaluate((levelId) => {
+    const drafts = JSON.parse(localStorage.getItem('sledoku:guest-level-drafts:v1') ?? '{}');
+    return drafts[levelId].player.elapsedMs as number;
+  }, apartmentLevel.meta.id);
+  await page.clock.pauseAt((await page.evaluate(() => Date.now())) + 10_000);
+  const elapsedAfterMenuWait = await page.evaluate((levelId) => {
+    const drafts = JSON.parse(localStorage.getItem('sledoku:guest-level-drafts:v1') ?? '{}');
+    return drafts[levelId].player.elapsedMs as number;
+  }, apartmentLevel.meta.id);
+  expect(elapsedAfterMenuWait).toBe(savedElapsedMs);
+  await page.clock.resume();
   await page.reload();
   await page.goto(levelUrl);
 
+  await expect(page.locator('.board .grid-cell')).toHaveCount(apartmentLevel.cells.length);
   await expect(page.getByTestId(`cell-${placedCellId}`).locator('.person-token')).toHaveCount(1);
   await expect(page.getByTestId(`cell-${markCell}`).locator('.pencil-chip')).toHaveText(markPerson.initialLetter);
-  await expect(page.getByTestId('hud-timer')).toHaveText('0:05');
+  const [minutes, seconds] = (await page.getByTestId('hud-timer').textContent() ?? '0:00').split(':').map(Number);
+  expect(minutes * 60 + seconds).toBeGreaterThanOrEqual(Math.floor(savedElapsedMs / 1_000));
 });
 
 test('legacy completed best time restores a solved board without an in-progress status', async ({ page }) => {

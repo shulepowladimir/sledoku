@@ -60,6 +60,7 @@ test('single-cell item icons default to 80% in other levels too', async ({ page 
 test('winery room labels do not overlap', async ({ page }) => {
   await page.goto('/');
   await page.getByTestId(`level-card-${wineryLevel.meta.id}`).click();
+  await expect(page.locator('.room-label')).toHaveCount(wineryLevel.rooms.length);
 
   const labels = await page.locator('.room-label').all();
   const boardBox = await page.locator('.board').boundingBox();

@@ -1,14 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { levels } from '../levels';
 import { useGameStore } from './state/gameStore';
+import { useTutorialStore } from './state/tutorialStore';
 import { useAuthStore } from './state/authStore';
 import { useLevelDraftStore } from './state/levelDraftStore';
 import { useProgressStore } from './state/progressStore';
-import { GameScreen } from './components/game/GameScreen';
 import { LevelMenu } from './components/menu/LevelMenu';
-import { AssetGallery } from './components/dev/AssetGallery';
-import { TutorialOverlay } from './components/tutorial/TutorialOverlay';
+import { TutorialOverlayAfterMount } from './components/tutorial/TutorialOverlayAfterMount';
 import './styles/app.css';
+
+const GameView = lazy(() => import('./components/game/GameView').then((module) => ({ default: module.GameView })));
+const AssetGallery = lazy(() => import('./components/dev/AssetGallery').then((module) => ({ default: module.AssetGallery })));
 
 // Dev-only asset gallery, enabled with /?gallery (see docs/assets.md).
 const isAssetGallery =
@@ -16,6 +18,7 @@ const isAssetGallery =
 
 function App() {
   const screen = useGameStore((s) => s.screen);
+  const tutorialActive = useTutorialStore((s) => s.active);
   const authReady = useAuthStore((s) => s.status === 'ready');
   const draftsReady = useLevelDraftStore((s) => s.ready);
   const progressReady = useProgressStore((s) => s.ready);
@@ -68,14 +71,28 @@ function App() {
     };
   }, []);
 
-  if (isAssetGallery) return <AssetGallery />;
+  if (isAssetGallery) {
+    return (
+      <Suspense fallback={<div className="app-loading" role="status">Загружаем галерею…</div>}>
+        <AssetGallery />
+      </Suspense>
+    );
+  }
   if (!routeReady || !draftsReady || !progressReady) {
     return <div className="app-loading" role="status">Загружаем расследование…</div>;
   }
   return (
     <>
-      {screen === 'menu' ? <LevelMenu /> : <GameScreen />}
-      <TutorialOverlay />
+      {screen === 'menu' ? (
+        <>
+          <LevelMenu />
+          {tutorialActive && <TutorialOverlayAfterMount />}
+        </>
+      ) : (
+        <Suspense fallback={<div className="app-loading" role="status">Загружаем расследование…</div>}>
+          <GameView />
+        </Suspense>
+      )}
     </>
   );
 }

@@ -51,7 +51,7 @@ export function ClueStep() {
   const [checkReport, setCheckReport] = useState<string[] | null>(null);
   const [checking, setChecking] = useState(false);
 
-  const usedItemTypeIds = [...new Set(items.map((i) => i.typeId))];
+  const usedItemTypeIds = useMemo(() => [...new Set(items.map((i) => i.typeId))], [items]);
   const def = CLUE_TYPE_BY_ID.get(type)!;
   const needs = (f: ClueField) => def.fields.includes(f);
   const itemLabel = (typeId: string) => (ItemLibrary as Record<string, () => { label: string }>)[typeId]?.().label ?? typeId;

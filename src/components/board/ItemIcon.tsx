@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { ItemType } from '../../types/level';
-import { itemIconRegistry } from '../../assets/iconRegistry';
+import { itemIconRegistry } from '../../assets/itemIconRegistry';
 
 interface ItemIconProps {
   itemType: ItemType;

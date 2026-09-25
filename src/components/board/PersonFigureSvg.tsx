@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import type { Person } from '../../types/level';
-import { personArchetypeFor } from '../../assets/iconRegistry';
+import { personArchetypeFor } from '../../assets/personArchetypeRegistry';
 
 interface PersonFigureSvgProps {
   person: Person;
