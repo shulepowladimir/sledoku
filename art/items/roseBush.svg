@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    roseBush — бесшовный full-bleed тайл пышного цветущего куста.
+    Внешнюю форму полиомино, тени и волнистую кромку добавляет ItemTileOverlay.
+    Крупные детали отступают от края, чтобы тайлы срастались чисто.
+  -->
+  <rect width="96" height="96" fill="#44663A"/>
+
+  <!-- Пятна густой листвы -->
+  <path d="M8 20 Q15 9 27 14 Q36 20 29 29 Q18 35 10 29 Q5 25 8 20 Z" fill="#5E8A46"/>
+  <path d="M37 12 Q48 5 57 13 Q63 21 54 28 Q44 32 37 25 Q33 19 37 12 Z" fill="#7FA85B"/>
+  <path d="M67 19 Q77 10 85 17 Q90 24 85 33 Q75 37 68 30 Q64 25 67 19 Z" fill="#5E8A46"/>
+  <path d="M15 54 Q25 44 35 51 Q41 59 32 67 Q21 70 15 63 Q11 59 15 54 Z" fill="#7FA85B"/>
+  <path d="M48 43 Q58 35 68 43 Q75 51 66 59 Q56 63 49 56 Q45 50 48 43 Z" fill="#5E8A46"/>
+  <path d="M69 66 Q79 56 85 64 Q90 72 85 80 Q75 84 69 77 Q65 72 69 66 Z" fill="#7FA85B"/>
+  <path d="M36 75 Q45 66 55 73 Q62 81 53 88 Q43 92 37 85 Q33 80 36 75 Z" fill="#5E8A46"/>
+
+  <!-- Цветы: разный размер и тон, мотивы не касаются кромки тайла -->
+  <g stroke="#1A1A1A" stroke-width="1.4" stroke-linejoin="round">
+    <g transform="translate(20 42)">
+      <path d="M0 -11 Q5 -11 5 -6 Q11 -7 11 -2 Q11 3 6 3 Q7 9 2 10 Q-3 10 -3 5 Q-9 6 -10 1 Q-10 -4 -5 -5 Q-6 -10 0 -11 Z" fill="#C9536B"/>
+      <circle r="3.2" fill="#E0A94A"/>
+    </g>
+    <g transform="translate(51 34) scale(.82)">
+      <path d="M0 -11 Q5 -11 5 -6 Q11 -7 11 -2 Q11 3 6 3 Q7 9 2 10 Q-3 10 -3 5 Q-9 6 -10 1 Q-10 -4 -5 -5 Q-6 -10 0 -11 Z" fill="#E08BA0"/>
+      <circle r="3.2" fill="#E0A94A"/>
+    </g>
+    <g transform="translate(77 47) scale(.9)">
+      <path d="M0 -11 Q5 -11 5 -6 Q11 -7 11 -2 Q11 3 6 3 Q7 9 2 10 Q-3 10 -3 5 Q-9 6 -10 1 Q-10 -4 -5 -5 Q-6 -10 0 -11 Z" fill="#C9536B"/>
+      <circle r="3.2" fill="#F5E9D0"/>
+    </g>
+    <g transform="translate(40 66) scale(.74)">
+      <path d="M0 -11 Q5 -11 5 -6 Q11 -7 11 -2 Q11 3 6 3 Q7 9 2 10 Q-3 10 -3 5 Q-9 6 -10 1 Q-10 -4 -5 -5 Q-6 -10 0 -11 Z" fill="#E08BA0"/>
+      <circle r="3.2" fill="#E0A94A"/>
+    </g>
+    <g transform="translate(76 77) scale(.7)">
+      <path d="M0 -11 Q5 -11 5 -6 Q11 -7 11 -2 Q11 3 6 3 Q7 9 2 10 Q-3 10 -3 5 Q-9 6 -10 1 Q-10 -4 -5 -5 Q-6 -10 0 -11 Z" fill="#C9536B"/>
+      <circle r="3.2" fill="#F5E9D0"/>
+    </g>
+  </g>
+
+  <!-- Листовые блики и тёмные углубления -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M9 35 Q13 31 17 32 M57 18 Q61 14 65 16 M28 77 Q32 73 35 74" stroke="#7FA85B" stroke-width="2"/>
+    <path d="M62 78 Q66 74 70 75 M9 68 Q12 65 15 66" stroke="#44663A" stroke-width="2.2"/>
+  </g>
+</svg>

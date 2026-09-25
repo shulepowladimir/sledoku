@@ -20,6 +20,38 @@ test('barbershop clue board visibly alternates light and dark checkerboard tiles
   expect(noirDarkOverlay).toContain('0.52');
 });
 
+test('barbershop staff-room label fits between the dyeing room and display labels', async ({ page }) => {
+  await page.goto('/?level=barbershop-01');
+
+  const labelBox = async (name: string) => {
+    const box = await page.locator('.room-label', { hasText: name }).boundingBox();
+    expect(box, `missing label: ${name}`).not.toBeNull();
+    return box!;
+  };
+  const color = await labelBox('Кабинет окрашивания');
+  const staff = await labelBox('Комната персонала');
+  const display = await labelBox('Витрина');
+
+  expect(color.x + color.width).toBeLessThanOrEqual(staff.x);
+  expect(staff.x + staff.width).toBeLessThanOrEqual(display.x);
+});
+
+test('barbershop roster keeps its current order in three columns of 3-3-2', async ({ page }) => {
+  await page.goto('/?level=barbershop-01');
+
+  const columns = page.locator('.roster-columns > .roster-list');
+  await expect(columns).toHaveCount(3);
+  const columnNames = await Promise.all(
+    [0, 1, 2].map((index) => columns.nth(index).locator('.roster-entry__name').allTextContents()),
+  );
+
+  expect(columnNames).toEqual([
+    barbershopLevel.people.slice(0, 3).map((person) => person.name),
+    barbershopLevel.people.slice(3, 6).map((person) => person.name),
+    barbershopLevel.people.slice(6, 8).map((person) => person.name),
+  ]);
+});
+
 test('completed board crosses every unoccupied legal cell, including occupiable items', async ({ page }) => {
   await page.addInitScript((levelId) => {
     localStorage.setItem('sledoku:guest-best-times', JSON.stringify({ [levelId]: 60_000 }));

@@ -144,6 +144,7 @@ export const ItemLibrary = {
   lamp: item('lamp', 'lamp', 'decorative', 'Маячная лампа'),
   boat: item('boat', 'boat', 'decorative', 'Ял'),
   tree: item('tree', 'tree', 'decorative', 'Ель'),
+  broadleafTree: item('broadleafTree', 'broadleafTree', 'decorative', 'Лиственное дерево'),
   stove: item('stove', 'stove', 'decorative', 'Печь'),
   fridge: item('fridge', 'fridge', 'decorative', 'Холодильник'),
   wardrobe: item('wardrobe', 'wardrobe', 'decorative', 'Шкаф'),

@@ -71,6 +71,7 @@
 - lamp — decorative
 - boat — decorative
 - tree — decorative
+- broadleafTree — decorative (лиственное дерево с округлой кроной)
 - stove — decorative (существующая иконка из 01-apartment)
 - fridge — decorative (существующая иконка из 01-apartment)
 - wardrobe — decorative (существующая иконка из 01-apartment)
@@ -150,6 +151,7 @@
 - freshGrave — decorative (Свежая могила: холмик + венок с бантом)
 - cemeteryGate — decorative (Ворота: столбы + кованая арка, ворона)
 - bushHedge — decorative, render: 'tile' — полиомино-кусты (как в parkmaze): движок рисует тень юг/восток + волнистую губу север/запад у каждой фигуры; иконка full-bleed, БЕЗ render:'tile' не использовать
+- roseBush — decorative, render: 'tile' — цветущий куст-полиомино (greenhouse); full-bleed SVG, тень и волнистую кромку рисует движок
 - barberChair — occupiable (парикмахерское кресло)
 - hairDryer — decorative
 - productShelf — decorative (стойка с косметикой)

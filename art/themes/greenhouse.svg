@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    greenhouse — стеклянная оранжерея с растениями внутри; самостоятельный
+    символ уровня, не переиспользует лесную тему.
+  -->
+  <!-- Стеклянный корпус -->
+  <path d="M12 43 L48 13 L84 43 L84 79 L12 79 Z"
+        fill="#4A7BA6" stroke="#1A1A1A" stroke-width="3.4" stroke-linejoin="round"/>
+  <path d="M17 44 L48 19 L79 44 L79 74 L17 74 Z"
+        fill="#9CC3E0" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+
+  <!-- Каркас и блики на стекле -->
+  <path d="M48 20 V74 M20 47 H76 M20 61 H76" fill="none" stroke="#B87F33" stroke-width="3" stroke-linecap="round"/>
+  <path d="M23 42 L44 25 M53 25 L73 42" fill="none" stroke="#F5E9D0" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M14 43 L48 14 L82 43" fill="none" stroke="#E0A94A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Дверь и зелень внутри -->
+  <path d="M39 79 V61 Q39 55 48 55 Q57 55 57 61 V79 Z"
+        fill="#5E8A46" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M48 57 V78" stroke="#B87F33" stroke-width="2"/>
+  <g stroke="#1A1A1A" stroke-width="1.8" stroke-linejoin="round">
+    <path d="M25 68 Q20 60 25 54 Q30 60 28 68 Z" fill="#5E8A46"/>
+    <path d="M28 70 Q29 60 36 57 Q37 65 31 71 Z" fill="#7FA85B"/>
+    <path d="M71 68 Q67 59 73 53 Q77 61 74 68 Z" fill="#7FA85B"/>
+    <path d="M67 71 Q62 63 65 57 Q72 62 70 70 Z" fill="#5E8A46"/>
+  </g>
+  <circle cx="53" cy="68" r="1.5" fill="#E0A94A"/>
+</svg>

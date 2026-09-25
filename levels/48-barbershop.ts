@@ -11,7 +11,7 @@ const rooms: Room[] = [
   { id: 'salon', name: 'Зал стрижки', floorTexture: 'stone' },
   { id: 'wash', name: 'Мойка', floorTexture: 'tile' },
   { id: 'color', name: 'Кабинет окрашивания', floorTexture: 'linoleum' },
-  { id: 'staff', name: 'Комната персонала', floorTexture: 'wood' },
+  { id: 'staff', name: 'Комната персонала', floorTexture: 'wood', labelAlign: 'right' },
   { id: 'display', name: 'Витрина', floorTexture: 'carpet' },
 ];
 
@@ -260,10 +260,11 @@ const clues: Clue[] = [
 export const barbershopLevel: Level = {
   meta: {
     id: 'barbershop-01',
-    title: 'Три седых',
+    title: 'Опасная бритва',
     theme: 'barbershop',
     difficulty: 8,
     maxFullyPinnedPeople: 0,
+    rosterColumnCounts: [3, 3, 2],
   },
   size,
   tilePattern: 'checkerboard',

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    broadleafTree — лиственное дерево с округлой кроной. Нижние тёмные лопасти
+    задают объём, верхние листья ловят свет; ствол виден у основания.
+  -->
+  <ellipse cx="50" cy="85" rx="30" ry="5" fill="#3A2A20"/>
+
+  <!-- Ствол и корни -->
+  <path d="M43 78 Q45 67 46 57 L54 57 Q55 68 59 79 L65 84 L52 81 L47 85 L40 81 L32 84 Z"
+        fill="#B87F33" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M48 75 Q49 65 50 59" fill="none" stroke="#E8B95F" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- Округлая крона -->
+  <path d="M48 12 Q58 7 65 16 Q76 12 81 23 Q91 31 83 41 Q91 52 81 59 Q80 71 67 72 Q59 82 48 75 Q37 82 29 72 Q16 74 14 62 Q5 54 13 43 Q7 32 17 24 Q22 12 34 17 Q40 8 48 12 Z"
+        fill="#5E8A46" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+
+  <!-- Тени снизу и справа -->
+  <path d="M48 42 Q63 34 76 43 Q84 51 75 61 Q64 68 52 61 Q45 54 48 42 Z" fill="#44663A"/>
+  <path d="M23 49 Q30 43 39 47 Q44 53 38 60 Q29 64 22 58 Q18 54 23 49 Z" fill="#44663A"/>
+
+  <!-- Светлые группы листьев -->
+  <path d="M22 27 Q30 17 40 23 Q47 29 40 37 Q30 42 23 36 Q19 32 22 27 Z" fill="#7FA85B"/>
+  <path d="M49 20 Q58 13 67 20 Q73 27 65 33 Q56 37 49 31 Q45 26 49 20 Z" fill="#7FA85B"/>
+  <path d="M29 41 Q37 35 44 41 Q49 48 42 54 Q33 57 28 50 Q25 46 29 41 Z" fill="#7FA85B"/>
+
+  <!-- Прожилки и пара желудей -->
+  <g fill="none" stroke="#44663A" stroke-width="1.6" stroke-linecap="round">
+    <path d="M26 31 Q32 28 37 29"/>
+    <path d="M53 25 Q59 22 64 24"/>
+    <path d="M32 46 Q37 44 41 46"/>
+  </g>
+  <g fill="#B87F33" stroke="#1A1A1A" stroke-width="1.4">
+    <path d="M72 37 Q76 33 80 37 Q81 43 76 46 Q71 43 72 37 Z"/>
+    <path d="M69 36 Q76 33 81 37" fill="none"/>
+  </g>
+</svg>

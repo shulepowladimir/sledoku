@@ -11,6 +11,7 @@ const seniorMasterCandidates = ['aglaya', 'esenya'] satisfies PersonId[];
 
 test('barbershop uses the approved eight-person checkerboard map and the barber/visitor role split', () => {
   assert.equal(barbershopLevel.meta.id, 'barbershop-01');
+  assert.equal(barbershopLevel.meta.title, 'Опасная бритва');
   assert.equal(barbershopLevel.size, 8);
   assert.equal(barbershopLevel.cells.length, 64);
   assert.equal(barbershopLevel.rooms.length, 6);
