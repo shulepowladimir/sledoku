@@ -47,11 +47,13 @@ export interface SharedRoomGenderClue extends ClueBase {
   negated?: boolean;
 }
 
-/** Level-wide: "Every instance of item type T was occupied only by men/women." No subject. */
+/** Level-wide: every occupant of item type T is a man/woman; empty instances pass unless requireOccupied is true. */
 export interface ItemTypeGenderClue extends ClueBase {
   type: 'itemTypeGender';
   itemTypeId: ItemTypeId;
   gender: Gender;
+  /** Require every item instance to have an occupant, rather than allowing empty instances. */
+  requireOccupied?: boolean;
 }
 
 /**
@@ -145,6 +147,14 @@ export interface RelativePositionClue extends ClueBase {
   axis: 'row' | 'col';
   direction: 'before' | 'after';
   offset?: number;
+}
+
+/** "Person X was on a higher/lower numbered room than person Y." */
+export interface RoomNumberComparisonClue extends ClueBase {
+  type: 'roomNumberComparison';
+  subject: Subject;
+  otherPersonId: PersonId;
+  comparison: 'higher' | 'lower';
 }
 
 /** "Person X was in a corner of their room" (2+ adjacent walls of the same room meet at their cell). */
@@ -480,6 +490,7 @@ export type Clue =
   | ItemRowEmptyDisjunctionClue
   | ZoneCountParityClue
   | RelativePositionClue
+  | RoomNumberComparisonClue
   | CornerClue
   | FloorFeatureClue
   | FloorTextureClue

@@ -116,6 +116,14 @@ export function LevelMenu() {
             <li key={level.meta.id} className="level-card" data-testid={`level-card-${level.meta.id}`}>
               <button type="button" className="level-card__button" onClick={() => selectLevel(level)}>
                 <ThemeIcon theme={level.meta.theme} />
+                {level.meta.menuTag && (
+                  <span
+                    className={`level-card__difficulty-tag level-card__difficulty-tag--${level.meta.menuTag}`}
+                    data-testid="level-difficulty-tag"
+                  >
+                    {level.meta.menuTag === 'expert' ? 'Эксперт' : 'Сложно'}
+                  </span>
+                )}
                 <span className="level-card__title">{level.meta.title}</span>
                 <span className="level-card__size">
                   {level.size}×{level.cols ?? level.size}

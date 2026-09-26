@@ -175,6 +175,7 @@ export const libraryLevel: Level = {
     theme: 'library',
     difficulty: 10,
     maxFullyPinnedPeople: 0,
+    menuTag: 'expert',
     // Пользователь одобрил 5/16 adjacency (31.25%) как исключение ради исключения альтернативных убийц.
     clueBalanceExempt: true,
   },

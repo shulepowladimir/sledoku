@@ -292,6 +292,7 @@ const level: Level = {
     theme: 'parkmaze',
     difficulty: 9,
     maxFullyPinnedPeople: 0,
+    menuTag: 'hard',
   },
   size,
   rooms,

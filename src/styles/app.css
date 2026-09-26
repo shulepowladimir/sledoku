@@ -1196,6 +1196,34 @@ body.noir .compass-dir--north {
   color: #2a2218;
 }
 
+.level-card__difficulty-tag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  padding: 4px 8px;
+  border: 1px solid;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.level-card__difficulty-tag--hard {
+  color: #24547d;
+  border-color: #346a9a;
+  background: #e5f0fb;
+}
+
+.level-card__difficulty-tag--expert {
+  color: #572e78;
+  border-color: #74479a;
+  background: #eee4f6;
+}
+
 .level-card__size {
   display: inline-block;
   padding: 2px 8px;

@@ -301,7 +301,7 @@ const clues: Clue[] = [
 ];
 
 export const parkingLevel: Level = {
-  meta: { id: 'parking-01', title: 'Пойман на парковке', theme: 'parking', difficulty: 10, maxFullyPinnedPeople: 0 },
+  meta: { id: 'parking-01', title: 'Пойман на парковке', theme: 'parking', difficulty: 10, maxFullyPinnedPeople: 0, menuTag: 'expert' },
   size,
   cols,
   rooms,

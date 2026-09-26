@@ -207,7 +207,7 @@ const clues: Clue[] = [
 ];
 
 export const wildwest2Level: Level = {
-  meta: { id: 'wildwest-02', title: 'Тень шерифа', theme: 'wildwest2', difficulty: 9, maxFullyPinnedPeople: 0 },
+  meta: { id: 'wildwest-02', title: 'Тень шерифа', theme: 'wildwest2', difficulty: 9, maxFullyPinnedPeople: 0, menuTag: 'hard' },
   size,
   rooms,
   itemTypes,

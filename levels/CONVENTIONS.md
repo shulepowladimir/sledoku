@@ -167,6 +167,15 @@
 - croissant — decorative (круассан; bakery)
 - coffeeMachine — decorative, 2 клетки (кофемашина; bakery)
 
+## Уровневые типы — golfclub
+
+- golfHole — decorative (лунка с флажком)
+- golfTee — decorative (ти с мячом)
+- golfBag — decorative (сумка для клюшек)
+- golfCart — occupiable (гольф-кар, 2 клетки)
+
+Иконки темы/предметов: `golfclub`, `golfHole`, `golfTee`, `golfBag`, `golfCart`.
+
 ## ItemIcon.tsx — существующие иконки (имена case, без кода)
 
 Новые ключи SVG сюда НЕ добавляются: иконки резолвятся через SVG-registry

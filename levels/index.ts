@@ -51,6 +51,7 @@ import { barbershopLevel } from './48-barbershop';
 import { greenhouseLevel } from './49-greenhouse';
 import { wineryLevel } from './50-winery';
 import { bakeryLevel } from './51-bakery';
+import { golfClubLevel } from './52-golfclub';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -105,6 +106,7 @@ export const levels: Level[] = [
   greenhouseLevel,
   wineryLevel,
   bakeryLevel,
+  golfClubLevel,
 ];
 
 /** All non-tutorial levels — used by the level menu grid, size filters, profile stats and

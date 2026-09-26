@@ -18,6 +18,8 @@ export interface Room {
   id: RoomId;
   name: string;
   floorTexture: string; // key into the floor-texture registry
+  /** Explicit ordinal for clues that compare numbered zones (e.g. golf holes). */
+  number?: number;
   /** Where the room label is anchored inside the room. Default: 'bottom' (just above the
    *  room's bottom edge). 'top' places it just below the room's top edge — useful on stripe
    *  maps where bottom-anchored labels of neighbouring zones would collide. */
@@ -87,6 +89,7 @@ export interface LevelMeta {
   title: string;
   theme: string;
   difficulty: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  menuTag?: 'hard' | 'expert';
   /** Budget for how many non-victim people may be fully pinned by their own unary clues alone (see tools/solver/puzzleQuality.ts). */
   maxFullyPinnedPeople: number;
   /** Exempts this level from the ≤20% per-clue-type share gate — accepted debt

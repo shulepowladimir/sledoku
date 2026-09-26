@@ -383,6 +383,7 @@ const level: Level = {
     theme: 'heavy',
     difficulty: 9,
     maxFullyPinnedPeople: 0,
+    menuTag: 'hard',
   },
   size,
   rooms,

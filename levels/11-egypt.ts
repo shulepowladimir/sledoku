@@ -208,7 +208,7 @@ const clues: Clue[] = [
 ];
 
 export const egyptLevel: Level = {
-  meta: { id: 'egypt-01', title: 'Тайна пирамиды', theme: 'egypt', difficulty: 10, maxFullyPinnedPeople: 0 },
+  meta: { id: 'egypt-01', title: 'Тайна пирамиды', theme: 'egypt', difficulty: 10, maxFullyPinnedPeople: 0, menuTag: 'expert' },
   size,
   rooms,
   itemTypes,

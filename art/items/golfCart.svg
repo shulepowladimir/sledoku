@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Two-seat electric golf cart in a side view with a slight 3/4 angle. -->
+  <ellipse cx="49" cy="84" rx="42" ry="4.5" fill="#3A2A20"/>
+
+  <!-- Wheels and bright steel hubs. -->
+  <circle cx="27" cy="70" r="10" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.8"/>
+  <circle cx="27" cy="70" r="4.2" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.8"/>
+  <circle cx="27" cy="70" r="1.4" fill="#D5DCE1"/>
+  <circle cx="72" cy="70" r="10" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.8"/>
+  <circle cx="72" cy="70" r="4.2" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.8"/>
+  <circle cx="72" cy="70" r="1.4" fill="#D5DCE1"/>
+
+  <!-- Low chassis and rounded golf-cart body. -->
+  <path d="M12 66 L14 54 Q15 50 22 49 L38 49 L44 43 Q47 40 54 40 L67 41 Q74 42 77 49 L84 57 L88 61 L87 67 Z" fill="#7FA85B" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M15 56 L37 56 L37 64 L14 64 Z" fill="#44663A" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M78 56 L85 58 L87 62 L86 65 L78 65 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- Open cabin, windshield and two cream seats. -->
+  <path d="M40 47 L43 29 L69 29 L75 48" fill="#9CC3E0" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M44 32 L67 32 L71 44 L42 44 Z" fill="#4A7BA6" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M44 34 L52 34" fill="none" stroke="#D5DCE1" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M45 48 L45 56 Q45 58 48 58 L56 58 L56 48 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M59 48 L59 56 Q59 58 62 58 L70 58 L70 49 Z" fill="#E8B95F" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M48 51 L53 51 M62 51 L67 51" fill="none" stroke="#B87F33" stroke-width="1.3" stroke-linecap="round"/>
+  <path d="M56 45 L60 40 L64 42" fill="none" stroke="#1A1A1A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Canopy and angled roof supports. -->
+  <path d="M27 26 Q29 21 37 19 L66 19 Q74 20 79 26 L76 30 L30 30 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M33 23 Q51 20.5 70 22" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M37 29 L39 47 M70 29 L74 48" fill="none" stroke="#9BA5AD" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Front lamp and a small course-red reflector. -->
+  <circle cx="85" cy="57" r="3.2" fill="#E8B95F" stroke="#1A1A1A" stroke-width="1.8"/>
+  <rect x="15" y="51" width="4.2" height="4.5" rx="1.2" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <path d="M12 64 Q15 68 19 66 M81 66 Q85 69 89 66" fill="none" stroke="#9BA5AD" stroke-width="2.6" stroke-linecap="round"/>
+</svg>

@@ -55,6 +55,37 @@ export function lintLevel(level: Level): string[] {
     }
     seenClueIds.add(clue.id);
   }
+  for (const clue of level.clues) {
+    if (clue.type !== 'roomNumberComparison') continue;
+    const numbers = new Set<number>();
+    for (const room of level.rooms) {
+      if (!Number.isInteger(room.number) || room.number! < 1) {
+        violations.push(`Подсказка "${clue.id}" (roomNumberComparison): у зоны "${room.id}" должен быть положительный целый номер.`);
+        continue;
+      }
+      if (numbers.has(room.number!)) {
+        violations.push(`Подсказка "${clue.id}" (roomNumberComparison): номер зоны ${room.number} повторяется.`);
+      }
+      numbers.add(room.number!);
+    }
+    const otherPerson = level.people.find((person) => person.id === clue.otherPersonId);
+    if (!otherPerson) {
+      violations.push(`Подсказка "${clue.id}" (roomNumberComparison): персонаж "${clue.otherPersonId}" не найден.`);
+    } else if (otherPerson.isVictim) {
+      violations.push(`Подсказка "${clue.id}" (roomNumberComparison) упоминает жертву (${otherPerson.name}); замените её другим персонажем.`);
+    }
+    if (clue.subject.type === 'person') {
+      const subject = level.people.find((person) => person.id === clue.subject.id);
+      if (!subject) {
+        violations.push(`Подсказка "${clue.id}" (roomNumberComparison): персонаж "${clue.subject.id}" не найден.`);
+      } else if (subject.isVictim) {
+        violations.push(`Подсказка "${clue.id}" (roomNumberComparison) адресована жертве (${subject.name}).`);
+      }
+      if (clue.subject.id === clue.otherPersonId) {
+        violations.push(`Подсказка "${clue.id}" (roomNumberComparison) сравнивает персонажа с самим собой.`);
+      }
+    }
+  }
   for (const person of level.people) {
     if (person.isVictim) continue;
     const hasPersonalClue = level.clues.some(

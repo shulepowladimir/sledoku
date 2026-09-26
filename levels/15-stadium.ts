@@ -184,7 +184,7 @@ const clues: Clue[] = [
 ];
 
 export const stadiumLevel: Level = {
-  meta: { id: 'stadium-01', title: 'Финальный свисток', theme: 'stadium', difficulty: 8, maxFullyPinnedPeople: 0 },
+  meta: { id: 'stadium-01', title: 'Финальный свисток', theme: 'stadium', difficulty: 8, maxFullyPinnedPeople: 0, menuTag: 'hard' },
   size,
   rooms,
   itemTypes,

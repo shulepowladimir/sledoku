@@ -317,6 +317,7 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
           const pc = getCell(p.id);
           return pc != null && item.cells.includes(pc);
         });
+        if (!occupant && clue.requireOccupied) return false;
         if (occupant && occupant.gender !== clue.gender) return false;
       }
       return true;
@@ -335,6 +336,15 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
         return clue.direction === 'before' ? vb - va === clue.offset : va - vb === clue.offset;
       }
       return clue.direction === 'before' ? va < vb : va > vb;
+    }
+    case 'roomNumberComparison': {
+      const a = getCell(subjectPersonId(clue.subject, level));
+      const b = getCell(clue.otherPersonId);
+      if (!a || !b) return undefined;
+      const roomANumber = level.rooms.find((room) => room.id === index.cellsById.get(a)!.roomId)?.number;
+      const roomBNumber = level.rooms.find((room) => room.id === index.cellsById.get(b)!.roomId)?.number;
+      if (roomANumber == null || roomBNumber == null) return false;
+      return clue.comparison === 'higher' ? roomANumber > roomBNumber : roomANumber < roomBNumber;
     }
     case 'sameRoomAs': {
       const a = getCell(subjectPersonId(clue.subject, level));
@@ -380,7 +390,7 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
         const vb = clue.axis === 'row' ? occCell.row : occCell.col;
         if (clue.direction === 'before' ? va < vb : va > vb) return true;
       }
-      return false;
+      return allAssigned ? false : undefined;
     }
     case 'sameRoomAsItem': {
       const subjectCellId = getCell(subjectPersonId(clue.subject, level));
