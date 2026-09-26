@@ -1,0 +1,158 @@
+.asset-gallery {
+  min-height: 100vh;
+  padding: 32px;
+  background: #faf8f4;
+  color: #2a2a2a;
+}
+
+.asset-gallery__header {
+  max-width: 1280px;
+  margin: 0 auto 24px;
+}
+
+.asset-gallery__header h1 {
+  margin: 0 0 6px;
+  font-size: 26px;
+}
+
+.asset-gallery__header p {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #5a5650;
+}
+
+.asset-gallery__header a {
+  font-size: 14px;
+  color: #8a2f28;
+}
+
+.asset-gallery__section {
+  max-width: 1280px;
+  margin: 0 auto 40px;
+}
+
+.asset-gallery__section h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.asset-gallery__note {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: #5a5650;
+}
+
+.asset-gallery__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.asset-gallery__card {
+  padding: 10px 12px;
+  border: 1px solid rgba(17, 17, 17, 0.15);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.asset-gallery__card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.asset-gallery__card-head code {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.asset-gallery__badge {
+  flex-shrink: 0;
+  padding: 1px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(17, 17, 17, 0.25);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b6760;
+}
+
+.asset-gallery__badge--custom {
+  border-color: #2f7d4f;
+  color: #2f7d4f;
+  font-weight: 700;
+}
+
+.asset-gallery__labels {
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #6b6760;
+  min-height: 16px;
+}
+
+.asset-gallery__swatches {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.asset-gallery__swatch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  background: #fff;
+}
+
+.asset-gallery__swatch--dark {
+  background: #24222a;
+}
+
+.asset-gallery__cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.asset-gallery__tile {
+  display: grid;
+  grid-template-columns: repeat(3, 64px);
+  grid-template-rows: repeat(3, 64px);
+  border: 1px solid rgba(17, 17, 17, 0.15);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.asset-gallery__tile-cell {
+  width: 64px;
+  height: 64px;
+}
+
+.asset-gallery__persons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.asset-gallery__person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px;
+  border: 1px solid rgba(17, 17, 17, 0.15);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.asset-gallery__person code {
+  font-size: 11px;
+  color: #6b6760;
+}

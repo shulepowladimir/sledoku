@@ -6,6 +6,7 @@ import { floorStyle, floorTextureKeys } from '../../styles/floorTextures';
 import { ItemIcon } from '../board/ItemIcon';
 import { ThemeIcon } from '../menu/ThemeIcon';
 import { PersonFigureSvg } from '../board/PersonFigureSvg';
+import '../../styles/asset-gallery.css';
 
 // Dev-only asset gallery: /?gallery. Acceptance tool for designer art — every key is shown
 // at all render sizes on light/dark/textured backgrounds, with its registry status.

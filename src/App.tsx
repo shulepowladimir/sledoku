@@ -10,10 +10,12 @@ import { TutorialOverlayAfterMount } from './components/tutorial/TutorialOverlay
 import './styles/app.css';
 
 const GameView = lazy(() => import('./components/game/GameView').then((module) => ({ default: module.GameView })));
-const AssetGallery = lazy(() => import('./components/dev/AssetGallery').then((module) => ({ default: module.AssetGallery })));
+const AssetGallery = import.meta.env.DEV
+  ? lazy(() => import('./components/dev/AssetGallery').then((module) => ({ default: module.AssetGallery })))
+  : null;
 
 // Dev-only asset gallery, enabled with /?gallery (see docs/assets.md).
-const isAssetGallery =
+const isAssetGallery = import.meta.env.DEV &&
   typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('gallery');
 
 function App() {
@@ -71,7 +73,7 @@ function App() {
     };
   }, []);
 
-  if (isAssetGallery) {
+  if (isAssetGallery && AssetGallery) {
     return (
       <Suspense fallback={<div className="app-loading" role="status">Загружаем галерею…</div>}>
         <AssetGallery />
