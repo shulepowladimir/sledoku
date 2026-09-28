@@ -45,6 +45,29 @@ test('size filter shows only cards of the chosen size', async ({ page }) => {
   await expect(page.getByTestId('level-card-tutorial-00')).toBeVisible();
 });
 
+test('custom-board disclaimer sits between the filters and 10×11 level cards', async ({ page }) => {
+  await page.goto('/');
+  const disclaimer = page.getByTestId('custom-board-disclaimer');
+  await expect(disclaimer).toHaveCount(0);
+
+  await page.getByTestId('size-filter-custom').click();
+  await expect(disclaimer).toHaveText('На данных уровнях один столбец или одна строка карты окажутся пустыми.');
+  await expect(page.locator('.level-card')).toHaveCount(gameLevels.filter(isCustomBoard).length);
+
+  for (const viewport of [{ width: 1280, height: 800 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport);
+    const filterBounds = await page.getByTestId('level-filters').boundingBox();
+    const disclaimerBounds = await disclaimer.boundingBox();
+    const firstCardBounds = await page.locator('.level-card').first().boundingBox();
+
+    expect(filterBounds).not.toBeNull();
+    expect(disclaimerBounds).not.toBeNull();
+    expect(firstCardBounds).not.toBeNull();
+    expect(filterBounds!.y + filterBounds!.height).toBeLessThan(disclaimerBounds!.y);
+    expect(disclaimerBounds!.y + disclaimerBounds!.height).toBeLessThan(firstCardBounds!.y);
+  }
+});
+
 test('hide solved toggle combines with the size filter', async ({ page }) => {
   const solvedIds = gameLevels.filter((l) => l.size === 6).map((l) => l.meta.id);
   const bestTimes = Object.fromEntries(solvedIds.map((id) => [id, 60_000]));

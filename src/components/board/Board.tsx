@@ -27,6 +27,7 @@ export function Board() {
   const level = useGameStore((s) => s.level);
   const index = useGameStore((s) => s.index);
   const player = useGameStore((s) => s.player);
+  const selectedPersonId = useGameStore((s) => s.selectedPersonId);
   const solved = isSolved(player);
   const handleLeftClick = useGameStore((s) => s.handleLeftClick);
   const handleRightClick = useGameStore((s) => s.handleRightClick);
@@ -267,7 +268,12 @@ export function Board() {
         const marks = marksOf(player, cell.id);
         const pencilMarks = Array.from(marks.pencilMarks).map((pid) => {
           const markPerson = peopleById.get(pid);
-          return { letter: markPerson?.initialLetter ?? '?', color: markPerson?.color ?? '#999999' };
+          return {
+            personId: pid,
+            letter: markPerson?.initialLetter ?? '?',
+            color: markPerson?.color ?? '#999999',
+            isSelected: pid === selectedPersonId,
+          };
         });
 
         return (

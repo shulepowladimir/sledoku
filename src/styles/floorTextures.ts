@@ -293,7 +293,18 @@ const bakeryTile: FloorStyleFn = (row, col) => {
   };
 };
 
-const FLOOR_TEXTURES: Record<FloorTextureKey, FloorStyleFn> = { tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker, rails, bakeryTile };
+const sky: FloorStyleFn = (row, col) => {
+  const drift = ((row * 13 + col * 7) % 5) * 2;
+  return {
+    backgroundColor: '#D8DDDD',
+    backgroundImage:
+      `radial-gradient(ellipse at ${18 + drift}px ${18 + drift}px, #EDE7DB 0 8px, transparent 9px), ` +
+      `radial-gradient(ellipse at ${42 - drift}px ${38 - drift}px, #C2C9CB 0 5px, transparent 6px)`,
+    backgroundSize: '64px 64px',
+  };
+};
+
+const FLOOR_TEXTURES: Record<FloorTextureKey, FloorStyleFn> = { tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker, rails, bakeryTile, sky };
 
 export const floorTextureKeys: readonly string[] = FLOOR_TEXTURE_KEYS;
 

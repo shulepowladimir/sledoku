@@ -53,6 +53,24 @@ test('game: roster below board, board fits, tap marks / double tap places', asyn
   }
 });
 
+test('game: selected pencil mark stays highlighted when the mobile roster entry collapses', async ({ page }) => {
+  const person = apartmentLevel.people[0];
+  const cell = apartmentLevel.cells.find((candidate) => !candidate.itemId)!;
+
+  await page.goto('/');
+  await page.getByTestId(`level-card-${apartmentLevel.meta.id}`).tap();
+  await page.getByTestId(`roster-person-${person.id}`).tap();
+  await page.getByTestId(`cell-${cell.id}`).tap();
+
+  const mark = page.getByTestId(`cell-${cell.id}`).locator(`[data-person-id="${person.id}"]`);
+  await expect(mark).toHaveClass(/pencil-chip--selected/);
+
+  const rosterEntry = page.locator('.roster-mobile__entry--open');
+  await page.getByTestId(`roster-person-${person.id}`).tap();
+  await expect(rosterEntry).toHaveCount(0);
+  await expect(mark).toHaveClass(/pencil-chip--selected/);
+});
+
 test('game: general clues accordion opens via tap', async ({ page }) => {
   await page.goto('/');
   // hollywood-25: есть общие клю (4) — блок «Общие подсказки» присутствует.

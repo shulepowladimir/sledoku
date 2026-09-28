@@ -280,7 +280,7 @@ const level: Level = {
     id: 'bowling-01',
     title: 'Это страйк, Чувак',
     theme: 'bowling',
-    difficulty: 9,
+    difficulty: 8,
     maxFullyPinnedPeople: 0,
   },
   size,

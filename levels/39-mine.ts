@@ -287,7 +287,7 @@ const level: Level = {
     id: 'mine-01',
     title: 'Завал в шахте',
     theme: 'mine',
-    difficulty: 9,
+    difficulty: 8,
     maxFullyPinnedPeople: 0,
     rosterColumnCounts: [4, 3, 3],
     // Осознанный принятый долг (решение пользователя на QA): adjacency 6/19 = 31.6%

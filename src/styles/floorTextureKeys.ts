@@ -25,6 +25,7 @@ export const FLOOR_TEXTURE_KEYS = [
   'checker',
   'rails',
   'bakeryTile',
+  'sky',
 ] as const;
 
 export type FloorTextureKey = (typeof FLOOR_TEXTURE_KEYS)[number];

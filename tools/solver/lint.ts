@@ -46,6 +46,12 @@ export function lintLevel(level: Level): string[] {
       );
     }
   }
+  const roomIds = new Set(level.rooms.map((room) => room.id));
+  for (const cell of level.cells) {
+    if (!roomIds.has(cell.roomId)) {
+      violations.push(`Клетка "${cell.id}": зона "${cell.roomId}" не найдена.`);
+    }
+  }
   // Идентификаторы подсказок обязаны быть уникальны: дубли молча ломают key/ссылки
   // (прецедент — пираты: c6/c9 дублировались после вставок и прошли валидацию).
   const seenClueIds = new Set<string>();
@@ -54,6 +60,30 @@ export function lintLevel(level: Level): string[] {
       violations.push(`Подсказка "${clue.id}": дублирующийся идентификатор — id подсказок должны быть уникальны.`);
     }
     seenClueIds.add(clue.id);
+
+    if (clue.type === 'zoneExactlyOneEmpty' || clue.type === 'letterGroupInRooms') {
+      const roomIdSet = new Set(clue.roomIds);
+      if (roomIdSet.size === 0) {
+        violations.push(`Подсказка "${clue.id}" (${clue.type}): список зон не должен быть пустым.`);
+      }
+      if (roomIdSet.size !== clue.roomIds.length) {
+        violations.push(`Подсказка "${clue.id}" (${clue.type}): список зон содержит повторяющиеся ID.`);
+      }
+      for (const roomId of roomIdSet) {
+        if (!level.rooms.some((room) => room.id === roomId)) {
+          violations.push(`Подсказка "${clue.id}" (${clue.type}): зона "${roomId}" не найдена.`);
+        }
+      }
+    }
+
+    if (clue.type === 'letterGroupInRooms') {
+      const hasGroupMember = level.people.some((person) =>
+        'АЕЁИОУЫЭЮЯ'.includes(person.initialLetter.toUpperCase()) === (clue.letterClass === 'vowel'),
+      );
+      if (!hasGroupMember) {
+        violations.push(`Подсказка "${clue.id}" (letterGroupInRooms): в ростере нет персонажей выбранного класса букв.`);
+      }
+    }
   }
   for (const clue of level.clues) {
     if (clue.type !== 'roomNumberComparison') continue;

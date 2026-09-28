@@ -321,7 +321,7 @@ const clues: Clue[] = [
 ];
 
 export const piratesLevel: Level = {
-  meta: { id: 'pirates-01', title: 'Сундук мертвеца', theme: 'pirates', difficulty: 9, maxFullyPinnedPeople: 0, rosterColumnCounts: [5, 3, 4] },
+  meta: { id: 'pirates-01', title: 'Сундук мертвеца', theme: 'pirates', difficulty: 8, maxFullyPinnedPeople: 0, rosterColumnCounts: [5, 3, 4] },
   size,
   rooms,
   itemTypes,

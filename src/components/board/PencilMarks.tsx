@@ -1,6 +1,10 @@
+import type { CSSProperties } from 'react';
+
 export interface PencilMarkEntry {
+  personId: string;
   letter: string;
   color: string;
+  isSelected: boolean;
 }
 
 interface PencilMarksProps {
@@ -11,11 +15,12 @@ export function PencilMarks({ marks }: PencilMarksProps) {
   if (marks.length === 0) return null;
   return (
     <div className="pencil-marks">
-      {marks.map((mark, i) => (
+      {marks.map((mark) => (
         <span
-          key={`${mark.letter}-${i}`}
-          className="pencil-chip"
-          style={{ color: mark.color, borderColor: mark.color }}
+          key={mark.personId}
+          className={`pencil-chip${mark.isSelected ? ' pencil-chip--selected' : ''}`}
+          data-person-id={mark.personId}
+          style={{ '--pencil-mark-color': mark.color } as CSSProperties}
         >
           {mark.letter}
         </span>

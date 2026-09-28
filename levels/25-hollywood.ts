@@ -285,7 +285,7 @@ const clues: Clue[] = [
 ];
 
 export const hollywoodLevel: Level = {
-  meta: { id: 'hollywood-01', title: 'Последний дубль', theme: 'hollywood', difficulty: 9, maxFullyPinnedPeople: 0 },
+  meta: { id: 'hollywood-01', title: 'Последний дубль', theme: 'hollywood', difficulty: 8, maxFullyPinnedPeople: 0 },
   size,
   rooms,
   itemTypes,

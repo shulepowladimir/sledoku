@@ -210,7 +210,7 @@ const clues: Clue[] = [
 ];
 
 export const airportLevel: Level = {
-  meta: { id: 'airport-01', title: 'Задержка рейса', theme: 'airport', difficulty: 8, maxFullyPinnedPeople: 0 },
+  meta: { id: 'airport-01', title: 'Задержка рейса', theme: 'airport', difficulty: 7, maxFullyPinnedPeople: 0 },
   size,
   rooms,
   itemTypes,

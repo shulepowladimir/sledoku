@@ -223,7 +223,7 @@ const clues: Clue[] = [
 ];
 
 export const hospitalLevel: Level = {
-  meta: { id: 'hospital-01', title: 'Ложный диагноз', theme: 'hospital', difficulty: 10, maxFullyPinnedPeople: 0 },
+  meta: { id: 'hospital-01', title: 'Ложный диагноз', theme: 'hospital', difficulty: 9, maxFullyPinnedPeople: 0 },
   size,
   rooms,
   itemTypes,

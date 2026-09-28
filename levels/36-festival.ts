@@ -420,7 +420,7 @@ const level: Level = {
     id: 'festival-01',
     title: 'Песни и крик',
     theme: 'festival',
-    difficulty: 9,
+    difficulty: 8,
     maxFullyPinnedPeople: 0,
     rosterColumnCounts: [5, 4, 3],
   },

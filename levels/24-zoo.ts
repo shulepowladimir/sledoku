@@ -247,7 +247,7 @@ const clues: Clue[] = [
 ];
 
 export const zooLevel: Level = {
-  meta: { id: 'zoo-01', title: 'Клетка хищника', theme: 'zoo', difficulty: 8, maxFullyPinnedPeople: 0 },
+  meta: { id: 'zoo-01', title: 'Клетка хищника', theme: 'zoo', difficulty: 7, maxFullyPinnedPeople: 0 },
   size,
   rooms,
   itemTypes,

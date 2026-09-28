@@ -108,6 +108,12 @@ export interface ZoneEmptyDisjunctionClue extends ClueBase {
   roomIds: RoomId[];
 }
 
+/** Level-wide: exactly one listed room ends up empty. */
+export interface ZoneExactlyOneEmptyClue extends ClueBase {
+  type: 'zoneExactlyOneEmpty';
+  roomIds: RoomId[];
+}
+
 /**
  * Level-wide: "No one was in a row with an item of type A, or in a row with an item of
  * type B" — the same empty-edge-row mechanic as edgeColumnEmpty/zoneEmptyDisjunction,
@@ -384,6 +390,13 @@ export interface LetterGroupRoomClue extends ClueBase {
   letterClass: LetterClass;
 }
 
+/** Level-wide: everyone in a letter class is in one of the listed rooms. */
+export interface LetterGroupInRoomsClue extends ClueBase {
+  type: 'letterGroupInRooms';
+  letterClass: LetterClass;
+  roomIds: RoomId[];
+}
+
 /**
  * "Person X (did not) hold role R" — explicit, ground-truth-confirming statement about `Person.roles`.
  * Unary: decidable purely from the subject's own `roles` array, never narrows their cell domain.
@@ -486,6 +499,7 @@ export type Clue =
   | ItemTypeFullyOccupiedClue
   | EdgeColumnEmptyClue
   | ZoneEmptyDisjunctionClue
+  | ZoneExactlyOneEmptyClue
   | ZoneGenderSeparationClue
   | ItemRowEmptyDisjunctionClue
   | ZoneCountParityClue
@@ -516,6 +530,7 @@ export type Clue =
   | RoomParityClue
   | RoomPopulationClue
   | LetterGroupRoomClue
+  | LetterGroupInRoomsClue
   | RoleClue
   | SameRoomAsRoleClue
   | RoleSingletonClue

@@ -230,7 +230,7 @@ const clues: Clue[] = [
 ];
 
 export const circusLevel: Level = {
-  meta: { id: 'circus-01', title: 'Шоу не по плану', theme: 'circus', difficulty: 9, maxFullyPinnedPeople: 0 },
+  meta: { id: 'circus-01', title: 'Шоу не по плану', theme: 'circus', difficulty: 8, maxFullyPinnedPeople: 0 },
   size,
   rooms,
   itemTypes,

@@ -323,7 +323,7 @@ const level: Level = {
     id: 'cemetery-01',
     title: 'Тихие соседи',
     theme: 'cemetery',
-    difficulty: 8,
+    difficulty: 7,
     maxFullyPinnedPeople: 0,
   },
   size,

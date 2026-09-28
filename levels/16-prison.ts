@@ -246,7 +246,7 @@ const clues: Clue[] = [
 ];
 
 export const prisonLevel: Level = {
-  meta: { id: 'prison-01', title: 'Пожизненный срок', theme: 'prison', difficulty: 9, maxFullyPinnedPeople: 0 },
+  meta: { id: 'prison-01', title: 'Пожизненный срок', theme: 'prison', difficulty: 8, maxFullyPinnedPeople: 0 },
   size,
   rooms,
   itemTypes,

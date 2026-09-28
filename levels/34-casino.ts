@@ -325,7 +325,7 @@ const clues: Clue[] = [
 ];
 
 export const casinoLevel: Level = {
-  meta: { id: 'casino-01', title: 'Всё на зеро', theme: 'casino', difficulty: 9, maxFullyPinnedPeople: 0 },
+  meta: { id: 'casino-01', title: 'Всё на зеро', theme: 'casino', difficulty: 8, maxFullyPinnedPeople: 0 },
   size,
   rooms,
   itemTypes,

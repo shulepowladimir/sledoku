@@ -14,10 +14,17 @@ import { AuthPanel } from '../auth/AuthPanel';
 import { NoirToggle } from '../hud/NoirToggle';
 import { SiteFooter } from './SiteFooter';
 
-// Ascending cell count first, then (ties) the `levels` array order — that array is already
-// chronological (each new level is appended at the end), so a stable sort keeps it as the tie-break.
-// Non-square boards (10×11, 11×10) sort between 10×10 and 11×11 via boardSortKey.
-const sortedLevels = [...gameLevels].sort((a, b) => boardSortKey(a) - boardSortKey(b));
+const menuTagSortKey = (level: (typeof gameLevels)[number]) => {
+  if (level.meta.menuTag === 'hard') return 1;
+  if (level.meta.menuTag === 'expert') return 2;
+  return 0;
+};
+
+// Sort by board size, then untagged / hard / expert. Stable ties retain levels/index.ts
+// creation order. Non-square boards sort by cell count via boardSortKey.
+const sortedLevels = [...gameLevels].sort((a, b) =>
+  boardSortKey(a) - boardSortKey(b) || menuTagSortKey(a) - menuTagSortKey(b),
+);
 
 // Filter chips: square sizes plus a single shared chip for non-square boards, placed
 // right before the first square size larger than the custom boards' smaller dimension
@@ -98,6 +105,11 @@ export function LevelMenu() {
           {hideSolved ? 'Показать пройденные' : 'Скрыть пройденные'}
         </button>
       </div>
+      {sizeFilter === 'custom' && (
+        <p className="level-menu__custom-disclaimer" data-testid="custom-board-disclaimer">
+          На данных уровнях один столбец или одна строка карты окажутся пустыми.
+        </p>
+      )}
       <ul className="level-menu__grid">
         {showTutorialCard && (
           <li className="level-card level-card--tutorial" data-testid="level-card-tutorial-00">

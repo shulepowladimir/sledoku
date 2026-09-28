@@ -254,6 +254,24 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       }
       return occupiedRooms.size < roomSet.size;
     }
+    case 'zoneExactlyOneEmpty': {
+      const roomSet = new Set(clue.roomIds);
+      const occupiedRooms = new Set<RoomId>();
+      for (const person of level.people) {
+        const personCellId = getCell(person.id);
+        if (!personCellId) continue;
+        const roomId = index.cellsById.get(personCellId)!.roomId;
+        if (roomSet.has(roomId)) occupiedRooms.add(roomId);
+      }
+
+      const emptyCount = roomSet.size - occupiedRooms.size;
+      if (emptyCount === 0) return false;
+      if (allAssigned) return emptyCount === 1;
+
+      const unplacedCount = level.people.filter((person) => !getCell(person.id)).length;
+      if (emptyCount - unplacedCount > 1) return false;
+      return undefined;
+    }
     case 'itemRowEmptyDisjunction': {
       // «В ряду с кеглями или в ряду с барной стойкой никого не было»: ряды
       // выводятся из расстановки предметов (все ряды, где есть клетки экземпляров
@@ -594,6 +612,23 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       const group = level.people.filter((p) => isVowel(p.initialLetter) === (clue.letterClass === 'vowel'));
       const rooms = new Set(group.map((p) => index.cellsById.get(getCell(p.id)!)!.roomId));
       return rooms.size <= 1;
+    }
+    case 'letterGroupInRooms': {
+      const isVowel = (letter: string) => VOWELS.has(letter);
+      const group = level.people.filter((person) => isVowel(person.initialLetter) === (clue.letterClass === 'vowel'));
+      const allowedRooms = new Set(clue.roomIds);
+      let allGroupMembersPlaced = true;
+
+      for (const person of group) {
+        const personCellId = getCell(person.id);
+        if (!personCellId) {
+          allGroupMembersPlaced = false;
+          continue;
+        }
+        if (!allowedRooms.has(index.cellsById.get(personCellId)!.roomId)) return false;
+      }
+
+      return allGroupMembersPlaced ? true : undefined;
     }
     case 'role': {
       const person = level.people.find((p) => p.id === subjectPersonId(clue.subject, level));

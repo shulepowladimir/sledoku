@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { gameLevels } from '../levels';
+import { boardSortKey, isCustomBoard } from '../src/utils/boardSize';
 
 const tagGroups = [
   {
@@ -10,9 +11,27 @@ const tagGroups = [
   {
     id: 'hard',
     label: 'Сложно',
-    levelIds: ['parkmaze-01', 'heavy-01', 'wildwest-02', 'stadium-01'],
+    levelIds: ['parkmaze-01', 'heavy-01', 'wildwest-02', 'stadium-01', 'cablecar-01'],
   },
 ];
+
+const tagOrder = { untagged: 0, hard: 1, expert: 2 } as const;
+
+function expectedOrder(levels: typeof gameLevels) {
+  return [...levels]
+    .sort((a, b) => {
+      const tagA = a.meta.menuTag ?? 'untagged';
+      const tagB = b.meta.menuTag ?? 'untagged';
+      return boardSortKey(a) - boardSortKey(b) || tagOrder[tagA] - tagOrder[tagB];
+    })
+    .map((level) => level.meta.id);
+}
+
+async function visibleLevelIds(page: import('@playwright/test').Page) {
+  return page.locator('.level-menu__grid > li:not(.level-card--tutorial)').evaluateAll((cards) =>
+    cards.map((card) => card.getAttribute('data-testid')!.replace('level-card-', '')),
+  );
+}
 
 test('menu difficulty tags appear only on the requested levels', async ({ page }) => {
   await page.goto('/');
@@ -68,4 +87,18 @@ test('expert tag is distinct from hard and existing menu tag colors, at the card
   expect(tagBox).not.toBeNull();
   expect(tagBox!.x + tagBox!.width).toBeGreaterThan(cardBox!.x + cardBox!.width - 24);
   expect(tagBox!.y).toBeLessThan(cardBox!.y + 24);
+});
+
+test('levels sort by board size, then tag group, preserving creation order within each group', async ({ page }) => {
+  await page.goto('/');
+  await expect.poll(() => visibleLevelIds(page)).toEqual(expectedOrder(gameLevels));
+
+  const categories = [...new Set(gameLevels.map((level) => isCustomBoard(level) ? 'custom' : String(level.size)))];
+  for (const category of categories) {
+    await page.getByTestId(`size-filter-${category}`).click();
+    const categoryLevels = gameLevels.filter((level) =>
+      category === 'custom' ? isCustomBoard(level) : !isCustomBoard(level) && level.size === Number(category),
+    );
+    await expect.poll(() => visibleLevelIds(page)).toEqual(expectedOrder(categoryLevels));
+  }
 });
