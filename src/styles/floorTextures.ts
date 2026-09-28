@@ -168,6 +168,20 @@ const concrete: FloorStyleFn = (row, col) => {
   };
 };
 
+const workshopFloor: FloorStyleFn = (row, col) => {
+  const offsetX = -((col * 17 + row * 5) % 48);
+  const offsetY = -((row * 19 + col * 3) % 48);
+  return {
+    backgroundColor: '#aab2b6',
+    backgroundImage:
+      'linear-gradient(0deg, rgba(84,93,101,0.12) 0 1.5px, transparent 1.5px), ' +
+      'radial-gradient(ellipse at 12px 18px, rgba(194,201,203,0.45) 0 2px, transparent 3px), ' +
+      'radial-gradient(ellipse at 35px 30px, rgba(147,156,162,0.25) 0 2px, transparent 3px)',
+    backgroundSize: '48px 48px, 48px 48px, 48px 48px',
+    backgroundPosition: `0 0, ${offsetX}px ${offsetY}px, ${offsetX}px ${offsetY}px`,
+  };
+};
+
 const snow: FloorStyleFn = (row, col) => {
   const drift = ((row * 7 + col * 13) % 5) * 0.02;
   return {
@@ -304,7 +318,7 @@ const sky: FloorStyleFn = (row, col) => {
   };
 };
 
-const FLOOR_TEXTURES: Record<FloorTextureKey, FloorStyleFn> = { tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker, rails, bakeryTile, sky };
+const FLOOR_TEXTURES: Record<FloorTextureKey, FloorStyleFn> = { tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, workshopFloor, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker, rails, bakeryTile, sky };
 
 export const floorTextureKeys: readonly string[] = FLOOR_TEXTURE_KEYS;
 

@@ -1,6 +1,7 @@
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import type { Level } from '../../src/types/level';
+import { checkLevelAcceptance } from './acceptance';
 import { lintLevel } from './lint';
 import { checkPuzzleQuality } from './puzzleQuality';
 import { findRedundantClues, solveLevel } from './solve';
@@ -44,6 +45,14 @@ async function main() {
     process.exit(1);
   }
   console.log(`КАЧЕСТВО ПОДСКАЗОК: чисто (полностью определены: ${quality.fullyPinnedCount}/${quality.budget}).`);
+
+  const acceptanceIssues = checkLevelAcceptance(level, quality.fullyPinnedCount);
+  if (acceptanceIssues.length > 0) {
+    console.error('КРИТЕРИИ УРОВНЯ: найдены нарушения:');
+    for (const issue of acceptanceIssues) console.error(`  - ${issue}`);
+    process.exit(1);
+  }
+  console.log('КРИТЕРИИ УРОВНЯ: чисто.');
 
   console.log('КОМНАТЫ (клеток / людей по решению):');
   for (const r of quality.roomStats) {

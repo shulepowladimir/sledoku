@@ -11,6 +11,7 @@ function item(id: string, icon: string, kind: ItemType['kind'], defaultLabel: st
 export const ItemLibrary = {
   // ——— Улица (26-street) ———
   car: item('car', 'car', 'occupiable', 'Машина'),
+  carJack: item('carJack', 'carJack', 'decorative', 'Домкрат'),
   trafficLight: item('trafficLight', 'trafficLight', 'decorative', 'Светофор'),
   trafficSign: item('trafficSign', 'trafficSign', 'decorative', 'Дорожный знак'),
   washer: item('washer', 'washingMachine', 'decorative', 'Стиральная машина'),

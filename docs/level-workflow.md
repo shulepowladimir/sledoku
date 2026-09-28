@@ -1,12 +1,13 @@
 # Level Authoring Workflow
 
-Use this workflow for new levels and changes to existing level data. Keep the design brief short; do not re-open a passed stage without new evidence or a user change.
+Use this workflow for new levels and changes to existing level data. Keep the design brief short; do not re-open a passed stage without new evidence or a user change. Treat the user's approved change list as a hard scope boundary: investigate out-of-scope findings with read-only or in-memory checks, then ask before editing them.
 
 ## 1. Brief and preflight
 
 Before editing the level file, record only the decisions that affect implementation:
 
 - User-fixed map, size, theme, title, cast, or mechanics.
+- An acceptance contract for every hard requirement: exact common-clue count (counting distinct displayed groups), density target, fully-pinned-person budget, map/placement constraints, and role-deduction outcomes. Mark each criterion as hard or flexible, and name its automated assertion. Do not draft the full level until the hard limits are explicit.
 - Board dimensions, room layout, intended actor count, and victim/murderer room.
 - The player's deduction goal, any hidden role, and the intended decoy.
 - Whether this level introduces a new mechanic or uses existing clue types.
@@ -24,7 +25,11 @@ Use `floorTexture` only when the texture itself is informative: either the same 
 4. Treat `INCONCLUSIVE` as unverified. Do not infer a cause from a timeout; inspect the solver status and use a focused diagnostic.
 5. Do not run redundancy pruning on every iteration. `npm run validate-redundancy -- levels/<file>.ts` is an optional end-of-design report; its suggestions are not a release gate and clues should not be removed mechanically.
 
-For a hidden-role deduction, use `checkHiddenRoleEpistemics` from `tools/solver/epistemic.ts` in a solver test. For a hidden victim, use `checkHiddenVictimEpistemics` and list every player-plausible victim candidate (including candidates who should be eliminated); the helper enumerates every victim/murderer pair and lets the solver find placements freely. Assert the authored baseline is `PROVEN_UNIQUE` and every alternative is `NO_SOLUTION`; `INCONCLUSIVE` is not a pass. A solver-unique authored world alone does not prove the player's deduction is sound.
+Add level-specific assertions for user-approved clue-count and placement limits before authoring is considered complete. Both `npm run validate-level` and `npm run validate-all` enforce at least 40% combined item/floor-feature density and zero fully pinned people for new levels; existing density exceptions and the apartment pin exception are explicitly grandfathered in `tools/solver/acceptance.ts` and must not be extended without user approval.
+
+For a hidden role, use `checkHiddenRoleEpistemics` from `tools/solver/epistemic.ts` and include every player-plausible holder and every non-victim murderer; let the solver choose placements freely. If the player must infer multiple hidden roles jointly, enumerate the Cartesian product of all plausible role-holder sets and murderer candidates in the same world. Testing one role at a time while holding the other hidden roles at their authored holders can miss a combined alternative. For a hidden victim, use `checkHiddenVictimEpistemics` and list every player-plausible victim candidate; it enumerates every victim/murderer pair and lets the solver find placements freely. Assert only the authored role tuple is `PROVEN_UNIQUE` and every alternative is `NO_SOLUTION`; `WRONG_SOLUTION`, `MULTIPLE`, and `INCONCLUSIVE` are failures. `PROVEN_UNIQUE` for the authored role tuple alone proves neither that hidden roles are deducible nor that the player can trust a proposed alternative.
+
+When QA includes a screenshot, transcribe each person's identity and 1-based row/column to an explicit assignment before evaluating it. Check the complete candidate against player-visible clues and its full role tuple; never reject it just because it disagrees with `people[].roles` or `isMurderer`. Preserve any valid counterexample as a regression case. After every clue edit, rerun the level validator and the focused epistemic test against the current file; previous green output does not apply to a changed clue set.
 
 ## 3. Final verification
 

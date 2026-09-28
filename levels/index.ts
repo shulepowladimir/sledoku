@@ -54,6 +54,7 @@ import { bakeryLevel } from './51-bakery';
 import { golfClubLevel } from './52-golfclub';
 import { cablecarLevel } from './53-cablecar';
 import { restaurantLevel } from './54-restaurant';
+import { autoshopLevel } from './55-autoshop';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -111,6 +112,7 @@ export const levels: Level[] = [
   golfClubLevel,
   cablecarLevel,
   restaurantLevel,
+  autoshopLevel,
 ];
 
 /** All non-tutorial levels — used by the level menu grid, size filters, profile stats and

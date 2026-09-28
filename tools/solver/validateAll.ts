@@ -1,4 +1,5 @@
 import { levels } from '../../levels/index';
+import { checkLevelAcceptance } from './acceptance';
 import { lintLevel } from './lint';
 import { checkPuzzleQuality } from './puzzleQuality';
 import { solveLevel } from './solve';
@@ -15,6 +16,7 @@ function main() {
 
     const quality = checkPuzzleQuality(level);
     problems.push(...quality.violations.map((v) => `КАЧЕСТВО ПОДСКАЗОК: ${v}`));
+    problems.push(...checkLevelAcceptance(level, quality.fullyPinnedCount).map((issue) => `КРИТЕРИИ УРОВНЯ: ${issue}`));
 
     const result = solveLevel(level);
     if (result.status !== 'PROVEN_UNIQUE') {

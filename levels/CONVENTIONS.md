@@ -63,6 +63,7 @@
 - coconut — decorative
 - hammock — occupiable
 - hut — decorative
+- carJack — decorative
 - bottle — decorative
 - shell — decorative
 - campfire — decorative
@@ -198,7 +199,7 @@ stove, fridge, chair, sofa, bed, wardrobe, bookshelf, kassa, veggieCounter, cart
 
 ## floorTextures.ts — textureKey
 
-tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker, rails, bakeryTile
+tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker, rails, bakeryTile, workshopFloor
 
 ## Имена
 

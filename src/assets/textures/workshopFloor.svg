@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!--
+    workshopFloor — спокойный серо-стальной бетон ремонтного бокса.
+    Швы плит и мелкие потёртости повторяются бесшовно по краям.
+  -->
+  <rect width="256" height="256" fill="#AAB2B6"/>
+
+  <!-- Швы крупных плит: одинаковые стыки на противоположных краях -->
+  <path d="M0 0 H256 M0 128 H256 M0 255 H256" fill="none" stroke="#939CA2" stroke-width="2"/>
+  <path d="M0 0 V256 M128 0 V256 M255 0 V256" fill="none" stroke="#939CA2" stroke-width="2"/>
+  <path d="M1 2 H127 M130 130 H254 M2 130 V254 M130 2 V126" fill="none" stroke="#C2C9CB" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Несколько приглушённых следов работы, вдали от швов -->
+  <path d="M24 38 Q34 34 44 38 M170 62 Q179 58 187 62" fill="none" stroke="#939CA2" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M52 186 Q61 182 68 186 M194 218 Q202 214 210 218" fill="none" stroke="#C2C9CB" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="101" cy="72" r="2" fill="#939CA2"/>
+  <circle cx="222" cy="155" r="2" fill="#939CA2"/>
+</svg>

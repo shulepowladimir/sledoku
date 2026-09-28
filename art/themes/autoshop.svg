@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    autoshop — открытый бокс: поднятые ворота, машина на низком домкрате
+    и тёплая лампа над ремонтным постом.
+  -->
+  <rect x="6" y="6" width="84" height="84" rx="8" fill="#C2C9CB" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- Рама ворот -->
+  <path d="M14 42 L14 22 Q14 14 22 14 L74 14 Q82 14 82 22 L82 42" fill="#5C6670" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M20 35 L20 23 Q20 20 23 20 L73 20 Q76 20 76 23 L76 35 Z" fill="#939CA2" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M21 27 H75 M21 32 H75" stroke="#C2C9CB" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Тёплый свет внутри бокса -->
+  <path d="M28 39 Q48 31 68 39 L78 70 L18 70 Z" fill="#E8B95F"/>
+  <path d="M39 39 Q48 35 57 39 L62 51 L34 51 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+
+  <!-- Автомобиль в профиль 3/4 -->
+  <path d="M18 65 L22 55 Q24 51 31 50 L39 43 Q43 40 50 41 L61 43 Q66 44 69 50 L75 53 Q79 55 80 61 L78 70 L20 70 Z" fill="#2E6E65" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M40 46 Q43 43 49 44 L57 45 Q61 46 64 51 L37 51 Z" fill="#9CC3E0" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M22 58 L35 55 M67 55 L76 58" fill="none" stroke="#7FA3B8" stroke-width="2" stroke-linecap="round"/>
+  <path d="M20 62 L26 61 M73 62 L79 62" stroke="#F5E9D0" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="33" cy="69" r="7" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.4"/>
+  <circle cx="33" cy="69" r="3" fill="#9BA5AD"/>
+  <circle cx="67" cy="69" r="7" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2.4"/>
+  <circle cx="67" cy="69" r="3" fill="#9BA5AD"/>
+
+  <!-- Домкрат под порогом и сигнальная деталь -->
+  <path d="M43 77 L54 77 L59 72 L63 74 L57 82 L40 82 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M48 77 L54 72" stroke="#D5DCE1" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="77" cy="79" r="3" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.6"/>
+</svg>

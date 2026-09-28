@@ -217,7 +217,7 @@ const clues: Clue[] = [
 ];
 
 export const wildwestLevel: Level = {
-  meta: { id: 'wildwest-01', title: 'Ограбление банка', theme: 'wildwest', difficulty: 5, maxFullyPinnedPeople: 0, clueBalanceExempt: true },
+  meta: { id: 'wildwest-01', title: 'Ограбление банка', theme: 'wildwest', difficulty: 5, maxFullyPinnedPeople: 0, clueBalanceExempt: true, menuTag: 'hard' },
   size,
   rooms,
   itemTypes,

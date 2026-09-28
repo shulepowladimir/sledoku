@@ -203,7 +203,7 @@ const clues: Clue[] = [
 ];
 
 export const spaceLevel: Level = {
-  meta: { id: 'space-01', title: 'Тайна орбитальной станции', theme: 'space', difficulty: 10, maxFullyPinnedPeople: 0 },
+  meta: { id: 'space-01', title: 'Тайна орбитальной станции', theme: 'space', difficulty: 10, maxFullyPinnedPeople: 0, menuTag: 'hard' },
   size,
   rooms,
   itemTypes,

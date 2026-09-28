@@ -15,6 +15,7 @@ export const FLOOR_TEXTURE_KEYS = [
   'sand',
   'metal',
   'concrete',
+  'workshopFloor',
   'rubber',
   'stairs',
   'cliff',

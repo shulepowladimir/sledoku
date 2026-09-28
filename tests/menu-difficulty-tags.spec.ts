@@ -11,7 +11,7 @@ const tagGroups = [
   {
     id: 'hard',
     label: 'Сложно',
-    levelIds: ['parkmaze-01', 'heavy-01', 'wildwest-02', 'stadium-01', 'cablecar-01'],
+    levelIds: ['parkmaze-01', 'heavy-01', 'wildwest-02', 'stadium-01', 'cablecar-01', 'wildwest-01', 'autoshop-01', 'space-01'],
   },
 ];
 
@@ -51,6 +51,7 @@ test('menu difficulty tags appear only on the requested levels', async ({ page }
   }
 
   await expect(page.getByTestId('level-card-golfclub-01')).toContainText('Замах и удар');
+  await expect(page.getByTestId('level-card-autoshop-01')).toContainText('Заглохший двигатель');
 });
 
 test('expert tag is distinct from hard and existing menu tag colors, at the card top right', async ({ page }) => {

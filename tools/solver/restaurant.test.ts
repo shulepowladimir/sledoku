@@ -3,6 +3,7 @@ import { test } from 'node:test';
 import { restaurantLevel, roomForCell } from '../../levels/54-restaurant';
 import { buildLevelIndex, isLegalTarget } from '../../src/engine/board';
 import { cellId } from '../../src/types/level';
+import { checkLevelAcceptance } from './acceptance';
 import { createEpistemicWorld } from './epistemic';
 import { lintLevel } from './lint';
 import { checkPuzzleQuality } from './puzzleQuality';
@@ -103,6 +104,7 @@ test('Острая критика keeps the victim public and assigns the hidden
   );
   assert.equal(lintLevel(restaurantLevel).length, 0, lintLevel(restaurantLevel).join('\n'));
   assert.equal(checkPuzzleQuality(restaurantLevel).fullyPinnedCount, 0);
+  assert.deepEqual(checkLevelAcceptance(restaurantLevel, checkPuzzleQuality(restaurantLevel).fullyPinnedCount), []);
   assert.deepEqual(checkPuzzleQuality(restaurantLevel).violations, []);
   assert.notEqual(restaurantLevel.meta.clueBalanceExempt, true);
   assert.ok(personalClueDomain('boris').length > 1, 'Boris must not be pinned by his own clues');
@@ -194,6 +196,13 @@ test('Острая критика places every agreed prop in its intended room'
     const target = restaurantLevel.solution[person.id];
     assert.ok(!restaurantLevel.items.some((item) => item.cells.includes(target) && !occupiableItemTypes.has(item.typeId)), `${person.name} cannot be blocked by a decorative prop`);
   }
+});
+
+test('Острая критика meets the required combined item and floor-feature density', () => {
+  const occupiedCells = restaurantLevel.items.reduce((count, item) => count + item.cells.length, 0)
+    + restaurantLevel.cells.filter((cell) => cell.floorFeatureId).length;
+
+  assert.ok(occupiedCells / restaurantLevel.cells.length >= 0.4, 'item and floor-feature density must be at least 40%');
 });
 
 test('Острая критика distributes kitchen and dining props across their room footprints', () => {
