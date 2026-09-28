@@ -19,12 +19,10 @@ function referencedRoles(clues: Clue[]): string[] {
   return roles;
 }
 
-/** Every non-victim person must have at least one personal clue (`subject.type==='person' && id===person.id`).
- *  Conversely, the victim must have NO personal clues: RosterPanel hides the victim's personal clue
- *  list (fixed "наедине с убийцей" line instead), so a victim-authored clue is invisible to the
- *  player while the solver still counts it — a silent source of player-visible ambiguity (medieval-21). */
+/** Every person whose personal clues are visible in the roster must have at least one. */
 export function lintLevel(level: Level): string[] {
   const violations: string[] = [];
+  const victimIdentityHidden = level.meta.victimIdentityHidden === true;
   if (level.clues.some((clue) => clue.type === 'checkerboardParity' ||
     (clue.type === 'roleSingleton' && clue.tileColor != null)) && level.tilePattern !== 'checkerboard') {
     violations.push('Подсказки с условием цвета клетки требуют видимый checkerboard-узор на всей доске (level.tilePattern).');
@@ -101,14 +99,14 @@ export function lintLevel(level: Level): string[] {
     const otherPerson = level.people.find((person) => person.id === clue.otherPersonId);
     if (!otherPerson) {
       violations.push(`Подсказка "${clue.id}" (roomNumberComparison): персонаж "${clue.otherPersonId}" не найден.`);
-    } else if (otherPerson.isVictim) {
+      } else if (otherPerson.isVictim && !victimIdentityHidden) {
       violations.push(`Подсказка "${clue.id}" (roomNumberComparison) упоминает жертву (${otherPerson.name}); замените её другим персонажем.`);
     }
     if (clue.subject.type === 'person') {
       const subject = level.people.find((person) => person.id === clue.subject.id);
       if (!subject) {
         violations.push(`Подсказка "${clue.id}" (roomNumberComparison): персонаж "${clue.subject.id}" не найден.`);
-      } else if (subject.isVictim) {
+      } else if (subject.isVictim && !victimIdentityHidden) {
         violations.push(`Подсказка "${clue.id}" (roomNumberComparison) адресована жертве (${subject.name}).`);
       }
       if (clue.subject.id === clue.otherPersonId) {
@@ -117,7 +115,7 @@ export function lintLevel(level: Level): string[] {
     }
   }
   for (const person of level.people) {
-    if (person.isVictim) continue;
+    if (person.isVictim && !victimIdentityHidden) continue;
     const hasPersonalClue = level.clues.some(
       (clue) => 'subject' in clue && clue.subject.type === 'person' && clue.subject.id === person.id,
     );
@@ -127,14 +125,17 @@ export function lintLevel(level: Level): string[] {
   }
   const victim = level.people.find((p) => p.isVictim);
   if (victim) {
-    const victimClues = level.clues.filter(
-      (clue) => 'subject' in clue && clue.subject.type === 'person' && clue.subject.id === victim.id,
-    );
-    for (const clue of victimClues) {
-      violations.push(
-        `Подсказка "${clue.id}" адресована жертве (${victim.name}) — личные клю жертвы невидимы игроку (сайдбар показывает фиксированную строку). Удалите её или перепринадлежите другому человеку.`,
+    if (!victimIdentityHidden) {
+      const victimClues = level.clues.filter(
+        (clue) => 'subject' in clue && clue.subject.type === 'person' && clue.subject.id === victim.id,
       );
+      for (const clue of victimClues) {
+        violations.push(
+          `Подсказка "${clue.id}" адресована жертве (${victim.name}) — личные клю жертвы невидимы игроку (сайдбар показывает фиксированную строку). Удалите её или перепринадлежите другому человеку.`,
+        );
+      }
     }
+
     // Канон авторинга: общая клю не может указывать расположение жертвы. Клю с субъектом
     // role:'victim' всегда позиционна (клю, определяющие роли — roleSingleton/letterRole и
     // т.п. — субъекта-жертву не используют) и попадает в общие, давая игроку непропорционально

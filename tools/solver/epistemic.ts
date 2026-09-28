@@ -15,6 +15,18 @@ export interface EpistemicReport {
   worlds: EpistemicWorldResult[];
 }
 
+export interface HiddenVictimWorldResult {
+  victimId: PersonId;
+  murdererId: PersonId;
+  status: EpistemicStatus;
+  reason?: string;
+}
+
+export interface HiddenVictimEpistemicReport {
+  baseline: EpistemicStatus;
+  worlds: HiddenVictimWorldResult[];
+}
+
 export function createEpistemicWorld(
   level: Level,
   roleId: string,
@@ -88,4 +100,67 @@ export function checkHiddenRoleEpistemics(level: Level, roleId: string, candidat
   }
 
   return { baseline, worlds };
+}
+
+export function createHiddenVictimWorld(level: Level, victimId: PersonId, murdererId: PersonId): Level {
+  const victims = level.people.filter((person) => person.isVictim);
+  if (victims.length !== 1) {
+    throw new Error(`Expected exactly one authored victim, found ${victims.length}.`);
+  }
+
+  const victim = level.people.find((person) => person.id === victimId);
+  const murderer = level.people.find((person) => person.id === murdererId);
+  if (!victim) throw new Error(`Unknown victim candidate "${victimId}".`);
+  if (!murderer) throw new Error(`Unknown murderer candidate "${murdererId}".`);
+  if (victimId === murdererId) throw new Error('The victim cannot also be the murderer.');
+
+  return {
+    ...level,
+    people: level.people.map((person) => ({
+      ...person,
+      isVictim: person.id === victimId,
+      isMurderer: person.id === murdererId,
+    })),
+  };
+}
+
+export function checkHiddenVictimEpistemics(level: Level, candidateIds: PersonId[]): HiddenVictimEpistemicReport {
+  if (!level.meta.victimIdentityHidden) {
+    throw new Error('Hidden-victim epistemics require meta.victimIdentityHidden.');
+  }
+  const victims = level.people.filter((person) => person.isVictim);
+  const murderers = level.people.filter((person) => person.isMurderer);
+  if (victims.length !== 1) throw new Error(`Expected exactly one authored victim, found ${victims.length}.`);
+  if (murderers.length !== 1) throw new Error(`Expected exactly one authored murderer, found ${murderers.length}.`);
+  if (new Set(candidateIds).size !== candidateIds.length) {
+    throw new Error('Victim candidates must not contain duplicate ids.');
+  }
+
+  const currentVictimId = victims[0].id;
+  const currentMurdererId = murderers[0].id;
+  if (!candidateIds.includes(currentVictimId)) {
+    throw new Error(`Victim candidates must include the authored victim "${currentVictimId}".`);
+  }
+  for (const candidateId of candidateIds) {
+    if (!level.people.some((person) => person.id === candidateId)) {
+      throw new Error(`Unknown victim candidate "${candidateId}".`);
+    }
+  }
+
+  const worlds: HiddenVictimWorldResult[] = [];
+  for (const victimId of candidateIds) {
+    for (const murderer of level.people) {
+      if (murderer.id === victimId) continue;
+      if (victimId === currentVictimId && murderer.id === currentMurdererId) continue;
+      const result = solveLevel(createHiddenVictimWorld(level, victimId, murderer.id));
+      worlds.push({
+        victimId,
+        murdererId: murderer.id,
+        status: result.status,
+        ...(result.status === 'INCONCLUSIVE' ? { reason: result.reason } : {}),
+      });
+    }
+  }
+
+  return { baseline: solveLevel(level).status, worlds };
 }

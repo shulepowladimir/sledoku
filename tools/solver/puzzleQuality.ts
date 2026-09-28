@@ -60,7 +60,7 @@ export function checkPuzzleQuality(level: Level): PuzzleQualityReport {
   const budget = level.meta.maxFullyPinnedPeople;
 
   const perPerson: PersonQuality[] = level.people
-    .filter((p) => !p.isVictim)
+    .filter((p) => level.meta.victimIdentityHidden || !p.isVictim)
     .map((person) => {
       const soloDomainSize = computeUnaryDomain(level, index, legalCells, person.id).length;
       return { personId: person.id, name: person.name, soloDomainSize, fullyPinned: soloDomainSize <= 1 };

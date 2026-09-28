@@ -16,11 +16,11 @@ export const ItemLibrary = {
   washer: item('washer', 'washingMachine', 'decorative', 'Стиральная машина'),
   // ——— Дом великана (27-gianthouse) ———
   kettle: item('kettle', 'kettle', 'decorative', 'Чайник'),
-  fryingPan: item('fryingPan', 'fryingPan', 'occupiable', 'Сковорода'),
+  fryingPan: item('fryingPan', 'fryingPan', 'decorative', 'Сковорода'),
   burner: item('burner', 'burner', 'decorative', 'Конфорка'),
   pillow: item('pillow', 'pillow', 'occupiable', 'Подушка'),
   remote: item('remote', 'remote', 'decorative', 'Пульт'),
-  plate: item('plate', 'plate', 'occupiable', 'Тарелка'),
+  plate: item('plate', 'plate', 'decorative', 'Тарелка'),
   cup: item('cup', 'cup', 'decorative', 'Чашка'),
   slippers: item('slippers', 'slippers', 'decorative', 'Тапки'),
   cat: item('cat', 'cat', 'decorative', 'Кот'),

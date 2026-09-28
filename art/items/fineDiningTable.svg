@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Fine dining table with a draped linen cloth and a place setting. -->
+  <!-- Short wooden legs showing below the draped cloth -->
+  <path d="M23 61 L24 78 Q27 81 30 78 L31 64 Z" fill="#B87F33" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M65 64 L66 78 Q69 81 72 78 L73 61 Z" fill="#B87F33" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- Cloth skirt and tabletop -->
+  <path d="M13 34 Q13 28 20 27 L76 27 Q83 28 83 34 L80 68 Q48 78 16 68 Z" fill="#D5DCE1" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <ellipse cx="48" cy="34" rx="36" ry="22" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3"/>
+  <path d="M18 35 Q48 53 78 35" fill="none" stroke="#D5DCE1" stroke-width="2"/>
+  <path d="M20 59 Q48 67 76 59" fill="none" stroke="#F5E9D0" stroke-width="2"/>
+
+  <!-- Porcelain setting -->
+  <ellipse cx="48" cy="34" rx="17" ry="12" fill="#D5DCE1" stroke="#1A1A1A" stroke-width="2.5"/>
+  <ellipse cx="48" cy="33" rx="13" ry="9" fill="#F5E9D0" stroke="#1F3A5F" stroke-width="1.8"/>
+  <ellipse cx="48" cy="33" rx="7" ry="4.5" fill="#F5E9D0" stroke="#E0A94A" stroke-width="1.5"/>
+
+  <!-- Fork and knife -->
+  <path d="M25 25 V44 M21 25 V32 M25 25 V32 M29 25 V32 M21 32 Q25 35 29 32" fill="none" stroke="#5C6670" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M71 25 Q76 31 71 36 V44 M71 25 V36" fill="none" stroke="#5C6670" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M34 47 Q48 51 62 47" fill="none" stroke="#E8B95F" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

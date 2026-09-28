@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Porcelain vase with a compact bouquet for the dining room. -->
+  <ellipse cx="48" cy="85" rx="27" ry="5" fill="#3A2A20"/>
+  <path d="M40 46 Q37 56 31 69 Q30 78 48 80 Q66 78 65 69 Q59 56 56 46 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M39 49 Q48 54 57 49 M34 69 Q48 75 62 69" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round"/>
+  <path d="M47 48 Q43 34 35 27 M49 48 Q53 32 62 25 M45 49 Q32 42 28 36 M51 48 Q64 42 69 34" fill="none" stroke="#44663A" stroke-width="3" stroke-linecap="round"/>
+  <path d="M35 28 Q27 27 27 20 Q35 17 39 24 Q39 29 35 28 Z" fill="#7FA85B" stroke="#1A1A1A" stroke-width="1.8"/>
+  <path d="M62 27 Q67 19 74 23 Q74 31 66 32 Z" fill="#5E8A46" stroke="#1A1A1A" stroke-width="1.8"/>
+  <path d="M29 38 Q21 33 23 27 Q32 27 35 34 Q34 39 29 38 Z" fill="#7FA85B" stroke="#1A1A1A" stroke-width="1.8"/>
+  <circle cx="40" cy="24" r="7" fill="#C9536B" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="40" cy="24" r="2.2" fill="#F5E9D0"/>
+  <circle cx="62" cy="21" r="6.5" fill="#E08BA0" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="62" cy="21" r="2" fill="#E0A94A"/>
+  <path d="M46 43 Q48 40 50 43" fill="none" stroke="#E8B95F" stroke-width="2" stroke-linecap="round"/>
+</svg>

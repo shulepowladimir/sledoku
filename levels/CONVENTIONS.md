@@ -167,6 +167,18 @@
 - croissant — decorative (круассан; bakery)
 - coffeeMachine — decorative, 2 клетки (кофемашина; bakery)
 
+## Уровневые типы — restaurant
+
+- fineDiningTable — decorative (стол со скатертью и сервировкой)
+- kitchenIsland — decorative, 2 клетки (кухонный остров)
+- waiterTrolley — decorative (тележка официанта)
+- servingCloche — decorative (блюдо под стеклянным колпаком)
+- flowerVase — decorative (ваза с цветами)
+- wineRack — decorative (реюз существующего стеллажа с бутылками)
+- wineGlass — decorative (реюз существующего бокала)
+
+Иконки темы/предметов: `restaurant`, `fineDiningTable`, `kitchenIsland`, `waiterTrolley`, `servingCloche`, `flowerVase`.
+
 ## Уровневые типы — golfclub
 
 - golfHole — decorative (лунка с флажком)

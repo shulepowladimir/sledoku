@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Covered tasting dish in a clear glass cloche. -->
+  <ellipse cx="48" cy="80" rx="35" ry="7" fill="#3A2A20"/>
+  <ellipse cx="48" cy="69" rx="36" ry="11" fill="#D5DCE1" stroke="#1A1A1A" stroke-width="3"/>
+  <ellipse cx="48" cy="66" rx="32" ry="8" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.4"/>
+  <path d="M22 63 Q22 30 48 25 Q74 30 74 63 Z" fill="#9CC3E0" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M27 59 Q28 36 44 30 M65 39 Q69 48 68 57" fill="none" stroke="#F5E9D0" stroke-width="3" stroke-linecap="round"/>
+  <path d="M27 62 Q48 67 69 62" fill="none" stroke="#4A7BA6" stroke-width="2"/>
+  <path d="M43 25 Q43 18 48 17 Q53 18 53 25" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <ellipse cx="48" cy="66" rx="13" ry="4.5" fill="#E0A94A" stroke="#1A1A1A" stroke-width="1.6"/>
+  <path d="M39 65 Q48 60 57 65 Q48 69 39 65 Z" fill="#7B2431" stroke="#1A1A1A" stroke-width="1.4"/>
+  <circle cx="48" cy="63" r="2" fill="#E8B95F"/>
+</svg>

@@ -8,6 +8,7 @@ import { useIsMobile } from '../../hooks/useIsMobile';
 import { RosterAvatar } from './RosterAvatar';
 
 const VICTIM_LINE = 'Жертва находилась наедине с убийцей';
+const HIDDEN_VICTIM_RULE_LINE = 'Жертва и убийца — единственные люди в одной комнате.';
 
 function collapseGroupedClues(clues: Clue[]): Clue[] {
   const seenGroupIds = new Set<string>();
@@ -64,6 +65,8 @@ export function RosterPanel() {
   // owner is the hidden role holder, unknown to the player, so they cannot hang on a person's row.
   const generalClues = level.clues.filter((clue) => !('subject' in clue) || clue.subject.type === 'role');
   const displayGeneralClues = collapseGroupedClues(generalClues);
+  const hiddenVictimRule = level.meta.victimIdentityHidden ? HIDDEN_VICTIM_RULE_LINE : undefined;
+  const generalClueCount = displayGeneralClues.length + (hiddenVictimRule ? 1 : 0);
   // Desktop roster columns by headcount: 6 people (6×6 levels) → 2 columns of 3;
   // 7–8 → 2 columns; 9+ (incl. 12×12) → 3 columns of 4. Tutorial (5) stays single-column.
   const columnCount = level.people.length >= 9 ? 3 : level.people.length >= 6 ? 2 : 1;
@@ -100,7 +103,7 @@ export function RosterPanel() {
       <aside className="roster-panel roster-panel--mobile">
         <h2 className="roster-panel__title">{level.meta.title}</h2>
 
-        {displayGeneralClues.length > 0 && (
+        {generalClueCount > 0 && (
           <section className="roster-panel__section" data-testid="roster-general">
             <button
               type="button"
@@ -108,11 +111,12 @@ export function RosterPanel() {
               onClick={() => setGeneralOpen((v) => !v)}
               aria-expanded={generalOpen}
             >
-              Общие подсказки <span className="roster-mobile__general-count">{displayGeneralClues.length}</span>
+              Общие подсказки <span className="roster-mobile__general-count">{generalClueCount}</span>
               <span className="roster-mobile__chevron" aria-hidden>{generalOpen ? '▲' : '▼'}</span>
             </button>
             {generalOpen && (
               <ol className="clue-list roster-mobile__general-list">
+                {hiddenVictimRule && <li className="clue-item">{hiddenVictimRule}</li>}
                 {displayGeneralClues.map((clue) => (
                   <li key={clue.id} className="clue-item">{clue.text}</li>
                 ))}
@@ -125,7 +129,10 @@ export function RosterPanel() {
           <ul className="roster-list roster-mobile__list">
             {level.people.map((person) => {
               const { isPlaced, statusClass, selectedClass, placedStatusText, unplacedStatusText } = headerFor(person);
-              const personalClues = person.isVictim ? [] : personalCluesFor(level.clues, person.id);
+              const personalClues = person.isVictim && !level.meta.victimIdentityHidden
+                ? []
+                : personalCluesFor(level.clues, person.id);
+              const showVictimLine = person.isVictim && !level.meta.victimIdentityHidden;
               const expanded = expandedPersonId === person.id;
               return (
                 <li key={person.id} className={`roster-entry ${statusClass} ${selectedClass} roster-mobile__entry${expanded ? ' roster-mobile__entry--open' : ''}`}>
@@ -143,7 +150,7 @@ export function RosterPanel() {
                   </button>
                   {expanded && (
                     <ul className="roster-entry__clues roster-mobile__clues">
-                      {person.isVictim ? (
+                      {showVictimLine ? (
                         <li className="roster-entry__clue">{VICTIM_LINE}</li>
                       ) : (
                         personalClues.map((clue) => (
@@ -189,7 +196,10 @@ export function RosterPanel() {
               <ul key={col} className={`roster-list${renderedColumnCount > 1 ? ' roster-list--stack' : ''}`}>
                 {level.people.slice(from, to).map((person) => {
                   const { isPlaced, statusClass, selectedClass, placedStatusText, unplacedStatusText } = headerFor(person);
-                  const personalClues = person.isVictim ? [] : personalCluesFor(level.clues, person.id);
+                  const personalClues = person.isVictim && !level.meta.victimIdentityHidden
+                    ? []
+                    : personalCluesFor(level.clues, person.id);
+                  const showVictimLine = person.isVictim && !level.meta.victimIdentityHidden;
                   return (
                     <li key={person.id} className={`roster-entry ${statusClass} ${selectedClass}`}>
                       <button
@@ -203,7 +213,7 @@ export function RosterPanel() {
                         <span className="roster-entry__status">{isPlaced ? placedStatusText : unplacedStatusText}</span>
                       </button>
                       <ul className="roster-entry__clues">
-                        {person.isVictim ? (
+                        {showVictimLine ? (
                           <li className="roster-entry__clue">{VICTIM_LINE}</li>
                         ) : (
                           personalClues.map((clue) => (
@@ -222,10 +232,11 @@ export function RosterPanel() {
         </div>
       </section>
 
-      {displayGeneralClues.length > 0 && (
+      {generalClueCount > 0 && (
         <section className="roster-panel__section" data-testid="roster-general">
           <h3>Общие подсказки</h3>
           <ol className="clue-list">
+            {hiddenVictimRule && <li className="clue-item">{hiddenVictimRule}</li>}
             {displayGeneralClues.map((clue) => (
               <li key={clue.id} className="clue-item">
                 {clue.text}

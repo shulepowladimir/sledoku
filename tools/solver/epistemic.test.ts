@@ -3,7 +3,12 @@ import { test } from 'node:test';
 import type { PersonId } from '../../src/types/level';
 import { fightClubLevel } from '../../levels/40-fightclub';
 import { bakeryLevel } from '../../levels/51-bakery';
-import { checkHiddenRoleEpistemics, createEpistemicWorld } from './epistemic';
+import {
+  checkHiddenRoleEpistemics,
+  checkHiddenVictimEpistemics,
+  createEpistemicWorld,
+  createHiddenVictimWorld,
+} from './epistemic';
 import { solveLevel } from './solve';
 
 const judgeCandidates = [
@@ -30,6 +35,45 @@ test('epistemic world changes only the selected hidden role and murderer', () =>
   assert.equal(grigory.isMurderer, false);
   assert.equal(world.clues, fightClubLevel.clues);
   assert.equal(world.solution, fightClubLevel.solution);
+});
+
+test('hidden-victim world changes only the selected victim and murderer', () => {
+  const world = createHiddenVictimWorld(bakeryLevel, 'boris', 'vasilisa');
+  const boris = world.people.find((person) => person.id === 'boris')!;
+  const khariton = world.people.find((person) => person.id === 'khariton')!;
+  const vasilisa = world.people.find((person) => person.id === 'vasilisa')!;
+
+  assert.equal(boris.isVictim, true);
+  assert.equal(khariton.isVictim, false);
+  assert.equal(vasilisa.isMurderer, true);
+  assert.equal(world.people.find((person) => person.id === 'esenya')?.isMurderer, false);
+  assert.equal(world.clues, bakeryLevel.clues);
+  assert.equal(world.solution, bakeryLevel.solution);
+});
+
+test('hidden-victim epistemics enumerates candidate victim and murderer pairs', () => {
+  const level = {
+    ...bakeryLevel,
+    meta: { ...bakeryLevel.meta, victimIdentityHidden: true },
+  };
+  const candidates = level.people.map((person) => person.id);
+  const report = checkHiddenVictimEpistemics(level, candidates);
+
+  assert.equal(report.baseline, 'PROVEN_UNIQUE');
+  assert.equal(report.worlds.length, 41);
+  assert.deepEqual(
+    report.worlds
+      .filter((world) => world.status !== 'NO_SOLUTION')
+      .map((world) => `${world.victimId}/${world.murdererId}:${world.status}`)
+      .sort(),
+    [
+      'boris/vasilisa:PROVEN_UNIQUE',
+      'denis/gennady:PROVEN_UNIQUE',
+      'esenya/khariton:PROVEN_UNIQUE',
+      'gennady/denis:PROVEN_UNIQUE',
+      'vasilisa/boris:PROVEN_UNIQUE',
+    ],
+  );
 });
 
 test('fight-club judge deduction rejects every alternative role/murderer world', () => {

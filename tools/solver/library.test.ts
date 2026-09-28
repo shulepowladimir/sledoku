@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { libraryLevel, roomForCell } from '../../levels/47-library';
+import { giantHouseLevel } from '../../levels/27-gianthouse';
+import { resortLevel } from '../../levels/45-resort';
+import { ItemLibrary } from '../../levels/itemLibrary';
+import { bakeryLevel } from '../../levels/51-bakery';
+import { lintLevel } from './lint';
 import { checkPuzzleQuality } from './puzzleQuality';
 import { solveLevel } from './solve';
 
@@ -128,4 +133,51 @@ test('library-01 room map matches the approved layout', () => {
       `unexpected room layout on row ${row + 1}`,
     );
   }
+});
+
+test('hidden-victim levels allow visible personal clues while ordinary levels still reject them', () => {
+  const victim = bakeryLevel.people.find((person) => person.isVictim)!;
+  const victimClue = {
+    id: 'hidden-victim-test-clue',
+    type: 'corner' as const,
+    subject: { type: 'person' as const, id: victim.id },
+    text: `${victim.name} находился в углу своей зоны.`,
+  };
+  const hiddenLevel = {
+    ...bakeryLevel,
+    meta: { ...bakeryLevel.meta, victimIdentityHidden: true },
+    clues: [
+      ...bakeryLevel.clues,
+      victimClue,
+      {
+        id: 'hidden-victim-role-test-clue',
+        type: 'roomMembership' as const,
+        subject: { type: 'role' as const, role: 'victim' },
+        roomId: 'hall',
+        text: 'Жертва находилась в зале.',
+      },
+    ],
+  };
+
+  assert.ok(!lintLevel(hiddenLevel).some((violation) => violation.includes(`жертве (${victim.name})`)));
+  assert.ok(lintLevel(hiddenLevel).some((violation) => violation.includes("role:'victim'")));
+  assert.ok(lintLevel({ ...hiddenLevel, meta: bakeryLevel.meta }).some((violation) => violation.includes(`жертве (${victim.name})`)));
+});
+
+test('hidden-victim puzzle quality includes the victim among clue-pinned people', () => {
+  const victim = bakeryLevel.people.find((person) => person.isVictim)!;
+  const hiddenLevel = {
+    ...bakeryLevel,
+    meta: { ...bakeryLevel.meta, victimIdentityHidden: true },
+  };
+
+  assert.ok(checkPuzzleQuality(hiddenLevel).perPerson.some((person) => person.personId === victim.id));
+});
+
+test('plate and frying pan are occupiable only in Giant House', () => {
+  assert.equal(ItemLibrary.plate().kind, 'decorative');
+  assert.equal(ItemLibrary.fryingPan().kind, 'decorative');
+  assert.equal(giantHouseLevel.itemTypes.find((type) => type.id === 'plate')?.kind, 'occupiable');
+  assert.equal(giantHouseLevel.itemTypes.find((type) => type.id === 'fryingPan')?.kind, 'occupiable');
+  assert.equal(resortLevel.itemTypes.find((type) => type.id === 'plate')?.kind, 'decorative');
 });
