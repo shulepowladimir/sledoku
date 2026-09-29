@@ -27,6 +27,17 @@ export interface HiddenVictimEpistemicReport {
   worlds: HiddenVictimWorldResult[];
 }
 
+export interface MurdererWorldResult {
+  murdererId: PersonId;
+  status: EpistemicStatus;
+  reason?: string;
+}
+
+export interface MurdererEpistemicReport {
+  baseline: EpistemicStatus;
+  worlds: MurdererWorldResult[];
+}
+
 export function createEpistemicWorld(
   level: Level,
   roleId: string,
@@ -122,6 +133,50 @@ export function createHiddenVictimWorld(level: Level, victimId: PersonId, murder
       isMurderer: person.id === murdererId,
     })),
   };
+}
+
+export function createMurdererWorld(level: Level, murdererId: PersonId): Level {
+  const victims = level.people.filter((person) => person.isVictim);
+  if (victims.length !== 1) {
+    throw new Error(`Expected exactly one victim, found ${victims.length}.`);
+  }
+
+  const murderer = level.people.find((person) => person.id === murdererId);
+  if (!murderer) throw new Error(`Unknown murderer candidate "${murdererId}".`);
+  if (murderer.isVictim) throw new Error('The victim cannot be used as a murderer candidate.');
+
+  return {
+    ...level,
+    people: level.people.map((person) => ({
+      ...person,
+      isMurderer: person.id === murdererId,
+    })),
+  };
+}
+
+export function checkMurdererEpistemics(level: Level): MurdererEpistemicReport {
+  const victims = level.people.filter((person) => person.isVictim);
+  if (victims.length !== 1) {
+    throw new Error(`Expected exactly one victim, found ${victims.length}.`);
+  }
+  const murderers = level.people.filter((person) => person.isMurderer);
+  if (murderers.length !== 1) {
+    throw new Error(`Expected exactly one authored murderer, found ${murderers.length}.`);
+  }
+
+  const authoredMurdererId = murderers[0].id;
+  const worlds = level.people
+    .filter((person) => !person.isVictim && person.id !== authoredMurdererId)
+    .map((person) => {
+      const result = solveLevel(createMurdererWorld(level, person.id));
+      return {
+        murdererId: person.id,
+        status: result.status,
+        ...(result.status === 'INCONCLUSIVE' ? { reason: result.reason } : {}),
+      };
+    });
+
+  return { baseline: solveLevel(level).status, worlds };
 }
 
 export function checkHiddenVictimEpistemics(level: Level, candidateIds: PersonId[]): HiddenVictimEpistemicReport {

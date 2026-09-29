@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Ночной трейлер у петли-проезда: луна, стоянка и силуэт дерева. -->
+  <rect x="7" y="7" width="82" height="82" rx="19" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- Луна и редкие звёзды -->
+  <path d="M69 16 Q56 22 60 35 Q64 47 78 43 Q72 54 61 51 Q46 46 49 32 Q52 19 69 16 Z"
+        fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M32 19 L34 24 L39 26 L34 28 L32 33 L30 28 L25 26 L30 24 Z" fill="#E8B95F"/>
+  <circle cx="44" cy="39" r="2.2" fill="#F5E9D0"/>
+  <circle cx="79" cy="57" r="1.8" fill="#E8B95F"/>
+
+  <!-- Дерево у края участка -->
+  <path d="M19 65 Q17 57 23 51 Q20 43 27 39 Q35 44 31 52 Q38 59 33 66 Z"
+        fill="#5E8A46" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M25 63 L26 74" stroke="#8F5A3A" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Ночной съезд -->
+  <path d="M12 77 Q33 67 50 75 Q67 83 85 72 L85 88 L12 88 Z" fill="#786862"/>
+  <path d="M14 81 Q34 72 49 79 M60 82 Q71 86 83 78" fill="none" stroke="#CFC3AF" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- Трейлер -->
+  <ellipse cx="58" cy="77" rx="27" ry="4" fill="#3A2A20"/>
+  <circle cx="43" cy="73" r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="73" cy="73" r="5" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M38 68 L38 48 Q38 44 42 44 L76 44 Q81 44 81 49 L81 69 Z"
+        fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M36 56 L83 56 L83 63 L36 63 Z" fill="#B87F33" stroke="#1A1A1A" stroke-width="2"/>
+  <rect x="44" y="48" width="10" height="6" rx="1.5" fill="#4A7BA6" stroke="#1A1A1A" stroke-width="1.8"/>
+  <rect x="59" y="48" width="10" height="6" rx="1.5" fill="#4A7BA6" stroke="#1A1A1A" stroke-width="1.8"/>
+  <path d="M71 68 L71 58 L77 58 L77 68 Z" fill="#3A2A20" stroke="#1A1A1A" stroke-width="1.8"/>
+  <circle cx="79" cy="66" r="2" fill="#C8102E"/>
+</svg>

@@ -1,13 +1,17 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import type { PersonId } from '../../src/types/level';
+import { cellId, type PersonId } from '../../src/types/level';
 import { fightClubLevel } from '../../levels/40-fightclub';
 import { bakeryLevel } from '../../levels/51-bakery';
+import { trailerParkLevel } from '../../levels/56-trailerpark';
+import { wildwest2Level } from '../../levels/14-wildwest2';
 import {
+  checkMurdererEpistemics,
   checkHiddenRoleEpistemics,
   checkHiddenVictimEpistemics,
   createEpistemicWorld,
   createHiddenVictimWorld,
+  createMurdererWorld,
 } from './epistemic';
 import { solveLevel } from './solve';
 
@@ -119,4 +123,31 @@ test('bakery deduction rejects every alternative murderer, including Boris', () 
     assert.equal(result.status, candidate.isMurderer ? 'PROVEN_UNIQUE' : 'NO_SOLUTION',
       `${candidate.name} must not remain a possible murderer; solver returned ${JSON.stringify(result)}`);
   }
+});
+
+test('murderer epistemics checks every suspect after redundant clue removal', () => {
+  assert.ok(!trailerParkLevel.clues.some((clue) =>
+    clue.id === 'tp-zoya-cactus-line' || clue.id === 'tp-esenya-near-barbecue'));
+
+  const world = createMurdererWorld(trailerParkLevel, 'viktor');
+  assert.equal(world.people.find((person) => person.id === 'viktor')?.isMurderer, true);
+  assert.equal(world.people.find((person) => person.id === 'zoya')?.isMurderer, false);
+  assert.equal(world.clues, trailerParkLevel.clues);
+  assert.equal(world.solution, trailerParkLevel.solution);
+
+  const currentReport = checkMurdererEpistemics(trailerParkLevel);
+  assert.equal(currentReport.baseline, 'PROVEN_UNIQUE');
+  assert.equal(currentReport.worlds.length, 9);
+  assert.ok(currentReport.worlds.every((world) => world.status === 'NO_SOLUTION'));
+});
+
+test('wildwest-02 replaces the street urn with two tumbleweeds and stays uniquely solvable', () => {
+  const itemAt = (row: number, col: number) => wildwest2Level.items.find((item) => item.cells.includes(cellId(row, col)));
+
+  assert.equal(itemAt(6, 8)?.typeId, 'tumbleweed');
+  assert.equal(itemAt(6, 3)?.typeId, 'tumbleweed');
+  assert.equal(wildwest2Level.items.filter((item) => item.typeId === 'tumbleweed').length, 2);
+  assert.ok(!wildwest2Level.items.some((item) => item.typeId === 'trashcan'));
+  assert.ok(!wildwest2Level.itemTypes.some((itemType) => itemType.id === 'trashcan'));
+  assert.equal(solveLevel(wildwest2Level).status, 'PROVEN_UNIQUE');
 });
