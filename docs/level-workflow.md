@@ -7,7 +7,8 @@ Use this workflow for new levels and changes to existing level data. Keep the de
 Before editing the level file, record only the decisions that affect implementation:
 
 - User-fixed map, size, theme, title, cast, or mechanics.
-- An acceptance contract for every hard requirement: exact common-clue count (counting distinct displayed groups), density target, fully-pinned-person budget, map/placement constraints, and role-deduction outcomes. Mark each criterion as hard or flexible, and name its automated assertion. Do not draft the full level until the hard limits are explicit.
+- An acceptance contract for every hard requirement: common-clue count only when explicitly fixed (count distinct displayed groups), per-person clue target (prefer 1–2; normally at most 3; a fourth only when unavoidable and for at most 1–2 people), density target, fully-pinned-person budget, map/placement constraints, and role-deduction outcomes. Mark each criterion as hard or flexible, and name its automated assertion. Do not draft the full level until the hard limits are explicit.
+- Treat zone-shape composition as a design criterion: avoid a regular map made of four equal square/rectangular zones; vary outlines with bends, steps, and elongated areas. Do not invent a numerical linear-to-bent-zone ratio; the current project canon has no recorded number.
 - Board dimensions, room layout, intended actor count, and victim/murderer room.
 - The player's deduction goal, any hidden role, and the intended decoy.
 - Whether this level introduces a new mechanic or uses existing clue types.
@@ -24,6 +25,8 @@ Use `floorTexture` only when the texture itself is informative: either the same 
 3. Resolve a `MULTIPLE` result by inspecting the reported alternate solution. Add or change one clue at a time, then rerun the fast validator.
 4. Treat `INCONCLUSIVE` as unverified. Do not infer a cause from a timeout; inspect the solver status and use a focused diagnostic.
 5. Do not run redundancy pruning on every iteration. `npm run validate-redundancy -- levels/<file>.ts` is an optional end-of-design report; its suggestions are not a release gate and clues should not be removed mechanically.
+
+Review clues semantically from the player's perspective: detect facts repeated across different clue types (for example, a named zone plus an item that exists only in that zone, or an exact column plus its implied parity). Phrase each retained clue directly. Do not add common clues to meet an assumed quota; check whether each contributes a useful deduction beyond personal clues and the game's core invariants.
 
 Add level-specific assertions for user-approved clue-count and placement limits before authoring is considered complete. Both `npm run validate-level` and `npm run validate-all` enforce at least 40% combined item/floor-feature density and zero fully pinned people for new levels; existing density exceptions and the apartment pin exception are explicitly grandfathered in `tools/solver/acceptance.ts` and must not be extended without user approval.
 

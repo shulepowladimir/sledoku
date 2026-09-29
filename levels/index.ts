@@ -56,6 +56,8 @@ import { cablecarLevel } from './53-cablecar';
 import { restaurantLevel } from './54-restaurant';
 import { autoshopLevel } from './55-autoshop';
 import { trailerParkLevel } from './56-trailerpark';
+import { surpriseLevel } from './57-surprise';
+import { cruiseLinerLevel } from './58-cruiseliner';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -115,8 +117,12 @@ export const levels: Level[] = [
   restaurantLevel,
   autoshopLevel,
   trailerParkLevel,
+  surpriseLevel,
+  cruiseLinerLevel,
 ];
 
-/** All non-tutorial levels — used by the level menu grid, size filters, profile stats and
- *  leaderboards. The tutorial level lives outside the common categorization (see LevelMeta.isTutorial). */
-export const gameLevels: Level[] = levels.filter((level) => !level.meta.isTutorial);
+/** Player-facing levels — used by the menu, size filters, profile stats and leaderboards.
+ *  Hidden levels stay in `levels` for validation and regression tests. */
+export const gameLevels: Level[] = levels.filter(
+  (level) => !level.meta.isTutorial && !level.meta.hiddenFromMenu,
+);

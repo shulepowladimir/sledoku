@@ -282,6 +282,7 @@ const level: Level = {
     theme: 'bowling',
     difficulty: 8,
     maxFullyPinnedPeople: 0,
+    menuTag: 'hard',
   },
   size,
   cols,

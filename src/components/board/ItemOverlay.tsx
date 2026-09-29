@@ -18,10 +18,12 @@ export function ItemOverlay({ item, itemType }: ItemOverlayProps) {
   const width = (maxCol - minCol + 1) * CELL_SIZE;
   const height = (maxRow - minRow + 1) * CELL_SIZE;
   const style: CSSProperties = { left: minCol * CELL_SIZE, top: minRow * CELL_SIZE, width, height };
-  const iconSize = Math.min(width, height) * 0.8;
+  const iconSize = itemType.render === 'span'
+    ? Math.round(Math.max(width, height) * 0.9)
+    : Math.min(width, height) * 0.8;
 
   return (
-    <div className="item-overlay" style={style}>
+    <div className="item-overlay" style={style} data-testid={`item-overlay-${item.id}`}>
       <ItemIcon itemType={itemType} size={iconSize} />
     </div>
   );

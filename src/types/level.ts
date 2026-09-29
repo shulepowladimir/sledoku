@@ -39,10 +39,9 @@ export interface ItemType {
   kind: ItemKind;
   icon: string; // key into the icon registry
   /** Render mode. Absent (default): a single icon centered over the item's bounding box.
-   *  'tile': the icon is repeated per cell at full cell size — for multi-cell "wall"-like
-   *  items (e.g. hedge bushes of a park maze) whose cells tile seamlessly, like floor
-   *  textures, while still being a regular item (clues, tooltip, outline). */
-  render?: 'tile';
+   *  'tile': repeat the icon in each cell; 'span': draw one icon sized to the longer side
+   *  of the bounding box for a single object spanning an elongated footprint. */
+  render?: 'tile' | 'span';
   /** Whether tiled items get the foliage scallops and shadow bands. Defaults to true;
    *  false keeps the polyomino contour without those depth decorations. */
   tileEdgeDepth?: boolean;
@@ -98,6 +97,8 @@ export interface LevelMeta {
   clueBalanceExempt?: boolean;
   /** Tutorial level: excluded from stats/leaderboards/records, rendered as a pinned "Обучение" card in the menu, runs the step-by-step tutorial scenario. */
   isTutorial?: boolean;
+  /** Excludes a registered level from player-facing lists while keeping it available to validation and tests. */
+  hiddenFromMenu?: boolean;
   /** Hides the victim's identity before solving and shows their ordinary personal clues in the roster. */
   victimIdentityHidden?: boolean;
   /** Desktop roster column sizes (top to bottom = left to right), e.g. [5, 3, 4] for 12 people.

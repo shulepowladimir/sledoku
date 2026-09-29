@@ -11,7 +11,7 @@ const tagGroups = [
   {
     id: 'hard',
     label: 'Сложно',
-    levelIds: ['parkmaze-01', 'heavy-01', 'wildwest-02', 'stadium-01', 'cablecar-01', 'wildwest-01', 'autoshop-01', 'space-01'],
+    levelIds: ['parkmaze-01', 'heavy-01', 'wildwest-02', 'stadium-01', 'cablecar-01', 'wildwest-01', 'autoshop-01', 'space-01', 'cruiseliner-01', 'bowling-01'],
   },
 ];
 
