@@ -562,6 +562,28 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       const roomB = index.cellsById.get(b)!.roomId;
       return roomA !== roomB && zonesTouch(level, index, roomA, roomB);
     }
+    case 'symmetricPosition': {
+      const subjectId = subjectPersonId(clue.subject, level);
+      const otherId = subjectPersonId(clue.other, level);
+      const subjectPerson = level.people.find((person) => person.id === subjectId)!;
+      const otherPerson = level.people.find((person) => person.id === otherId)!;
+      if ((clue.subjectGender && subjectPerson.gender !== clue.subjectGender)
+        || (clue.otherGender && otherPerson.gender !== clue.otherGender)) return false;
+
+      const subjectCellId = getCell(subjectId);
+      const otherCellId = getCell(otherId);
+      if (!subjectCellId || !otherCellId) return undefined;
+
+      const anchor = level.items.find((item) => item.id === clue.anchorItemId);
+      if (!anchor || anchor.cells.length !== 2) return false;
+      const [anchorCell1, anchorCell2] = anchor.cells.map((id) => index.cellsById.get(id));
+      if (!anchorCell1 || !anchorCell2) return false;
+
+      const subjectCell = index.cellsById.get(subjectCellId)!;
+      const otherCell = index.cellsById.get(otherCellId)!;
+      return subjectCell.row + otherCell.row === anchorCell1.row + anchorCell2.row
+        && subjectCell.col + otherCell.col === anchorCell1.col + anchorCell2.col;
+    }
     case 'itemAdjacencyOccupancy': {
       if (!allAssigned) return undefined;
       const itemsOfType = level.items.filter((i) => i.typeId === clue.itemTypeId);

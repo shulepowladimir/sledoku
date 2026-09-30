@@ -43,6 +43,7 @@ const ITEM_RELATED_CLUE_TYPES = new Set([
   'sameRoomAsItem',
   'occupiesItem',
   'relativeToItemOccupant',
+  'symmetricPosition',
 ]);
 
 function maxShareFor(type: string): number {

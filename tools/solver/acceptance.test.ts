@@ -20,6 +20,12 @@ test('new levels must meet the occupancy density target and avoid fully pinned p
     meta: { ...sparseLevel.meta, id: 'egypt-01' },
   };
   assert.deepEqual(checkLevelAcceptance(grandfatheredSparseLevel, 0), []);
+
+  const approvedWeddingException = {
+    ...sparseLevel,
+    meta: { ...sparseLevel.meta, id: 'wedding-01' },
+  };
+  assert.deepEqual(checkLevelAcceptance(approvedWeddingException, 0), []);
 });
 
 test('the approved apartment level retains its nonzero fully-pinned-person exception', () => {

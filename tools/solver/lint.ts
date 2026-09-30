@@ -15,6 +15,7 @@ function referencedRoles(clues: Clue[]): string[] {
     if ('subject' in clue && clue.subject.type === 'role') roles.push(clue.subject.role);
     if (clue.type === 'roleSingleton' || clue.type === 'sameRoomAsRole') roles.push(clue.roleId);
     if (clue.type === 'relativePosition' && clue.otherRole != null) roles.push(clue.otherRole);
+    if (clue.type === 'symmetricPosition' && clue.other.type === 'role') roles.push(clue.other.role);
   }
   return roles;
 }
@@ -84,6 +85,60 @@ export function lintLevel(level: Level): string[] {
     }
   }
   for (const clue of level.clues) {
+    if (clue.type === 'symmetricPosition') {
+      const subjectId = clue.subject.type === 'person'
+        ? clue.subject.id
+        : level.people.find((person) => (person.roles ?? []).includes(clue.subject.role))?.id;
+      const otherId = clue.other.type === 'person'
+        ? clue.other.id
+        : level.people.find((person) => (person.roles ?? []).includes(clue.other.role))?.id;
+
+      if (clue.subject.type === 'person' && !level.people.some((person) => person.id === clue.subject.id)) {
+        violations.push(`Подсказка "${clue.id}" (symmetricPosition): персонаж "${clue.subject.id}" не найден.`);
+      }
+      if (clue.other.type === 'person') {
+        const other = level.people.find((person) => person.id === clue.other.id);
+        if (!other) {
+          violations.push(`Подсказка "${clue.id}" (symmetricPosition): персонаж "${clue.other.id}" не найден.`);
+        } else if (other.isVictim && !victimIdentityHidden) {
+          violations.push(`Подсказка "${clue.id}" (symmetricPosition) связывает персонажа с известной жертвой (${other.name}).`);
+        }
+      }
+      if ((clue.subject.type === 'role' && clue.subject.role === 'victim')
+        || (clue.other.type === 'role' && clue.other.role === 'victim')) {
+        violations.push(`Подсказка "${clue.id}" (symmetricPosition) не может позиционировать известную жертву.`);
+      }
+      if (subjectId != null && subjectId === otherId) {
+        violations.push(`Подсказка "${clue.id}" (symmetricPosition) сравнивает персонажа с самим собой.`);
+      }
+      if (clue.subject.type === 'person' && clue.subjectGender != null) {
+        const subject = level.people.find((person) => person.id === clue.subject.id);
+        if (subject && subject.gender !== clue.subjectGender) {
+          violations.push(`Подсказка "${clue.id}" (symmetricPosition): пол персонажа не совпадает с subjectGender.`);
+        }
+      }
+      if (clue.other.type === 'person' && clue.otherGender != null) {
+        const other = level.people.find((person) => person.id === clue.other.id);
+        if (other && other.gender !== clue.otherGender) {
+          violations.push(`Подсказка "${clue.id}" (symmetricPosition): пол персонажа не совпадает с otherGender.`);
+        }
+      }
+
+      const anchor = level.items.find((item) => item.id === clue.anchorItemId);
+      if (!anchor) {
+        violations.push(`Подсказка "${clue.id}" (symmetricPosition): предмет-якорь "${clue.anchorItemId}" не найден.`);
+        continue;
+      }
+      const anchorCells = anchor.cells.map((id) => level.cells.find((cell) => cell.id === id));
+      const isTwoAdjacentCells = anchorCells.length === 2
+        && anchorCells.every((cell) => cell != null)
+        && Math.abs(anchorCells[0]!.row - anchorCells[1]!.row)
+          + Math.abs(anchorCells[0]!.col - anchorCells[1]!.col) === 1;
+      if (!isTwoAdjacentCells) {
+        violations.push(`Подсказка "${clue.id}" (symmetricPosition): предмет-якорь должен занимать ровно две смежные клетки.`);
+      }
+      continue;
+    }
     if (clue.type !== 'roomNumberComparison') continue;
     const numbers = new Set<number>();
     for (const room of level.rooms) {

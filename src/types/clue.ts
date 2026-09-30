@@ -1,4 +1,4 @@
-import type { PersonId, RoomId, ItemTypeId, Gender } from './level';
+import type { PersonId, RoomId, ItemId, ItemTypeId, Gender } from './level';
 
 // In ordinary levels, the victim has no person-subject clues because the roster shows a fixed sentence.
 // Opt-in hidden-victim levels may give them ordinary person-subject clues. Role subjects 'sheriff'/'murderer' denote the hidden anonymous holder of that role:
@@ -361,6 +361,16 @@ export interface AdjacentZonesPairClue extends ClueBase {
   otherRole?: string;
 }
 
+/** Two people occupy point-reflected cells around the midpoint of a two-cell anchor item. */
+export interface SymmetricPositionClue extends ClueBase {
+  type: 'symmetricPosition';
+  subject: Subject;
+  other: Subject;
+  anchorItemId: ItemId;
+  subjectGender?: Gender;
+  otherGender?: Gender;
+}
+
 /** Level-wide: "Every instance of item type T had at least one person standing next to it"
  *  (orthogonally adjacent cell, same room — same geometry as the adjacency clue). No subject. */
 export interface ItemAdjacencyOccupancyClue extends ClueBase {
@@ -525,6 +535,7 @@ export type Clue =
   | ZoneBoundaryClue
   | ZoneNeighborOfClue
   | AdjacentZonesPairClue
+  | SymmetricPositionClue
   | ItemAdjacencyOccupancyClue
   | RoomParityClue
   | RoomPopulationClue

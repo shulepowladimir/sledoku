@@ -15,6 +15,7 @@ const DENSITY_EXEMPT_LEVEL_IDS = new Set([
   'bowling-01',
   'chemlab-01',
   'cemetery-01',
+  'wedding-01',
 ]);
 
 // Apartment-01 is the only level with an approved nonzero fully-pinned-person allowance.
