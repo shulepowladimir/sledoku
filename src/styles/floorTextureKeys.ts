@@ -20,6 +20,7 @@ export const FLOOR_TEXTURE_KEYS = [
   'stairs',
   'cliff',
   'cobble',
+  'coral',
   'asphalt',
   'snow',
   'ice',

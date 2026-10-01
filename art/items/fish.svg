@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- fish — дружелюбная морская рыбка; широкий силуэт для двух клеток. -->
+
+  <!-- Хвост и плавники -->
+  <path d="M25 47 Q12 34 8 28 Q8 47 10 64 Q18 59 28 53 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <path d="M46 31 Q51 18 62 15 Q62 28 57 37 Z" fill="#E8B95F" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M47 60 Q55 72 66 72 Q64 62 58 56 Z" fill="#B87F33" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+
+  <!-- Тело -->
+  <path d="M20 48 Q28 27 54 27 Q75 27 86 47 Q77 68 53 69 Q29 69 20 48 Z" fill="#4A7BA6" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M24 47 Q32 31 53 31 Q71 31 80 46 Q61 41 47 47 Q34 53 24 59 Q21 54 24 47 Z" fill="#9CC3E0"/>
+  <path d="M37 36 Q44 45 38 60 M52 31 Q59 43 53 66 M66 34 Q72 45 67 61" fill="none" stroke="#1F3A5F" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M25 48 Q29 61 42 65" fill="none" stroke="#F5E9D0" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Лицо и выразительный глаз -->
+  <path d="M77 51 Q70 56 64 52" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="73" cy="41" r="6" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.8"/>
+  <circle cx="75" cy="41" r="2.7" fill="#1A1A1A"/>
+  <circle cx="76" cy="39.8" r="0.9" fill="#FFFFFF"/>
+  <circle cx="83" cy="48" r="1.2" fill="#F5E9D0"/>
+</svg>

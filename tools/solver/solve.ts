@@ -26,6 +26,8 @@ const UNARY_TYPES = new Set([
   'floorTexture',
   'wallSide',
   'roomSize',
+  'zoneBoundary',
+  'zoneNeighborOf',
   'parity',
   'checkerboardParity',
   'sameRoomAsItem',

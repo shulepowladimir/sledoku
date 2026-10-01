@@ -5,6 +5,7 @@ import { giantHouseLevel } from '../../levels/27-gianthouse';
 import { resortLevel } from '../../levels/45-resort';
 import { ItemLibrary } from '../../levels/itemLibrary';
 import { bakeryLevel } from '../../levels/51-bakery';
+import { checkLevelAcceptance } from './acceptance';
 import { lintLevel } from './lint';
 import { checkPuzzleQuality } from './puzzleQuality';
 import { solveLevel } from './solve';
@@ -94,6 +95,19 @@ test('library-01 places only the victim and murderer in the largest room', () =>
 
 test('library-01 has a unique solution that relies on the authored clues', () => {
   assert.equal(solveLevel(libraryLevel).status, 'PROVEN_UNIQUE');
+});
+
+test('bakery-01 allows the approved Vasilisa pin while preserving its unique solution', () => {
+  const quality = checkPuzzleQuality(bakeryLevel);
+  const vasilisa = quality.perPerson.find((person) => person.personId === 'vasilisa');
+
+  assert.ok(vasilisa);
+  assert.equal(vasilisa.fullyPinned, true);
+  assert.equal(quality.fullyPinnedCount, 1);
+  assert.equal(quality.budget, 1);
+  assert.deepEqual(quality.violations, []);
+  assert.deepEqual(checkLevelAcceptance(bakeryLevel, quality.fullyPinnedCount), []);
+  assert.equal(solveLevel(bakeryLevel).status, 'PROVEN_UNIQUE');
 });
 
 test('library-01 rules out every alternate murderer candidate', () => {

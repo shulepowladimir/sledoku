@@ -15,11 +15,13 @@ const DENSITY_EXEMPT_LEVEL_IDS = new Set([
   'bowling-01',
   'chemlab-01',
   'cemetery-01',
+  // User-approved 38.2% occupancy: fixed underwater layout plus the two-cell breach.
+  'underwater-01',
   'wedding-01',
 ]);
 
-// Apartment-01 is the only level with an approved nonzero fully-pinned-person allowance.
-const PINNED_PERSON_EXEMPT_LEVEL_IDS = new Set(['apartment-01']);
+// Apartment-01 and bakery-01 have approved fully-pinned-person allowances.
+const PINNED_PERSON_EXEMPT_LEVEL_IDS = new Set(['apartment-01', 'bakery-01']);
 
 export function checkLevelAcceptance(level: Level, fullyPinnedCount: number): string[] {
   const issues: string[] = [];

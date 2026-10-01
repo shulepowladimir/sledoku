@@ -318,7 +318,14 @@ const sky: FloorStyleFn = (row, col) => {
   };
 };
 
-const FLOOR_TEXTURES: Record<FloorTextureKey, FloorStyleFn> = { tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, workshopFloor, rubber, stairs, cliff, cobble, asphalt, snow, ice, checker, rails, bakeryTile, sky };
+const coral: FloorStyleFn = (_row, _col) => ({
+  backgroundColor: '#C9A183',
+  backgroundImage:
+    'radial-gradient(ellipse at 16px 48px, #B08668 0 3px, transparent 4px), radial-gradient(ellipse at 48px 16px, #B08668 0 3px, transparent 4px)',
+  backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
+});
+
+const FLOOR_TEXTURES: Record<FloorTextureKey, FloorStyleFn> = { tile, carpet, wood, marble, linoleum, rug, grass, dirt, stone, water, sand, metal, concrete, workshopFloor, rubber, stairs, cliff, cobble, coral, asphalt, snow, ice, checker, rails, bakeryTile, sky };
 
 export const floorTextureKeys: readonly string[] = FLOOR_TEXTURE_KEYS;
 

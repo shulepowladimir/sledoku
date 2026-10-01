@@ -196,7 +196,7 @@ export const bakeryLevel: Level = {
     title: 'Жаркий замес',
     theme: 'bakery',
     difficulty: 6,
-    maxFullyPinnedPeople: 0,
+    maxFullyPinnedPeople: 1,
   },
   size,
   rooms,
