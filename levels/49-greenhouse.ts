@@ -255,6 +255,7 @@ export const greenhouseLevel: Level = {
     title: 'Опавшие лепестки',
     theme: 'greenhouse',
     difficulty: 8,
+    menuTag: 'hard',
     maxFullyPinnedPeople: 0,
   },
   size,

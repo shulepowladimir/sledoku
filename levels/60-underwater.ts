@@ -280,7 +280,7 @@ const clues: Clue[] = [
 export const underwaterLevel: Level = {
   meta: {
     id: 'underwater-01',
-    title: 'Тайна затонувшего рифа',
+    title: 'Пошло ко дну',
     theme: 'underwater',
     difficulty: 8,
     menuTag: 'hard',

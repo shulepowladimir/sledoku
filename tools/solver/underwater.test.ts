@@ -13,6 +13,7 @@ const level = gameLevels.find((candidate) => candidate.meta.id === 'underwater-0
 
 test('underwater preserves the fixed 11-by-10 zones and character placements', () => {
   assert.ok(level, 'underwater-01 must be registered');
+  assert.equal(level.meta.title, 'Пошло ко дну');
   assert.equal(level.size, 11);
   assert.equal(level.cols, 10);
   assert.equal(level.cells.length, 110);
