@@ -60,6 +60,7 @@ import { surpriseLevel } from './57-surprise';
 import { cruiseLinerLevel } from './58-cruiseliner';
 import { weddingLevel } from './59-wedding';
 import { underwaterLevel } from './60-underwater';
+import { computerClubLevel } from './61-computerclub';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -123,6 +124,7 @@ export const levels: Level[] = [
   cruiseLinerLevel,
   weddingLevel,
   underwaterLevel,
+  computerClubLevel,
 ];
 
 /** Player-facing levels — used by the menu, size filters, profile stats and leaderboards.
