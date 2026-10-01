@@ -56,7 +56,6 @@ import { cablecarLevel } from './53-cablecar';
 import { restaurantLevel } from './54-restaurant';
 import { autoshopLevel } from './55-autoshop';
 import { trailerParkLevel } from './56-trailerpark';
-import { surpriseLevel } from './57-surprise';
 import { cruiseLinerLevel } from './58-cruiseliner';
 import { weddingLevel } from './59-wedding';
 import { underwaterLevel } from './60-underwater';
@@ -120,7 +119,6 @@ export const levels: Level[] = [
   restaurantLevel,
   autoshopLevel,
   trailerParkLevel,
-  surpriseLevel,
   cruiseLinerLevel,
   weddingLevel,
   underwaterLevel,

@@ -299,7 +299,7 @@ const clues: Clue[] = [
 ];
 
 export const mallLevel: Level = {
-  meta: { id: 'mall-01', title: 'Закрытие торгового центра', theme: 'mall', difficulty: 8, maxFullyPinnedPeople: 0 },
+  meta: { id: 'mall-01', title: 'Закрытие торгового центра', theme: 'mall', difficulty: 8, maxFullyPinnedPeople: 0, menuTag: 'hard' },
   size,
   rooms,
   itemTypes,

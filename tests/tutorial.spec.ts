@@ -137,6 +137,7 @@ test('tutorial: full guided playthrough ends with victory and no record', async 
 
   // No standard victory banner during the tutorial — the scenario owns the finale.
   await expect(page.getByTestId('victory-banner')).toHaveCount(0);
+  await expect(page.getByTestId('completion-story-dialog')).toHaveCount(0);
 
   await next(page); // finale
   await expect(step(page, 'go-menu')).toBeVisible();

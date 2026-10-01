@@ -181,6 +181,21 @@
   background: rgba(13, 35, 19, 0.08);
 }
 
+.victory-banner__story-btn {
+  padding: 6px 12px;
+  border: 1px solid rgba(13, 35, 19, 0.35);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.42);
+  color: #0d2313;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.victory-banner__story-btn:hover {
+  background: rgba(13, 35, 19, 0.08);
+}
+
 .victory-banner__record {
   font-weight: 800;
 }
@@ -1146,6 +1161,150 @@ body.noir .compass-modal__close:hover {
 /* Нуар: фирменный красный «Севера» осветляем — на #1a1a1f иначе нечитаем. */
 body.noir .compass-dir--north {
   color: #E5566B;
+}
+
+.completion-story__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(8, 9, 13, 0.76);
+  backdrop-filter: blur(4px);
+}
+
+.completion-story__dialog {
+  position: relative;
+  width: min(100%, 560px);
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+  padding: 38px 36px 28px;
+  border: 1px solid rgba(116, 31, 39, 0.42);
+  border-radius: 4px;
+  background: #f4efe4;
+  color: #26231f;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.62);
+}
+
+.completion-story__close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.completion-story__close:hover {
+  color: #a52c37;
+}
+
+.completion-story__eyebrow {
+  margin: 0 0 10px;
+  color: #8b2631;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.completion-story__title {
+  max-width: 90%;
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: 700;
+  line-height: 1.12;
+}
+
+.completion-story__text {
+  margin: 24px 0 30px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+.completion-story__ending {
+  margin: -12px 0 30px;
+  color: #79232c;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.completion-story__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.completion-story__dismiss,
+.completion-story__menu {
+  min-height: 44px;
+  padding: 9px 16px;
+  border: 1px solid #79232c;
+  border-radius: 3px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.completion-story__dismiss {
+  background: transparent;
+  color: inherit;
+}
+
+.completion-story__dismiss:hover {
+  background: rgba(121, 35, 44, 0.08);
+}
+
+.completion-story__menu {
+  background: #79232c;
+  color: #fff8ed;
+}
+
+.completion-story__menu:hover {
+  background: #5f1921;
+}
+
+body.noir .completion-story__dialog {
+  border-color: rgba(231, 91, 102, 0.52);
+  background: #1a1a1f;
+  color: #f3f2f6;
+}
+
+body.noir .completion-story__eyebrow {
+  color: #e5566b;
+}
+
+body.noir .completion-story__ending {
+  color: #e5566b;
+}
+
+body.noir .completion-story__dismiss,
+body.noir .completion-story__menu {
+  border-color: #a7434c;
+}
+
+body.noir .completion-story__menu {
+  background: #9c303d;
+  color: #fff;
+}
+
+body.noir .completion-story__menu:hover {
+  background: #b03a47;
 }
 
 .how-to-play:hover .how-to-play__popover,
@@ -2297,6 +2456,41 @@ body.noir .legal-modal__revision {
     flex-wrap: wrap;
     justify-content: center;
     padding: 12px 14px;
+  }
+
+  .victory-banner__story-btn,
+  .victory-banner__menu-btn {
+    min-height: 44px;
+  }
+
+  .completion-story__overlay {
+    align-items: flex-end;
+    padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  }
+
+  .completion-story__dialog {
+    width: 100%;
+    max-height: calc(100dvh - 24px);
+    padding: 38px 22px 20px;
+  }
+
+  .completion-story__text {
+    margin: 20px 0 24px;
+    font-size: 17px;
+  }
+
+  .completion-story__ending {
+    margin: -8px 0 22px;
+    font-size: 18px;
+  }
+
+  .completion-story__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .completion-story__actions button {
+    padding-inline: 10px;
   }
 
   .how-to-play__popover {
