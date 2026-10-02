@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { Person } from '../../types/level';
 import type { PersonCheckStatus } from '../../types/game';
 import { contrastTextColor } from '../../utils/color';
@@ -9,11 +10,11 @@ interface PersonTokenProps {
 }
 
 export function PersonToken({ person, status }: PersonTokenProps) {
-  const isFemale = person.gender === 'female';
   const ringClass = status === 'correct' ? 'person-token--correct' : status === 'incorrect' ? 'person-token--incorrect' : '';
+  const tokenStyle = { '--person-token-color': person.color } as CSSProperties;
 
   return (
-    <div className={`person-token ${isFemale ? 'person-token--female' : 'person-token--male'} ${ringClass}`}>
+    <div style={tokenStyle} className={`person-token ${ringClass}`}>
       <PersonFigureSvg person={person} size={40} />
       <span
         className="person-initial"

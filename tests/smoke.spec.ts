@@ -29,6 +29,10 @@ import { giantHouseLevel } from '../levels/27-gianthouse';
 import { skiHotelLevel } from '../levels/28-skihotel';
 import { circusLevel } from '../levels/29-circus';
 import { dinerLevel } from '../levels/30-diner';
+import { polarLevel } from '../levels/31-polar';
+import { piratesLevel } from '../levels/32-pirates';
+import { racingLevel } from '../levels/33-racing';
+import { casinoLevel } from '../levels/34-casino';
 
 test('menu -> full playthrough of apartment-01 -> victory -> back to menu', async ({ page }) => {
   await page.clock.install({ time: new Date('2026-09-25T12:00:00Z') });
@@ -456,7 +460,8 @@ test('train-01 shows the approved story and places each car label on the opposit
     const position = expectedLabelPositions[room.id];
     const roomRows = trainLevel.cells.filter((cell) => cell.roomId === room.id).map((cell) => cell.row);
     const edgeRow = position === 'top' ? Math.min(...roomRows) : Math.max(...roomRows);
-    const expectedTop = position === 'top' ? edgeRow * 64 + 4 : (edgeRow + 1) * 64;
+    const bottomInset = position === 'bottom' && edgeRow === trainLevel.size - 1 ? 3 : 0;
+    const expectedTop = position === 'top' ? edgeRow * 64 + 1 : (edgeRow + 1) * 64 - bottomInset;
     await expect(page.locator('.room-label').filter({ hasText: room.name })).toHaveCSS('top', `${expectedTop}px`);
   }
 
@@ -653,4 +658,76 @@ test('diner-01 shows the approved roadside-cafe story and reveal', async ({ page
   await expect(storyDialog).toContainText('В зале Григорий включил погромче песню на музыкальном автомате');
   await expect(storyDialog).toContainText('Кетчупа в его заказе не было.');
   await expect(storyDialog).toContainText('Григорий оказался убийцей Харитона.');
+});
+
+test('polar-01 shows the approved polar-night story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${polarLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(polarLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Игорь держал связь из радиорубки');
+  await expect(storyDialog).toContainText('Ефим и Анна на льду брали образцы воды.');
+  await expect(storyDialog).toContainText('для Хионии тьма уже будет вечной.');
+  await expect(storyDialog).toContainText('Галина оказалась убийцей Хионии.');
+});
+
+test('pirates-01 shows the approved dead-mans-chest story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${piratesLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(piratesLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Фрегат «Чёрная метка» шёл между рифами');
+  await expect(storyDialog).toContainText('Харита и Ждан планировали поделить добычу');
+  await expect(storyDialog).toContainText('как на пороховой бочке.');
+  await expect(storyDialog).toContainText('Ждан оказался убийцей Хариты.');
+});
+
+test('racing-01 shows the approved grand-prix story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${racingLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(racingLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('На городском Гран-при ревели моторы');
+  await expect(storyDialog).toContainText('Богдан готовился проводить быстрый пит-стоп.');
+  await expect(storyDialog).toContainText('Ефим наблюдал за гонкой с яхты в лагуне.');
+  await expect(storyDialog).toContainText('Жанна оказалась убийцей Харитины.');
+});
+
+test('casino-01 shows the approved all-on-zero story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${casinoLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(casinoLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Несмотря на ночь за окном, в казино кипела жизнь.');
+  await expect(storyDialog).toContainText('Артём в баре угощал Валерию коктейлями');
+  await expect(storyDialog).toContainText('поставил всё на зеро');
+  await expect(storyDialog).toContainText('Зинаида оказалась убийцей Харитона.');
 });

@@ -10,6 +10,9 @@ interface RoomLabelProps {
    *  anchor cell; 'left'/'right' flush the pill against the zone's left/right edge
    *  with a small inset (anchor cell = the edge row's endmost cell). */
   align?: 'left' | 'center' | 'right';
+  edgeGap?: number;
+  bottomInset?: number;
+  highlighted?: boolean;
 }
 
 export function RoomLabel({
@@ -18,6 +21,9 @@ export function RoomLabel({
   anchorCol,
   position = 'bottom',
   align = 'center',
+  edgeGap = 4,
+  bottomInset = 0,
+  highlighted = false,
 }: RoomLabelProps) {
   // Горизонталь: центр якорной клетки / левый край + 8px / правый край − 8px.
   const left =
@@ -32,17 +38,17 @@ export function RoomLabel({
     position === 'top'
       ? {
           left,
-          top: anchorRow * CELL_SIZE + 4,
+          top: anchorRow * CELL_SIZE + edgeGap,
           transform: `translate(${xShift}, 0)`,
         }
       : {
           left,
-          top: (anchorRow + 1) * CELL_SIZE,
-          transform: `translate(${xShift}, calc(-100% - 4px))`,
+          top: (anchorRow + 1) * CELL_SIZE - bottomInset,
+          transform: `translate(${xShift}, calc(-100% - ${edgeGap}px))`,
         };
 
   return (
-    <div className="room-label" style={style}>
+    <div className={`room-label${highlighted ? ' room-label--highlighted' : ''}`} style={style}>
       {name}
     </div>
   );

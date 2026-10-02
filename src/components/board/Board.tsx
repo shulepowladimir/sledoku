@@ -22,6 +22,8 @@ const AXIS_TOP = 22;
 const AXIS_RIGHT = 22;
 /** Отступ чисел-рядов от правой кромки поля. */
 const AXIS_GAP = 6;
+/** У доски с рамкой border-box сетка выступает из неё на ширину рамки. */
+const BOARD_BORDER = 3;
 
 export function Board() {
   const level = useGameStore((s) => s.level);
@@ -125,7 +127,9 @@ export function Board() {
     // тайл-предметы (render:'tile') рендерятся своим слоем ItemTileOverlay —
     // боксовая иконка поверх bbox им не нужна (гигантские квадраты поверх карты)
     .filter(({ itemType }) => itemType.render !== 'tile')
-    .filter(({ item }) => !item.cells.some((cid) => occupantOf(player, cid)));
+    .filter(({ item, itemType }) =>
+      !item.cells.some((cid) => occupantOf(player, cid)) || itemType.kind === 'occupiable',
+    );
   for (const { item } of multiCellOverlays) {
     for (const cid of item.cells) suppressedCellIds.add(cid);
   }
@@ -240,7 +244,12 @@ export function Board() {
         <ItemTileOverlay key={item.id} item={item} itemType={itemType} />
       ))}
       {multiCellOverlays.map(({ item, itemType }) => (
-        <ItemOverlay key={item.id} item={item} itemType={itemType} />
+        <ItemOverlay
+          key={item.id}
+          item={item}
+          itemType={itemType}
+          occupied={item.cells.some((cid) => occupantOf(player, cid) != null)}
+        />
       ))}
       {outlineStyle && outlinedItemType && (
         <div
@@ -286,6 +295,7 @@ export function Board() {
             floorStyle={floorStyle(textureKey, cell.row - origin.minRow, cell.col - origin.minCol)}
             itemType={itemType}
             suppressItemIcon={suppressedCellIds.has(cell.id)}
+            suppressOccupiedItemIcon={!!item && item.cells.length > 1 && itemType?.render !== 'tile'}
             tooltip={tooltip}
             person={person}
             personStatus={personId ? personStatus(player, personId) : undefined}
@@ -317,7 +327,17 @@ export function Board() {
         );
       })}
       {roomLabels.map(({ room, position, align, anchorRow, anchorCol }) => (
-        <RoomLabel key={room.id} name={room.name} anchorRow={anchorRow} anchorCol={anchorCol} position={position} align={align} />
+        <RoomLabel
+          key={room.id}
+          name={room.name}
+          anchorRow={anchorRow}
+          anchorCol={anchorCol}
+          position={position}
+          align={align}
+          edgeGap={1}
+          bottomInset={!hasCutouts && position === 'bottom' && anchorRow === rows - 1 ? BOARD_BORDER : 0}
+          highlighted={hoveredRoomId === room.id}
+        />
       ))}
       {axisLabels && (
         <>

@@ -40,6 +40,7 @@ interface GridCellProps {
   floorStyle: CSSProperties;
   itemType?: ItemType;
   suppressItemIcon?: boolean;
+  suppressOccupiedItemIcon?: boolean;
   tooltip?: string;
   person?: Person;
   personStatus?: PersonCheckStatus;
@@ -69,6 +70,7 @@ export function GridCell({
   floorStyle,
   itemType,
   suppressItemIcon,
+  suppressOccupiedItemIcon = false,
   tooltip,
   person,
   personStatus,
@@ -202,9 +204,9 @@ export function GridCell({
           size={ITEM_CELL_ICON_SIZE[itemType.id] ?? Math.round(CELL_SIZE * 0.8)}
         />
       )}
-      {itemType && person && itemType.kind === 'occupiable' && (
+      {itemType && person && itemType.kind === 'occupiable' && !suppressOccupiedItemIcon && (
         <div className="grid-cell__item-under">
-          <ItemIcon itemType={itemType} size={22} />
+          <ItemIcon itemType={itemType} size={Math.round(CELL_SIZE * 0.9)} />
         </div>
       )}
       {person && <PersonToken person={person} status={personStatus} />}

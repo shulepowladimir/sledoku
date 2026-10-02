@@ -1,6 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import { apartmentLevel } from '../levels/01-apartment';
 import { tutorialLevel } from '../levels/00-tutorial';
+import { hollywoodLevel } from '../levels/25-hollywood';
 
 // Мобильная адаптация (проект 'mobile': Pixel 7, 390×844, hasTouch).
 // Десктопная раскладка не регрессирует — её проверяет проект 'chromium'.
@@ -51,6 +52,28 @@ test('game: roster below board, board fits, tap marks / double tap places', asyn
   if (clueText) {
     await expect(page.locator('.roster-mobile__entry--open').first()).toBeVisible();
   }
+});
+
+test('game: shared visual styling and two-cell occupiable overlay fit on mobile', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId('size-filter-12').tap();
+  await page.getByTestId(`level-card-${hollywoodLevel.meta.id}`).tap();
+  await expect(page.locator('.board')).not.toHaveClass(/visual-trial/);
+
+  await page.getByTestId('roster-person-bogdan').tap();
+  await page.getByTestId('cell-11-3').dblclick();
+
+  const token = page.getByTestId('cell-11-3').locator('.person-token');
+  await expect(token).toBeVisible();
+  await expect(token.locator('.person-initial')).toHaveCSS('top', '-2px');
+  await expect(page.getByTestId('item-overlay-item-horse-w').locator('svg')).toHaveAttribute('width', '58');
+  await expect(page.getByTestId('cell-11-2').locator('.item-icon')).toHaveCount(0);
+  await expect(page.getByTestId('cell-11-3').locator('.item-icon')).toHaveCount(0);
+
+  const boardBox = await page.locator('.board').boundingBox();
+  expect(boardBox).toBeTruthy();
+  expect(boardBox!.width).toBeLessThanOrEqual(390);
+  expect(boardBox!.x).toBeGreaterThanOrEqual(0);
 });
 
 test('game: selected pencil mark stays highlighted when the mobile roster entry collapses', async ({ page }) => {

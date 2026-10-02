@@ -1,0 +1,92 @@
+import { test, expect } from '@playwright/test';
+import { apartmentLevel } from '../levels/01-apartment';
+import { dinerLevel } from '../levels/30-diner';
+import { hollywoodLevel } from '../levels/25-hollywood';
+
+for (const level of [apartmentLevel, dinerLevel, hollywoodLevel]) {
+  test(`${level.meta.id} uses shared room-label styling`, async ({ page }) => {
+    await page.goto('/');
+    if (level.size === 12) await page.getByTestId('size-filter-12').click();
+    await page.getByTestId(`level-card-${level.meta.id}`).click();
+
+    const board = page.locator('.board');
+    const label = page.locator('.room-label').first();
+    await expect(board).not.toHaveClass(/visual-trial/);
+    await expect(label).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+    await expect(label).toHaveCSS('border-top-color', 'rgba(0, 0, 0, 0)');
+    const textShadow = await label.evaluate((element) => getComputedStyle(element).textShadow);
+    expect(textShadow).toContain('255, 255, 255');
+  });
+}
+
+test('shared board styling preserves hover, person colors, initials, and enlarged single-cell items', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${apartmentLevel.meta.id}`).click();
+
+  const kitchenLabel = page.locator('.room-label').filter({ hasText: 'Кухня' });
+  await page.getByTestId('cell-0-0').hover();
+  await expect(kitchenLabel).toHaveClass(/room-label--highlighted/);
+  await expect(page.getByTestId('cell-0-0')).toHaveCSS('border-top-color', 'rgb(255, 207, 77)');
+  const highlightedTextShadow = await kitchenLabel.evaluate((element) => getComputedStyle(element).textShadow);
+  expect(highlightedTextShadow).toContain('255, 207, 77');
+
+  await page.getByTestId('roster-person-andrei').click();
+  await page.getByTestId('cell-1-3').dblclick();
+  const occupiedSofa = page.getByTestId('cell-1-3');
+  const token = occupiedSofa.locator('.person-token');
+  await expect(token).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await expect(token).toHaveCSS('border-color', 'rgb(77, 141, 255)');
+  await expect(token).toHaveCSS('outline-color', 'rgb(255, 255, 255)');
+  await expect(token).toHaveCSS('outline-width', '1px');
+  await expect(token).toHaveCSS('outline-offset', '1px');
+  await expect(token).toHaveCSS('width', '44px');
+  await expect(token.locator('.person-figure')).toHaveAttribute('width', '40');
+  await expect(token.locator('.person-initial')).toHaveCSS('top', '-2px');
+  await expect(occupiedSofa.locator('.grid-cell__item-under svg')).toHaveAttribute('width', '58');
+});
+
+test('a two-cell occupiable item stays a single enlarged overlay under its occupant', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId('size-filter-12').click();
+  await page.getByTestId(`level-card-${hollywoodLevel.meta.id}`).click();
+
+  await page.getByTestId('roster-person-bogdan').click();
+  await page.getByTestId('cell-11-3').dblclick();
+
+  const overlay = page.getByTestId('item-overlay-item-horse-w');
+  await expect(overlay).toBeVisible();
+  await expect(overlay.locator('svg')).toHaveAttribute('width', '58');
+  await expect(overlay).toHaveCSS('z-index', '1');
+  await expect(page.getByTestId('cell-11-2').locator('.item-icon')).toHaveCount(0);
+  await expect(page.getByTestId('cell-11-3').locator('.item-icon')).toHaveCount(0);
+  await expect(page.getByTestId('cell-11-3').locator('.person-token')).toHaveCSS('z-index', '2');
+});
+
+test('person rings keep their green and red placement-status colors after checking', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId('size-filter-12').click();
+  await page.getByTestId(`level-card-${hollywoodLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(hollywoodLevel.solution)) {
+    if (personId === 'anna' || personId === 'esenia') continue;
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+
+  await page.getByTestId('roster-person-anna').click();
+  await page.getByTestId('cell-1-6').dblclick();
+  await page.getByTestId('roster-person-esenia').click();
+  await page.getByTestId('cell-0-2').dblclick();
+
+  const anna = page.getByTestId('cell-1-6').locator('.person-token');
+  const esenia = page.getByTestId('cell-0-2').locator('.person-token');
+  const bogdan = page.getByTestId('cell-11-3').locator('.person-token');
+  await page.getByTestId('check-button').click();
+
+  await expect(anna).toHaveClass(/person-token--incorrect/);
+  await expect(anna).toHaveCSS('border-color', 'rgb(229, 72, 77)');
+  await expect(anna).toHaveCSS('outline-color', 'rgb(255, 255, 255)');
+  await expect(esenia).toHaveCSS('border-color', 'rgb(229, 72, 77)');
+  await expect(bogdan).toHaveClass(/person-token--correct/);
+  await expect(bogdan).toHaveCSS('border-color', 'rgb(62, 207, 107)');
+});
