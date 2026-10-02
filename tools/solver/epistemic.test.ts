@@ -3,6 +3,7 @@ import { test } from 'node:test';
 import { cellId, type PersonId } from '../../src/types/level';
 import { fightClubLevel } from '../../levels/40-fightclub';
 import { bakeryLevel } from '../../levels/51-bakery';
+import { hospitalLevel } from '../../levels/13-hospital';
 import { trailerParkLevel } from '../../levels/56-trailerpark';
 import { wildwest2Level } from '../../levels/14-wildwest2';
 import {
@@ -139,6 +140,41 @@ test('murderer epistemics checks every suspect after redundant clue removal', ()
   assert.equal(currentReport.baseline, 'PROVEN_UNIQUE');
   assert.equal(currentReport.worlds.length, 9);
   assert.ok(currentReport.worlds.every((world) => world.status === 'NO_SOLUTION'));
+});
+
+test('hospital cumulative clue reduction keeps the murderer uniquely deducible', () => {
+  const removedClueIds = [
+    'c-aglaya-room',
+    'c-egor-rel',
+    'c-egor-roomsize',
+    'c-aglaya-rel',
+    'c-zahar-parity',
+    'c-zahar-adj',
+    'c-darya-parity',
+    'c-darya-adj',
+    'c-zhanna-room',
+  ];
+  assert.ok(removedClueIds.every((id) => !hospitalLevel.clues.some((clue) => clue.id === id)));
+  assert.ok(hospitalLevel.clues.some((clue) => clue.id === 'c-role-guard'));
+  assert.ok(hospitalLevel.clues.some((clue) => clue.id === 'c-room-occupancy'));
+  assert.ok(hospitalLevel.clues.some((clue) => clue.id === 'c-gennady-corner'));
+  assert.equal(hospitalLevel.clues.filter((clue) => clue.type === 'role').length, 4);
+
+  const report = checkMurdererEpistemics(hospitalLevel);
+  assert.equal(report.baseline, 'PROVEN_UNIQUE');
+  assert.equal(report.worlds.length, 9);
+  assert.ok(report.worlds.every((world) => world.status === 'NO_SOLUTION'));
+
+  const withoutRoleGuard = {
+    ...hospitalLevel,
+    clues: hospitalLevel.clues.filter((clue) => clue.id !== 'c-role-guard'),
+  };
+  const guardReport = checkMurdererEpistemics(withoutRoleGuard);
+  assert.equal(guardReport.baseline, 'PROVEN_UNIQUE');
+  assert.deepEqual(
+    guardReport.worlds.filter((world) => world.status !== 'NO_SOLUTION').map((world) => world.murdererId).sort(),
+    ['egor'],
+  );
 });
 
 test('wildwest-02 replaces the street urn with two tumbleweeds and stays uniquely solvable', () => {

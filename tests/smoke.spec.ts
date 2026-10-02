@@ -10,6 +10,15 @@ import { mallLevel } from '../levels/08-mall';
 import { forestLevel } from '../levels/09-forest';
 import { stationLevel } from '../levels/10-station';
 import { egyptLevel } from '../levels/11-egypt';
+import { spaceLevel } from '../levels/12-space';
+import { hospitalLevel } from '../levels/13-hospital';
+import { wildwest2Level } from '../levels/14-wildwest2';
+import { stadiumLevel } from '../levels/15-stadium';
+import { prisonLevel } from '../levels/16-prison';
+import { hotelLevel } from '../levels/17-hotel';
+import { islandLevel } from '../levels/18-island';
+import { lighthouseLevel } from '../levels/19-lighthouse';
+import { trainLevel } from '../levels/20-train';
 
 test('menu -> full playthrough of apartment-01 -> victory -> back to menu', async ({ page }) => {
   await page.clock.install({ time: new Date('2026-09-25T12:00:00Z') });
@@ -281,4 +290,176 @@ test('egypt-01 shows the approved pyramid scene and reveal', async ({ page }) =>
   await expect(storyDialog).toContainText('Факелы освещали путаные коридоры и залы пирамиды');
   await expect(storyDialog).toContainText('что будет погребена там сама');
   await expect(storyDialog).toContainText('Даниил оказался убийцей Хионии.');
+});
+
+test('space-01 shows the approved orbital-station scene and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${spaceLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(spaceLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Аглая и Всеволод по очереди смотрели в телескоп');
+  await expect(storyDialog).toContainText('В космосе никто не услышит твоих криков');
+  await expect(storyDialog).toContainText('Есения оказалась убийцей Христофора.');
+});
+
+test('hospital-01 shows the approved consultation scene and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${hospitalLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(hospitalLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Борис осматривал Дарью, Геннадий принимал Захара');
+  await expect(storyDialog).toContainText('этот приём стал для неё последним');
+  await expect(storyDialog).toContainText('Ирина оказалась убийцей Христины.');
+});
+
+test('wildwest-02 shows the approved town scene and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${wildwest2Level.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(wildwest2Level.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('обычный размеренный день');
+  await expect(storyDialog).toContainText('Шериф Илья и его помощница седлали лошадей в конюшне');
+  await expect(storyDialog).toContainText('Демьян оказался убийцей Харитона.');
+});
+
+test('stadium-01 shows the approved match scene and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${stadiumLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(stadiumLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Аркадий и Инна подскочили во время опасного момента');
+  await expect(storyDialog).toContainText('Дарья на беговой дорожке увидела главный удар этого матча');
+  await expect(storyDialog).toContainText('Григорий оказался убийцей Христофора.');
+});
+
+test('prison-01 shows the approved shift-change scene and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${prisonLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(prisonLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Андрей следил за Дарьей во внутреннем дворе');
+  await expect(storyDialog).toContainText('Захар давно точил зуб на Христофора');
+  await expect(storyDialog).toContainText('Когда Ефим дошёл до зала, приговор уже был приведён в действие.');
+  await expect(storyDialog).toContainText('Захар оказался убийцей Христофора.');
+});
+
+test('hotel-01 shows the approved night-shift scene and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${hotelLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(hotelLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('некая Зоя');
+  await expect(storyDialog).toContainText('Утром ковёр из люкса пришлось сдавать в химчистку.');
+  await expect(storyDialog).toContainText('Зоя оказалась убийцей Харитона.');
+});
+
+test('island-01 shows the approved island story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${islandLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(islandLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('На карте остров значился необитаемым');
+  await expect(storyDialog).toContainText('Прилив вернулся на пляж, Харита — нет.');
+  await expect(storyDialog).toContainText('Галина оказалась убийцей Хариты.');
+});
+
+test('lighthouse-01 shows the approved lighthouse story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${lighthouseLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(lighthouseLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Тёмная дождливая ночь окутала скалу');
+  await expect(storyDialog).toContainText('Глафира уже спускалась со скал к Аркадию');
+  await expect(storyDialog).toContainText('Обнаружили Хионию на дорожке только на рассвете.');
+  await expect(storyDialog).toContainText('Демьян оказался убийцей Хионии.');
+});
+
+test('train-01 shows the approved story and places each car label on the opposite edge', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${trainLevel.meta.id}`).click();
+
+  const expectedLabelPositions: Record<string, 'top' | 'bottom'> = {
+    loco: 'bottom',
+    baggage: 'top',
+    sleeper: 'bottom',
+    dining: 'top',
+    platskart: 'bottom',
+    service: 'top',
+  };
+  for (const room of trainLevel.rooms) {
+    const position = expectedLabelPositions[room.id];
+    const roomRows = trainLevel.cells.filter((cell) => cell.roomId === room.id).map((cell) => cell.row);
+    const edgeRow = position === 'top' ? Math.min(...roomRows) : Math.max(...roomRows);
+    const expectedTop = position === 'top' ? edgeRow * 64 + 4 : (edgeRow + 1) * 64;
+    await expect(page.locator('.room-label').filter({ hasText: room.name })).toHaveCSS('top', `${expectedTop}px`);
+  }
+
+  for (const [personId, cellId] of Object.entries(trainLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Проводники Анфиса и Ефим разделились');
+  await expect(storyDialog).toContainText('Но там под полкой его уже поджидал Ефим.');
+  await expect(storyDialog).toContainText('Для Харитона конечная наступила раньше.');
+  await expect(storyDialog).toContainText('Ефим оказался убийцей Харитона.');
 });

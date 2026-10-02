@@ -10,12 +10,12 @@ export const size = 8;
 // полосы; в спальном вагоне западная колонна — купе (полки и столик), восточная — коридор с
 // ковровой дорожкой. Вместимость вагона = число его колонн (по одному человеку на столбец).
 const rooms: Room[] = [
-  { id: 'loco', name: 'Локомотив', floorTexture: 'metal', labelPosition: 'top' },
-  { id: 'baggage', name: 'Багажный вагон', floorTexture: 'wood' },
-  { id: 'sleeper', name: 'Спальный вагон', floorTexture: 'carpet', labelPosition: 'top' },
-  { id: 'dining', name: 'Вагон-ресторан', floorTexture: 'marble' },
-  { id: 'platskart', name: 'Плацкартный вагон', floorTexture: 'linoleum', labelPosition: 'top' },
-  { id: 'service', name: 'Служебный вагон', floorTexture: 'tile' },
+  { id: 'loco', name: 'Локомотив', floorTexture: 'metal', labelPosition: 'bottom' },
+  { id: 'baggage', name: 'Багажный вагон', floorTexture: 'wood', labelPosition: 'top' },
+  { id: 'sleeper', name: 'Спальный вагон', floorTexture: 'carpet', labelPosition: 'bottom' },
+  { id: 'dining', name: 'Вагон-ресторан', floorTexture: 'marble', labelPosition: 'top' },
+  { id: 'platskart', name: 'Плацкартный вагон', floorTexture: 'linoleum', labelPosition: 'bottom' },
+  { id: 'service', name: 'Служебный вагон', floorTexture: 'tile', labelPosition: 'top' },
 ];
 
 const floorFeatures: FloorFeature[] = [

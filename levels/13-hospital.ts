@@ -174,15 +174,13 @@ const solution: Record<PersonId, CellId> = {
 };
 
 const clues: Clue[] = [
-  // Doctors — explicit roles, three pinned to their office; Ирина deliberately left unpinned so
-  // roleGuard (below) stays load-bearing instead of being trivially satisfied by roomMembership alone.
+  // Keep the doctor identities visible to the player; roleGuard is required to rule out alternative murderers.
   { id: 'c-boris-role', type: 'role', subject: { type: 'person', id: 'boris' }, roleId: 'doctor', text: 'Борис работал врачом в этой больнице.' },
   { id: 'c-boris-floor', type: 'floorFeature', subject: { type: 'person', id: 'boris' }, featureId: 'sterile-mat', text: 'Борис находился на стерильном коврике.' },
   { id: 'c-gennady-role', type: 'role', subject: { type: 'person', id: 'gennady' }, roleId: 'doctor', text: 'Геннадий работал врачом в этой больнице.' },
   { id: 'c-gennady-wall', type: 'wallSide', subject: { type: 'person', id: 'gennady' }, wallDirection: 'north', text: 'Геннадий находился у северной стены своей зоны.' },
   { id: 'c-gennady-corner', type: 'corner', subject: { type: 'person', id: 'gennady' }, negated: true, text: 'Геннадий не находился в углу своей зоны.' },
   { id: 'c-zhanna-role', type: 'role', subject: { type: 'person', id: 'zhanna' }, roleId: 'doctor', text: 'Жанна работала врачом в этой больнице.' },
-  { id: 'c-zhanna-room', type: 'roomMembership', subject: { type: 'person', id: 'zhanna' }, roomId: 'kabinet3', text: 'Жанна находилась в Кабинете №3.' },
   { id: 'c-zhanna-parity', type: 'parity', subject: { type: 'person', id: 'zhanna' }, axis: 'col', parity: 'even', text: 'Жанна находилась в столбце с чётным номером.' },
   { id: 'c-irina-role', type: 'role', subject: { type: 'person', id: 'irina' }, roleId: 'doctor', text: 'Ирина работала врачом в этой больнице.' },
   { id: 'c-irina-wall', type: 'wallSide', subject: { type: 'person', id: 'irina' }, wallDirection: 'east', text: 'Ирина находилась у восточной стены своей зоны.' },
@@ -198,26 +196,18 @@ const clues: Clue[] = [
   },
   { id: 'c-room-occupancy', type: 'roomOccupancy', text: 'Ни одна зона больницы не осталась пустой.' },
 
-  // Patients paired with their office's doctor.
+  // Patient placement clues.
   { id: 'c-darya-same', type: 'sameRoomAs', subject: { type: 'person', id: 'darya' }, otherPersonId: 'boris', text: 'Дарья находилась в той же зоне, что и Борис.' },
-  { id: 'c-darya-adj', type: 'adjacency', subject: { type: 'person', id: 'darya' }, itemTypeId: 'box', text: 'Дарья находилась рядом с коробкой.' },
-  { id: 'c-darya-parity', type: 'parity', subject: { type: 'person', id: 'darya' }, axis: 'row', parity: 'odd', text: 'Дарья находилась в ряду с нечётным номером.' },
   { id: 'c-zahar-same', type: 'sameRoomAs', subject: { type: 'person', id: 'zahar' }, otherPersonId: 'gennady', text: 'Захар находился в той же зоне, что и Геннадий.' },
-  { id: 'c-zahar-adj', type: 'adjacency', subject: { type: 'person', id: 'zahar' }, itemTypeId: 'plant', text: 'Захар находился рядом с растением.' },
-  { id: 'c-zahar-parity', type: 'parity', subject: { type: 'person', id: 'zahar' }, axis: 'row', parity: 'even', text: 'Захар находился в ряду с чётным номером.' },
   { id: 'c-kirill-same', type: 'sameRoomAs', subject: { type: 'person', id: 'kirill' }, otherPersonId: 'zhanna', text: 'Кирилл находился в той же зоне, что и Жанна.' },
   { id: 'c-kirill-corner', type: 'corner', subject: { type: 'person', id: 'kirill' }, text: 'Кирилл находился в углу своей зоны.' },
 
-  // Registratura pair.
-  { id: 'c-aglaya-room', type: 'roomMembership', subject: { type: 'person', id: 'aglaya' }, roomId: 'registratura', text: 'Аглая находилась в Регистратуре.' },
+  // Registratura anchors.
   { id: 'c-aglaya-adj', type: 'adjacency', subject: { type: 'person', id: 'aglaya' }, itemTypeId: 'sofa', text: 'Аглая находилась рядом с диваном для ожидания.' },
-  { id: 'c-aglaya-rel', type: 'relativePosition', subject: { type: 'person', id: 'aglaya' }, otherPersonId: 'boris', axis: 'row', direction: 'after', offset: 5, text: 'Аглая находилась на 5 рядов южнее Бориса.' },
   { id: 'c-vasilisa-same', type: 'sameRoomAs', subject: { type: 'person', id: 'vasilisa' }, otherPersonId: 'aglaya', text: 'Василиса находилась в той же зоне, что и Аглая.' },
   { id: 'c-vasilisa-adj', type: 'adjacency', subject: { type: 'person', id: 'vasilisa' }, itemTypeId: 'bookshelf', text: 'Василиса находилась рядом с книжной полкой.' },
 
-  // Koridor's sole occupant.
-  { id: 'c-egor-roomsize', type: 'roomSize', subject: { type: 'person', id: 'egor' }, comparison: 'largest', text: 'Егор находился в самой большой по площади зоне уровня.' },
-  { id: 'c-egor-rel', type: 'relativePosition', subject: { type: 'person', id: 'egor' }, otherPersonId: 'zahar', axis: 'col', direction: 'after', text: 'Егор находился восточнее Захара.' },
+  // Koridor placement.
   { id: 'c-egor-rel2', type: 'relativePosition', subject: { type: 'person', id: 'egor' }, otherPersonId: 'boris', axis: 'row', direction: 'after', offset: 4, text: 'Егор находился на 4 ряда южнее Бориса.' },
   { id: 'c-irina-rel', type: 'relativePosition', subject: { type: 'person', id: 'irina' }, otherPersonId: 'boris', axis: 'row', direction: 'after', offset: 3, text: 'Ирина находилась на 3 ряда южнее Бориса.' },
 ];
