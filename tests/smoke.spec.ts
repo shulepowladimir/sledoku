@@ -19,6 +19,16 @@ import { hotelLevel } from '../levels/17-hotel';
 import { islandLevel } from '../levels/18-island';
 import { lighthouseLevel } from '../levels/19-lighthouse';
 import { trainLevel } from '../levels/20-train';
+import { medievalLevel } from '../levels/21-medieval';
+import { amusementParkLevel } from '../levels/22-amusementpark';
+import { airportLevel } from '../levels/23-airport';
+import { zooLevel } from '../levels/24-zoo';
+import { hollywoodLevel } from '../levels/25-hollywood';
+import { streetLevel } from '../levels/26-street';
+import { giantHouseLevel } from '../levels/27-gianthouse';
+import { skiHotelLevel } from '../levels/28-skihotel';
+import { circusLevel } from '../levels/29-circus';
+import { dinerLevel } from '../levels/30-diner';
 
 test('menu -> full playthrough of apartment-01 -> victory -> back to menu', async ({ page }) => {
   await page.clock.install({ time: new Date('2026-09-25T12:00:00Z') });
@@ -462,4 +472,185 @@ test('train-01 shows the approved story and places each car label on the opposit
   await expect(storyDialog).toContainText('Но там под полкой его уже поджидал Ефим.');
   await expect(storyDialog).toContainText('Для Харитона конечная наступила раньше.');
   await expect(storyDialog).toContainText('Ефим оказался убийцей Харитона.');
+});
+
+test('medieval-01 shows the approved castle conspiracy and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${medievalLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(medievalLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('покушение на короля Харитона');
+  await expect(storyDialog).toContainText('Гурий управлял операцией из королевских покоев');
+  await expect(storyDialog).toContainText('он в этом деле был на коне.');
+  await expect(storyDialog).toContainText('Елисей оказался убийцей Харитона.');
+});
+
+test('amusementpark-01 shows the approved season-closing story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${amusementParkLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(amusementParkLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Посетители гуляли по скверу и ужинали в кафе.');
+  await expect(storyDialog).toContainText('Харитина ждала последних посетителей у колеса обозрения');
+  await expect(storyDialog).toContainText('дело Харитины только открылось.');
+  await expect(storyDialog).toContainText('Григорий оказался убийцей Харитины.');
+});
+
+test('airport-01 shows the approved delayed-flight story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${airportLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(airportLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Ночной рейс переносили раз за разом.');
+  await expect(storyDialog).toContainText('И только багаж пассажиров всё никак не поступал на рейс');
+  await expect(storyDialog).toContainText('для грузчика Харитона утро уже не наступило.');
+  await expect(storyDialog).toContainText('Григорий оказался убийцей Харитона.');
+});
+
+test('zoo-01 shows the approved animal-keeper story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${zooLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(zooLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Ксения на кассе наблюдала, как Инна в сувенирной лавке выбирает');
+  await expect(storyDialog).toContainText('Харитину ещё не скоро найдут на дне пруда.');
+  await expect(storyDialog).toContainText('настоящему хищнику в этой истории только предстоит за неё попасть.');
+  await expect(storyDialog).toContainText('Гурий оказался убийцей Харитины.');
+});
+
+test('hollywood-01 shows the approved final-take story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${hollywoodLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(hollywoodLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Режиссёр Всеволод объявляет');
+  await expect(storyDialog).toContainText('сценаристы Леонид и Хиония пересматривали последние отснятые эпизоды');
+  await expect(storyDialog).toContainText('он написал финал для неё.');
+  await expect(storyDialog).toContainText('Леонид оказался убийцей Хионии.');
+});
+
+test('street-01 shows the approved dawn story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${streetLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(streetLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('В ночном предрассветном квартале день только начинал вступать в свои права.');
+  await expect(storyDialog).toContainText('Есения шла на встречу с Демидом.');
+  await expect(storyDialog).toContainText('а Виктор промочил ноги в луже.');
+  await expect(storyDialog).toContainText('а веки Христины опустились навсегда.');
+  await expect(storyDialog).toContainText('Белла оказалась убийцей Христины.');
+});
+
+test('gianthouse-01 shows the approved giant-house story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${giantHouseLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(giantHouseLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('В доме великана даже посуда была целой площадкой для человека');
+  await expect(storyDialog).toContainText('Богдан изучал комнату, которая оказалась просто стулом размером с комнату');
+  await expect(storyDialog).toContainText('За огромными тапками Геннадию удалось занять укрытие');
+  await expect(storyDialog).toContainText('Геннадий оказался убийцей Харитины.');
+});
+
+test('skihotel-01 shows the approved avalanche story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${skiHotelLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(skiHotelLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('На склоне объявили сход лавины');
+  await expect(storyDialog).toContainText('под горячительными напитками между Глафирой и Харитоном разгорелся жаркий спор.');
+  await expect(storyDialog).toContainText('из бара вышла уже только Глафира.');
+  await expect(storyDialog).toContainText('Глафира оказалась убийцей Харитона.');
+});
+
+test('circus-01 shows the approved wandering-circus story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${circusLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(circusLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('дрессировщики Анна и Борис репетировали в зверинце');
+  await expect(storyDialog).toContainText('Зрители тоже занимали места, каждый — свои');
+  await expect(storyDialog).toContainText('бородатая женщина — это на самом деле мужчина по имени Ждан.');
+  await expect(storyDialog).toContainText('Ждан оказался убийцей Харитона.');
+});
+
+test('diner-01 shows the approved roadside-cafe story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${dinerLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(dinerLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Борис подъехал на мотоцикле на парковку придорожного кафе.');
+  await expect(storyDialog).toContainText('В зале Григорий включил погромче песню на музыкальном автомате');
+  await expect(storyDialog).toContainText('Кетчупа в его заказе не было.');
+  await expect(storyDialog).toContainText('Григорий оказался убийцей Харитона.');
 });
