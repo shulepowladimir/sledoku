@@ -14,8 +14,8 @@ const size = 8;
 const rooms: Room[] = [
   { id: 'entry', name: 'Вход и коридор', floorTexture: 'concrete' },
   { id: 'lounge', name: 'Предбанник', floorTexture: 'tile' },
-  { id: 'maleRoom', name: 'Мужская раздевалка', floorTexture: 'carpet' },
-  { id: 'femaleRoom', name: 'Женская раздевалка', floorTexture: 'carpet' },
+  { id: 'maleRoom', name: 'Мужская раздевалка', floorTexture: 'carpet', labelAlign: 'right' },
+  { id: 'femaleRoom', name: 'Женская раздевалка', floorTexture: 'carpet', labelAlign: 'right' },
   { id: 'steam', name: 'Парилка', floorTexture: 'wood' },
   { id: 'plunge', name: 'Бассейн', floorTexture: 'stone' },
 ];

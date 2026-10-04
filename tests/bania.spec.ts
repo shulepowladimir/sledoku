@@ -49,6 +49,22 @@ test('bania-01: board renders 64 cells, kupel occupiable, kamenga decorative', a
   expect(errors).toEqual([]);
 });
 
+test('bania-01: changing room labels align to their right edges', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${baniaLevel.meta.id}`).click();
+
+  for (const [name, edgeCellId] of [
+    ['Мужская раздевалка', 'cell-5-2'],
+    ['Женская раздевалка', 'cell-5-5'],
+  ]) {
+    const labelBox = await page.locator('.room-label').filter({ hasText: name }).boundingBox();
+    const edgeCellBox = await page.getByTestId(edgeCellId).boundingBox();
+    expect(labelBox).not.toBeNull();
+    expect(edgeCellBox).not.toBeNull();
+    expect(labelBox!.x + labelBox!.width).toBeCloseTo(edgeCellBox!.x + edgeCellBox!.width - 8, 1);
+  }
+});
+
 test('bania-01: full solution run wins the level', async ({ page }) => {
   await page.goto('/');
   await page.getByTestId(`level-card-${baniaLevel.meta.id}`).click();
