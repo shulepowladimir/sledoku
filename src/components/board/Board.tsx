@@ -168,7 +168,13 @@ export function Board() {
         Math.abs(c.col - meanCol) < Math.abs(best.col - meanCol) ? c : best,
       );
     }
-    return { room, position, align, anchorRow: anchorCell.row, anchorCol: anchorCell.col };
+    return {
+      room,
+      position,
+      align,
+      anchorRow: anchorCell.row + (room.labelOffsetCells?.row ?? 0),
+      anchorCol: anchorCell.col + (room.labelOffsetCells?.col ?? 0),
+    };
   });
 
   // Levels with cut-out cells (e.g. rounded map corners) render fewer cells than rows*cols.

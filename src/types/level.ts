@@ -29,6 +29,8 @@ export interface Room {
    *  edge row ends (over items if needed — the label pill carries its own background;
    *  parkmaze-01: the NW quadrant's only free bottom cell sits on the seam with NE). */
   labelAlign?: 'left' | 'center' | 'right';
+  /** Optional label-anchor adjustment in grid cells, applied after automatic positioning. */
+  labelOffsetCells?: { row?: number; col?: number };
 }
 
 export type ItemKind = 'decorative' | 'occupiable';

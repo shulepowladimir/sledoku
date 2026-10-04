@@ -14,6 +14,11 @@ test('cablecar-01: board, artwork, and item interaction render correctly', async
   await card.click();
 
   await expect(page.locator('.board .grid-cell')).toHaveCount(110);
+  const slopeLabel = await page.locator('.room-label', { hasText: 'Склон' }).boundingBox();
+  const labelAnchor = await page.getByTestId('cell-8-8').boundingBox();
+  expect(slopeLabel).not.toBeNull();
+  expect(labelAnchor).not.toBeNull();
+  expect(slopeLabel!.x + slopeLabel!.width / 2).toBeCloseTo(labelAnchor!.x + labelAnchor!.width / 2, 1);
   await expect(page.locator('.board .item-overlay')).toHaveCount(4);
   const sky = await page.getByTestId('cell-0-0').evaluate((cell) => getComputedStyle(cell).backgroundImage);
   expect(sky).toContain('url(');

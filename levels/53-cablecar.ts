@@ -16,7 +16,7 @@ const rooms: Room[] = [
   { id: 'stationWest', name: 'Станция 2500', floorTexture: 'metal' },
   { id: 'stationCenter', name: 'Станция 3000', floorTexture: 'metal' },
   { id: 'stationEast', name: 'Станция 3500', floorTexture: 'metal' },
-  { id: 'mountain', name: 'Склон', floorTexture: 'stone' },
+  { id: 'mountain', name: 'Склон', floorTexture: 'stone', labelOffsetCells: { col: 2 } },
 ];
 
 const ROOM_ROWS = [

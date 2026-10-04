@@ -234,7 +234,7 @@ const clues: Clue[] = [
     type: 'sameRowOrColumnAsItem',
     subject: { type: 'person', id: 'boris' },
     itemTypeId: 'sunLounger',
-    text: 'Борис находился в одной строке или столбце с шезлонгом.',
+    text: 'Борис находился в одном ряду или столбце с шезлонгом.',
   },
   {
     id: 'cruise-elena-chair',
@@ -262,7 +262,7 @@ const clues: Clue[] = [
     type: 'sameRowOrColumnAsItem',
     subject: { type: 'person', id: 'zoya' },
     itemTypeId: 'anchorWinch',
-    text: 'Зоя находилась в одной строке или столбце с носовой лебёдкой.',
+    text: 'Зоя находилась в одном ряду или столбце с носовой лебёдкой.',
   },
   {
     id: 'cruise-galina-roulette',
@@ -276,7 +276,7 @@ const clues: Clue[] = [
     type: 'sameRowOrColumnAsItem',
     subject: { type: 'person', id: 'galina' },
     itemTypeId: 'wineGlass',
-    text: 'Галина находилась в одной строке или столбце с бокалом вина.',
+    text: 'Галина находилась в одном ряду или столбце с бокалом вина.',
   },
   {
     id: 'cruise-valeria-roulette',
@@ -297,7 +297,7 @@ const clues: Clue[] = [
     type: 'sameRowOrColumnAsItem',
     subject: { type: 'person', id: 'zhdan' },
     itemTypeId: 'bed',
-    text: 'Ждан находился в одной строке или столбце с кроватью.',
+    text: 'Ждан находился в одном ряду или столбце с кроватью.',
   },
   {
     id: 'cruise-zhdan-east-wall',
