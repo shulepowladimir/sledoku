@@ -33,6 +33,7 @@ import { polarLevel } from '../levels/31-polar';
 import { piratesLevel } from '../levels/32-pirates';
 import { racingLevel } from '../levels/33-racing';
 import { casinoLevel } from '../levels/34-casino';
+import { cablecarLevel } from '../levels/53-cablecar';
 
 test('menu -> full playthrough of apartment-01 -> victory -> back to menu', async ({ page }) => {
   await page.clock.install({ time: new Date('2026-09-25T12:00:00Z') });
@@ -730,4 +731,22 @@ test('casino-01 shows the approved all-on-zero story and reveal', async ({ page 
   await expect(storyDialog).toContainText('Артём в баре угощал Валерию коктейлями');
   await expect(storyDialog).toContainText('поставил всё на зеро');
   await expect(storyDialog).toContainText('Зинаида оказалась убийцей Харитона.');
+});
+
+test('cablecar-01 shows the approved last-cabin story and reveal', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${cablecarLevel.meta.id}`).click();
+
+  for (const [personId, cellId] of Object.entries(cablecarLevel.solution)) {
+    await page.getByTestId(`roster-person-${personId}`).click();
+    await page.getByTestId(`cell-${cellId}`).dblclick();
+  }
+  await page.getByTestId('check-button').click();
+
+  const storyDialog = page.getByTestId('completion-story-dialog');
+  await expect(storyDialog).toBeVisible();
+  await expect(storyDialog).toContainText('Из-за сильного ветра канатку должны были закрыть сразу после последнего рейса.');
+  await expect(storyDialog).toContainText('Третья кабинка пустовала, а вот в четвёртой вместе ехали Борис и Харитон.');
+  await expect(storyDialog).toContainText('позже он уверял, что Харитон сошёл на промежуточной остановке.');
+  await expect(storyDialog).toContainText('Борис оказался убийцей Харитона.');
 });

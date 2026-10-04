@@ -48,7 +48,17 @@ This is the single final gate: all-level lint/quality/solver validation, TypeScr
 
 Human QA is reserved for what automation cannot establish: clue wording and fairness, intended deduction, and visual presentation of changed assets. It must be performed by the user; agent-run browser checks are a technical gate, not user QA. Keep the level in Doing until the user reviews and accepts it. Do not repeat visual review of unchanged assets.
 
-## 4. New art
+## 4. Completion story
+
+Author the post-victory story only after the level itself is complete: its final map, cast, placements, clues, art, automated verification, and the user's manual gameplay QA have all been accepted. Do not draft a story while the level is still being designed or revised during QA.
+
+- Base the draft on the accepted level as it exists in the game: its setting, final character placement, rooms, items, roles, and victim/murderer pair.
+- Use all 60 approved completion stories as references for voice and variety. Treat them as examples, not templates; do not reuse another level's plot or assume its time of day.
+- Present the draft to the user and wait for explicit approval before editing `src/content/completionStories.ts`. Preserve the approved wording verbatim and set `victimGenitive` to the actual victim's genitive form.
+- Add the approved entry under the level's `meta.id`, with a focused smoke assertion for the story and murderer reveal. Then rerun `npm run verify`.
+- Do not mark the level complete based on the story draft or green automation alone; the level's user QA and story approval are separate gates.
+
+## 5. New art
 
 For an asset batch, register the new game keys first, then run:
 
@@ -61,6 +71,7 @@ Review `art/preview/index.local.html` in a browser. After approval, copy only th
 ## Completion criteria
 
 - The level is registered and `npm run verify` passes.
+- Its completion story is added only after user acceptance of the finished level and explicit approval of the story draft; the final story smoke assertion and `npm run verify` pass.
 - Hidden-role alternatives have an explicit epistemic test when applicable.
 - The user has manually reviewed and accepted the changed player-facing text/art/deduction that requires judgment; green automation alone never marks a level complete.
 - The final response reports the commands actually run and any remaining manual QA.
