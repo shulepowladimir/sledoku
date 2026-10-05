@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Дачный домик за огородными грядками. -->
+  <rect x="7" y="7" width="82" height="82" rx="19" fill="#7FA85B" stroke="#1A1A1A" stroke-width="3"/>
+
+  <!-- Утреннее небо и солнце. -->
+  <path d="M10 17 Q10 10 18 10 H78 Q86 10 86 18 V49 H10 Z" fill="#9CC3E0"/>
+  <circle cx="72" cy="25" r="8" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+
+  <!-- Деревянная дача. -->
+  <path d="M22 45 L48 23 L74 45 V74 H22 Z" fill="#E8B95F" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M17 45 L48 18 L79 45 L74 49 L48 27 L22 49 Z" fill="#B85F2E" stroke="#1A1A1A" stroke-width="2.8" stroke-linejoin="round"/>
+  <path d="M29 48 V73 M36 49 V73 M43 49 V73 M50 49 V73 M57 49 V73 M64 48 V73" stroke="#B87F33" stroke-width="1.4"/>
+  <rect x="42" y="54" width="13" height="20" rx="5" fill="#8F5A3A" stroke="#1A1A1A" stroke-width="2.2"/>
+  <circle cx="52" cy="64" r="1.4" fill="#E8B95F"/>
+  <rect x="27" y="51" width="10" height="10" rx="2" fill="#4A7BA6" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M32 52 V60 M28 56 H36" stroke="#9CC3E0" stroke-width="1.4"/>
+  <rect x="59" y="51" width="10" height="10" rx="2" fill="#4A7BA6" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M64 52 V60 M60 56 H68" stroke="#9CC3E0" stroke-width="1.4"/>
+
+  <!-- Грядки и забор на переднем плане. -->
+  <path d="M11 76 Q28 70 43 76 Q58 82 85 73 V86 H11 Z" fill="#5E8A46" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M15 80 Q28 76 40 80 M56 80 Q69 84 82 78" fill="none" stroke="#3A2A20" stroke-width="3" stroke-linecap="round"/>
+  <path d="M14 69 V86 M22 70 V84 M30 71 V82 M14 72 H30" fill="none" stroke="#B87F33" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M34 77 Q32 72 35 68 M35 73 Q39 68 42 70 M35 76 Q30 74 29 71" fill="none" stroke="#44663A" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

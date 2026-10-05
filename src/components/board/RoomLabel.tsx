@@ -3,6 +3,7 @@ import { CELL_SIZE } from '../../styles/floorTextures';
 
 interface RoomLabelProps {
   name: string;
+  worldId?: string;
   anchorRow: number;
   anchorCol: number;
   position?: 'top' | 'bottom';
@@ -17,6 +18,7 @@ interface RoomLabelProps {
 
 export function RoomLabel({
   name,
+  worldId,
   anchorRow,
   anchorCol,
   position = 'bottom',
@@ -39,16 +41,16 @@ export function RoomLabel({
       ? {
           left,
           top: anchorRow * CELL_SIZE + edgeGap,
-          transform: `translate(${xShift}, 0)`,
+          transform: `translate(${xShift}, 0)${worldId === 'otherworld' ? ' rotate(180deg)' : ''}`,
         }
       : {
           left,
           top: (anchorRow + 1) * CELL_SIZE - bottomInset,
-          transform: `translate(${xShift}, calc(-100% - ${edgeGap}px))`,
+          transform: `translate(${xShift}, calc(-100% - ${edgeGap}px))${worldId === 'otherworld' ? ' rotate(180deg)' : ''}`,
         };
 
   return (
-    <div className={`room-label${highlighted ? ' room-label--highlighted' : ''}`} style={style}>
+    <div className={`room-label${highlighted ? ' room-label--highlighted' : ''}`} data-world-id={worldId} style={style}>
       {name}
     </div>
   );

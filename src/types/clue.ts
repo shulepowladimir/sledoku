@@ -399,6 +399,12 @@ export interface LetterGroupRoomClue extends ClueBase {
   letterClass: LetterClass;
 }
 
+/** Level-wide: everyone in a letter class occupies rooms in the same world. */
+export interface LetterGroupSameWorldClue extends ClueBase {
+  type: 'letterGroupSameWorld';
+  letterClass: LetterClass;
+}
+
 /** Level-wide: everyone in a letter class is in one of the listed rooms. */
 export interface LetterGroupInRoomsClue extends ClueBase {
   type: 'letterGroupInRooms';
@@ -540,6 +546,7 @@ export type Clue =
   | RoomParityClue
   | RoomPopulationClue
   | LetterGroupRoomClue
+  | LetterGroupSameWorldClue
   | LetterGroupInRoomsClue
   | RoleClue
   | SameRoomAsRoleClue

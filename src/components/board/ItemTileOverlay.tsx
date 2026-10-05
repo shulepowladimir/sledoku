@@ -8,6 +8,7 @@ import { ItemIcon } from './ItemIcon';
 interface ItemTileOverlayProps {
   item: Item;
   itemType: ItemType;
+  rotate180?: boolean;
 }
 
 /** Multi-cell "wall" items (`render: 'tile'` — hedge mazes, counters): the icon
@@ -18,7 +19,7 @@ interface ItemTileOverlayProps {
  *  north/west — volume under the art style's top-left light, never a flat
  *  texture patch. They can be disabled per item type; the silhouette contour remains.
  *  The lip is trimmed flush on the board's outer border. */
-export function ItemTileOverlay({ item, itemType }: ItemTileOverlayProps) {
+export function ItemTileOverlay({ item, itemType, rotate180 = false }: ItemTileOverlayProps) {
   const coords = item.cells.map(parseCellId);
   const minRow = Math.min(...coords.map((c) => c.row));
   const maxRow = Math.max(...coords.map((c) => c.row));
@@ -26,7 +27,12 @@ export function ItemTileOverlay({ item, itemType }: ItemTileOverlayProps) {
   const maxCol = Math.max(...coords.map((c) => c.col));
   const width = (maxCol - minCol + 1) * CELL_SIZE;
   const height = (maxRow - minRow + 1) * CELL_SIZE;
-  const style: CSSProperties = { left: minCol * CELL_SIZE, top: minRow * CELL_SIZE, width, height };
+  const style: CSSProperties = {
+    left: minCol * CELL_SIZE,
+    top: minRow * CELL_SIZE,
+    width,
+    height,
+  };
   const { shadows: allShadows, scallops: allScallops, contourPath } = polyominoEdgeDecorations(
     item.cells,
     CELL_SIZE,
@@ -49,7 +55,7 @@ export function ItemTileOverlay({ item, itemType }: ItemTileOverlayProps) {
             height: CELL_SIZE,
           }}
         >
-          <ItemIcon itemType={itemType} size={CELL_SIZE} />
+          <ItemIcon itemType={itemType} size={CELL_SIZE} rotate180={rotate180} />
         </div>
       ))}
       <svg className="item-tile-overlay__outline" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">

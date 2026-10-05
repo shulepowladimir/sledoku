@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import type { RoomId } from '../../types/level';
-import { parseCellId } from '../../types/level';
+import { parseCellId, roomWorldId } from '../../types/level';
 import { isLegalTarget, cellBoundary } from '../../engine/board';
 import { occupantOf, marksOf, crossKind, isSolved, personStatus } from '../../engine/selectors';
 import { useGameStore } from '../../state/gameStore';
@@ -75,7 +75,10 @@ export function Board() {
   const itemsById = new Map(level.items.map((i) => [i.id, i]));
   const peopleById = new Map(level.people.map((p) => [p.id, p]));
   const roomsById = new Map(level.rooms.map((r) => [r.id, r]));
+  const roomIdByCellId = new Map(level.cells.map((cell) => [cell.id, cell.roomId]));
   const floorFeaturesById = new Map(level.floorFeatures.map((f) => [f.id, f]));
+  const isOtherworldItem = (item: (typeof level.items)[number]) =>
+    roomWorldId(roomsById.get(roomIdByCellId.get(item.cells[0]) ?? '')) === 'otherworld';
   // Нестандартные карты: rows = size, cols = level.cols ?? size (квадрат по умолчанию).
   const rows = level.size;
   const cols = level.cols ?? level.size;
@@ -124,6 +127,7 @@ export function Board() {
     .filter((item) => item.cells.length > 1)
     .map((item) => ({ item, itemType: itemTypesById.get(item.typeId) }))
     .filter((entry): entry is { item: (typeof level.items)[number]; itemType: NonNullable<typeof entry.itemType> } => !!entry.itemType)
+    .map(({ item, itemType }) => ({ item, itemType, rotate180: isOtherworldItem(item) }))
     // тайл-предметы (render:'tile') рендерятся своим слоем ItemTileOverlay —
     // боксовая иконка поверх bbox им не нужна (гигантские квадраты поверх карты)
     .filter(({ itemType }) => itemType.render !== 'tile')
@@ -140,6 +144,7 @@ export function Board() {
   const tileOverlays = level.items
     .map((item) => ({ item, itemType: itemTypesById.get(item.typeId) }))
     .filter((entry): entry is { item: (typeof level.items)[number]; itemType: NonNullable<typeof entry.itemType> } => !!entry.itemType && entry.itemType.render === 'tile');
+  const rotatedTileOverlays = tileOverlays.map(({ item, itemType }) => ({ item, itemType, rotate180: isOtherworldItem(item) }));
   for (const { item } of tileOverlays) {
     for (const cid of item.cells) suppressedCellIds.add(cid);
   }
@@ -246,14 +251,15 @@ export function Board() {
           ...(boardScale !== 1 ? { transform: `scale(${boardScale})`, transformOrigin: 'top left' } : {}),
         }}
       >
-      {tileOverlays.map(({ item, itemType }) => (
-        <ItemTileOverlay key={item.id} item={item} itemType={itemType} />
+      {rotatedTileOverlays.map(({ item, itemType, rotate180 }) => (
+        <ItemTileOverlay key={item.id} item={item} itemType={itemType} rotate180={rotate180} />
       ))}
-      {multiCellOverlays.map(({ item, itemType }) => (
+      {multiCellOverlays.map(({ item, itemType, rotate180 }) => (
         <ItemOverlay
           key={item.id}
           item={item}
           itemType={itemType}
+          rotate180={rotate180}
           occupied={item.cells.some((cid) => occupantOf(player, cid) != null)}
         />
       ))}
@@ -273,11 +279,23 @@ export function Board() {
         const itemType = item ? itemTypesById.get(item.typeId) : undefined;
         const feature = cell.floorFeatureId ? floorFeaturesById.get(cell.floorFeatureId) : undefined;
         const tooltip = itemType?.label ?? feature?.label;
-        const textureKey = feature?.textureKey ?? roomsById.get(cell.roomId)?.floorTexture ?? 'tile';
+        const room = roomsById.get(cell.roomId);
+        const worldId = roomWorldId(room);
+        const textureKey = feature?.textureKey ?? room?.floorTexture ?? 'tile';
         const origin = (feature ? featureOriginById.get(feature.id) : roomOriginById.get(cell.roomId)) ?? {
           minRow: 0,
           minCol: 0,
         };
+        const baseFloorStyle = floorStyle(textureKey, cell.row - origin.minRow, cell.col - origin.minCol);
+        const cellFloorStyle = worldId === 'otherworld'
+          ? {
+              ...baseFloorStyle,
+              backgroundImage: [
+                'linear-gradient(rgba(123, 36, 49, 0.24), rgba(123, 36, 49, 0.24))',
+                baseFloorStyle.backgroundImage,
+              ].filter(Boolean).join(', '),
+            }
+          : baseFloorStyle;
         const personId = occupantOf(player, cell.id);
         const person = personId ? peopleById.get(personId) : undefined;
         const marks = marksOf(player, cell.id);
@@ -297,9 +315,11 @@ export function Board() {
             testId={`cell-${cell.id}`}
             row={cell.row}
             col={cell.col}
+            worldId={worldId}
             checkerboardTone={level.tilePattern === 'checkerboard' ? ((cell.row + cell.col) % 2 === 0 ? 'light' : 'dark') : undefined}
-            floorStyle={floorStyle(textureKey, cell.row - origin.minRow, cell.col - origin.minCol)}
+            floorStyle={cellFloorStyle}
             itemType={itemType}
+            rotateItem={worldId === 'otherworld'}
             suppressItemIcon={suppressedCellIds.has(cell.id)}
             suppressOccupiedItemIcon={!!item && item.cells.length > 1 && itemType?.render !== 'tile'}
             tooltip={tooltip}
@@ -336,6 +356,7 @@ export function Board() {
         <RoomLabel
           key={room.id}
           name={room.name}
+          worldId={roomWorldId(room)}
           anchorRow={anchorRow}
           anchorCol={anchorCol}
           position={position}

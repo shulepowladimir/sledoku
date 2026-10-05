@@ -5,6 +5,7 @@ import { itemIconRegistry } from '../../assets/itemIconRegistry';
 interface ItemIconProps {
   itemType: ItemType;
   size?: number;
+  rotate180?: boolean;
 }
 
 function renderIconShape(icon: string): ReactNode {
@@ -1353,12 +1354,13 @@ function renderIconShape(icon: string): ReactNode {
   }
 }
 
-export function ItemIcon({ itemType, size = 30 }: ItemIconProps) {
+export function ItemIcon({ itemType, size = 30, rotate180 = false }: ItemIconProps) {
   // Designer art takes precedence; the built-in switch below is the fallback while the
   // icon library is being filled (see docs/assets.md).
   const Custom = itemIconRegistry[itemType.icon];
+  const style = rotate180 ? { transform: 'rotate(180deg)' } : undefined;
   if (Custom) {
-    return <Custom className={`item-icon item-icon--${itemType.kind}`} width={size} height={size} />;
+    return <Custom className={`item-icon item-icon--${itemType.kind}`} width={size} height={size} style={style} />;
   }
   return (
     <svg
@@ -1366,6 +1368,7 @@ export function ItemIcon({ itemType, size = 30 }: ItemIconProps) {
       width={size}
       height={size}
       className={`item-icon item-icon--${itemType.kind}`}
+      style={style}
       fill="none"
       stroke="currentColor"
       strokeWidth={1.3}

@@ -12,6 +12,7 @@
 - stool — occupiable
 - workbench — occupiable
 - plant — decorative
+- gardenBed — decorative, render: 'tile' (огородная грядка-полиомино; `tileEdgeDepth: false`)
 - globe — decorative
 - portrait — decorative
 - telescope — decorative
@@ -167,6 +168,19 @@
 - convectionOven — decorative, 2 клетки (конвекционная печь; bakery)
 - croissant — decorative (круассан; bakery)
 - coffeeMachine — decorative, 2 клетки (кофемашина; bakery)
+
+## Уровневые типы — dacha
+
+- outhouseToilet — occupiable (сиденье деревенского туалета)
+
+Иконки уровня: `dacha`, `gardenBed`, `outhouseToilet`.
+
+## Уровневые типы — strange-case
+
+- bicycle, portableRadio — decorative
+- garland — decorative, `render: 'tile'`, `tileEdgeDepth: false`
+
+Иконки уровня: `strangeCase`, `bicycle`, `garland`, `portableRadio`.
 
 ## Уровневые типы — restaurant
 

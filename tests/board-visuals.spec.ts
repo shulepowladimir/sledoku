@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { apartmentLevel } from '../levels/01-apartment';
 import { dinerLevel } from '../levels/30-diner';
 import { hollywoodLevel } from '../levels/25-hollywood';
+import { strangeCaseLevel } from '../levels/63-strange-case';
 
 for (const level of [apartmentLevel, dinerLevel, hollywoodLevel]) {
   test(`${level.meta.id} uses shared room-label styling`, async ({ page }) => {
@@ -18,6 +19,57 @@ for (const level of [apartmentLevel, dinerLevel, hollywoodLevel]) {
     expect(textShadow).toContain('255, 255, 255');
   });
 }
+
+test('the otherworld tints floors and rotates only room labels and item art', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId('size-filter-12').click();
+  await page.getByTestId(`level-card-${strangeCaseLevel.meta.id}`).click();
+
+  const ordinaryCell = page.getByTestId('cell-0-1');
+  const otherworldCell = page.getByTestId('cell-9-0');
+  await expect(ordinaryCell).toHaveAttribute('data-world-id', 'ordinary');
+  await expect(otherworldCell).toHaveAttribute('data-world-id', 'otherworld');
+  expect(await ordinaryCell.evaluate((node) => getComputedStyle(node).backgroundImage)).not.toContain('123, 36, 49');
+  expect(await otherworldCell.evaluate((node) => getComputedStyle(node).backgroundImage)).toContain('123, 36, 49');
+
+  const ordinaryLabel = page.locator('.room-label[data-world-id="ordinary"]').first();
+  const otherworldLabel = page.locator('.room-label[data-world-id="otherworld"]').first();
+  await expect(ordinaryLabel).toHaveCSS('transform', /none|matrix\(1, 0, 0, 1/);
+  await expect(otherworldLabel).toHaveCSS('transform', /matrix\(-1, 0, 0, -1/);
+
+  await expect(ordinaryCell.locator('.item-icon')).toHaveCSS('transform', 'none');
+  await expect(otherworldCell.locator('.item-icon')).toHaveCSS('transform', 'matrix(-1, 0, 0, -1, 0, 0)');
+  const otherworldGarland = page.getByTestId('item-tiles-garland-other-house');
+  await expect(otherworldGarland).toHaveCSS('transform', 'none');
+  await expect(otherworldGarland.locator('.item-icon').first()).toHaveCSS('transform', /matrix\(-1, 0, 0, -1/);
+
+  const sofaBounds = await page.getByTestId('cell-7-0').locator('.item-icon').boundingBox();
+  const garlandTileBounds = await otherworldGarland.locator('.item-tile-overlay__tile').evaluateAll((tiles) =>
+    tiles.map((tile) => {
+      const { x, y, right, bottom } = tile.getBoundingClientRect();
+      return { x, y, right, bottom };
+    }),
+  );
+  expect(sofaBounds).not.toBeNull();
+  expect(garlandTileBounds.some((tile) =>
+    sofaBounds!.x < tile.right && sofaBounds!.x + sofaBounds!.width > tile.x &&
+    sofaBounds!.y < tile.bottom && sofaBounds!.y + sofaBounds!.height > tile.y,
+  )).toBe(false);
+
+  await page.getByTestId('cell-8-3').hover();
+  const garlandOutline = page.getByTestId('item-outline');
+  await expect(garlandOutline).toHaveClass(/item-outline--decorative/);
+  const outlineBox = await garlandOutline.boundingBox();
+  const garlandBox = await otherworldGarland.boundingBox();
+  expect(outlineBox).not.toBeNull();
+  expect(garlandBox).not.toBeNull();
+  expect(outlineBox!.x).toBeCloseTo(garlandBox!.x, 0);
+  expect(outlineBox!.y).toBeCloseTo(garlandBox!.y, 0);
+
+  await page.getByTestId('roster-person-alexey').click();
+  await page.getByTestId('cell-6-9').dblclick();
+  await expect(page.getByTestId('cell-6-9').locator('.person-token')).toHaveCSS('transform', 'none');
+});
 
 test('shared board styling preserves hover, person colors, initials, and enlarged single-cell items', async ({ page }) => {
   await page.goto('/');

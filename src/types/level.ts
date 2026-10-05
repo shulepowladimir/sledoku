@@ -4,6 +4,7 @@ export type ItemTypeId = string;
 export type ItemId = string;
 export type LevelId = string;
 export type CellId = `${number}-${number}`; // `${row}-${col}`, 0-based
+export const DEFAULT_WORLD_ID = 'default';
 
 export function cellId(row: number, col: number): CellId {
   return `${row}-${col}`;
@@ -18,6 +19,10 @@ export interface Room {
   id: RoomId;
   name: string;
   floorTexture: string; // key into the floor-texture registry
+  /** Optional world scope for cross-world mechanics; absent rooms share one legacy default world. */
+  worldId?: string;
+  /** Identifies corresponding rooms in parallel worlds without merging their room identities. */
+  familyId?: string;
   /** Explicit ordinal for clues that compare numbered zones (e.g. golf holes). */
   number?: number;
   /** Where the room label is anchored inside the room. Default: 'bottom' (just above the
@@ -31,6 +36,10 @@ export interface Room {
   labelAlign?: 'left' | 'center' | 'right';
   /** Optional label-anchor adjustment in grid cells, applied after automatic positioning. */
   labelOffsetCells?: { row?: number; col?: number };
+}
+
+export function roomWorldId(room: Pick<Room, 'worldId'> | undefined): string {
+  return room?.worldId ?? DEFAULT_WORLD_ID;
 }
 
 export type ItemKind = 'decorative' | 'occupiable';
@@ -106,6 +115,8 @@ export interface LevelMeta {
   /** Desktop roster column sizes (top to bottom = left to right), e.g. [5, 3, 4] for 12 people.
    *  Optional — when omitted the roster splits people into even chunks (ceil(N / columnCount)). */
   rosterColumnCounts?: number[];
+  /** Informational lines appended to the roster's general-clue list; these do not constrain the solver. */
+  generalNotes?: string[];
 }
 
 export interface Level {

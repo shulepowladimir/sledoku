@@ -83,6 +83,7 @@ export const ItemLibrary = {
   stool: item('stool', 'stool', 'occupiable', 'Табурет'),
   workbench: item('workbench', 'workbench', 'occupiable', 'Рабочий стол'),
   plant: item('plant', 'plant', 'decorative', 'Растение'),
+  gardenBed: item('gardenBed', 'gardenBed', 'decorative', 'Грядка'),
   globe: item('globe', 'globe', 'decorative', 'Глобус'),
   portrait: item('portrait', 'portrait', 'decorative', 'Портрет'),
   telescope: item('telescope', 'telescope', 'decorative', 'Телескоп'),
@@ -185,4 +186,7 @@ export const ItemLibrary = {
   barberChair: item('barberChair', 'barberChair', 'occupiable', 'Парикмахерское кресло'),
   hairDryer: item('hairDryer', 'hairDryer', 'decorative', 'Фен'),
   productShelf: item('productShelf', 'productShelf', 'decorative', 'Стойка с косметикой'),
+  portableRadio: item('portableRadio', 'portableRadio', 'decorative', 'Переносная рация'),
+  bicycle: item('bicycle', 'bicycle', 'decorative', 'Велосипед'),
+  garland: item('garland', 'garland', 'decorative', 'Гирлянда'),
 } satisfies Record<string, (label?: string) => ItemType>;

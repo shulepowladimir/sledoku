@@ -1,5 +1,5 @@
 import type { Cell, CellId, Gender, Level, PersonId, RoomId } from '../../src/types/level';
-import { cellId } from '../../src/types/level';
+import { cellId, roomWorldId } from '../../src/types/level';
 import type { Clue, Subject } from '../../src/types/clue';
 import { buildLevelIndex, cellBoundary, isCorner, isLegalTarget, type LevelIndex } from '../../src/engine/board';
 
@@ -99,7 +99,10 @@ function cellNeighborsOf(index: LevelIndex, row: number, col: number) {
 }
 
 /** Зоны граничат: существует клетка a∈A с ортогональным соседом b∈B. */
-function zonesTouch(level: Level, index: LevelIndex, roomA: RoomId, roomB: RoomId): boolean {
+function zonesTouch(level: Level, index: LevelIndex, roomA: RoomId, roomB: RoomId, allowCrossWorldSeam = false): boolean {
+  const a = level.rooms.find((room) => room.id === roomA);
+  const b = level.rooms.find((room) => room.id === roomB);
+  if (!a || !b || (!allowCrossWorldSeam && roomWorldId(a) !== roomWorldId(b))) return false;
   return level.cells.some(
     (cell) =>
       cell.roomId === roomA &&
@@ -120,7 +123,11 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       const subjectCellId = getCell(subjectPersonId(clue.subject, level));
       if (!subjectCellId) return undefined;
       const cell = index.cellsById.get(subjectCellId)!;
-      const result = cell.roomId === clue.roomId;
+      const clueRoom = level.rooms.find((room) => room.id === clue.roomId);
+      const actualRoom = level.rooms.find((room) => room.id === cell.roomId);
+      const result = cell.roomId === clue.roomId || Boolean(
+        clueRoom?.familyId && actualRoom?.familyId === clueRoom.familyId,
+      );
       return clue.negated ? !result : result;
     }
     case 'adjacency': {
@@ -539,19 +546,28 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       // стену (ортогональный сосед) — вторая зона пары. Зоновый wallSide.
       const subjectCellId = getCell(subjectPersonId(clue.subject, level));
       if (!subjectCellId) return undefined;
+      const room = level.rooms.find((entry) => entry.id === clue.roomId);
+      const otherRoom = level.rooms.find((entry) => entry.id === clue.otherRoomId);
+      if (!room || !otherRoom || roomWorldId(room) !== roomWorldId(otherRoom)) return false;
       const cell = index.cellsById.get(subjectCellId)!;
       if (cell.roomId !== clue.roomId && cell.roomId !== clue.otherRoomId) return false;
       const wanted = cell.roomId === clue.roomId ? clue.otherRoomId : clue.roomId;
       return cellNeighborsOf(index, cell.row, cell.col).some((n) => n?.roomId === wanted);
     }
     case 'zoneNeighborOf': {
-      // «Находился в соседней от Y зоне» (строго не в Y): eager — субъект
-      // посажен, зона известна, соседство зон — свойство карты.
+      // A paired-world target denotes either room in its family; a candidate
+      // may neighbor either one, including across the seam between the worlds.
       const subjectCellId = getCell(subjectPersonId(clue.subject, level));
       if (!subjectCellId) return undefined;
       const cell = index.cellsById.get(subjectCellId)!;
-      if (cell.roomId === clue.roomId) return false;
-      return zonesTouch(level, index, cell.roomId, clue.roomId);
+      const targetRoom = level.rooms.find((room) => room.id === clue.roomId);
+      if (!targetRoom) return false;
+      const targetRooms = targetRoom.familyId
+        ? level.rooms.filter((room) => room.familyId === targetRoom.familyId)
+        : [targetRoom];
+      return targetRooms.some((room) =>
+        cell.roomId !== room.id && zonesTouch(level, index, cell.roomId, room.id, Boolean(targetRoom.familyId)),
+      );
     }
     case 'adjacentZonesPair': {
       // «X и Y были в соседних зонах»: оба посажены, зоны различны и граничат.
@@ -636,6 +652,26 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       const group = level.people.filter((p) => isVowel(p.initialLetter) === (clue.letterClass === 'vowel'));
       const rooms = new Set(group.map((p) => index.cellsById.get(getCell(p.id)!)!.roomId));
       return rooms.size <= 1;
+    }
+    case 'letterGroupSameWorld': {
+      const isVowel = (letter: string) => VOWELS.has(letter);
+      const group = level.people.filter((person) => isVowel(person.initialLetter) === (clue.letterClass === 'vowel'));
+      let assignedWorld: string | undefined;
+      let allGroupMembersPlaced = true;
+
+      for (const person of group) {
+        const personCellId = getCell(person.id);
+        if (!personCellId) {
+          allGroupMembersPlaced = false;
+          continue;
+        }
+        const roomId = index.cellsById.get(personCellId)!.roomId;
+        const worldId = roomWorldId(level.rooms.find((room) => room.id === roomId));
+        if (assignedWorld != null && assignedWorld !== worldId) return false;
+        assignedWorld = worldId;
+      }
+
+      return allGroupMembersPlaced ? true : undefined;
     }
     case 'letterGroupInRooms': {
       const isVowel = (letter: string) => VOWELS.has(letter);

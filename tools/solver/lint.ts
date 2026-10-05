@@ -83,6 +83,15 @@ export function lintLevel(level: Level): string[] {
         violations.push(`Подсказка "${clue.id}" (letterGroupInRooms): в ростере нет персонажей выбранного класса букв.`);
       }
     }
+
+    if (clue.type === 'letterGroupSameWorld') {
+      const hasGroupMember = level.people.some((person) =>
+        'АЕЁИОУЫЭЮЯ'.includes(person.initialLetter.toUpperCase()) === (clue.letterClass === 'vowel'),
+      );
+      if (!hasGroupMember) {
+        violations.push(`Подсказка "${clue.id}" (letterGroupSameWorld): в ростере нет персонажей выбранного класса букв.`);
+      }
+    }
   }
   for (const clue of level.clues) {
     if (clue.type === 'symmetricPosition') {

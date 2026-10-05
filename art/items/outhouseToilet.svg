@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Деревянное сиденье дачного туалета, вид сверху: доска с отверстием. -->
+  <ellipse cx="49" cy="84" rx="34" ry="5" fill="#3A2A20"/>
+
+  <!-- Основание и широкая деревянная доска. -->
+  <path d="M17 25 Q18 18 25 17 L72 20 Q79 21 80 28 L76 72 Q75 79 68 79 L24 76 Q17 75 16 68 Z" fill="#B87F33" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M22 28 Q23 23 28 23 L69 26 Q74 27 74 32 L71 65 Q70 71 65 71 L28 68 Q22 67 22 62 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+
+  <!-- Центральное отверстие, с отчётливой тёмной внутренней стенкой. -->
+  <ellipse cx="48" cy="47" rx="17" ry="12" fill="#8F5A3A" stroke="#1A1A1A" stroke-width="2.4"/>
+  <ellipse cx="48" cy="46" rx="11" ry="7" fill="#3A2A20" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M41 43 Q47 39 54 43" fill="none" stroke="#B87F33" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Видимые торцы и крепёж досок. -->
+  <path d="M25 31 L31 31 M24 60 L30 61 M66 34 L71 34 M65 63 L70 63" stroke="#8F5A3A" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="29" cy="27" r="1.8" fill="#5A3B2B"/>
+  <circle cx="67" cy="68" r="1.8" fill="#5A3B2B"/>
+  <path d="M28 22 Q43 23 52 24" fill="none" stroke="#F5E9D0" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

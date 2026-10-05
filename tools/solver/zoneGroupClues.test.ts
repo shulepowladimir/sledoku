@@ -43,6 +43,30 @@ const letterGroupInRooms = (ids = roomIds) => ({
   text: 'Все люди с гласной в начале имени находились на станциях.',
 }) as unknown as Clue;
 
+const letterGroupSameWorld = () => ({
+  id: 'test-letter-group-same-world',
+  type: 'letterGroupSameWorld',
+  letterClass: 'vowel',
+  text: 'Все персонажи с гласной буквой в начале имени находились в одном мире.',
+}) as unknown as Clue;
+
+const otherworldRooms = [
+  { id: 'ordinary-west', name: 'Ordinary West', floorTexture: 'metal', worldId: 'ordinary', familyId: 'west' },
+  { id: 'ordinary-east', name: 'Ordinary East', floorTexture: 'metal', worldId: 'ordinary', familyId: 'east' },
+  { id: 'otherworld-east', name: 'Otherworld East', floorTexture: 'stone', worldId: 'otherworld', familyId: 'east' },
+] as unknown as Room[];
+
+function worldLevel(rooms = otherworldRooms): Level {
+  return {
+    ...level,
+    rooms,
+    cells: level.cells.map((cell) => ({
+      ...cell,
+      roomId: cell.col < 2 ? 'ordinary-west' : cell.col < 4 ? 'ordinary-east' : 'otherworld-east',
+    })),
+  };
+}
+
 function placements(entries: [string, number, number][]): (personId: string) => ReturnType<typeof cellId> | undefined {
   const cells = new Map(entries.map(([personId, row, col]) => [personId, cellId(row, col)]));
   return (personId) => cells.get(personId);
@@ -145,6 +169,99 @@ test('letterGroupInRooms rejects a placed group member outside the allowed rooms
     evalClue(clue, placements([['andrei', 0, 0], ['vladimir', 1, 5]]), level, index, false),
     false,
     'a placed vowel-name person outside the allowed rooms cannot be moved later',
+  );
+});
+
+test('letterGroupSameWorld accepts members in different rooms of one world', () => {
+  const scopedLevel = worldLevel();
+  const result = evalClue(
+    letterGroupSameWorld(),
+    placements([['andrei', 0, 0], ['boris', 1, 2], ['vladimir', 2, 3]]),
+    scopedLevel,
+    buildLevelIndex(scopedLevel),
+    true,
+  );
+
+  assert.equal(result, true);
+});
+
+test('letterGroupSameWorld rejects a split group eagerly and at completion', () => {
+  const scopedLevel = worldLevel();
+  const clue = letterGroupSameWorld();
+  const index = buildLevelIndex(scopedLevel);
+
+  assert.equal(
+    evalClue(clue, placements([['andrei', 0, 0], ['vladimir', 1, 4]]), scopedLevel, index, false),
+    false,
+    'already placed members in different worlds cannot be repaired by remaining placements',
+  );
+  assert.equal(
+    evalClue(clue, placements([['andrei', 0, 0], ['boris', 1, 2], ['vladimir', 2, 4]]), scopedLevel, index, true),
+    false,
+  );
+  assert.equal(
+    evalClue(clue, placements([['andrei', 0, 0]]), scopedLevel, index, false),
+    undefined,
+    'unplaced group members can still join the same world',
+  );
+});
+
+test('letterGroupSameWorld lint requires at least one member of the selected letter class', () => {
+  const noVowel = worldLevel();
+  noVowel.people = noVowel.people.map((person) => ({ ...person, initialLetter: 'Б' }));
+
+  assert.ok(
+    lintLevel({ ...noVowel, clues: [letterGroupSameWorld()] })
+      .some((violation) => violation.includes('letterGroupSameWorld')),
+  );
+});
+
+test('zoneNeighborOf crosses paired-world seams while zoneBoundary and adjacentZonesPair do not', () => {
+  const scopedLevel = worldLevel();
+  const index = buildLevelIndex(scopedLevel);
+  const boundary = {
+    id: 'test-world-boundary',
+    type: 'zoneBoundary',
+    subject: { type: 'person', id: 'andrei' },
+    roomId: 'ordinary-east',
+    otherRoomId: 'otherworld-east',
+    text: 'Галина стояла на границе зон.',
+  } as unknown as Clue;
+  const neighbor = {
+    id: 'test-world-neighbor',
+    type: 'zoneNeighborOf',
+    subject: { type: 'person', id: 'andrei' },
+    roomId: 'otherworld-east',
+    text: 'Галина находилась в соседней зоне.',
+  } as unknown as Clue;
+  const pair = {
+    id: 'test-world-adjacent-pair',
+    type: 'adjacentZonesPair',
+    subject: { type: 'person', id: 'andrei' },
+    otherPersonId: 'boris',
+    text: 'Галина и Борис находились в соседних зонах.',
+  } as unknown as Clue;
+  const acrossWorlds = placements([['andrei', 0, 3], ['boris', 1, 4]]);
+
+  assert.equal(evalClue(boundary, acrossWorlds, scopedLevel, index, true), false);
+  assert.equal(evalClue(neighbor, acrossWorlds, scopedLevel, index, true), true);
+  assert.equal(evalClue(pair, acrossWorlds, scopedLevel, index, true), false);
+});
+
+test('rooms without world metadata retain legacy same-world adjacency', () => {
+  const legacyRooms = otherworldRooms.map(({ id, name, floorTexture }) => ({ id, name, floorTexture }));
+  const legacyLevel = worldLevel(legacyRooms);
+  const clue = {
+    id: 'test-legacy-zone-neighbor',
+    type: 'zoneNeighborOf',
+    subject: { type: 'person', id: 'andrei' },
+    roomId: 'otherworld-east',
+    text: 'Галина находилась в соседней зоне.',
+  } as unknown as Clue;
+
+  assert.equal(
+    evalClue(clue, placements([['andrei', 0, 3]]), legacyLevel, buildLevelIndex(legacyLevel), true),
+    true,
   );
 });
 

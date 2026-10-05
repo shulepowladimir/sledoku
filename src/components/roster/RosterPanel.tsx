@@ -65,8 +65,9 @@ export function RosterPanel() {
   // owner is the hidden role holder, unknown to the player, so they cannot hang on a person's row.
   const generalClues = level.clues.filter((clue) => !('subject' in clue) || clue.subject.type === 'role');
   const displayGeneralClues = collapseGroupedClues(generalClues);
+  const generalNotes = level.meta.generalNotes ?? [];
   const hiddenVictimRule = level.meta.victimIdentityHidden ? HIDDEN_VICTIM_RULE_LINE : undefined;
-  const generalClueCount = displayGeneralClues.length + (hiddenVictimRule ? 1 : 0);
+  const generalClueCount = displayGeneralClues.length + generalNotes.length + (hiddenVictimRule ? 1 : 0);
   // Desktop roster columns by headcount: 6 people (6×6 levels) → 2 columns of 3;
   // 7–8 → 2 columns; 9+ (incl. 12×12) → 3 columns of 4. Tutorial (5) stays single-column.
   const columnCount = level.people.length >= 9 ? 3 : level.people.length >= 6 ? 2 : 1;
@@ -119,6 +120,9 @@ export function RosterPanel() {
                 {hiddenVictimRule && <li className="clue-item">{hiddenVictimRule}</li>}
                 {displayGeneralClues.map((clue) => (
                   <li key={clue.id} className="clue-item">{clue.text}</li>
+                ))}
+                {generalNotes.map((note, index) => (
+                  <li key={`note-${index}`} className="clue-item">{note}</li>
                 ))}
               </ol>
             )}
@@ -240,6 +244,11 @@ export function RosterPanel() {
             {displayGeneralClues.map((clue) => (
               <li key={clue.id} className="clue-item">
                 {clue.text}
+              </li>
+            ))}
+            {generalNotes.map((note, index) => (
+              <li key={`note-${index}`} className="clue-item">
+                {note}
               </li>
             ))}
           </ol>

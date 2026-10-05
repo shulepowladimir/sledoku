@@ -36,9 +36,11 @@ interface GridCellProps {
   /** 0-based board coordinates — pin the cell to its grid track so cut-out (missing) cells leave holes instead of shifting others. */
   row: number;
   col: number;
+  worldId: string;
   checkerboardTone?: 'light' | 'dark';
   floorStyle: CSSProperties;
   itemType?: ItemType;
+  rotateItem?: boolean;
   suppressItemIcon?: boolean;
   suppressOccupiedItemIcon?: boolean;
   tooltip?: string;
@@ -66,9 +68,11 @@ export function GridCell({
   testId,
   row,
   col,
+  worldId,
   checkerboardTone,
   floorStyle,
   itemType,
+  rotateItem = false,
   suppressItemIcon,
   suppressOccupiedItemIcon = false,
   tooltip,
@@ -186,6 +190,7 @@ export function GridCell({
     <div
       className={`grid-cell${checkerboardTone ? ` grid-cell--checker-${checkerboardTone}` : ''}`}
       data-testid={testId}
+      data-world-id={worldId}
       style={style}
       title={tooltip}
       onClick={interactive ? handleClick : undefined}
@@ -202,11 +207,12 @@ export function GridCell({
         <ItemIcon
           itemType={itemType}
           size={ITEM_CELL_ICON_SIZE[itemType.id] ?? Math.round(CELL_SIZE * 0.8)}
+          rotate180={rotateItem}
         />
       )}
       {itemType && person && itemType.kind === 'occupiable' && !suppressOccupiedItemIcon && (
         <div className="grid-cell__item-under">
-          <ItemIcon itemType={itemType} size={Math.round(CELL_SIZE * 0.9)} />
+          <ItemIcon itemType={itemType} size={Math.round(CELL_SIZE * 0.9)} rotate180={rotateItem} />
         </div>
       )}
       {person && <PersonToken person={person} status={personStatus} />}
