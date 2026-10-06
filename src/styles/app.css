@@ -1721,6 +1721,15 @@ body.noir .profile-leaderboard__item {
   border-color: rgba(243, 242, 246, 0.2);
 }
 
+body.noir .profile-leaderboard__size-group {
+  background: rgba(243, 242, 246, 0.06);
+  border-color: rgba(243, 242, 246, 0.2);
+}
+
+body.noir .profile-leaderboard__size-toggle {
+  color: #f3f2f6;
+}
+
 body.noir .profile-leaderboard__row-title {
   color: #f3f2f6;
 }
@@ -1730,6 +1739,23 @@ body.noir .profile-leaderboard__chevron,
 body.noir .profile-leaderboard__loading,
 body.noir .profile-leaderboard__top5-time {
   color: #b5b1aa;
+}
+
+body.noir .profile-leaderboard__row-time--mine,
+body.noir .profile-leaderboard__top5-time--mine {
+  color: #72d69a;
+}
+
+body.noir .profile-leaderboard__tag--hard {
+  color: #b8dcff;
+  border-color: #6398c3;
+  background: rgba(52, 106, 154, 0.35);
+}
+
+body.noir .profile-leaderboard__tag--expert {
+  color: #e0c3f8;
+  border-color: #a37bc1;
+  background: rgba(116, 71, 154, 0.35);
 }
 
 body.noir .profile-leaderboard__expand {
@@ -1979,6 +2005,39 @@ body.noir .legal-modal__revision {
   gap: 6px;
 }
 
+.profile-leaderboard__groups {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profile-leaderboard__size-group {
+  background: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.profile-leaderboard__size-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border: 0;
+  background: transparent;
+  color: #2a2a2a;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.profile-leaderboard__size-group .profile-leaderboard__list {
+  padding: 0 8px 8px;
+}
+
 .profile-leaderboard__item {
   background: #fff;
   border: 1px solid rgba(17, 17, 17, 0.12);
@@ -2005,6 +2064,29 @@ body.noir .legal-modal__revision {
   color: #2a2a2a;
 }
 
+.profile-leaderboard__tag {
+  flex: 0 0 auto;
+  padding: 3px 7px;
+  border: 1px solid;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.profile-leaderboard__tag--hard {
+  color: #24547d;
+  border-color: #346a9a;
+  background: #e5f0fb;
+}
+
+.profile-leaderboard__tag--expert {
+  color: #572e78;
+  border-color: #74479a;
+  background: #eee4f6;
+}
+
 .profile-leaderboard__row-size {
   font-size: 12px;
   color: #6b6760;
@@ -2016,6 +2098,12 @@ body.noir .legal-modal__revision {
   color: #8a2f28;
   min-width: 44px;
   text-align: right;
+}
+
+.profile-leaderboard__row-time--mine,
+.profile-leaderboard__top5-time--mine {
+  color: #386b57;
+  font-weight: 700;
 }
 
 .profile-leaderboard__chevron {

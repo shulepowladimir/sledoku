@@ -1,6 +1,7 @@
 import { supabase } from '../lib/supabase';
 
 export interface LeaderboardRow {
+  userId: string;
   username: string;
   elapsedMs: number;
 }
@@ -23,6 +24,7 @@ export async function fetchLevelLeaderboard(levelId: string, limit = 10): Promis
   const nameById = new Map((profiles ?? []).map((p) => [p.id, p.username]));
 
   return results.map((r) => ({
+    userId: r.user_id,
     username: nameById.get(r.user_id) ?? 'Игрок',
     elapsedMs: r.elapsed_ms,
   }));
@@ -56,6 +58,7 @@ export async function fetchGlobalBestPerLevel(): Promise<Record<string, Leaderbo
   const out: Record<string, LeaderboardRow> = {};
   for (const [levelId, best] of bestByLevel) {
     out[levelId] = {
+      userId: best.userId,
       username: nameById.get(best.userId) ?? 'Игрок',
       elapsedMs: best.elapsedMs,
     };

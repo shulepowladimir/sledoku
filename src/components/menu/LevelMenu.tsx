@@ -6,7 +6,8 @@ import { useProgressStore } from '../../state/progressStore';
 import { hasInProgressDraft, useLevelDraftStore } from '../../state/levelDraftStore';
 import { useTutorialStore } from '../../state/tutorialStore';
 import { formatElapsed } from '../../utils/time';
-import { isCustomBoard, boardSortKey, CUSTOM_BOARD_LABEL } from '../../utils/boardSize';
+import { isCustomBoard, CUSTOM_BOARD_LABEL } from '../../utils/boardSize';
+import { sortLevelsByMenuOrder } from '../../utils/levelOrder';
 import { GameLogo } from './GameLogo';
 import { HowToPlay } from './HowToPlay';
 import { ThemeIcon } from './ThemeIcon';
@@ -14,17 +15,7 @@ import { AuthPanel } from '../auth/AuthPanel';
 import { NoirToggle } from '../hud/NoirToggle';
 import { SiteFooter } from './SiteFooter';
 
-const menuTagSortKey = (level: (typeof gameLevels)[number]) => {
-  if (level.meta.menuTag === 'hard') return 1;
-  if (level.meta.menuTag === 'expert') return 2;
-  return 0;
-};
-
-// Sort by board size, then untagged / hard / expert. Stable ties retain levels/index.ts
-// creation order. Non-square boards sort by cell count via boardSortKey.
-const sortedLevels = [...gameLevels].sort((a, b) =>
-  boardSortKey(a) - boardSortKey(b) || menuTagSortKey(a) - menuTagSortKey(b),
-);
+const sortedLevels = sortLevelsByMenuOrder(gameLevels);
 
 // Filter chips: square sizes plus a single shared chip for non-square boards, placed
 // right before the first square size larger than the custom boards' smaller dimension
