@@ -169,6 +169,7 @@ test.describe('профильная модалка', () => {
     await signInAsTestUser(page);
     await page.goto('/');
 
+    await expect(page.getByTestId('level-card-apartment-01')).toBeVisible();
     const menuOrder = await page.locator('.level-menu__grid > li:not(.level-card--tutorial)').evaluateAll((cards) =>
       cards.map((card) => card.getAttribute('data-testid')!.replace('level-card-', '')),
     );

@@ -77,6 +77,9 @@
 - stove — decorative (существующая иконка из 01-apartment)
 - fridge — decorative (существующая иконка из 01-apartment)
 - fireExtinguisher — decorative (иконка из chemlab, переиспользуется в bakery)
+- policeBadge — decorative (значок полицейского; policestation)
+- handcuffs — decorative (наручники; policestation)
+- evidenceBag — decorative (пакет улик; policestation)
 - wardrobe — decorative (существующая иконка из 01-apartment)
 - suitcase — decorative (существующая иконка из 10-station)
 - berth — occupiable
@@ -202,6 +205,11 @@
 - golfCart — occupiable (гольф-кар, 2 клетки)
 
 Иконки темы/предметов: `golfclub`, `golfHole`, `golfTee`, `golfBag`, `golfCart`.
+
+## Уровень — policestation
+
+- Использует готовые предметы `camera`, `computer`, `portableRadio`, `keyBox`, `clueBoard`, `table`, `chair`, `bench`, `safe`, `portrait`, `trashcan`, `watercooler`, `fireExtinguisher`, `locker`, `box`, `bookshelf`, `bed`, `toilet`.
+- Иконки темы/новых предметов: `policeStation`, `policeBadge`, `handcuffs`, `evidenceBag`.
 
 ## ItemIcon.tsx — существующие иконки (имена case, без кода)
 

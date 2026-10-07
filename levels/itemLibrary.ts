@@ -9,8 +9,15 @@ function item(id: string, icon: string, kind: ItemType['kind'], defaultLabel: st
 // Generate bespoke ItemType objects only for items that are genuinely unique to a level's
 // theme — check here first.
 export const ItemLibrary = {
+  // ——— Полицейский участок (65-policestation) ———
+  policeBadge: item('policeBadge', 'policeBadge', 'decorative', 'Полицейский значок'),
+  handcuffs: item('handcuffs', 'handcuffs', 'decorative', 'Наручники'),
+  evidenceBag: item('evidenceBag', 'evidenceBag', 'decorative', 'Пакет улик'),
   // ——— Улица (26-street) ———
   car: item('car', 'car', 'occupiable', 'Машина'),
+  fuelPump: item('fuelPump', 'fuelPump', 'decorative', 'Топливная колонка'),
+  carWashBrush: item('carWashBrush', 'carWashBrush', 'decorative', 'Щётка автомойки'),
+  gasPriceSign: item('gasPriceSign', 'gasPriceSign', 'decorative', 'Табло цен'),
   carJack: item('carJack', 'carJack', 'decorative', 'Домкрат'),
   trafficLight: item('trafficLight', 'trafficLight', 'decorative', 'Светофор'),
   trafficSign: item('trafficSign', 'trafficSign', 'decorative', 'Дорожный знак'),

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Clue } from '../../types/clue';
 import type { Person } from '../../types/level';
+import { collapseGroupedClues, generalCluesForDisplay } from '../../engine/cluePresentation';
 import { personStatus } from '../../engine/selectors';
 import { useGameStore } from '../../state/gameStore';
 import { useTutorialStore } from '../../state/tutorialStore';
@@ -9,16 +10,6 @@ import { RosterAvatar } from './RosterAvatar';
 
 const VICTIM_LINE = 'Жертва находилась наедине с убийцей';
 const HIDDEN_VICTIM_RULE_LINE = 'Жертва и убийца — единственные люди в одной комнате.';
-
-function collapseGroupedClues(clues: Clue[]): Clue[] {
-  const seenGroupIds = new Set<string>();
-  return clues.filter((clue) => {
-    if (!clue.groupId) return true;
-    if (seenGroupIds.has(clue.groupId)) return false;
-    seenGroupIds.add(clue.groupId);
-    return true;
-  });
-}
 
 function personalCluesFor(clues: Clue[], personId: string): Clue[] {
   return collapseGroupedClues(
@@ -63,8 +54,7 @@ export function RosterPanel() {
   const placedCellByPerson = new Map(Object.entries(player.placements));
   // General section: clues without a subject (level-wide rules) plus role-subject clues — their
   // owner is the hidden role holder, unknown to the player, so they cannot hang on a person's row.
-  const generalClues = level.clues.filter((clue) => !('subject' in clue) || clue.subject.type === 'role');
-  const displayGeneralClues = collapseGroupedClues(generalClues);
+  const displayGeneralClues = generalCluesForDisplay(level.clues);
   const generalNotes = level.meta.generalNotes ?? [];
   const hiddenVictimRule = level.meta.victimIdentityHidden ? HIDDEN_VICTIM_RULE_LINE : undefined;
   const generalClueCount = displayGeneralClues.length + generalNotes.length + (hiddenVictimRule ? 1 : 0);

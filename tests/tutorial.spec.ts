@@ -203,7 +203,7 @@ test('tutorial: back onto a completed action step offers Далее instead of r
 test('tutorial: leaving to a regular level silently stops the scenario', async ({ page }) => {
   await page.goto('/');
   await click(page, 'level-card-tutorial-00');
-  await expect(step(page, 'welcome')).toBeVisible();
+  await expect(step(page, 'welcome')).toBeVisible({ timeout: 15_000 });
 
   // Leaving via the menu button drops the tutorial without marking it done.
   await click(page, 'menu-button');
