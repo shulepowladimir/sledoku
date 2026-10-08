@@ -18,8 +18,8 @@ const CLOTHING_RUG_CELLS = new Set([cellId(5, 2), cellId(5, 3)]);
 
 const itemTypes: ItemType[] = [
   ItemLibrary.kassa(),
-  { id: 'veggieCounter', label: 'Прилавок с овощами', kind: 'decorative', icon: 'veggieCounter' },
-  { id: 'cart', label: 'Тележка', kind: 'decorative', icon: 'cart' },
+  ItemLibrary.veggieCounter(),
+  ItemLibrary.cart(),
   ItemLibrary.chair(),
   ItemLibrary.plant(),
   ItemLibrary.rack('Стойка с одеждой'),

@@ -32,7 +32,7 @@ const itemTypes: ItemType[] = [
   ItemLibrary.kassa(),
   ItemLibrary.safe(),
   ItemLibrary.billiardTable(),
-  { id: 'sculpture', label: 'Скульптура', kind: 'decorative', icon: 'sculpture' },
+  ItemLibrary.sculpture('Скульптура'),
   ItemLibrary.barCounter(),
   ItemLibrary.barStool(),
   ItemLibrary.piano(),

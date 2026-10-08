@@ -42,17 +42,17 @@ function roomForCell(row: number, col: number): string {
 }
 
 const itemTypes: ItemType[] = [
-  { ...ItemLibrary.boat('Лодка'), kind: 'occupiable' },
+  ItemLibrary.boat('Лодка', { kind: 'occupiable' }),
   ItemLibrary.lifebuoy(),
-  { id: 'fish', label: 'Рыба', kind: 'decorative', icon: 'fish', render: 'span' },
+  ItemLibrary.fish(),
   ItemLibrary.shell(),
   ItemLibrary.cannon(),
   ItemLibrary.barrel(),
   ItemLibrary.wheel(),
   ItemLibrary.chest('Сундук сокровищ'),
-  { id: 'crab', label: 'Краб', kind: 'decorative', icon: 'crab' },
+  ItemLibrary.crab(),
   ItemLibrary.bottle(),
-  { id: 'seaweed', label: 'Водоросли', kind: 'decorative', icon: 'seaweed', render: 'tile', tileEdgeDepth: false },
+  ItemLibrary.seaweed(),
 ];
 
 const items: Item[] = [

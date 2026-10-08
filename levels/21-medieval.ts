@@ -27,7 +27,7 @@ const itemTypes: ItemType[] = [
   ItemLibrary.throne(),
   ItemLibrary.candleStand(),
   ItemLibrary.chest('Сундук с данью'),
-  { id: 'royalChest', label: 'Королевский сундук', kind: 'decorative', icon: 'artifactChest' },
+  ItemLibrary.royalChest(),
   ItemLibrary.barrel('Бочка с вином'),
   ItemLibrary.table('Пиршественный стол'),
   ItemLibrary.bench('Скамья'),
@@ -35,7 +35,7 @@ const itemTypes: ItemType[] = [
   ItemLibrary.weaponRack(),
   // Два разных спальных места — раздельные typeId: label ищется по id через Map, дубль id
   // затирает первый label (лонже в тултипе показывалась бы «Койка стражника»).
-  { id: 'royalBed', label: 'Королевское ложе', kind: 'occupiable', icon: 'bed' },
+  ItemLibrary.royalBed(),
   ItemLibrary.bed('Койка стражника'),
   ItemLibrary.well(),
   ItemLibrary.haystack('Стог сена'),

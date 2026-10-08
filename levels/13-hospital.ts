@@ -22,7 +22,7 @@ const itemTypes: ItemType[] = [
   ItemLibrary.kassa('Стойка регистратуры'),
   ItemLibrary.computer(),
   ItemLibrary.watercooler(),
-  { id: 'examTable', label: 'Смотровой стол', kind: 'occupiable', icon: 'examTable' },
+  ItemLibrary.examTable(),
   ItemLibrary.medicineCabinet(),
   ItemLibrary.bench('Скамья для ожидания'),
   ItemLibrary.sofa('Диван для ожидания'),

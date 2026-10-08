@@ -16,8 +16,8 @@ const rooms: Room[] = [
 const floorFeatures: FloorFeature[] = [];
 
 const itemTypes: ItemType[] = [
-  { id: 'paintingStand', label: 'Стенд с картиной', kind: 'decorative', icon: 'paintingStand' },
-  { id: 'sculpture', label: 'Скульптура на постаменте', kind: 'decorative', icon: 'sculpture' },
+  ItemLibrary.paintingStand(),
+  ItemLibrary.sculpture(),
   ItemLibrary.sofa('Диванчик для посетителей'),
   ItemLibrary.souvenirRack('Стеллаж с сувенирами'),
   ItemLibrary.ladder(),

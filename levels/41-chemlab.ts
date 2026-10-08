@@ -24,9 +24,9 @@ const rooms: Room[] = [
 
 const itemTypes: ItemType[] = [
   // Уровневые (лаборатория)
-  { id: 'reactorVat', label: 'Реакторный чан', kind: 'decorative', icon: 'reactorVat' },
-  { id: 'fireExtinguisher', label: 'Огнетушитель', kind: 'decorative', icon: 'fireExtinguisher' },
-  { id: 'testTubeRack', label: 'Стеллаж с пробирками', kind: 'decorative', icon: 'testTubeRack' },
+  ItemLibrary.reactorVat(),
+  ItemLibrary.fireExtinguisher(),
+  ItemLibrary.testTubeRack(),
   // Библиотечные
   ItemLibrary.computer(),
   ItemLibrary.table(),

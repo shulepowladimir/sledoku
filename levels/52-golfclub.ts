@@ -23,10 +23,10 @@ const floorFeatures: FloorFeature[] = [
 ];
 
 const itemTypes: ItemType[] = [
-  { id: 'golfHole', label: 'Лунка с флажком', kind: 'decorative', icon: 'golfHole' },
-  { id: 'golfTee', label: 'Ти с мячом', kind: 'decorative', icon: 'golfTee' },
-  { id: 'golfBag', label: 'Сумка для клюшек', kind: 'decorative', icon: 'golfBag' },
-  { id: 'golfCart', label: 'Гольф-кар', kind: 'occupiable', icon: 'golfCart' },
+  ItemLibrary.golfHole(),
+  ItemLibrary.golfTee(),
+  ItemLibrary.golfBag(),
+  ItemLibrary.golfCart(),
   ItemLibrary.tree(),
   ItemLibrary.broadleafTree(),
   ItemLibrary.rock(),

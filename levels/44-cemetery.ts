@@ -25,12 +25,12 @@ const rooms: Room[] = [
 
 const itemTypes: ItemType[] = [
   // Уровневые (кладбище)
-  { id: 'tombstone', label: 'Надгробие', kind: 'decorative', icon: 'tombstone' },
-  { id: 'freshGrave', label: 'Свежая могила', kind: 'decorative', icon: 'freshGrave' },
-  { id: 'cemeteryGate', label: 'Ворота кладбища', kind: 'decorative', icon: 'cemeteryGate' },
-  { id: 'stela', label: 'Стела', kind: 'decorative', icon: 'stela' },
-  { id: 'bushHedge', label: 'Куст', kind: 'decorative', icon: 'bushHedge', render: 'tile' },
-  { id: 'sarcophagus', label: 'Саркофаг', kind: 'decorative', icon: 'sarcophagus' },
+  ItemLibrary.tombstone(),
+  ItemLibrary.freshGrave(),
+  ItemLibrary.cemeteryGate(),
+  ItemLibrary.stela(),
+  ItemLibrary.bushHedge(),
+  ItemLibrary.sarcophagus(),
   // Библиотечные
   ItemLibrary.candleStand(),
   ItemLibrary.monument('Памятник'),

@@ -65,10 +65,10 @@ const floorFeatures: FloorFeature[] = [
 ];
 
 const itemTypes: ItemType[] = [
-  { id: 'gondola', label: 'Кабина канатной дороги', kind: 'occupiable', icon: 'gondola' },
-  { id: 'cable', label: 'Трос канатной дороги', kind: 'decorative', icon: 'cable', render: 'tile', tileEdgeDepth: false },
-  { id: 'cableSupport', label: 'Опора канатной дороги', kind: 'decorative', icon: 'cableSupport' },
-  { id: 'stationSign', label: 'Станционный павильон', kind: 'decorative', icon: 'station' },
+  ItemLibrary.gondola(),
+  ItemLibrary.cable(),
+  ItemLibrary.cableSupport(),
+  ItemLibrary.stationSign(),
   ItemLibrary.seat('Скамья ожидания'),
   ItemLibrary.suitcase('Чемодан'),
   ItemLibrary.lamp('Фонарь станции'),

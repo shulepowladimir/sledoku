@@ -16,12 +16,12 @@ const rooms: Room[] = [
 const floorFeatures: FloorFeature[] = [{ id: 'centerCircle', label: 'Центральный круг', textureKey: 'tile' }];
 
 const itemTypes: ItemType[] = [
-  { id: 'goal', label: 'Ворота', kind: 'occupiable', icon: 'goal' },
-  { id: 'ball', label: 'Мяч', kind: 'decorative', icon: 'ball' },
-  { id: 'seat', label: 'Сиденье трибуны', kind: 'occupiable', icon: 'seat' },
-  { id: 'treadmill', label: 'Беговой тренажёр', kind: 'occupiable', icon: 'treadmill' },
-  { id: 'exerciseBike', label: 'Велотренажёр', kind: 'occupiable', icon: 'exerciseBike' },
-  { id: 'hurdle', label: 'Барьер', kind: 'decorative', icon: 'hurdle' },
+  ItemLibrary.goal(),
+  ItemLibrary.ball(),
+  ItemLibrary.seat(),
+  ItemLibrary.treadmill(),
+  ItemLibrary.exerciseBike(),
+  ItemLibrary.hurdle(),
   ItemLibrary.lamppost('Прожекторная мачта'),
 ];
 

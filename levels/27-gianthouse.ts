@@ -31,11 +31,11 @@ const CARPET_CELLS = new Set([
 
 const itemTypes: ItemType[] = [
   ItemLibrary.kettle(),
-  { ...ItemLibrary.fryingPan('Сковорода'), kind: 'occupiable' },
+  ItemLibrary.fryingPan('Сковорода', { kind: 'occupiable' }),
   ItemLibrary.burner(),
   ItemLibrary.pillow('Подушка'),
   ItemLibrary.remote(),
-  { ...ItemLibrary.plate('Тарелка'), kind: 'occupiable' },
+  ItemLibrary.plate('Тарелка', { kind: 'occupiable' }),
   ItemLibrary.candleStand(),
   ItemLibrary.cup(),
   ItemLibrary.tv(),

@@ -50,11 +50,11 @@ const itemTypes: ItemType[] = [
   ItemLibrary.broadleafTree(),
   ItemLibrary.speaker(),
   ItemLibrary.chair(),
-  { id: 'flowerVase', label: 'Ваза с цветами', kind: 'decorative', icon: 'flowerVase' },
-  { id: 'roseBush', label: 'Куст роз', kind: 'decorative', icon: 'roseBush', render: 'tile' },
-  { id: 'bushHedge', label: 'Кустарник', kind: 'decorative', icon: 'bushHedge', render: 'tile' },
-  { id: 'flowerArch', label: 'Цветочная арка', kind: 'decorative', icon: 'flowerArch' },
-  { id: 'weddingCake', label: 'Свадебный торт', kind: 'decorative', icon: 'weddingCake' },
+  ItemLibrary.flowerVase(),
+  ItemLibrary.roseBush('Куст роз'),
+  ItemLibrary.bushHedge('Кустарник'),
+  ItemLibrary.flowerArch(),
+  ItemLibrary.weddingCake(),
 ];
 
 const items: Item[] = [

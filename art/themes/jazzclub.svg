@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Тема уровня: джазовая сцена с узнаваемым саксофоном под светом рампы. -->
+  <path d="M9 81 Q18 76 48 77 Q78 76 87 81 L83 88 Q48 92 13 88Z" fill="#3A2A20"/>
+
+  <!-- Арка сцены -->
+  <path d="M15 75 V37 Q15 12 48 9 Q81 12 81 37 V75Z" fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M22 72 V38 Q22 19 48 16 Q74 19 74 38 V72Z" fill="#4A7BA6" stroke="#5C6670" stroke-width="2"/>
+  <path d="M24 36 Q26 22 43 19" fill="none" stroke="#9CC3E0" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Театральный занавес -->
+  <path d="M16 25 Q24 29 26 39 L26 72 L16 75Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M80 25 Q72 29 70 39 L70 72 L80 75Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M19 33 Q23 36 23 42 M77 33 Q73 36 73 42" fill="none" stroke="#E0824A" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Световой круг позади музыканта -->
+  <path d="M38 22 L58 22 L70 68 L27 68Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M38 22 L58 22 L70 68 L27 68Z" fill="#E8B95F"/>
+
+  <!-- Мундштук и S-образная шейка -->
+  <path d="M48 27 L53 23 Q56 22 58 25 L60 29 L55 33 L49 31Z" fill="#3A3238" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M54 30 C61 32 62 36 58 40 L52 44" fill="none" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+  <path d="M54 30 C61 32 62 36 58 40 L52 44" fill="none" stroke="#E0A94A" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Конический корпус -->
+  <path d="M48 41 Q53 40 55 45 L55 61 Q55 66 59 70 L64 74 Q66 77 62 79 Q51 83 40 81 Q37 80 39 77 L45 69 Q47 66 47 61 L47 46 Q46 42 48 41Z"
+        fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M52 45 L52 62 Q52 67 57 72 L61 76 Q56 78 51 78 L51 45Z" fill="#B87F33"/>
+  <path d="M48 46 L48 62 Q48 66 44 71" fill="none" stroke="#E8B95F" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Раструб и его открытый край -->
+  <path d="M40 77 Q50 79 63 75" fill="none" stroke="#1A1A1A" stroke-width="3.6" stroke-linecap="round"/>
+  <ellipse cx="51.5" cy="80" rx="10" ry="2.8" fill="#B87F33" stroke="#1A1A1A" stroke-width="1.6"/>
+  <ellipse cx="51.5" cy="80" rx="5.4" ry="1.2" fill="#3A2A20"/>
+
+  <!-- Клавиши на лицевой стороне -->
+  <path d="M54 46 L59 64 M49 47 L49 64" fill="none" stroke="#5C6670" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="54.5" cy="49" rx="2.1" ry="2.8" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.2"/>
+  <ellipse cx="54.5" cy="56" rx="2.2" ry="2.8" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.2"/>
+  <ellipse cx="54.5" cy="63" rx="2.2" ry="2.8" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.2"/>
+
+  <!-- Низ сцены -->
+  <path d="M19 74 Q48 70 77 74 L81 80 Q48 84 15 80Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M24 75 Q48 72 72 75" fill="none" stroke="#E8B95F" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

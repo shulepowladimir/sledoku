@@ -22,7 +22,7 @@ const rooms: Room[] = [
 const itemTypes: ItemType[] = [
   ItemLibrary.motorcycle(),
   ItemLibrary.car(),
-  { id: 'satelliteDish', label: 'Антенна', kind: 'decorative', icon: 'satelliteDish' },
+  ItemLibrary.satelliteDish('Антенна'),
   ItemLibrary.spotlight(),
   ItemLibrary.clock(),
   ItemLibrary.trafficSign(),

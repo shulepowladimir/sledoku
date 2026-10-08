@@ -17,10 +17,10 @@ const floorFeatures: FloorFeature[] = [{ id: 'forest-pond', label: 'Лесной
 const POND_CELLS = new Set([cellId(4, 4), cellId(4, 5), cellId(5, 4), cellId(5, 5)]);
 
 const itemTypes: ItemType[] = [
-  { id: 'tent', label: 'Палатка', kind: 'decorative', icon: 'tent' },
-  { id: 'campfire', label: 'Костёр', kind: 'decorative', icon: 'campfire' },
-  { id: 'tree', label: 'Ёлка', kind: 'decorative', icon: 'tree' },
-  { id: 'stump', label: 'Пень', kind: 'decorative', icon: 'stump' },
+  ItemLibrary.tent(),
+  ItemLibrary.campfire(),
+  ItemLibrary.tree('Ёлка'),
+  ItemLibrary.stump(),
   ItemLibrary.barrel(),
   ItemLibrary.stool(),
   ItemLibrary.bench(),

@@ -1,14 +1,111 @@
 import type { ItemType } from '../src/types/level';
 
-function item(id: string, icon: string, kind: ItemType['kind'], defaultLabel: string) {
-  return (label: string = defaultLabel): ItemType => ({ id, label, kind, icon });
+type ItemOverrides = Partial<Omit<ItemType, 'id'>>;
+
+function item(
+  id: string,
+  icon: string,
+  kind: ItemType['kind'],
+  defaultLabel: string,
+  defaults: ItemOverrides = {},
+) {
+  return (label: string = defaultLabel, overrides: ItemOverrides = {}): ItemType => ({
+    id,
+    label,
+    kind,
+    icon,
+    ...defaults,
+    ...overrides,
+  });
 }
 
-// Reusable generic items for new levels (office/mall/forest and beyond). Icons are resolved
-// through the SVG registry (import.meta.glob in iconRegistry.ts) — no ItemIcon.tsx cases needed.
-// Generate bespoke ItemType objects only for items that are genuinely unique to a level's
-// theme — check here first.
+// Canonical ItemType factory catalog for every level. Icons are resolved through the SVG registry
+// (import.meta.glob in iconRegistry.ts), and level-specific variants can override factory defaults.
 export const ItemLibrary = {
+  // ——— Предметы, ранее объявлявшиеся локально в уровнях ———
+  flowerbed: item('flowerbed', 'flowerbed', 'decorative', 'Клумба'),
+  tent: item('tent', 'tent', 'decorative', 'Палатка'),
+  stump: item('stump', 'stump', 'decorative', 'Пень'),
+  cauldron: item('cauldron', 'cauldron', 'decorative', 'Котёл'),
+  spellbookStand: item('spellbookStand', 'spellbookStand', 'decorative', 'Стойка с заклинаниями'),
+  broomRack: item('broomRack', 'broomRack', 'decorative', 'Стойка мётел'),
+  mannequin: item('mannequin', 'mannequin', 'decorative', 'Манекен'),
+  cart: item('cart', 'cart', 'decorative', 'Тележка'),
+  paintingStand: item('paintingStand', 'paintingStand', 'decorative', 'Стенд с картиной'),
+  sculpture: item('sculpture', 'sculpture', 'decorative', 'Скульптура на постаменте'),
+  examTable: item('examTable', 'examTable', 'occupiable', 'Смотровой стол'),
+  sarcophagus: item('sarcophagus', 'sarcophagus', 'decorative', 'Саркофаг'),
+  canopicJar: item('canopicJar', 'canopicJar', 'decorative', 'Канопа'),
+  torch: item('torch', 'torch', 'decorative', 'Факел'),
+  goldStatue: item('goldStatue', 'goldStatue', 'decorative', 'Золотая статуя'),
+  stela: item('stela', 'stela', 'decorative', 'Стела'),
+  airlock: item('airlock', 'airlock', 'decorative', 'Шлюзовой люк'),
+  satelliteDish: item('satelliteDish', 'satelliteDish', 'decorative', 'Спутниковая тарелка'),
+  cryopod: item('cryopod', 'cryopod', 'decorative', 'Криокапсула'),
+  console: item('console', 'computer', 'occupiable', 'Пульт управления'),
+  departureBoard: item('departureBoard', 'departureBoard', 'decorative', 'Табло отправления'),
+  tumbleweed: item('tumbleweed', 'tumbleweed', 'decorative', 'Перекати-поле'),
+  royalChest: item('royalChest', 'artifactChest', 'decorative', 'Королевский сундук'),
+  royalBed: item('royalBed', 'bed', 'occupiable', 'Королевское ложе'),
+  linenBox: item('linenBox', 'box', 'decorative', 'Ящик с бельём'),
+  ballReturn: item('ballReturn', 'ballReturn', 'decorative', 'Возвратник шаров'),
+  pins: item('pins', 'pins', 'decorative', 'Кегли'),
+  bowlingBall: item('bowlingBall', 'bowlingBall', 'decorative', 'Шар для боулинга'),
+  pickaxe: item('pickaxe', 'pickaxe', 'decorative', 'Кирка'),
+  minecart: item('minecart', 'minecart', 'occupiable', 'Вагонетка'),
+  jackhammer: item('jackhammer', 'jackhammer', 'decorative', 'Отбойный молоток'),
+  punchingBag: item('punchingBag', 'punchingBag', 'decorative', 'Боксёрская груша'),
+  ringCorner: item('ringCorner', 'ringCorner', 'decorative', 'Стойка ринга'),
+  boxingGloves: item('boxingGloves', 'boxingGloves', 'decorative', 'Боксёрские перчатки'),
+  reactorVat: item('reactorVat', 'reactorVat', 'decorative', 'Реакторный чан'),
+  testTubeRack: item('testTubeRack', 'testTubeRack', 'decorative', 'Стеллаж с пробирками'),
+  trailer: item('trailer', 'trailer', 'occupiable', 'Трейлер'),
+  tombstone: item('tombstone', 'tombstone', 'decorative', 'Надгробие'),
+  freshGrave: item('freshGrave', 'freshGrave', 'decorative', 'Свежая могила'),
+  cemeteryGate: item('cemeteryGate', 'cemeteryGate', 'decorative', 'Ворота кладбища'),
+  bushHedge: item('bushHedge', 'bushHedge', 'decorative', 'Куст', { render: 'tile' }),
+  roseBush: item('roseBush', 'roseBush', 'decorative', 'Розовый куст', { render: 'tile' }),
+  grapeVine: item('grapeVine', 'grapeVine', 'decorative', 'Виноградная лоза', { render: 'tile', tileEdgeDepth: false }),
+  winePress: item('winePress', 'winePress', 'decorative', 'Винный пресс'),
+  grapeCrate: item('grapeCrate', 'grapeCrate', 'decorative', 'Ящик винограда'),
+  wineRack: item('wineRack', 'wineRack', 'decorative', 'Стойка для вина'),
+  fineDiningTable: item('fineDiningTable', 'fineDiningTable', 'decorative', 'Стол со скатертью'),
+  kitchenIsland: item('kitchenIsland', 'kitchenIsland', 'decorative', 'Кухонный остров'),
+  waiterTrolley: item('waiterTrolley', 'waiterTrolley', 'decorative', 'Тележка официанта'),
+  servingCloche: item('servingCloche', 'servingCloche', 'decorative', 'Блюдо под колпаком'),
+  flowerVase: item('flowerVase', 'flowerVase', 'decorative', 'Ваза с цветами'),
+  wineGlass: item('wineGlass', 'wineGlass', 'decorative', 'Бокал вина'),
+  iceCream: item('iceCream', 'iceCream', 'decorative', 'Мороженое'),
+  tennisRacket: item('tennisRacket', 'tennisRacket', 'decorative', 'Теннисная ракетка'),
+  tennisBall: item('tennisBall', 'tennisBall', 'decorative', 'Теннисный мяч'),
+  tennisNet: item('tennisNet', 'tennisNet', 'decorative', 'Теннисная сетка', { render: 'span' }),
+  anchorWinch: item('anchorWinch', 'anchorWinch', 'decorative', 'Носовая лебёдка'),
+  flowerArch: item('flowerArch', 'flowerArch', 'decorative', 'Цветочная арка'),
+  weddingCake: item('weddingCake', 'weddingCake', 'decorative', 'Свадебный торт'),
+  barbecue: item('barbecue', 'barbecue', 'decorative', 'Барбекю'),
+  laundryLine: item('laundryLine', 'laundryLine', 'decorative', 'Бельё на верёвке'),
+  breadDisplay: item('breadDisplay', 'breadDisplay', 'decorative', 'Витрина с хлебом'),
+  pastryDisplay: item('pastryDisplay', 'pastryDisplay', 'decorative', 'Кондитерская витрина'),
+  convectionOven: item('convectionOven', 'convectionOven', 'decorative', 'Конвекционная печь'),
+  croissant: item('croissant', 'croissant', 'decorative', 'Круассан'),
+  coffeeMachine: item('coffeeMachine', 'coffeeMachine', 'decorative', 'Кофемашина'),
+  gondola: item('gondola', 'gondola', 'occupiable', 'Кабина канатной дороги'),
+  cable: item('cable', 'cable', 'decorative', 'Трос канатной дороги', { render: 'tile', tileEdgeDepth: false }),
+  cableSupport: item('cableSupport', 'cableSupport', 'decorative', 'Опора канатной дороги'),
+  stationSign: item('stationSign', 'station', 'decorative', 'Станционный павильон'),
+  fish: item('fish', 'fish', 'decorative', 'Рыба', { render: 'span' }),
+  crab: item('crab', 'crab', 'decorative', 'Краб'),
+  seaweed: item('seaweed', 'seaweed', 'decorative', 'Водоросли', { render: 'tile', tileEdgeDepth: false }),
+  consoleSetup: item('consoleSetup', 'consoleSetup', 'occupiable', 'Игровая приставка'),
+  arcadeCabinet: item('arcadeCabinet', 'arcadeCabinet', 'decorative', 'Аркадный автомат'),
+  outhouseToilet: item('outhouseToilet', 'outhouseToilet', 'occupiable', 'Деревенский туалет'),
+  golfHole: item('golfHole', 'golfHole', 'decorative', 'Лунка с флажком'),
+  golfTee: item('golfTee', 'golfTee', 'decorative', 'Ти с мячом'),
+  golfBag: item('golfBag', 'golfBag', 'decorative', 'Сумка для клюшек'),
+  golfCart: item('golfCart', 'golfCart', 'occupiable', 'Гольф-кар'),
+  saxophone: item('saxophone', 'saxophone', 'decorative', 'Саксофон'),
+  drumKit: item('drumKit', 'drumKit', 'occupiable', 'Барабанная установка'),
+  cigar: item('cigar', 'cigar', 'decorative', 'Сигара'),
   // ——— Полицейский участок (65-policestation) ———
   policeBadge: item('policeBadge', 'policeBadge', 'decorative', 'Полицейский значок'),
   handcuffs: item('handcuffs', 'handcuffs', 'decorative', 'Наручники'),
@@ -196,4 +293,4 @@ export const ItemLibrary = {
   portableRadio: item('portableRadio', 'portableRadio', 'decorative', 'Переносная рация'),
   bicycle: item('bicycle', 'bicycle', 'decorative', 'Велосипед'),
   garland: item('garland', 'garland', 'decorative', 'Гирлянда'),
-} satisfies Record<string, (label?: string) => ItemType>;
+} satisfies Record<string, (label?: string, overrides?: ItemOverrides) => ItemType>;

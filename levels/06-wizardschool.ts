@@ -21,15 +21,15 @@ const RUG_CELLS = new Set([cellId(7, 1), cellId(7, 2)]);
 const LAUNCHPAD_CELLS = new Set([cellId(7, 4), cellId(6, 5)]);
 
 const itemTypes: ItemType[] = [
-  { id: 'cauldron', label: 'Котёл', kind: 'decorative', icon: 'cauldron' },
+  ItemLibrary.cauldron(),
   ItemLibrary.workbench('Рабочий стол зельевара'),
-  { id: 'spellbookStand', label: 'Стойка с заклинаниями', kind: 'decorative', icon: 'spellbookStand' },
+  ItemLibrary.spellbookStand(),
   ItemLibrary.globe(),
   ItemLibrary.chest('Сундук с артефактами'),
   ItemLibrary.armchair(),
   ItemLibrary.portrait(),
   ItemLibrary.telescope(),
-  { id: 'broomRack', label: 'Стойка мётел', kind: 'decorative', icon: 'broomRack' },
+  ItemLibrary.broomRack(),
   ItemLibrary.bookshelf(),
   ItemLibrary.box(),
   ItemLibrary.plant(),

@@ -17,7 +17,7 @@ const floorFeatures: FloorFeature[] = [{ id: 'pit', label: 'Яма', textureKey:
 const PIT_CELLS = new Set([cellId(1, 1), cellId(3, 2), cellId(4, 0), cellId(5, 0)]);
 
 const itemTypes: ItemType[] = [
-  { ...ItemLibrary.gardenBed(), render: 'tile', tileEdgeDepth: false },
+  ItemLibrary.gardenBed('Грядка', { render: 'tile', tileEdgeDepth: false }),
   ItemLibrary.well(),
   ItemLibrary.broadleafTree(),
   ItemLibrary.haystack(),
@@ -28,7 +28,7 @@ const itemTypes: ItemType[] = [
   ItemLibrary.chair(),
   ItemLibrary.sofa(),
   ItemLibrary.plant('Рассада'),
-  { id: 'outhouseToilet', label: 'Деревенский туалет', kind: 'occupiable', icon: 'outhouseToilet' },
+  ItemLibrary.outhouseToilet(),
 ];
 
 const items: Item[] = [

@@ -32,9 +32,9 @@ const RAILS_EAST = new Set(Array.from({ length: 10 }, (_, r) => cellId(r, 10)));
 
 const itemTypes: ItemType[] = [
   // Уровневые (шахтные — только этот уровень)
-  { id: 'pickaxe', label: 'Кирка', kind: 'decorative', icon: 'pickaxe' },
-  { id: 'minecart', label: 'Вагонетка', kind: 'occupiable', icon: 'minecart' },
-  { id: 'jackhammer', label: 'Отбойный молоток', kind: 'decorative', icon: 'jackhammer' },
+  ItemLibrary.pickaxe(),
+  ItemLibrary.minecart(),
+  ItemLibrary.jackhammer(),
   // Библиотечные (переименованы под шахту)
   ItemLibrary.barrel('Бочка с водой'),
   ItemLibrary.lamp('Шахтный фонарь'),

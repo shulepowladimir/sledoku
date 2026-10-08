@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Саксофон: отдельный мундштук, S-образная шейка, расширяющийся корпус и открытый раструб. -->
+  <ellipse cx="49" cy="89" rx="24" ry="3.5" fill="#3A2A20"/>
+
+  <!-- Мундштук с тростью -->
+  <path d="M56 8 L62 5 Q65 5 66 8 L67 12 L61 15 L56 13Z" fill="#3A3238" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M58 8 L63 6.5" fill="none" stroke="#9BA5AD" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M62 13 C69 16 70 21 65 25 L57 31" fill="none" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+  <path d="M62 13 C69 16 70 21 65 25 L57 31" fill="none" stroke="#E0A94A" stroke-width="5" stroke-linecap="round"/>
+  <path d="M65 16 Q67 19 64 22" fill="none" stroke="#E8B95F" stroke-width="1.3" stroke-linecap="round"/>
+
+  <!-- Конический корпус с характерным нижним изгибом -->
+  <path d="M51 27 Q57 27 59 33 L59 65 Q59 72 64 78 L69 83 Q71 86 67 88 Q53 92 38 90 Q34 89 37 85 L45 76 Q48 72 48 65 L48 34 Q48 28 51 27Z"
+        fill="#E0A94A" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Тёмная грань корпуса и верхне-левая латунная грань -->
+  <path d="M55 33 L55 66 Q55 73 61 80 L66 85 Q59 88 52 88 L52 34 Q52 31 55 33Z" fill="#B87F33"/>
+  <path d="M50 34 L50 66 Q50 72 45 78" fill="none" stroke="#E8B95F" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- Раструб: широкий край и видимое отверстие -->
+  <path d="M39 84 Q51 87 67 83" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>
+  <path d="M41 84 Q52 86 65 83" fill="none" stroke="#E8B95F" stroke-width="1.4" stroke-linecap="round"/>
+  <ellipse cx="53" cy="88" rx="12" ry="3.2" fill="#B87F33" stroke="#1A1A1A" stroke-width="1.8"/>
+  <ellipse cx="53" cy="88" rx="6.5" ry="1.5" fill="#3A2A20"/>
+
+  <!-- Ключевые тяги идут вдоль трубы; крупные перламутровые чашечки читаются в 22px. -->
+  <path d="M57 34 L63 69 M51 36 L50 69 M54 37 L58 67" fill="none" stroke="#5C6670" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M56 37 L61 67" fill="none" stroke="#D5DCE1" stroke-width="0.9" stroke-linecap="round"/>
+  <ellipse cx="57" cy="39" rx="3.1" ry="4" transform="rotate(-12 57 39)" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <ellipse cx="57" cy="49" rx="3.2" ry="4" transform="rotate(-12 57 49)" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <ellipse cx="57" cy="59" rx="3.3" ry="4.2" transform="rotate(-12 57 59)" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="49" cy="43" r="2.5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.4"/>
+  <circle cx="50" cy="54" r="2.7" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.4"/>
+  <circle cx="51" cy="65" r="2.5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.4"/>
+  <path d="M57 71 Q62 70 65 74" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+</svg>

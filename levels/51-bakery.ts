@@ -18,11 +18,11 @@ const floorFeatures: FloorFeature[] = [{ id: 'entry-rug', label: 'Ковёр у 
 const ENTRY_RUG_CELLS = new Set([cellId(6, 0), cellId(6, 1)]);
 
 const itemTypes: ItemType[] = [
-  { id: 'breadDisplay', label: 'Витрина с хлебом', kind: 'decorative', icon: 'breadDisplay' },
-  { id: 'pastryDisplay', label: 'Кондитерская витрина', kind: 'decorative', icon: 'pastryDisplay' },
-  { id: 'convectionOven', label: 'Конвекционная печь', kind: 'decorative', icon: 'convectionOven' },
-  { id: 'croissant', label: 'Круассан', kind: 'decorative', icon: 'croissant' },
-  { id: 'coffeeMachine', label: 'Кофемашина', kind: 'decorative', icon: 'coffeeMachine' },
+  ItemLibrary.breadDisplay(),
+  ItemLibrary.pastryDisplay(),
+  ItemLibrary.convectionOven(),
+  ItemLibrary.croissant(),
+  ItemLibrary.coffeeMachine(),
   ItemLibrary.workbench('Рабочий стол пекаря'),
   ItemLibrary.fridge(),
   ItemLibrary.fireExtinguisher(),

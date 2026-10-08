@@ -21,7 +21,7 @@ const itemTypes: ItemType[] = [
   ItemLibrary.fountain(),
   ItemLibrary.lamppost(),
   ItemLibrary.trashcan(),
-  { id: 'flowerbed', label: 'Клумба', kind: 'decorative', icon: 'flowerbed' },
+  ItemLibrary.flowerbed(),
   ItemLibrary.kiosk('Киоск с мороженым'),
   ItemLibrary.tree(),
   ItemLibrary.rock(),

@@ -2,6 +2,7 @@
 
 Точечная сверка перед добавлением предмета/иконки — не открывать полные файлы ради этого.
 Обновляй этот файл при каждом новом item/иконке в itemLibrary.ts / ItemIcon.tsx / floorTextures.ts.
+`levels/itemLibrary.ts` — единственный источник фабрик `ItemType`: не объявляй типы предметов inline в уровнях. Для локальных вариантов используй аргументы фабрики `label` и `overrides`.
 
 ## itemLibrary.ts — готовые предметы (id — kind)
 
@@ -172,39 +173,13 @@
 - croissant — decorative (круассан; bakery)
 - coffeeMachine — decorative, 2 клетки (кофемашина; bakery)
 
-## Уровневые типы — dacha
+## Централизованные тематические типы
 
-- outhouseToilet — occupiable (сиденье деревенского туалета)
+Ранее локальные типы уровней перенесены в `ItemLibrary`: Египет, космос, средневековье, боулинг, шахта, бойцовский клуб, химлаборатория, кладбище, винодельня, ресторан, пекарня, канатная дорога, свадьба, подводный мир, компьютерный клуб, дача и джаз-клуб. В том числе `gondola`, `cable`, `stationSign`, `fish`, `crab`, `seaweed`, `consoleSetup`, `arcadeCabinet`, `outhouseToilet`, `golfHole`, `golfTee`, `golfBag`, `golfCart`, `saxophone`, `drumKit`, `cigar`.
 
-Иконки уровня: `dacha`, `gardenBed`, `outhouseToilet`.
+Сохраняй различия между уровнями через параметры фабрики: например, `departureBoard` может называться «Табло вылета» или «Табло результатов», а `wineRack` — «Стойка для вина» или «Стеллаж с бутылками». `tent` по умолчанию декоративная, но в trailerpark переопределяется как `occupiable`. Для точных `kind`, иконки и render-настроек сверяйся с `itemLibrary.ts`.
 
-## Уровневые типы — strange-case
-
-- bicycle, portableRadio — decorative
-- garland — decorative, `render: 'tile'`, `tileEdgeDepth: false`
-
-Иконки уровня: `strangeCase`, `bicycle`, `garland`, `portableRadio`.
-
-## Уровневые типы — restaurant
-
-- fineDiningTable — decorative (стол со скатертью и сервировкой)
-- kitchenIsland — decorative, 2 клетки (кухонный остров)
-- waiterTrolley — decorative (тележка официанта)
-- servingCloche — decorative (блюдо под стеклянным колпаком)
-- flowerVase — decorative (ваза с цветами)
-- wineRack — decorative (реюз существующего стеллажа с бутылками)
-- wineGlass — decorative (реюз существующего бокала)
-
-Иконки темы/предметов: `restaurant`, `fineDiningTable`, `kitchenIsland`, `waiterTrolley`, `servingCloche`, `flowerVase`.
-
-## Уровневые типы — golfclub
-
-- golfHole — decorative (лунка с флажком)
-- golfTee — decorative (ти с мячом)
-- golfBag — decorative (сумка для клюшек)
-- golfCart — occupiable (гольф-кар, 2 клетки)
-
-Иконки темы/предметов: `golfclub`, `golfHole`, `golfTee`, `golfBag`, `golfCart`.
+Иконки темы уровней остаются в реестре ассетов; сами типы предметов задаются каталогом. Новые SVG-файлы проверяй через art workshop workflow.
 
 ## Уровень — policestation
 

@@ -16,10 +16,10 @@ const floorFeatures: FloorFeature[] = [{ id: 'scorch-mark', label: 'Обгоре
 const SCORCH_CELLS = new Set([cellId(1, 2), cellId(1, 3)]);
 
 const itemTypes: ItemType[] = [
-  { id: 'airlock', label: 'Шлюзовой люк', kind: 'decorative', icon: 'airlock' },
-  { id: 'satelliteDish', label: 'Спутниковая тарелка', kind: 'decorative', icon: 'satelliteDish' },
-  { id: 'cryopod', label: 'Криокапсула', kind: 'decorative', icon: 'cryopod' },
-  { id: 'console', label: 'Пульт управления', kind: 'occupiable', icon: 'computer' },
+  ItemLibrary.airlock(),
+  ItemLibrary.satelliteDish(),
+  ItemLibrary.cryopod(),
+  ItemLibrary.console(),
   ItemLibrary.telescope(),
   ItemLibrary.chair(),
   ItemLibrary.workbench(),

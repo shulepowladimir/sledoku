@@ -22,7 +22,7 @@ const rooms: Room[] = [
 
 const itemTypes: ItemType[] = [
   // Уровневые (баня)
-  { id: 'saunaStove', label: 'Каменка', kind: 'decorative', icon: 'saunaStove' },
+  ItemLibrary.saunaStove(),
   ItemLibrary.washTub(),
   ItemLibrary.towel(),
   ItemLibrary.venik(),

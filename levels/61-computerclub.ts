@@ -37,9 +37,9 @@ function roomForCell(row: number, col: number): string {
 }
 
 const itemTypes: ItemType[] = [
-  { ...ItemLibrary.computer('Игровой компьютер'), kind: 'occupiable' },
-  { id: 'consoleSetup', label: 'Игровая приставка', kind: 'occupiable', icon: 'consoleSetup' },
-  { id: 'arcadeCabinet', label: 'Аркадный автомат', kind: 'decorative', icon: 'arcadeCabinet' },
+  ItemLibrary.computer('Игровой компьютер', { kind: 'occupiable' }),
+  ItemLibrary.consoleSetup(),
+  ItemLibrary.arcadeCabinet(),
   ItemLibrary.sofa(),
   ItemLibrary.kassa('Стойка администратора'),
 ];

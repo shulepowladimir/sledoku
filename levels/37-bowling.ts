@@ -24,10 +24,10 @@ const rooms: Room[] = [
 
 const itemTypes: ItemType[] = [
   // Уровневые (не в библиотеке — только этот кегельбан)
-  { id: 'ballReturn', label: 'Возвратник шаров', kind: 'decorative', icon: 'ballReturn' },
-  { id: 'pins', label: 'Кегли', kind: 'decorative', icon: 'pins' },
-  { id: 'bowlingBall', label: 'Шар для боулинга', kind: 'decorative', icon: 'bowlingBall' },
-  { id: 'departureBoard', label: 'Табло результатов', kind: 'decorative', icon: 'departureBoard' },
+  ItemLibrary.ballReturn(),
+  ItemLibrary.pins(),
+  ItemLibrary.bowlingBall(),
+  ItemLibrary.departureBoard('Табло результатов'),
   // Библиотечные (booth/rack переименованы под тему)
   ItemLibrary.barStool(),
   ItemLibrary.barCounter(),

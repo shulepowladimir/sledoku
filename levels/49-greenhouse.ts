@@ -28,9 +28,9 @@ const itemTypes: ItemType[] = [
   ItemLibrary.bench(),
   ItemLibrary.toolbox(),
   ItemLibrary.ladder(),
-  { id: 'flowerbed', label: 'Клумба', kind: 'decorative', icon: 'flowerbed' },
-  { id: 'bushHedge', label: 'Куст', kind: 'decorative', icon: 'bushHedge', render: 'tile' },
-  { id: 'roseBush', label: 'Розовый куст', kind: 'decorative', icon: 'roseBush', render: 'tile' },
+  ItemLibrary.flowerbed(),
+  ItemLibrary.bushHedge(),
+  ItemLibrary.roseBush(),
 ];
 
 const items: Item[] = [

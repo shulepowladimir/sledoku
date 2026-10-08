@@ -23,11 +23,11 @@ const floorFeatures: FloorFeature[] = [
 ];
 
 const itemTypes: ItemType[] = [
-  { id: 'stove', label: 'Топка', kind: 'decorative', icon: 'saunaStove' },
+  ItemLibrary.stove('Топка', { icon: 'saunaStove' }),
   ItemLibrary.toolbox(),
   ItemLibrary.barrel('Бочка с водой'),
   ItemLibrary.box('Ящик с углем'),
-  { id: 'linenBox', label: 'Ящик с бельём', kind: 'decorative', icon: 'box' },
+  ItemLibrary.linenBox(),
   ItemLibrary.suitcase(),
   ItemLibrary.luggageRack(),
   ItemLibrary.berth(),

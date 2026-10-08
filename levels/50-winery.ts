@@ -23,11 +23,11 @@ const floorFeatures: FloorFeature[] = [
 const TASTING_RUG_CELLS = new Set([cellId(9, 4), cellId(9, 5), cellId(10, 4), cellId(10, 5)]);
 
 const itemTypes: ItemType[] = [
-  { id: 'grapeVine', label: 'Виноградная лоза', kind: 'decorative', icon: 'grapeVine', render: 'tile', tileEdgeDepth: false },
-  { id: 'winePress', label: 'Винный пресс', kind: 'decorative', icon: 'winePress' },
-  { id: 'wineRack', label: 'Стеллаж с бутылками', kind: 'decorative', icon: 'wineRack' },
-  { id: 'grapeCrate', label: 'Ящик винограда', kind: 'decorative', icon: 'grapeCrate' },
-  { id: 'wineGlass', label: 'Бокал с вином', kind: 'decorative', icon: 'wineGlass' },
+  ItemLibrary.grapeVine(),
+  ItemLibrary.winePress(),
+  ItemLibrary.wineRack('Стеллаж с бутылками'),
+  ItemLibrary.grapeCrate(),
+  ItemLibrary.wineGlass('Бокал с вином'),
   ItemLibrary.box('Ящик вина'),
   ItemLibrary.barrel('Винная бочка'),
   ItemLibrary.plant(),

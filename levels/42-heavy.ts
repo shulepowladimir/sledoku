@@ -23,9 +23,9 @@ const rooms: Room[] = [
 
 const itemTypes: ItemType[] = [
   // Уровневые
-  { id: 'trailer', label: 'Трейлер', kind: 'occupiable', icon: 'trailer' },
-  { id: 'reactorVat', label: 'Приборы', kind: 'decorative', icon: 'reactorVat' },
-  { id: 'testTubeRack', label: 'Стеллаж с пробирками', kind: 'decorative', icon: 'testTubeRack' },
+  ItemLibrary.trailer(),
+  ItemLibrary.reactorVat('Приборы'),
+  ItemLibrary.testTubeRack(),
   ItemLibrary.booth(),
   // Библиотечные
   ItemLibrary.car(),

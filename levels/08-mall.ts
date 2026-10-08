@@ -19,7 +19,7 @@ const FOUNTAIN_CELLS = new Set([cellId(5, 3), cellId(5, 4), cellId(6, 3), cellId
 const itemTypes: ItemType[] = [
   ItemLibrary.computer(),
   ItemLibrary.kassa(),
-  { id: 'mannequin', label: 'Манекен', kind: 'decorative', icon: 'mannequin' },
+  ItemLibrary.mannequin(),
   ItemLibrary.bench(),
   ItemLibrary.kiosk(),
   ItemLibrary.lamppost(),

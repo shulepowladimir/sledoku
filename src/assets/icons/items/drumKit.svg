@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Цельная симметричная установка: общий рэк связывает тарелки и пару томов с бас-барабаном. -->
+  <ellipse cx="48" cy="89" rx="34" ry="3.5" fill="#3A2A20"/>
+
+  <!-- Общая рама, стойки и опорные лапы -->
+  <path d="M18 25 V78 M78 25 V78 M18 41 H78 M33 41 V49 M63 41 V49 M18 77 L11 86 M18 77 L25 86 M78 77 L71 86 M78 77 L85 86"
+        fill="none" stroke="#5C6670" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M20 28 V74 M20 42 H75 M20 77 L13 84 M76 77 L72 84"
+        fill="none" stroke="#D5DCE1" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="18" cy="41" r="3" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.4"/>
+  <circle cx="78" cy="41" r="3" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.4"/>
+
+  <!-- Парные тарелки, каждая стоит на своей стойке -->
+  <path d="M6 26 Q18 17 30 26 Q27 32 18 34 Q9 32 6 26Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M10 25 Q18 21 26 25" fill="none" stroke="#E8B95F" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="18" cy="27" r="1.8" fill="#B87F33" stroke="#1A1A1A" stroke-width="1"/>
+  <path d="M66 26 Q78 17 90 26 Q87 32 78 34 Q69 32 66 26Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M70 25 Q78 21 86 25" fill="none" stroke="#E8B95F" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="78" cy="27" r="1.8" fill="#B87F33" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- Парные навесные томы, закреплённые на общем рэке -->
+  <path d="M22 46 Q32 40 42 46 L40 58 Q32 63 24 58Z" fill="#B85F2E" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <ellipse cx="32" cy="46" rx="10" ry="5" fill="#E8B95F" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M25 48 Q32 51 39 48" fill="none" stroke="#F5E9D0" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M54 46 Q64 40 74 46 L72 58 Q64 63 56 58Z" fill="#B85F2E" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <ellipse cx="64" cy="46" rx="10" ry="5" fill="#E8B95F" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M57 48 Q64 51 71 48" fill="none" stroke="#F5E9D0" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- Центральный бас-барабан объединяет установку в один силуэт -->
+  <path d="M29 62 Q48 51 67 62 L64 79 Q48 89 32 79Z" fill="#B85F2E" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <ellipse cx="48" cy="62" rx="19" ry="8" fill="#E0824A" stroke="#1A1A1A" stroke-width="2.4"/>
+  <ellipse cx="48" cy="69" rx="13" ry="11" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.4"/>
+  <ellipse cx="48" cy="69" rx="8.5" ry="7" fill="#E8B95F" stroke="#1A1A1A" stroke-width="1.8"/>
+  <path d="M37 62 Q38 59 42 58 M59 58 Q63 59 64 62" fill="none" stroke="#E8B95F" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Педаль опирается на нижний обод бас-барабана -->
+  <path d="M48 80 V86 M43 86 H53" stroke="#5C6670" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M45 84 L51 84" stroke="#D5DCE1" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

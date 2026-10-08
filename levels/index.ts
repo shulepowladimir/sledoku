@@ -64,6 +64,7 @@ import { dachaLevel } from './62-dacha';
 import { strangeCaseLevel } from './63-strange-case';
 import { gasStationLevel } from './64-gasstation';
 import { policeStationLevel } from './65-policestation';
+import { jazzClubLevel } from './66-jazzclub';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -131,6 +132,7 @@ export const levels: Level[] = [
   strangeCaseLevel,
   gasStationLevel,
   policeStationLevel,
+  jazzClubLevel,
 ];
 
 /** Player-facing levels — used by the menu, size filters, profile stats and leaderboards.

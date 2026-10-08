@@ -18,10 +18,10 @@ const floorFeatures: FloorFeature[] = [{ id: 'station-rug', label: 'Ковров
 const RUG_CELLS = new Set([cellId(4, 4), cellId(5, 4)]);
 
 const itemTypes: ItemType[] = [
-  { id: 'suitcase', label: 'Чемодан', kind: 'decorative', icon: 'suitcase' },
-  { id: 'departureBoard', label: 'Табло отправления', kind: 'decorative', icon: 'departureBoard' },
-  { id: 'turnstile', label: 'Турникет', kind: 'decorative', icon: 'turnstile' },
-  { id: 'clock', label: 'Часы', kind: 'decorative', icon: 'clock' },
+  ItemLibrary.suitcase(),
+  ItemLibrary.departureBoard(),
+  ItemLibrary.turnstile(),
+  ItemLibrary.clock(),
   ItemLibrary.bench(),
   ItemLibrary.rack('Багажная полка'),
   ItemLibrary.lamppost(),

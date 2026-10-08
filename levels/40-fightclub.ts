@@ -21,9 +21,9 @@ const rooms: Room[] = [
 
 const itemTypes: ItemType[] = [
   // Уровневые (подвал клуба)
-  { id: 'punchingBag', label: 'Боксёрская груша', kind: 'decorative', icon: 'punchingBag' },
-  { id: 'ringCorner', label: 'Стойка ринга', kind: 'decorative', icon: 'ringCorner' },
-  { id: 'boxingGloves', label: 'Боксёрские перчатки', kind: 'decorative', icon: 'boxingGloves' },
+  ItemLibrary.punchingBag(),
+  ItemLibrary.ringCorner(),
+  ItemLibrary.boxingGloves(),
   ItemLibrary.locker(),
   // Библиотечные
   ItemLibrary.seat(),

@@ -32,7 +32,7 @@ const itemTypes = [
   ItemLibrary.table(),
   ItemLibrary.chair(),
   ItemLibrary.sofa(),
-  { ...ItemLibrary.garland(), render: 'tile' as const, tileEdgeDepth: false },
+  ItemLibrary.garland('Гирлянда', { render: 'tile', tileEdgeDepth: false }),
   ItemLibrary.computer(),
   ItemLibrary.basketball(),
   ItemLibrary.bicycle(),

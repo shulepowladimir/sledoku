@@ -17,18 +17,18 @@ const floorFeatures: FloorFeature[] = [{ id: 'funerary-mat', label: 'Погре�
 const MAT_CELLS = new Set([cellId(7, 3), cellId(7, 4)]);
 
 const itemTypes: ItemType[] = [
-  { id: 'sarcophagus', label: 'Саркофаг', kind: 'decorative', icon: 'sarcophagus' },
-  { id: 'canopicJar', label: 'Канопа', kind: 'decorative', icon: 'canopicJar' },
-  { id: 'torch', label: 'Факел', kind: 'decorative', icon: 'torch' },
-  { id: 'goldStatue', label: 'Золотая статуя', kind: 'decorative', icon: 'goldStatue' },
-  { id: 'stela', label: 'Стела', kind: 'decorative', icon: 'stela' },
+  ItemLibrary.sarcophagus(),
+  ItemLibrary.canopicJar(),
+  ItemLibrary.torch(),
+  ItemLibrary.goldStatue(),
+  ItemLibrary.stela(),
   ItemLibrary.chair('Трон'),
   ItemLibrary.bench('Каменная скамья'),
   ItemLibrary.stool('Табурет писца'),
   ItemLibrary.box('Деревянный сундук'),
   ItemLibrary.rack('Стойка для свитков'),
   ItemLibrary.ladder('Приставная лестница'),
-  { id: 'safe', label: 'Сундук с сокровищами', kind: 'decorative', icon: 'artifactChest' },
+  ItemLibrary.safe('Сундук с сокровищами', { icon: 'artifactChest' }),
 ];
 
 const items: Item[] = [

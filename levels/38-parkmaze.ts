@@ -20,8 +20,8 @@ const rooms: Room[] = [
 
 const itemTypes: ItemType[] = [
   // Куст изгороди — уровневый, full-bleed тайл (механика ломаных предметов)
-  { id: 'bushHedge', label: 'Куст', kind: 'decorative', icon: 'bushHedge', render: 'tile' },
-  { id: 'flowerbed', label: 'Клумба', kind: 'decorative', icon: 'flowerbed' },
+  ItemLibrary.bushHedge(),
+  ItemLibrary.flowerbed(),
   ItemLibrary.bench(),
   ItemLibrary.fountain(),
   ItemLibrary.lamppost(),
