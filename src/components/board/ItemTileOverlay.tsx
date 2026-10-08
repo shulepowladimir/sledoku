@@ -11,9 +11,15 @@ interface ItemTileOverlayProps {
   rotate180?: boolean;
 }
 
+type ItemTileOverlayStyle = CSSProperties & {
+  '--item-tile-edge-fill'?: string;
+  '--item-tile-edge-shadow'?: string;
+  '--item-tile-edge-outline'?: string;
+};
+
 /** Multi-cell "wall" items (`render: 'tile'` — hedge mazes, counters): the icon
  *  repeats per cell at full cell size, tiling seamlessly like a floor texture
- *  while remaining a regular item (clues, tooltip, outline). Foliage depth decorations
+ *  while remaining a regular item (clues, tooltip, outline). Edge depth decorations
  *  (see polyominoEdgeDecorations) make each polyomino read as one solid object:
  *  an inner shadow along south/east edges and a wavy scalloped lip along
  *  north/west — volume under the art style's top-left light, never a flat
@@ -27,11 +33,16 @@ export function ItemTileOverlay({ item, itemType, rotate180 = false }: ItemTileO
   const maxCol = Math.max(...coords.map((c) => c.col));
   const width = (maxCol - minCol + 1) * CELL_SIZE;
   const height = (maxRow - minRow + 1) * CELL_SIZE;
-  const style: CSSProperties = {
+  const style: ItemTileOverlayStyle = {
     left: minCol * CELL_SIZE,
     top: minRow * CELL_SIZE,
     width,
     height,
+    ...(itemType.tileEdgeColors && {
+      '--item-tile-edge-fill': itemType.tileEdgeColors.fill,
+      '--item-tile-edge-shadow': itemType.tileEdgeColors.shadow,
+      '--item-tile-edge-outline': itemType.tileEdgeColors.outline,
+    }),
   };
   const { shadows: allShadows, scallops: allScallops, contourPath } = polyominoEdgeDecorations(
     item.cells,

@@ -389,25 +389,25 @@
   overflow: visible; /* волнистая «губа» выходит за viewBox наружу клетки */
 }
 
-/* Волнистый край (север/запад): открытый квадр. path — заливка = линза,
+/* Волнистая кромка (север/запад): открытый квадр. path — заливка = линза,
    обводка — только дуга (хорда не штрихуется). Цвет заливки = базе тайла. */
 .item-tile-overlay__scallop path {
-  fill: #5E8A46;
-  stroke: #1A1A1A;
+  fill: var(--item-tile-edge-fill, #5E8A46);
+  stroke: var(--item-tile-edge-outline, #1A1A1A);
   stroke-width: 2;
   stroke-linecap: round;
   vector-effect: non-scaling-stroke;
 }
 
-/* Тень-полоса (юг/восток): тёмная зелень внутрь клетки, без обводки. */
+/* Тень-полоса (юг/восток): тёмный тон внутрь клетки, без обводки. */
 .item-tile-overlay__shadow rect {
-  fill: #44663A;
+  fill: var(--item-tile-edge-shadow, #44663A);
 }
 
 /* Прямой контур по югу/востоку — резкая затенённая кромка силуэта. */
 .item-tile-overlay__contour {
   fill: none;
-  stroke: #1A1A1A;
+  stroke: var(--item-tile-edge-outline, #1A1A1A);
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;

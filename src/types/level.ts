@@ -49,13 +49,17 @@ export interface ItemType {
   label: string;
   kind: ItemKind;
   icon: string; // key into the icon registry
+  /** Optional SVG currentColor override, used for palette variants of one reusable icon. */
+  iconColor?: string;
   /** Render mode. Absent (default): a single icon centered over the item's bounding box.
    *  'tile': repeat the icon in each cell; 'span': draw one icon sized to the longer side
    *  of the bounding box for a single object spanning an elongated footprint. */
   render?: 'tile' | 'span';
-  /** Whether tiled items get the foliage scallops and shadow bands. Defaults to true;
+  /** Whether tiled items get the scalloped lips and shadow bands. Defaults to true;
    *  false keeps the polyomino contour without those depth decorations. */
   tileEdgeDepth?: boolean;
+  /** Optional per-item palette for tile edge decorations; defaults to the green foliage palette. */
+  tileEdgeColors?: { fill: string; shadow: string; outline: string };
 }
 
 export interface Item {

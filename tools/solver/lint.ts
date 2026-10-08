@@ -46,6 +46,7 @@ export function lintLevel(level: Level): string[] {
     }
   }
   const roomIds = new Set(level.rooms.map((room) => room.id));
+  const rowIndices = new Set(level.cells.map((cell) => cell.row));
   for (const cell of level.cells) {
     if (!roomIds.has(cell.roomId)) {
       violations.push(`Клетка "${cell.id}": зона "${cell.roomId}" не найдена.`);
@@ -59,6 +60,45 @@ export function lintLevel(level: Level): string[] {
       violations.push(`Подсказка "${clue.id}": дублирующийся идентификатор — id подсказок должны быть уникальны.`);
     }
     seenClueIds.add(clue.id);
+
+    if (clue.type === 'rowExactlyOneEmpty') {
+      const uniqueRows = new Set(clue.rows);
+      if (clue.rows.length < 2 || clue.rows.length > 3) {
+        violations.push(`Подсказка "${clue.id}" (rowExactlyOneEmpty): нужно указать 2 или 3 ряда-кандидата.`);
+      }
+      if (uniqueRows.size !== clue.rows.length) {
+        violations.push(`Подсказка "${clue.id}" (rowExactlyOneEmpty): список рядов содержит повторы.`);
+      }
+      for (const row of uniqueRows) {
+        if (!Number.isInteger(row) || !rowIndices.has(row)) {
+          violations.push(`Подсказка "${clue.id}" (rowExactlyOneEmpty): ряд ${row} не существует на карте.`);
+        }
+      }
+    }
+
+    if (clue.type === 'floorFeatureCohorts') {
+      if (clue.groups.length === 0) {
+        violations.push(`Подсказка "${clue.id}" (floorFeatureCohorts): нужна хотя бы одна группа персонажей.`);
+      }
+      const assignedPeople = new Set<string>();
+      for (const group of clue.groups) {
+        if (group.personIds.length === 0) {
+          violations.push(`Подсказка "${clue.id}" (floorFeatureCohorts): группа персонажей не должна быть пустой.`);
+        }
+        if (!level.floorFeatures.some((feature) => feature.id === group.featureId)) {
+          violations.push(`Подсказка "${clue.id}" (floorFeatureCohorts): фича пола "${group.featureId}" не найдена.`);
+        }
+        for (const personId of group.personIds) {
+          if (!level.people.some((person) => person.id === personId)) {
+            violations.push(`Подсказка "${clue.id}" (floorFeatureCohorts): персонаж "${personId}" не найден.`);
+          }
+          if (assignedPeople.has(personId)) {
+            violations.push(`Подсказка "${clue.id}" (floorFeatureCohorts): персонаж "${personId}" повторяется в группах.`);
+          }
+          assignedPeople.add(personId);
+        }
+      }
+    }
 
     if (clue.type === 'zoneExactlyOneEmpty' || clue.type === 'letterGroupInRooms') {
       const roomIdSet = new Set(clue.roomIds);

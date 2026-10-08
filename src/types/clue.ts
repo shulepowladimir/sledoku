@@ -113,6 +113,13 @@ export interface ZoneExactlyOneEmptyClue extends ClueBase {
   roomIds: RoomId[];
 }
 
+/** Level-wide: exactly one listed row has no occupants (the rectangular-board empty-line choice). */
+export interface RowExactlyOneEmptyClue extends ClueBase {
+  type: 'rowExactlyOneEmpty';
+  /** Zero-based board row indices; authored text presents the corresponding floor numbers. */
+  rows: number[];
+}
+
 /**
  * Level-wide: "No one was in a row with an item of type A, or in a row with an item of
  * type B" — the same empty-edge-row mechanic as edgeColumnEmpty/zoneEmptyDisjunction,
@@ -175,6 +182,12 @@ export interface FloorFeatureClue extends ClueBase {
   subject: Subject;
   featureId: string;
   negated?: boolean;
+}
+
+/** Level-wide: listed groups of people stood on (or away from) a floor feature. */
+export interface FloorFeatureCohortsClue extends ClueBase {
+  type: 'floorFeatureCohorts';
+  groups: { personIds: PersonId[]; featureId: string; negated?: boolean }[];
 }
 
 /**
@@ -515,6 +528,7 @@ export type Clue =
   | EdgeColumnEmptyClue
   | ZoneEmptyDisjunctionClue
   | ZoneExactlyOneEmptyClue
+  | RowExactlyOneEmptyClue
   | ZoneGenderSeparationClue
   | ItemRowEmptyDisjunctionClue
   | ZoneCountParityClue
@@ -522,6 +536,7 @@ export type Clue =
   | RoomNumberComparisonClue
   | CornerClue
   | FloorFeatureClue
+  | FloorFeatureCohortsClue
   | FloorTextureClue
   | SameRoomAsClue
   | AloneInRoomClue

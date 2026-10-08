@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import type { ItemType } from '../../types/level';
 import { itemIconRegistry } from '../../assets/itemIconRegistry';
 
@@ -1358,7 +1358,10 @@ export function ItemIcon({ itemType, size = 30, rotate180 = false }: ItemIconPro
   // Designer art takes precedence; the built-in switch below is the fallback while the
   // icon library is being filled (see docs/assets.md).
   const Custom = itemIconRegistry[itemType.icon];
-  const style = rotate180 ? { transform: 'rotate(180deg)' } : undefined;
+  const style: CSSProperties = {
+    ...(rotate180 && { transform: 'rotate(180deg)' }),
+    ...(itemType.iconColor && { color: itemType.iconColor }),
+  };
   if (Custom) {
     return <Custom className={`item-icon item-icon--${itemType.kind}`} width={size} height={size} style={style} />;
   }

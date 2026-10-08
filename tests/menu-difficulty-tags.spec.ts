@@ -6,12 +6,12 @@ const tagGroups = [
   {
     id: 'expert',
     label: 'Эксперт',
-    levelIds: ['golfclub-01', 'library-01', 'parking-01', 'egypt-01', 'stadium-01'],
+    levelIds: ['golfclub-01', 'library-01', 'parking-01', 'egypt-01', 'stadium-01', 'bunker-01'],
   },
   {
     id: 'hard',
     label: 'Сложно',
-    levelIds: ['parkmaze-01', 'heavy-01', 'wildwest-02', 'cablecar-01', 'wildwest-01', 'autoshop-01', 'space-01', 'cruiseliner-01', 'bowling-01', 'wedding-01', 'underwater-01', 'greenhouse-01', 'mall-01', 'strange-case-01'],
+    levelIds: ['parkmaze-01', 'heavy-01', 'wildwest-02', 'cablecar-01', 'wildwest-01', 'autoshop-01', 'space-01', 'cruiseliner-01', 'bowling-01', 'wedding-01', 'underwater-01', 'greenhouse-01', 'mall-01', 'strange-case-01', 'chess-01'],
   },
 ];
 

@@ -179,6 +179,22 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       const result = cell.floorFeatureId === clue.featureId;
       return clue.negated ? !result : result;
     }
+    case 'floorFeatureCohorts': {
+      let hasUnplacedPerson = false;
+      for (const group of clue.groups) {
+        for (const personId of group.personIds) {
+          const personCellId = getCell(personId);
+          if (!personCellId) {
+            if (allAssigned) return false;
+            hasUnplacedPerson = true;
+            continue;
+          }
+          const onFeature = index.cellsById.get(personCellId)!.floorFeatureId === group.featureId;
+          if (group.negated ? onFeature : !onFeature) return false;
+        }
+      }
+      return hasUnplacedPerson ? undefined : true;
+    }
     case 'floorTexture': {
       const subjectCellId = getCell(subjectPersonId(clue.subject, level));
       if (!subjectCellId) return undefined;
@@ -274,6 +290,24 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       }
 
       const emptyCount = roomSet.size - occupiedRooms.size;
+      if (emptyCount === 0) return false;
+      if (allAssigned) return emptyCount === 1;
+
+      const unplacedCount = level.people.filter((person) => !getCell(person.id)).length;
+      if (emptyCount - unplacedCount > 1) return false;
+      return undefined;
+    }
+    case 'rowExactlyOneEmpty': {
+      const rowSet = new Set(clue.rows);
+      const occupiedRows = new Set<number>();
+      for (const person of level.people) {
+        const personCellId = getCell(person.id);
+        if (!personCellId) continue;
+        const row = index.cellsById.get(personCellId)!.row;
+        if (rowSet.has(row)) occupiedRows.add(row);
+      }
+
+      const emptyCount = rowSet.size - occupiedRows.size;
       if (emptyCount === 0) return false;
       if (allAssigned) return emptyCount === 1;
 

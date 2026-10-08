@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    bunker — sealed pressure hatch beneath the surface: layered steel door,
+    radial locking wheel, and one red emergency indicator.
+  -->
+  <!-- Shadow under the heavy hatch -->
+  <path d="M17 82 Q48 92 79 82 L76 88 Q48 96 20 88 Z" fill="#3A2A20"/>
+
+  <!-- Concrete surround -->
+  <path d="M16 82 V31 Q16 13 34 13 H62 Q80 13 80 31 V82 Z"
+        fill="#939CA2" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M21 78 V32 Q21 18 35 18 H61 Q75 18 75 32 V78 Z"
+        fill="#5C6670" stroke="#1A1A1A" stroke-width="2.4" stroke-linejoin="round"/>
+
+  <!-- Steel hatch -->
+  <path d="M27 76 V34 Q27 24 37 24 H59 Q69 24 69 34 V76 Z"
+        fill="#9BA5AD" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M58 26 Q67 28 67 37 V74 H59 Z" fill="#5C6670"/>
+  <path d="M32 34 V70" stroke="#D5DCE1" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M35 29 H56" stroke="#D5DCE1" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Locking wheel -->
+  <circle cx="49" cy="51" r="13" fill="#5C6670" stroke="#1A1A1A" stroke-width="2.8"/>
+  <circle cx="49" cy="51" r="8" fill="#D5DCE1" stroke="#1A1A1A" stroke-width="2.2"/>
+  <circle cx="49" cy="51" r="3" fill="#9BA5AD" stroke="#1A1A1A" stroke-width="1.8"/>
+  <path d="M49 38 V43 M62 51 H57 M49 64 V59 M36 51 H41"
+        stroke="#1A1A1A" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M49 39 V43 M61 51 H57 M49 63 V59 M37 51 H41"
+        stroke="#D5DCE1" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- Pressure gauges and warning light -->
+  <circle cx="35" cy="70" r="3.2" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="63" cy="70" r="3.2" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.6"/>
+  <path d="M35 70 L36.5 68.5" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- Outer bolts -->
+  <g fill="#D5DCE1" stroke="#1A1A1A" stroke-width="1.4">
+    <circle cx="23" cy="35" r="2.2"/>
+    <circle cx="23" cy="70" r="2.2"/>
+    <circle cx="73" cy="35" r="2.2"/>
+    <circle cx="73" cy="70" r="2.2"/>
+  </g>
+</svg>

@@ -35,6 +35,13 @@ const exactlyOneEmpty = (ids = roomIds) => ({
   text: 'Ровно одна станция была пустой.',
 }) as unknown as Clue;
 
+const exactlyOneEmptyRow = (rows = [0, 1, 2]) => ({
+  id: 'test-row-exactly-one-empty',
+  type: 'rowExactlyOneEmpty',
+  rows,
+  text: 'Ровно один из трёх этажей был пустым.',
+}) as unknown as Clue;
+
 const letterGroupInRooms = (ids = roomIds) => ({
   id: 'test-letter-group-in-rooms',
   type: 'letterGroupInRooms',
@@ -127,6 +134,85 @@ test('zoneExactlyOneEmpty prunes only impossible partial assignments', () => {
     evalClue(clue, placements([['andrei', 0, 0], ['boris', 1, 5], ['vladimir', 2, 5], ['galina', 3, 5]]), level, index, false),
     undefined,
     'the remaining two people can still fill one of the two empty stations',
+  );
+});
+
+test('rowExactlyOneEmpty accepts exactly one empty listed row and ignores other rows', () => {
+  const index = buildLevelIndex(level);
+  const getCell = placements([
+    ['andrei', 0, 0],
+    ['boris', 1, 2],
+    ['vladimir', 3, 5],
+    ['galina', 4, 5],
+    ['denis', 5, 5],
+    ['hristina', 5, 4],
+  ]);
+
+  assert.equal(evalClue(exactlyOneEmptyRow(), getCell, level, index, true), true);
+});
+
+test('rowExactlyOneEmpty rejects no empty listed rows and multiple empty listed rows', () => {
+  const index = buildLevelIndex(level);
+  const noEmptyRow = placements([
+    ['andrei', 0, 0],
+    ['boris', 1, 2],
+    ['vladimir', 2, 5],
+    ['galina', 3, 5],
+    ['denis', 4, 5],
+    ['hristina', 5, 5],
+  ]);
+  const multipleEmptyRows = placements([
+    ['andrei', 0, 0],
+    ['boris', 3, 2],
+    ['vladimir', 4, 5],
+    ['galina', 5, 5],
+    ['denis', 5, 4],
+    ['hristina', 4, 4],
+  ]);
+
+  assert.equal(evalClue(exactlyOneEmptyRow(), noEmptyRow, level, index, true), false);
+  assert.equal(evalClue(exactlyOneEmptyRow(), multipleEmptyRows, level, index, true), false);
+});
+
+test('rowExactlyOneEmpty prunes only partial assignments that cannot end with one empty listed row', () => {
+  const index = buildLevelIndex(level);
+  const clue = exactlyOneEmptyRow();
+
+  assert.equal(
+    evalClue(clue, placements([['andrei', 0, 0], ['boris', 1, 2], ['vladimir', 2, 4]]), level, index, false),
+    false,
+    'once every listed row is occupied, none can become empty again',
+  );
+  assert.equal(
+    evalClue(clue, placements([['andrei', 3, 0], ['boris', 4, 2], ['vladimir', 5, 4], ['galina', 5, 5], ['denis', 4, 4]]), level, index, false),
+    false,
+    'one unplaced person cannot fill two currently empty candidate rows',
+  );
+  assert.equal(
+    evalClue(clue, placements([['andrei', 0, 0], ['boris', 3, 2], ['vladimir', 4, 4], ['galina', 5, 5]]), level, index, false),
+    undefined,
+    'the remaining people can still fill all but one currently empty candidate row',
+  );
+});
+
+test('rowExactlyOneEmpty lint requires two or three distinct existing row indices', () => {
+  const valid = exactlyOneEmptyRow();
+  assert.ok(!lintLevel({ ...level, clues: [valid] }).some((violation) => violation.includes('rowExactlyOneEmpty')));
+  assert.ok(
+    lintLevel({ ...level, clues: [{ ...valid, rows: [0] }] })
+      .some((violation) => violation.includes('2 или 3')),
+  );
+  assert.ok(
+    lintLevel({ ...level, clues: [{ ...valid, rows: [0, 1, 2, 3] }] })
+      .some((violation) => violation.includes('2 или 3')),
+  );
+  assert.ok(
+    lintLevel({ ...level, clues: [{ ...valid, rows: [0, 0] }] })
+      .some((violation) => violation.includes('повторы')),
+  );
+  assert.ok(
+    lintLevel({ ...level, clues: [{ ...valid, rows: [0, 6] }] })
+      .some((violation) => violation.includes('не существует')),
   );
 });
 

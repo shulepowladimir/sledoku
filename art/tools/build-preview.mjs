@@ -84,15 +84,37 @@ function swatches(svg) {
     )
     .join('')}</div>`;
 }
+function chessColorVariants(svg) {
+  const variants = [
+    { label: 'Светлая фигура · marble', color: '#F5E9D0', surface: '#DFD6C6' },
+    { label: 'Светлая фигура · asphalt', color: '#F5E9D0', surface: '#675A56' },
+    { label: 'Тёмная фигура · marble', color: '#1A1A1A', surface: '#DFD6C6' },
+    { label: 'Тёмная фигура · asphalt', color: '#1A1A1A', surface: '#675A56' },
+  ];
+  return `<div class="chess-variants">${variants
+    .map(
+      (variant) => `<div class="chess-variant">
+        <span>${variant.label}</span>
+        <div class="chess-swatch" style="background:${variant.surface}">
+          ${[18, 40, 64].map((s) => `<span>${inline(svg, s, `style="color:${variant.color}"`)}</span>`).join('')}
+        </div>
+      </div>`,
+    )
+    .join('')}</div>`;
+}
 function iconCard({ key, svg, gameKeys, cat }) {
   const inGame = gameKeys.includes(key);
   const badge = inGame ? '<span class="badge ok">ключ в игре</span>' : '<span class="badge bad">нет такого ключа!</span>';
+  const chessVariants = /^chess(King|Queen|Rook|Knight|Pawn)$/.test(key)
+    ? chessColorVariants(svg)
+    : '';
   const gray = `<div class="swatch swatch--gray" style="background:#dcd7ce">
     ${[18, 40, 64].map((s) => `<span class="cell">${inline(svg, s)}</span>`).join('')}
   </div>`;
   return `<li class="card" id="${cat}-${key}">
     <div class="head"><code>${key}</code> ${badge}</div>
     ${swatches(svg)}
+    ${chessVariants}
     <div class="grayrow"><span class="graylabel">ч/б:</span>${gray}</div>
   </li>`;
 }
@@ -182,6 +204,10 @@ const html = `<!doctype html>
   .grayrow .swatch--gray { filter: grayscale(1) contrast(1.05); }
   .grayrow { position: relative; display: flex; align-items: center; gap: 6px; margin-top: 2px; }
   .graylabel { font-size: 10px; color: #7a6a58; }
+  .chess-variants { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 8px 0; }
+  .chess-variant { min-width: 0; }
+  .chess-variant > span { display: block; margin: 0 0 3px; font-size: 10px; color: #5a4636; }
+  .chess-swatch { display: flex; align-items: flex-end; gap: 4px; min-height: 72px; padding: 4px; border-radius: 6px; }
   .tile { display: grid; grid-template-columns: repeat(3, 64px); grid-auto-rows: 64px; gap: 0; border-radius: 6px; overflow: hidden; width: max-content; border: 1px solid #1A1A1A33; }
   .tcell { width: 64px; height: 64px; }
   .tstack { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 2px; }
