@@ -36,29 +36,41 @@ For every murder-mystery level, also check the puzzle as the player sees it: the
 
 When QA includes a screenshot, transcribe each person's identity and 1-based row/column to an explicit assignment before evaluating it. Check the complete candidate against player-visible clues and its full role tuple; never reject it just because it disagrees with `people[].roles` or `isMurderer`. Preserve any valid counterexample as a regression case. After every clue edit, rerun the level validator and the focused epistemic test against the current file; previous green output does not apply to a changed clue set.
 
-## 3. Final verification
+## 3. Scoped verification
 
-After registering the level in `levels/index.ts`, run:
+During iteration, run the narrowest checks that cover the changed behavior. Scoped checks speed feedback; they defer, but do not replace, the final full gate.
+
+- After each clue or placement edit, run `npm run validate-level -- levels/<file>.ts` and the level's focused epistemic/solver test. This checks the current map and the player's deduction without revalidating unrelated levels.
+- After registering a level, run its focused browser spec and `tests/level-catalog.spec.ts`; run `npm run build` and `npm run lint` before handing it to the user for QA.
+- After changing shared solver rules, run the focused engine tests plus `npm run test:solver`. Use `npm run validate-all` early when a shared rule or acceptance change could affect several levels.
+- After changing shared UI behavior, run the Playwright specs covering that UI. For level-specific UI, prefer `npx playwright test tests/<level>.spec.ts` (add other affected specs as needed). This direct command intentionally skips the `pretest:smoke` art hook; it is for scoped feedback only.
+- For new or changed art, run `npm run preview-art` and get the required human review before copying approved assets. After copying, run `npm run validate-art` to check the workshop/game sync. Run the focused UI spec if the asset or its usage changed.
+
+`npm run test:smoke` is the complete Playwright suite for `tests/`, not just `smoke.spec.ts`; its `pretest:smoke` hook also runs `npm run validate-art`. Playwright defaults to two workers for this project; override with `--workers=N` when benchmarking or using a machine with different capacity. `npm run verify` remains the release gate and runs all-level validation, all solver tests, build, lint, art sync, and the complete Playwright suite.
+
+Human QA is reserved for what automation cannot establish: clue wording and fairness, intended deduction, and visual presentation of changed assets. It must be performed by the user; agent-run browser checks are a technical gate, not user QA. Keep the level in Doing until the user reviews and accepts it. Do not repeat visual review of unchanged assets.
+
+## 4. Final verification
+
+After the level, any approved story, and related tests are complete and the user has accepted gameplay QA, run the full gate once:
 
 ```bash
 npm run verify
 ```
 
-This is the single final gate: all-level lint/quality/solver validation, TypeScript build, lint, solver tests, art synchronization, and the complete Playwright suite. Fix failures at their source; do not substitute a narrower command for the final gate.
+This final run covers all levels and shared behavior, so do not also run it once before manual QA and again after adding the story. Fix failures at their source; if a failure requires a change, rerun the affected scoped checks and the final gate. A scoped run never counts as the final gate.
 
-Human QA is reserved for what automation cannot establish: clue wording and fairness, intended deduction, and visual presentation of changed assets. It must be performed by the user; agent-run browser checks are a technical gate, not user QA. Keep the level in Doing until the user reviews and accepts it. Do not repeat visual review of unchanged assets.
+## 5. Completion story
 
-## 4. Completion story
-
-Author the post-victory story only after the level itself is complete: its final map, cast, placements, clues, art, automated verification, and the user's manual gameplay QA have all been accepted. Do not draft a story while the level is still being designed or revised during QA.
+Author the post-victory story only after the level itself is complete: its final map, cast, placements, clues, art, focused automated checks, and the user's manual gameplay QA have all been accepted. Do not draft a story while the level is still being designed or revised during QA.
 
 - Base the draft on the accepted level as it exists in the game: its setting, final character placement, rooms, items, roles, and victim/murderer pair.
 - Use all 60 approved completion stories as references for voice and variety. Treat them as examples, not templates; do not reuse another level's plot or assume its time of day.
 - Present the draft to the user and wait for explicit approval before editing `src/content/completionStories.ts`. Preserve the approved wording verbatim and set `victimGenitive` to the actual victim's genitive form.
-- Add the approved entry under the level's `meta.id`, with a focused smoke assertion for the story and murderer reveal. Then rerun `npm run verify`.
+- Add the approved entry under the level's `meta.id`, with a focused smoke assertion for the story and murderer reveal. Include both in the final verification gate in section 4; do not run a second full gate just for the story.
 - Do not mark the level complete based on the story draft or green automation alone; the level's user QA and story approval are separate gates.
 
-## 5. New art
+## 6. New art
 
 For an asset batch, register the new game keys first, then run:
 
@@ -66,12 +78,12 @@ For an asset batch, register the new game keys first, then run:
 npm run preview-art
 ```
 
-Review `art/preview/index.local.html` in a browser. After approval, copy only the approved files from `art/` to the corresponding `src/assets/` directory, then run `npm run verify`. The preview is generated locally and is not part of source-control diffs.
+Review `art/preview/index.local.html` in a browser. After approval, copy only the approved files from `art/` to the corresponding `src/assets/` directory, then run `npm run validate-art`. Run focused UI/build checks for changed usages, and include the full art sync in the one final `npm run verify`. The preview is generated locally and is not part of source-control diffs.
 
 ## Completion criteria
 
 - The level is registered and `npm run verify` passes.
-- Its completion story is added only after user acceptance of the finished level and explicit approval of the story draft; the final story smoke assertion and `npm run verify` pass.
+- Its completion story is added only after user acceptance of the finished level and explicit approval of the story draft; the final story smoke assertion and the one final `npm run verify` pass.
 - Hidden-role alternatives have an explicit epistemic test when applicable.
 - The user has manually reviewed and accepted the changed player-facing text/art/deduction that requires judgment; green automation alone never marks a level complete.
 - The final response reports the commands actually run and any remaining manual QA.

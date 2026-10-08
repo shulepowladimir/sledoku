@@ -55,8 +55,9 @@ headless-проверку. Локальный HTML исключён из git.
 2. **Цикл мастерской**: `npm run preview-art` → ревью человеком в
    `art/preview/index.local.html`.
 3. **Перенос**: `cp art/<cat>/*.svg src/assets/…` (см. таблицу «Структура»).
-4. **Гейт**: `npm run verify` — проверяет уровни, сборку, lint, арт и Playwright; в том
-   числе `validate-art` проверяет мастерскую, игру и синхронность между ними.
+4. **Проверка переноса**: `npm run validate-art` проверяет мастерскую, игру и
+   синхронность между ними. Запусти затронутые build/UI-проверки по месту, а полный
+   `npm run verify` оставь на финальный гейт задачи.
 
 Запрещено: рисовать/править ассеты сразу в `src/assets/` (гейт увидит рассинхрон
 и уронит тесты); добавлять цвета мимо палитры §1 (новый цвет = новый токен с пометкой
@@ -71,8 +72,11 @@ cp art/items/*.svg    src/assets/icons/items/
 cp art/themes/*.svg   src/assets/icons/themes/
 cp art/persons/*.svg  src/assets/icons/persons/
 cp art/textures/*     src/assets/textures/
-npm run verify
+npm run validate-art
 ```
+
+Полный `npm run verify` запускай один раз после завершения связанной задачи, перед
+финальным принятием или отправкой на ревью.
 
 После этого (по желанию, отдельным шагом): удаление fallback-свитча в
 `ItemIcon.tsx` при 100% покрытии предметов и параметрической фигурки в

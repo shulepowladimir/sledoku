@@ -13,11 +13,12 @@ Style source: `art/STYLE-GUIDE.md`. Operational details: `art/README.md`.
 
 - Create or edit assets only in `art/<category>/`, never directly in `src/assets/`.
 - Run `npm run preview-art`, review `art/preview/index.local.html`, then copy approved assets into the game.
-- Run `npm run verify` after copying. It includes the `validate-art` synchronization gate.
+- Run `npm run validate-art` after copying to check workshop/game synchronization. Run the full `npm run verify` once at the final project gate, not after every asset copy.
 - Add new colors to STYLE-GUIDE §1 and approved new techniques to §6.
 
 ## Working rules
 
+- During implementation, run the narrowest checks that cover the changed behavior; do not repeat the full suite after intermediate edits. Run `npm run verify` once as the final gate for completed changes to game behavior, levels, tests, or assets. Documentation-only changes do not require the full game gate. Follow domain-specific workflows for additional checks.
 - For a level task, read `docs/level-workflow.md`; do not read full PAIW history unless a specific past case is relevant.
 - One analysis pass per decision. If the next step is unclear, use a targeted search, script, test, or question instead of repeating the same reasoning.
 - For data sets larger than about 20 entries, generate/check them with a script rather than tracing them manually.
