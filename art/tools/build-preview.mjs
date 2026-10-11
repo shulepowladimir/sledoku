@@ -102,9 +102,13 @@ function chessColorVariants(svg) {
     )
     .join('')}</div>`;
 }
-function iconCard({ key, svg, gameKeys, cat }) {
+function iconCard({ key, svg, gameKeys, cat, stagedCandidate = false }) {
   const inGame = gameKeys.includes(key);
-  const badge = inGame ? '<span class="badge ok">ключ в игре</span>' : '<span class="badge bad">нет такого ключа!</span>';
+  const badge = inGame
+    ? '<span class="badge ok">ключ в игре</span>'
+    : stagedCandidate
+      ? '<span class="badge candidate">кандидат · ещё не привязан к уровню</span>'
+      : '<span class="badge bad">нет такого ключа!</span>';
   const chessVariants = /^chess(King|Queen|Rook|Knight|Pawn)$/.test(key)
     ? chessColorVariants(svg)
     : '';
@@ -197,6 +201,7 @@ const html = `<!doctype html>
   .badge { font-size: 11px; padding: 2px 8px; border-radius: 999px; }
   .badge.ok { background: #dcedd8; color: #2c5230; }
   .badge.bad { background: #f3d3d3; color: #7c2222; }
+  .badge.candidate { background: #fff0ce; color: #6a4a15; }
   .swatches { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
   .swatch { display: flex; align-items: flex-end; gap: 8px; border-radius: 8px; padding: 6px; min-height: 78px; }
   .swatch .cell { display: flex; align-items: flex-end; }
@@ -249,7 +254,7 @@ ${texturesSection()}
 
 <section>
   <h2>Темы меню <small>${themes.length} staged / ${gameThemeKeys.length} ключей в игре</small></h2>
-  ${themes.length ? `<ul class="grid">${themes.map((t) => iconCard({ ...t, gameKeys: gameThemeKeys, cat: 'themes' })).join('')}</ul>` : '<p class="note">Пока пусто.</p>'}
+  ${themes.length ? `<ul class="grid">${themes.map((t) => iconCard({ ...t, gameKeys: gameThemeKeys, cat: 'themes', stagedCandidate: true })).join('')}</ul>` : '<p class="note">Пока пусто.</p>'}
 </section>
 
 <footer>Сгенерировано автоматически — не редактировать руками. Эталоны стиля: art/STYLE-GUIDE.md §6–7.</footer>

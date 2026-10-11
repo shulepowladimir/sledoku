@@ -42,6 +42,7 @@ const ITEM_RELATED_CLUE_TYPES = new Set([
   'sameRowOrColumnAsItem',
   'sameRoomAsItem',
   'occupiesItem',
+  'letterGroupOccupiesItem',
   'relativeToItemOccupant',
   'symmetricPosition',
 ]);

@@ -66,7 +66,13 @@ export function ItemTileOverlay({ item, itemType, rotate180 = false }: ItemTileO
             height: CELL_SIZE,
           }}
         >
-          <ItemIcon itemType={itemType} size={CELL_SIZE} rotate180={rotate180} />
+          <ItemIcon
+            itemType={itemType}
+            size={CELL_SIZE}
+            rotate180={rotate180}
+            iconVariant={item.iconVariant}
+            flipHorizontal={item.flipHorizontal}
+          />
         </div>
       ))}
       <svg className="item-tile-overlay__outline" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">

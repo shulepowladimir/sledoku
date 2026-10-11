@@ -118,6 +118,9 @@ export const ItemLibrary = {
   carJack: item('carJack', 'carJack', 'decorative', 'Домкрат'),
   trafficLight: item('trafficLight', 'trafficLight', 'decorative', 'Светофор'),
   trafficSign: item('trafficSign', 'trafficSign', 'decorative', 'Дорожный знак'),
+  tractor: item('tractor', 'tractor', 'decorative', 'Трактор'),
+  roadBarrier: item('roadBarrier', 'roadBarrier', 'decorative', 'Дорожное ограждение'),
+  trafficCone: item('trafficCone', 'trafficCone', 'decorative', 'Дорожные конусы'),
   washer: item('washer', 'washingMachine', 'decorative', 'Стиральная машина'),
   // ——— Дом великана (27-gianthouse) ———
   kettle: item('kettle', 'kettle', 'decorative', 'Чайник'),

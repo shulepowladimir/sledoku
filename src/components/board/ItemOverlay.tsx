@@ -34,7 +34,12 @@ export function ItemOverlay({ item, itemType, occupied = false, rotate180 = fals
 
   return (
     <div className="item-overlay" style={style} data-testid={`item-overlay-${item.id}`}>
-      <ItemIcon itemType={itemType} size={iconSize} />
+      <ItemIcon
+        itemType={itemType}
+        size={iconSize}
+        iconVariant={item.iconVariant}
+        flipHorizontal={item.flipHorizontal}
+      />
     </div>
   );
 }

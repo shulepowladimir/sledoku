@@ -232,6 +232,8 @@ export interface RelativeToItemOccupantClue extends ClueBase {
   itemTypeId: ItemTypeId;
   axis: 'row' | 'col';
   direction: 'before' | 'after';
+  /** Require the subject to be on the specified side of exactly one occupant of this item type. */
+  exactlyOne?: boolean;
 }
 
 /** "Person X shared a row or column with an item of type T." */
@@ -425,6 +427,13 @@ export interface LetterGroupInRoomsClue extends ClueBase {
   roomIds: RoomId[];
 }
 
+/** Level-wide: everyone whose name starts with a vowel/consonant letter occupies item type T. */
+export interface LetterGroupOccupiesItemClue extends ClueBase {
+  type: 'letterGroupOccupiesItem';
+  letterClass: LetterClass;
+  itemTypeId: ItemTypeId;
+}
+
 /**
  * "Person X (did not) hold role R" — explicit, ground-truth-confirming statement about `Person.roles`.
  * Unary: decidable purely from the subject's own `roles` array, never narrows their cell domain.
@@ -563,6 +572,7 @@ export type Clue =
   | LetterGroupRoomClue
   | LetterGroupSameWorldClue
   | LetterGroupInRoomsClue
+  | LetterGroupOccupiesItemClue
   | RoleClue
   | SameRoomAsRoleClue
   | RoleSingletonClue

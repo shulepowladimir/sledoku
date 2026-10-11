@@ -132,6 +132,25 @@ export function lintLevel(level: Level): string[] {
         violations.push(`Подсказка "${clue.id}" (letterGroupSameWorld): в ростере нет персонажей выбранного класса букв.`);
       }
     }
+
+    if (clue.type === 'letterGroupOccupiesItem') {
+      const hasGroupMember = level.people.some((person) =>
+        'АЕЁИОУЫЭЮЯ'.includes(person.initialLetter.toUpperCase()) === (clue.letterClass === 'vowel'),
+      );
+      if (!hasGroupMember) {
+        violations.push(`Подсказка "${clue.id}" (letterGroupOccupiesItem): в ростере нет персонажей выбранного класса букв.`);
+      }
+
+      const itemType = level.itemTypes.find((type) => type.id === clue.itemTypeId);
+      if (!itemType) {
+        violations.push(`Подсказка "${clue.id}" (letterGroupOccupiesItem): тип предмета "${clue.itemTypeId}" не описан в level.itemTypes.`);
+      } else if (itemType.kind !== 'occupiable') {
+        violations.push(`Подсказка "${clue.id}" (letterGroupOccupiesItem): предмет "${clue.itemTypeId}" не occupiable — на нём никто не может находиться.`);
+      }
+      if (!level.items.some((item) => item.typeId === clue.itemTypeId)) {
+        violations.push(`Подсказка "${clue.id}" (letterGroupOccupiesItem): на уровне нет предметов типа "${clue.itemTypeId}".`);
+      }
+    }
   }
   for (const clue of level.clues) {
     if (clue.type === 'symmetricPosition') {

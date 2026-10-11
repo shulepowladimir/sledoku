@@ -41,6 +41,8 @@ interface GridCellProps {
   floorStyle: CSSProperties;
   itemType?: ItemType;
   rotateItem?: boolean;
+  itemIconVariant?: string;
+  flipItemIconHorizontal?: boolean;
   suppressItemIcon?: boolean;
   suppressOccupiedItemIcon?: boolean;
   tooltip?: string;
@@ -73,6 +75,8 @@ export function GridCell({
   floorStyle,
   itemType,
   rotateItem = false,
+  itemIconVariant,
+  flipItemIconHorizontal = false,
   suppressItemIcon,
   suppressOccupiedItemIcon = false,
   tooltip,
@@ -208,11 +212,19 @@ export function GridCell({
           itemType={itemType}
           size={ITEM_CELL_ICON_SIZE[itemType.id] ?? Math.round(CELL_SIZE * 0.8)}
           rotate180={rotateItem}
+          iconVariant={itemIconVariant}
+          flipHorizontal={flipItemIconHorizontal}
         />
       )}
       {itemType && person && itemType.kind === 'occupiable' && !suppressOccupiedItemIcon && (
         <div className="grid-cell__item-under">
-          <ItemIcon itemType={itemType} size={Math.round(CELL_SIZE * 0.9)} rotate180={rotateItem} />
+          <ItemIcon
+            itemType={itemType}
+            size={Math.round(CELL_SIZE * 0.9)}
+            rotate180={rotateItem}
+            iconVariant={itemIconVariant}
+            flipHorizontal={flipItemIconHorizontal}
+          />
         </div>
       )}
       {person && <PersonToken person={person} status={personStatus} />}

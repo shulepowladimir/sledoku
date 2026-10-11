@@ -1,11 +1,14 @@
 import type { CSSProperties, ReactNode } from 'react';
 import type { ItemType } from '../../types/level';
 import { itemIconRegistry } from '../../assets/itemIconRegistry';
+import { itemIconTransform } from '../../engine/itemVisual';
 
 interface ItemIconProps {
   itemType: ItemType;
   size?: number;
   rotate180?: boolean;
+  iconVariant?: string;
+  flipHorizontal?: boolean;
 }
 
 function renderIconShape(icon: string): ReactNode {
@@ -1354,12 +1357,20 @@ function renderIconShape(icon: string): ReactNode {
   }
 }
 
-export function ItemIcon({ itemType, size = 30, rotate180 = false }: ItemIconProps) {
+export function ItemIcon({
+  itemType,
+  size = 30,
+  rotate180 = false,
+  iconVariant,
+  flipHorizontal = false,
+}: ItemIconProps) {
   // Designer art takes precedence; the built-in switch below is the fallback while the
   // icon library is being filled (see docs/assets.md).
-  const Custom = itemIconRegistry[itemType.icon];
+  const icon = iconVariant ?? itemType.icon;
+  const Custom = itemIconRegistry[icon];
+  const transform = itemIconTransform({ rotate180, flipHorizontal });
   const style: CSSProperties = {
-    ...(rotate180 && { transform: 'rotate(180deg)' }),
+    ...(transform && { transform }),
     ...(itemType.iconColor && { color: itemType.iconColor }),
   };
   if (Custom) {
@@ -1378,7 +1389,7 @@ export function ItemIcon({ itemType, size = 30, rotate180 = false }: ItemIconPro
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      {renderIconShape(itemType.icon)}
+      {renderIconShape(icon)}
     </svg>
   );
 }

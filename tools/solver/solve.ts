@@ -445,13 +445,19 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       if (occupantIds.length === 0) return allAssigned ? false : undefined;
       const ca = index.cellsById.get(a)!;
       const va = clue.axis === 'row' ? ca.row : ca.col;
+      let matchingOccupants = 0;
       for (const occupantId of occupantIds) {
         const oc = getCell(occupantId)!;
         const occCell = index.cellsById.get(oc)!;
         const vb = clue.axis === 'row' ? occCell.row : occCell.col;
-        if (clue.direction === 'before' ? va < vb : va > vb) return true;
+        if (clue.direction === 'before' ? va < vb : va > vb) {
+          matchingOccupants++;
+          if (clue.exactlyOne && matchingOccupants > 1) return false;
+          if (!clue.exactlyOne) return true;
+        }
       }
-      return allAssigned ? false : undefined;
+      if (!allAssigned) return undefined;
+      return clue.exactlyOne ? matchingOccupants === 1 : false;
     }
     case 'sameRoomAsItem': {
       const subjectCellId = getCell(subjectPersonId(clue.subject, level));
@@ -720,6 +726,24 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
           continue;
         }
         if (!allowedRooms.has(index.cellsById.get(personCellId)!.roomId)) return false;
+      }
+
+      return allGroupMembersPlaced ? true : undefined;
+    }
+    case 'letterGroupOccupiesItem': {
+      const isVowel = (letter: string) => VOWELS.has(letter);
+      const group = level.people.filter((person) => isVowel(person.initialLetter) === (clue.letterClass === 'vowel'));
+      let allGroupMembersPlaced = true;
+
+      for (const person of group) {
+        const personCellId = getCell(person.id);
+        if (!personCellId) {
+          allGroupMembersPlaced = false;
+          continue;
+        }
+        const cell = index.cellsById.get(personCellId);
+        const item = cell?.itemId ? level.items.find((entry) => entry.id === cell.itemId) : undefined;
+        if (item?.typeId !== clue.itemTypeId) return false;
       }
 
       return allGroupMembersPlaced ? true : undefined;

@@ -45,9 +45,16 @@ type ItemRow = {
 
 function itemUsage(): Map<string, { label: string; levelTitles: string[] }> {
   const usage = new Map<string, { label: string; levelTitles: string[] }>();
+  for (const factory of Object.values(ItemLibrary)) {
+    const itemType = factory();
+    if (!usage.has(itemType.icon)) {
+      usage.set(itemType.icon, { label: itemType.label, levelTitles: [] });
+    }
+  }
   for (const level of levels) {
     for (const itemType of level.itemTypes) {
       const entry = usage.get(itemType.icon) ?? { label: itemType.label, levelTitles: [] };
+      entry.label = itemType.label;
       if (!entry.levelTitles.includes(level.meta.title)) entry.levelTitles.push(level.meta.title);
       usage.set(itemType.icon, entry);
     }
@@ -75,11 +82,11 @@ function buildReport() {
   const themeCases = parseSwitchCases('src/components/menu/ThemeIcon.tsx');
   const themeDelegations = parseThemeDelegations('src/components/menu/ThemeIcon.tsx');
   const themeFiles = new Set(listFiles('src/assets/icons/themes', ['.svg']).map(baseName));
-  const themeKeys = [...new Set(levels.map((level) => level.meta.theme))].sort();
+  const themeKeys = [...new Set([...levels.map((level) => level.meta.theme), ...themeFiles])].sort();
 
   const themeRows = themeKeys.map((key) => ({
     key,
-    title: levels.find((l) => l.meta.theme === key)?.meta.title ?? '',
+    title: levels.find((l) => l.meta.theme === key)?.meta.title ?? '— (иконка в библиотеке)',
     file: themeFiles.has(key),
     fallbackCase: themeCases.has(key) || themeDelegations.has(key),
     delegation: themeDelegations.get(key) ?? null,

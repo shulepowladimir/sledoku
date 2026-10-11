@@ -320,6 +320,8 @@ export function Board() {
             floorStyle={cellFloorStyle}
             itemType={itemType}
             rotateItem={worldId === 'otherworld'}
+            itemIconVariant={item?.iconVariant}
+            flipItemIconHorizontal={item?.flipHorizontal}
             suppressItemIcon={suppressedCellIds.has(cell.id)}
             suppressOccupiedItemIcon={!!item && item.cells.length > 1 && itemType?.render !== 'tile'}
             tooltip={tooltip}

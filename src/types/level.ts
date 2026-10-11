@@ -66,6 +66,10 @@ export interface Item {
   id: ItemId;
   typeId: ItemTypeId;
   cells: CellId[]; // 1+ cells; multi-cell furniture may take any orthogonally-connected shape (straight or bent)
+  /** Optional per-item icon-registry key; keeps visual variants under one shared item type and label. */
+  iconVariant?: string;
+  /** Mirror the item's icon horizontally (e.g. orient traffic toward the right). */
+  flipHorizontal?: boolean;
 }
 
 export interface FloorFeature {
