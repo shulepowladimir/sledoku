@@ -1,5 +1,5 @@
 import { useRef, type CSSProperties, type MouseEvent, type TouchEvent } from 'react';
-import type { ItemType, Person } from '../../types/level';
+import type { ItemRotation, ItemType, Person } from '../../types/level';
 import type { PersonCheckStatus } from '../../types/game';
 import type { CrossKind } from '../../engine/selectors';
 import { CELL_SIZE } from '../../styles/floorTextures';
@@ -41,6 +41,7 @@ interface GridCellProps {
   floorStyle: CSSProperties;
   itemType?: ItemType;
   rotateItem?: boolean;
+  itemIconRotation?: ItemRotation;
   itemIconVariant?: string;
   flipItemIconHorizontal?: boolean;
   suppressItemIcon?: boolean;
@@ -75,6 +76,7 @@ export function GridCell({
   floorStyle,
   itemType,
   rotateItem = false,
+  itemIconRotation,
   itemIconVariant,
   flipItemIconHorizontal = false,
   suppressItemIcon,
@@ -212,6 +214,7 @@ export function GridCell({
           itemType={itemType}
           size={ITEM_CELL_ICON_SIZE[itemType.id] ?? Math.round(CELL_SIZE * 0.8)}
           rotate180={rotateItem}
+          rotation={itemIconRotation}
           iconVariant={itemIconVariant}
           flipHorizontal={flipItemIconHorizontal}
         />
@@ -222,6 +225,7 @@ export function GridCell({
             itemType={itemType}
             size={Math.round(CELL_SIZE * 0.9)}
             rotate180={rotateItem}
+            rotation={itemIconRotation}
             iconVariant={itemIconVariant}
             flipHorizontal={flipItemIconHorizontal}
           />

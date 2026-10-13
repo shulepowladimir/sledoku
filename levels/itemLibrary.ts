@@ -273,6 +273,8 @@ export const ItemLibrary = {
   carousel: item('carousel', 'carousel', 'occupiable', 'Карусель'),
   slide: item('slide', 'slide', 'occupiable', 'Горки'),
   plane: item('plane', 'plane', 'decorative', 'Самолёт'),
+  airplaneSeat: item('airplaneSeat', 'airplaneSeat', 'occupiable', 'Кресло самолёта'),
+  aircraftYoke: item('aircraftYoke', 'aircraftYoke', 'decorative', 'Штурвал самолёта'),
   windsock: item('windsock', 'windsock', 'decorative', 'Ветровой конус'),
   baggageCart: item('baggageCart', 'baggageCart', 'decorative', 'Тележка багажа'),
   lion: item('lion', 'lion', 'decorative', 'Лев'),

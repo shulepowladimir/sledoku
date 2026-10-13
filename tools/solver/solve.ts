@@ -748,6 +748,23 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
 
       return allGroupMembersPlaced ? true : undefined;
     }
+    case 'roleOccupiesItem': {
+      let hasUnplacedHolder = false;
+
+      for (const personId of roleHolderIds(clue.roleId, level)) {
+        const personCellId = getCell(personId);
+        if (!personCellId) {
+          if (allAssigned) return false;
+          hasUnplacedHolder = true;
+          continue;
+        }
+        const cell = index.cellsById.get(personCellId);
+        const item = cell?.itemId ? level.items.find((entry) => entry.id === cell.itemId) : undefined;
+        if (item?.typeId !== clue.itemTypeId) return false;
+      }
+
+      return hasUnplacedHolder ? undefined : true;
+    }
     case 'role': {
       const person = level.people.find((p) => p.id === subjectPersonId(clue.subject, level));
       const result = !!person?.roles?.includes(clue.roleId);

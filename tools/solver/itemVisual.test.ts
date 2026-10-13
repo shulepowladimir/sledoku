@@ -16,3 +16,8 @@ test('horizontal item mirroring composes with the existing otherworld rotation',
   );
   assert.equal(itemIconTransform({}), undefined);
 });
+
+test('per-item quarter-turn rotation composes with the existing icon transforms', () => {
+  assert.equal(itemIconTransform({ rotation: 90 }), 'rotate(90deg)');
+  assert.equal(itemIconTransform({ rotation: 270, rotate180: true, flipHorizontal: true }), 'rotate(180deg) rotate(270deg) scaleX(-1)');
+});

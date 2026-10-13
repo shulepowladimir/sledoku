@@ -151,6 +151,22 @@ export function lintLevel(level: Level): string[] {
         violations.push(`Подсказка "${clue.id}" (letterGroupOccupiesItem): на уровне нет предметов типа "${clue.itemTypeId}".`);
       }
     }
+
+    if (clue.type === 'roleOccupiesItem') {
+      if (roleHolderCount(level, clue.roleId) === 0) {
+        violations.push(`Подсказка "${clue.id}" (roleOccupiesItem): в ростере нет носителей роли "${clue.roleId}".`);
+      }
+
+      const itemType = level.itemTypes.find((type) => type.id === clue.itemTypeId);
+      if (!itemType) {
+        violations.push(`Подсказка "${clue.id}" (roleOccupiesItem): тип предмета "${clue.itemTypeId}" не описан в level.itemTypes.`);
+      } else if (itemType.kind !== 'occupiable') {
+        violations.push(`Подсказка "${clue.id}" (roleOccupiesItem): предмет "${clue.itemTypeId}" не occupiable — на нём никто не может находиться.`);
+      }
+      if (!level.items.some((item) => item.typeId === clue.itemTypeId)) {
+        violations.push(`Подсказка "${clue.id}" (roleOccupiesItem): на уровне нет предметов типа "${clue.itemTypeId}".`);
+      }
+    }
   }
   for (const clue of level.clues) {
     if (clue.type === 'symmetricPosition') {

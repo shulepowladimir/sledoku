@@ -62,12 +62,16 @@ export interface ItemType {
   tileEdgeColors?: { fill: string; shadow: string; outline: string };
 }
 
+export type ItemRotation = 90 | 180 | 270;
+
 export interface Item {
   id: ItemId;
   typeId: ItemTypeId;
   cells: CellId[]; // 1+ cells; multi-cell furniture may take any orthogonally-connected shape (straight or bent)
   /** Optional per-item icon-registry key; keeps visual variants under one shared item type and label. */
   iconVariant?: string;
+  /** Rotate this item's icon clockwise in quarter-turn increments. */
+  rotation?: ItemRotation;
   /** Mirror the item's icon horizontally (e.g. orient traffic toward the right). */
   flipHorizontal?: boolean;
 }

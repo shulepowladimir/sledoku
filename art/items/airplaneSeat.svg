@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!--
+    airplaneSeat — кресло эконом-класса, вид сверху: спинка обращена к носу самолёта,
+    мягкое сиденье направлено к пассажиру; синяя ткань с кремовой строчкой.
+  -->
+  <ellipse cx="49" cy="87" rx="27" ry="4" fill="#3A2A20"/>
+
+  <!-- Подлокотники с металлическими наружными гранями -->
+  <path d="M20 39 Q17 39 17 43 L19 69 Q20 73 24 73 L29 70 L27 43 Q26 39 20 39 Z"
+        fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M76 39 Q79 39 79 43 L77 69 Q76 73 72 73 L67 70 L69 43 Q70 39 76 39 Z"
+        fill="#9BA5AD" stroke="#1A1A1A" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M20.5 45 L22 66 M75.5 45 L74 66" fill="none" stroke="#D5DCE1" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Спинка кресла: голова пассажира обращена к носу самолёта -->
+  <path d="M31 12 Q33 9 39 9 L57 9 Q63 9 65 13 L69 37 Q68 42 62 43 L34 43 Q28 42 27 37 Z"
+        fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M34 15 Q48 11 62 15 L65 34 Q48 30 31 34 Z" fill="#2E5278"/>
+  <path d="M35 17 Q48 14 61 17" fill="none" stroke="#9CC3E0" stroke-width="2" stroke-linecap="round"/>
+  <path d="M33 36 Q48 32 63 36" fill="none" stroke="#5C6670" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Мягкая подушка сиденья с читаемой посадочной зоной -->
+  <path d="M29 45 Q29 41 35 40 L61 40 Q67 41 67 46 L70 68 Q70 75 63 77 L33 77 Q26 75 26 68 Z"
+        fill="#1F3A5F" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M31 48 Q48 43 65 48 L67 66 Q67 71 61 72 L35 72 Q29 71 29 66 Z" fill="#2E5278"/>
+  <path d="M34 50 Q48 47 62 50 M33 68 Q48 72 63 68" fill="none" stroke="#9CC3E0" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Живая деталь: застёжка ремня -->
+  <path d="M45 58 L51 58 L53 63 L51 67 L45 67 L43 63 Z" fill="#D5DCE1" stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M47 60 L49 60 L50 63 L49 65 L47 65 L46 63 Z" fill="#E0A94A"/>
+</svg>

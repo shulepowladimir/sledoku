@@ -434,6 +434,13 @@ export interface LetterGroupOccupiesItemClue extends ClueBase {
   itemTypeId: ItemTypeId;
 }
 
+/** Level-wide: every person holding role R occupies an item of type T. */
+export interface RoleOccupiesItemClue extends ClueBase {
+  type: 'roleOccupiesItem';
+  roleId: string;
+  itemTypeId: ItemTypeId;
+}
+
 /**
  * "Person X (did not) hold role R" — explicit, ground-truth-confirming statement about `Person.roles`.
  * Unary: decidable purely from the subject's own `roles` array, never narrows their cell domain.
@@ -573,6 +580,7 @@ export type Clue =
   | LetterGroupSameWorldClue
   | LetterGroupInRoomsClue
   | LetterGroupOccupiesItemClue
+  | RoleOccupiesItemClue
   | RoleClue
   | SameRoomAsRoleClue
   | RoleSingletonClue

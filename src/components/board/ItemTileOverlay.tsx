@@ -70,6 +70,7 @@ export function ItemTileOverlay({ item, itemType, rotate180 = false }: ItemTileO
             itemType={itemType}
             size={CELL_SIZE}
             rotate180={rotate180}
+            rotation={item.rotation}
             iconVariant={item.iconVariant}
             flipHorizontal={item.flipHorizontal}
           />

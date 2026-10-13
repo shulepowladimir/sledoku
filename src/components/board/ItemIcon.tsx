@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react';
-import type { ItemType } from '../../types/level';
+import type { ItemRotation, ItemType } from '../../types/level';
 import { itemIconRegistry } from '../../assets/itemIconRegistry';
 import { itemIconTransform } from '../../engine/itemVisual';
 
@@ -7,6 +7,7 @@ interface ItemIconProps {
   itemType: ItemType;
   size?: number;
   rotate180?: boolean;
+  rotation?: ItemRotation;
   iconVariant?: string;
   flipHorizontal?: boolean;
 }
@@ -1361,6 +1362,7 @@ export function ItemIcon({
   itemType,
   size = 30,
   rotate180 = false,
+  rotation,
   iconVariant,
   flipHorizontal = false,
 }: ItemIconProps) {
@@ -1368,7 +1370,7 @@ export function ItemIcon({
   // icon library is being filled (see docs/assets.md).
   const icon = iconVariant ?? itemType.icon;
   const Custom = itemIconRegistry[icon];
-  const transform = itemIconTransform({ rotate180, flipHorizontal });
+  const transform = itemIconTransform({ rotate180, rotation, flipHorizontal });
   const style: CSSProperties = {
     ...(transform && { transform }),
     ...(itemType.iconColor && { color: itemType.iconColor }),

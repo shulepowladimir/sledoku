@@ -58,6 +58,17 @@ function itemUsage(): Map<string, { label: string; levelTitles: string[] }> {
       if (!entry.levelTitles.includes(level.meta.title)) entry.levelTitles.push(level.meta.title);
       usage.set(itemType.icon, entry);
     }
+
+    const itemTypesById = new Map(level.itemTypes.map((itemType) => [itemType.id, itemType]));
+    for (const item of level.items) {
+      if (!item.iconVariant) continue;
+      const entry = usage.get(item.iconVariant) ?? {
+        label: itemTypesById.get(item.typeId)?.label ?? '',
+        levelTitles: [],
+      };
+      if (!entry.levelTitles.includes(level.meta.title)) entry.levelTitles.push(level.meta.title);
+      usage.set(item.iconVariant, entry);
+    }
   }
   return usage;
 }

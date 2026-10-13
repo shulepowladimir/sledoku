@@ -37,6 +37,7 @@ export function ItemOverlay({ item, itemType, occupied = false, rotate180 = fals
       <ItemIcon
         itemType={itemType}
         size={iconSize}
+        rotation={item.rotation}
         iconVariant={item.iconVariant}
         flipHorizontal={item.flipHorizontal}
       />

@@ -98,6 +98,8 @@
 - shootingGallery — decorative
 - popcornStand — decorative
 - plane — decorative
+- airplaneSeat — occupiable (icon variants: economy `airplaneSeat`, business `airplaneSeatBusiness`)
+- aircraftYoke — decorative (самолётный штурвал; отдельная форма от корабельного `wheel`)
 - windsock — decorative
 - baggageCart — decorative
 - lion — decorative
