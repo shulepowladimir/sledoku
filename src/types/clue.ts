@@ -30,6 +30,14 @@ export interface RoomMembershipClue extends ClueBase {
   negated?: boolean;
 }
 
+/** "Person X was in one of the independent rooms belonging to room group G." */
+export interface RoomGroupMembershipClue extends ClueBase {
+  type: 'roomGroupMembership';
+  subject: Subject;
+  roomGroupId: string;
+  negated?: boolean;
+}
+
 /** "Person X was next to an item of type T" (same room, orthogonal only). */
 export interface AdjacencyClue extends ClueBase {
   type: 'adjacency';
@@ -43,6 +51,14 @@ export interface SharedRoomGenderClue extends ClueBase {
   type: 'sharedRoomGender';
   subject: Subject;
   otherGender: Gender;
+  negated?: boolean;
+}
+
+/** "Person X shared a room with another person whose name starts with a vowel/consonant." */
+export interface SharedRoomLetterGroupClue extends ClueBase {
+  type: 'sharedRoomLetterGroup';
+  subject: Subject;
+  letterClass: LetterClass;
   negated?: boolean;
 }
 
@@ -147,7 +163,8 @@ export interface ZoneCountParityClue extends ClueBase {
 
 /**
  * "Person X was north/south/west/east of person Y" (row 0 = north, col 0 = west).
- * `offset`, if given, requires an exact distance; otherwise just a strict inequality.
+ * `offset`, if given, requires an exact distance; `minOffset` requires at least that distance;
+ * when neither is given, only the strict direction is checked.
  * The other party is either a concrete person (`otherPersonId`) or a role resolved
  * to its unique ground-truth holder (`otherRole`) — e.g. "Zhanna was north of the judge".
  */
@@ -159,6 +176,7 @@ export interface RelativePositionClue extends ClueBase {
   axis: 'row' | 'col';
   direction: 'before' | 'after';
   offset?: number;
+  minOffset?: number;
 }
 
 /** "Person X was on a higher/lower numbered room than person Y." */
@@ -241,6 +259,14 @@ export interface SameRowOrColumnAsItemClue extends ClueBase {
   type: 'sameRowOrColumnAsItem';
   subject: Subject;
   itemTypeId: ItemTypeId;
+}
+
+/** "There was no item of type T in the subject's selected row or column." */
+export interface ItemAbsentInLineClue extends ClueBase {
+  type: 'itemAbsentInLine';
+  subject: Subject;
+  itemTypeId: ItemTypeId;
+  axis: 'row' | 'col';
 }
 
 /** "Person X was in the same room as an item of type T" — room-wide, not adjacency-limited. */
@@ -536,8 +562,10 @@ export interface RoleZoneMinClue extends ClueBase {
 export type Clue =
   | PositionClue
   | RoomMembershipClue
+  | RoomGroupMembershipClue
   | AdjacencyClue
   | SharedRoomGenderClue
+  | SharedRoomLetterGroupClue
   | ItemTypeGenderClue
   | BareCellBanClue
   | ItemTypeFullyOccupiedClue
@@ -558,6 +586,7 @@ export type Clue =
   | AloneInRoomClue
   | RelativeToItemOccupantClue
   | SameRowOrColumnAsItemClue
+  | ItemAbsentInLineClue
   | SameRoomAsItemClue
   | OccupiesItemClue
   | WallSideClue

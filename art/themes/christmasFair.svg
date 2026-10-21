@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Christmas fair: snow globe-like badge with a tree and bright market stall. -->
+  <path d="M48 8 Q81 8 87 38 Q93 69 70 84 Q48 99 26 84 Q3 69 9 38 Q15 8 48 8 Z" fill="#D8DDDD" stroke="#1A1A1A" stroke-width="3"/>
+  <path d="M18 43 Q23 21 48 20 Q73 21 78 43 Q82 63 64 77 Q48 88 32 77 Q14 63 18 43 Z" fill="#F5E9D0"/>
+
+  <!-- Snowy ground and evergreen -->
+  <path d="M20 70 Q36 63 50 70 Q67 62 78 69 L72 78 Q48 87 25 78 Z" fill="#9CC3E0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <path d="M45 64 L48 33 L51 64 Z" fill="#B87F33" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M48 23 L34 46 H41 L29 59 H67 L55 46 H62 Z" fill="#5E8A46" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M39 44 L48 28 L57 44 M35 55 L48 38 L61 55" fill="none" stroke="#7FA85B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="48" cy="28" r="3.2" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5"/>
+  <circle cx="39" cy="51" r="2.4" fill="#E8B95F"/>
+  <circle cx="57" cy="48" r="2.4" fill="#C8102E"/>
+
+  <!-- Market stall at the edge of the square -->
+  <path d="M17 61 H38 V76 H17 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M14 58 Q15 54 19 54 H36 Q40 54 41 58 L38 66 H17 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M18 58 H24 L23 65 H17 Z M30 58 H37 L38 65 H29 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.2"/>
+  <path d="M21 70 H34" stroke="#B87F33" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Snowflakes -->
+  <path d="M68 32 V42 M63 37 H73 M64.5 33.5 L71.5 40.5 M71.5 33.5 L64.5 40.5" stroke="#4A7BA6" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="28" cy="35" r="2" fill="#9CC3E0"/>
+</svg>

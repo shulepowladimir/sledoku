@@ -40,6 +40,7 @@ const ITEM_RELATED_CLUE_TYPES = new Set([
   'floorFeature',
   'floorTexture',
   'sameRowOrColumnAsItem',
+  'itemAbsentInLine',
   'sameRoomAsItem',
   'occupiesItem',
   'letterGroupOccupiesItem',

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Wrapped present, angled lid and a broad ribbon for small-size readability. -->
+  <ellipse cx="47" cy="84" rx="31" ry="5" fill="#3A2A20"/>
+
+  <!-- Box body -->
+  <path d="M21 40 Q21 37 25 37 H71 Q75 37 75 41 L71 78 Q71 82 67 82 H29 Q25 82 25 78 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M49 39 H60 L58 80 H47 Z" fill="#E8B95F" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M28 45 Q31 42 35 42" fill="none" stroke="#E08BA0" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M31 75 Q46 78 65 75" fill="none" stroke="#7B2431" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Lid -->
+  <path d="M17 34 Q16 30 21 28 L67 24 Q72 24 74 28 L78 39 L23 44 Z" fill="#E0824A" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M44 27 L55 26 L59 41 L47 42 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M23 32 Q35 28 43 29" fill="none" stroke="#E8B95F" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Bow -->
+  <path d="M49 25 Q38 13 31 18 Q27 22 35 28 L47 32 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M51 25 Q61 12 68 17 Q72 21 64 28 L53 32 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M48 24 Q45 16 50 12 Q56 15 53 25 L52 31 H47 Z" fill="#E8B95F" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/>
+  <circle cx="50" cy="27" r="3.5" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="1.8"/>
+</svg>

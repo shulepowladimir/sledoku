@@ -38,6 +38,13 @@ export interface Room {
   labelOffsetCells?: { row?: number; col?: number };
 }
 
+/** Semantic grouping of independent rooms (e.g. several market rows form one food district). */
+export interface RoomGroup {
+  id: string;
+  name: string;
+  roomIds: RoomId[];
+}
+
 export function roomWorldId(room: Pick<Room, 'worldId'> | undefined): string {
   return room?.worldId ?? DEFAULT_WORLD_ID;
 }
@@ -137,6 +144,8 @@ export interface Level {
   cols?: number; // for non-square maps (e.g. 10 rows x 11 cols); omit for square boards
   tilePattern?: 'checkerboard';
   rooms: Room[];
+  /** Optional semantic categories spanning distinct rooms; unrelated to parallel-world familyId. */
+  roomGroups?: RoomGroup[];
   itemTypes: ItemType[];
   items: Item[];
   floorFeatures: FloorFeature[];

@@ -113,6 +113,9 @@
 - spotlight — decorative
 - makeupMirror — decorative
 - movieCamera — decorative
+- christmasStand — decorative (Праздничный прилавок; christmas-fair)
+- gift — decorative (Подарок; christmas-fair)
+- sleigh — occupiable (Сани; christmas-fair)
 - car — occupiable (2-клеточный: единственный предмет с cells.length=2, рендер через ItemOverlay)
 - trafficLight — decorative
 - trafficSign — decorative

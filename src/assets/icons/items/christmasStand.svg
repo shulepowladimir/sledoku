@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Wooden Christmas-market stall with a striped canopy and a wreath. -->
+  <ellipse cx="48" cy="86" rx="34" ry="5" fill="#3A2A20"/>
+
+  <!-- Stall body -->
+  <path d="M20 44 H76 L72 80 Q71 83 68 83 H28 Q25 83 24 80 Z" fill="#B87F33" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M28 49 H68 V76 H28 Z" fill="#E0A94A" stroke="#1A1A1A" stroke-width="2.5"/>
+  <path d="M31 53 H65 V71 H31 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M33 57 H63 M33 62 H63 M33 67 H63" stroke="#E8B95F" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M25 78 H71" stroke="#E8B95F" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Snow-capped awning -->
+  <path d="M15 38 Q16 34 21 34 H75 Q80 34 81 38 L76 54 Q75 57 71 57 H25 Q21 57 20 54 Z" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M22 38 H35 L33 55 H27 Q24 55 23 52 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M42 38 H55 L54 55 H39 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M62 38 H75 L72 52 Q71 55 68 55 H60 Z" fill="#C8102E" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M18 37 Q22 32 27 35 Q34 30 39 35 Q46 30 51 35 Q58 30 63 35 Q71 31 78 37" fill="#F5E9D0" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Little evergreen wreath -->
+  <circle cx="48" cy="25" r="8" fill="#5E8A46" stroke="#1A1A1A" stroke-width="2.5"/>
+  <circle cx="48" cy="25" r="3.2" fill="#F5E9D0"/>
+  <path d="M42 31 L39 35 M54 31 L57 35" stroke="#44663A" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="45" cy="22" r="1.7" fill="#C8102E"/>
+  <circle cx="52" cy="27" r="1.7" fill="#E8B95F"/>
+</svg>

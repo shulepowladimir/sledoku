@@ -19,8 +19,10 @@ type GetCell = (personId: PersonId) => CellId | undefined;
 const UNARY_TYPES = new Set([
   'position',
   'roomMembership',
+  'roomGroupMembership',
   'adjacency',
   'sameRowOrColumnAsItem',
+  'itemAbsentInLine',
   'corner',
   'floorFeature',
   'floorTexture',
@@ -130,6 +132,15 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       );
       return clue.negated ? !result : result;
     }
+    case 'roomGroupMembership': {
+      const subjectCellId = getCell(subjectPersonId(clue.subject, level));
+      if (!subjectCellId) return undefined;
+      const group = level.roomGroups?.find((candidate) => candidate.id === clue.roomGroupId);
+      if (!group) return false;
+      const roomId = index.cellsById.get(subjectCellId)!.roomId;
+      const result = group.roomIds.includes(roomId);
+      return clue.negated ? !result : result;
+    }
     case 'adjacency': {
       const subjectCellId = getCell(subjectPersonId(clue.subject, level));
       if (!subjectCellId) return undefined;
@@ -165,6 +176,21 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
           return itemCell.row === subjectCell.row || itemCell.col === subjectCell.col;
         });
       });
+    }
+    case 'itemAbsentInLine': {
+      const subjectCellId = getCell(subjectPersonId(clue.subject, level));
+      if (!subjectCellId) return undefined;
+      const subjectCell = index.cellsById.get(subjectCellId)!;
+      const hasItemInLine = level.items.some((item) =>
+        item.typeId === clue.itemTypeId && item.cells.some((itemCellId) => {
+          const itemCell = index.cellsById.get(itemCellId);
+          if (!itemCell) return false;
+          return clue.axis === 'row'
+            ? itemCell.row === subjectCell.row
+            : itemCell.col === subjectCell.col;
+        }),
+      );
+      return !hasItemInLine;
     }
     case 'corner': {
       const subjectCellId = getCell(subjectPersonId(clue.subject, level));
@@ -217,6 +243,21 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       if (hasMatch) return clue.negated ? false : true;
       if (!allAssigned) return undefined;
       return clue.negated ? true : false;
+    }
+    case 'sharedRoomLetterGroup': {
+      const subjectCellId = getCell(subjectPersonId(clue.subject, level));
+      if (!subjectCellId) return undefined;
+      const subjectId = subjectPersonId(clue.subject, level);
+      const subjectRoomId = index.cellsById.get(subjectCellId)!.roomId;
+      const isVowel = (letter: string) => VOWELS.has(letter.toUpperCase());
+      const hasMatch = level.people.some((person) => {
+        if (person.id === subjectId || isVowel(person.initialLetter) !== (clue.letterClass === 'vowel')) return false;
+        const personCellId = getCell(person.id);
+        return personCellId != null && index.cellsById.get(personCellId)!.roomId === subjectRoomId;
+      });
+      if (hasMatch) return !clue.negated;
+      if (!allAssigned) return undefined;
+      return !!clue.negated;
     }
     case 'bareCellBan': {
       // «Никого не было в воде»: в зоне roomId запрещены «голые» клетки — только
@@ -395,6 +436,9 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
       const vb = clue.axis === 'row' ? cb.row : cb.col;
       if (clue.offset != null) {
         return clue.direction === 'before' ? vb - va === clue.offset : va - vb === clue.offset;
+      }
+      if (clue.minOffset != null) {
+        return clue.direction === 'before' ? vb - va >= clue.minOffset : va - vb >= clue.minOffset;
       }
       return clue.direction === 'before' ? va < vb : va > vb;
     }

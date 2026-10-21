@@ -46,6 +46,25 @@ export function lintLevel(level: Level): string[] {
     }
   }
   const roomIds = new Set(level.rooms.map((room) => room.id));
+  const roomGroups = level.roomGroups ?? [];
+  const seenRoomGroupIds = new Set<string>();
+  for (const group of roomGroups) {
+    if (seenRoomGroupIds.has(group.id)) {
+      violations.push(`Группа зон "${group.id}": повторяющийся ID.`);
+    }
+    seenRoomGroupIds.add(group.id);
+    if (group.roomIds.length === 0) {
+      violations.push(`Группа зон "${group.id}" не должна быть пустой.`);
+    }
+    if (new Set(group.roomIds).size !== group.roomIds.length) {
+      violations.push(`Группа зон "${group.id}" содержит повторяющиеся зоны.`);
+    }
+    for (const roomId of group.roomIds) {
+      if (!roomIds.has(roomId)) {
+        violations.push(`Группа зон "${group.id}" ссылается на неизвестную зону "${roomId}".`);
+      }
+    }
+  }
   const rowIndices = new Set(level.cells.map((cell) => cell.row));
   for (const cell of level.cells) {
     if (!roomIds.has(cell.roomId)) {
@@ -286,6 +305,65 @@ export function lintLevel(level: Level): string[] {
       violations.push(
         `Подсказка "${clue.id}" указывает расположение жертвы через субъект role:'victim' — общие клю не могут позиционировать жертву (только определять роли). Переформулируйте через живых людей.`,
       );
+    }
+  }
+  for (const clue of level.clues) {
+    if (clue.type === 'roomGroupMembership') {
+      const group = roomGroups.find((candidate) => candidate.id === clue.roomGroupId);
+      if (!group) {
+        violations.push(`Подсказка "${clue.id}" (roomGroupMembership): группа зон "${clue.roomGroupId}" не найдена.`);
+      } else if (group.roomIds.length === 0) {
+        violations.push(`Подсказка "${clue.id}" (roomGroupMembership): группа зон "${clue.roomGroupId}" не должна быть пустой.`);
+      }
+    }
+    if (clue.type === 'sharedRoomLetterGroup') {
+      const isVowel = (letter: string) => 'АЕЁИОУЫЭЮЯ'.includes(letter.toUpperCase());
+      const matches = level.people.filter((person) =>
+        isVowel(person.initialLetter) === (clue.letterClass === 'vowel'),
+      );
+      if (matches.length === 0) {
+        violations.push(`Подсказка "${clue.id}" (sharedRoomLetterGroup): в ростере нет людей выбранного класса букв.`);
+      }
+      if (!victimIdentityHidden && matches.some((person) => person.isVictim)) {
+        violations.push(`Подсказка "${clue.id}" (sharedRoomLetterGroup) не может включать жертву; выберите класс букв без жертвы.`);
+      }
+      const eligibleMatches = matches.filter((person) => !person.isVictim);
+      if (eligibleMatches.length < 2) {
+        violations.push(`Подсказка "${clue.id}" (sharedRoomLetterGroup): нужно не менее двух невиктимных кандидатов выбранного класса букв.`);
+      }
+    }
+    if (clue.type === 'relativePosition' && clue.minOffset != null) {
+      if (!Number.isInteger(clue.minOffset) || clue.minOffset < 1) {
+        violations.push(`Подсказка "${clue.id}" (relativePosition): minOffset должен быть положительным целым числом.`);
+      }
+      if (clue.offset != null) {
+        violations.push(`Подсказка "${clue.id}" (relativePosition): нельзя задавать одновременно точный offset и minOffset.`);
+      }
+      const axisCoordinates = level.cells.map((cell) => clue.axis === 'row' ? cell.row : cell.col);
+      const maxOffset = Math.max(...axisCoordinates) - Math.min(...axisCoordinates);
+      if (Number.isInteger(clue.minOffset) && clue.minOffset > maxOffset) {
+        violations.push(`Подсказка "${clue.id}" (relativePosition): minOffset больше возможного расстояния на доске.`);
+      }
+    }
+    if (clue.type === 'itemAbsentInLine') {
+      const itemType = level.itemTypes.find((type) => type.id === clue.itemTypeId);
+      if (!itemType) {
+        violations.push(`Подсказка "${clue.id}" (itemAbsentInLine): тип предмета "${clue.itemTypeId}" не описан в level.itemTypes.`);
+        continue;
+      }
+      const items = level.items.filter((item) => item.typeId === clue.itemTypeId);
+      if (items.length === 0) {
+        violations.push(`Подсказка "${clue.id}" (itemAbsentInLine): на уровне нет предметов типа "${clue.itemTypeId}".`);
+        continue;
+      }
+      const lines = new Set(items.flatMap((item) => item.cells.map((itemCellId) => {
+        const cell = level.cells.find((candidate) => candidate.id === itemCellId);
+        return cell == null ? undefined : clue.axis === 'row' ? cell.row : cell.col;
+      }).filter((value): value is number => value != null)));
+      if (lines.size < 2) {
+        const lineName = clue.axis === 'row' ? 'рядах' : 'столбцах';
+        violations.push(`Подсказка "${clue.id}" (itemAbsentInLine): предмет "${clue.itemTypeId}" должен встречаться в нескольких ${lineName}.`);
+      }
     }
   }
   for (const roleId of new Set(referencedRoles(level.clues))) {
