@@ -10,7 +10,8 @@ test('Мат в 8 ходов shows the checkerboard, grouped color clue, and all
     'Все с А по Г стояли на тёмных клетках, остальные - на светлых.',
   );
   await expect(page.getByTestId('roster-general').locator('.clue-item')).toHaveCount(1);
-  await expect(page.getByTestId('cell-0-0')).toHaveAttribute('title', 'Тёмная клетка');
+  await page.getByTestId('cell-0-0').hover();
+  await expect(page.getByTestId('item-label-tooltip')).toHaveText('Тёмная клетка');
   await expect(page.getByTestId('cell-5-0').locator('.item-icon')).toHaveCSS('color', 'rgb(245, 233, 208)');
   await expect(page.getByTestId('cell-7-7').locator('.item-icon')).toHaveCSS('color', 'rgb(26, 26, 26)');
   await expect(page.locator('.board .item-icon')).toHaveCount(16);

@@ -17,13 +17,18 @@ test('9000м над землёй shows the cabin map and exactly three common cl
   await expect(page.locator('.board .item-icon')).toHaveCount(48);
   await expect(page.getByTestId('cell-0-1').locator('.item-icon')).toHaveCSS('transform', 'matrix(0, -1, 1, 0, 0, 0)');
   await expect(page.getByTestId('cell-1-4').locator('.item-icon')).toHaveCSS('transform', 'matrix(0, -1, 1, 0, 0, 0)');
-  await expect(page.getByTestId('cell-0-0')).toHaveAttribute('title', 'Иллюминатор');
-  await expect(page.getByTestId('cell-1-6')).toHaveAttribute('title', 'Пульт управления');
-  await expect(page.getByTestId('cell-4-2')).toHaveAttribute('title', 'Тележка стюардессы');
-  await expect(page.getByTestId('cell-4-6')).toHaveAttribute('title', 'Станция связи');
-  await expect(page.getByTestId('cell-5-8')).toHaveAttribute('title', 'Рация');
-  await expect(page.getByTestId('cell-2-7')).toHaveAttribute('title', 'Штурвал самолёта');
-  await expect(page.getByTestId('cell-0-1')).toHaveAttribute('title', 'Кресло самолёта');
+  for (const [cellId, label] of [
+    ['0-0', 'Иллюминатор'],
+    ['1-6', 'Пульт управления'],
+    ['4-2', 'Тележка стюардессы'],
+    ['4-6', 'Станция связи'],
+    ['5-8', 'Рация'],
+    ['2-7', 'Штурвал самолёта'],
+    ['0-1', 'Кресло самолёта'],
+  ]) {
+    await page.getByTestId(`cell-${cellId}`).hover();
+    await expect(page.getByTestId('item-label-tooltip')).toHaveText(label);
+  }
 });
 
 test('9000м над землёй reveals the approved story and murderer', async ({ page }) => {

@@ -159,6 +159,7 @@ export const dachaLevel: Level = {
     difficulty: 4,
     maxFullyPinnedPeople: 0,
     clueBalanceExempt: true,
+    menuTag: 'hard',
   },
   size,
   rooms,

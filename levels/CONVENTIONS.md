@@ -46,6 +46,7 @@
 - treadmill — occupiable
 - exerciseBike — occupiable
 - hurdle — decorative
+- startingGate — decorative (граничный предмет; размещается через `level.edgeItems`)
 - bed — occupiable
 - table — decorative
 - basketball — decorative
@@ -197,7 +198,7 @@
 (`src/assets/iconRegistry.ts`, `import.meta.glob`) — он выигрывает у switch-case.
 Список ниже — только legacy-ключи fallback-свитча.
 
-stove, fridge, chair, sofa, bed, wardrobe, bookshelf, kassa, veggieCounter, cart, plant, rack, box, stool, paintingStand, sculpture, souvenirRack, ladder, bench, fountain, swing, lamppost, trashcan, flowerbed, kiosk, barCounter, piano, billiardTable, barStool, barrel, hitchingPost, haystack, safe, cauldron, workbench, spellbookStand, globe, artifactChest, armchair, portrait, telescope, broomRack, computer, watercooler, mannequin, tent, campfire, tree, stump, suitcase, departureBoard, turnstile, clock, sarcophagus, canopicJar, torch, goldStatue, stela, airlock, satelliteDish, cryopod, examTable, medicineCabinet, horse, cactus, wagon, trough, goal, ball, seat, treadmill, exerciseBike, hurdle, table, basketball, toilet, camera, toolbox, bathtub, jacuzzi, tv, floorLamp, keyBox, journal, palm, rock, coconut, hammock, hut, bottle, shell, lamp, boat, berth, samovar, luggageRack, throne, candleStand, armorStand, weaponRack, well, ferrisWheel, carousel, shootingGallery, popcornStand, plane, windsock, baggageCart, lion, giraffe, monkey, hippo, zebra, penguin, clueBoard, clapperboard, spotlight, makeupMirror, movieCamera
+stove, fridge, chair, sofa, bed, wardrobe, bookshelf, kassa, veggieCounter, cart, plant, rack, box, stool, paintingStand, sculpture, souvenirRack, ladder, bench, fountain, swing, lamppost, trashcan, flowerbed, kiosk, barCounter, piano, billiardTable, barStool, barrel, hitchingPost, haystack, safe, cauldron, workbench, spellbookStand, globe, artifactChest, armchair, portrait, telescope, broomRack, computer, watercooler, mannequin, tent, campfire, tree, stump, suitcase, departureBoard, turnstile, clock, sarcophagus, canopicJar, torch, goldStatue, stela, airlock, satelliteDish, cryopod, examTable, medicineCabinet, horse, cactus, wagon, trough, goal, ball, seat, treadmill, exerciseBike, hurdle, startingGate, table, basketball, toilet, camera, toolbox, bathtub, jacuzzi, tv, floorLamp, keyBox, journal, palm, rock, coconut, hammock, hut, bottle, shell, lamp, boat, berth, samovar, luggageRack, throne, candleStand, armorStand, weaponRack, well, ferrisWheel, carousel, shootingGallery, popcornStand, plane, windsock, baggageCart, lion, giraffe, monkey, hippo, zebra, penguin, clueBoard, clapperboard, spotlight, makeupMirror, movieCamera
 
 ## floorTextures.ts — textureKey
 

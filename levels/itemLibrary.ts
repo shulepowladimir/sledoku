@@ -222,6 +222,7 @@ export const ItemLibrary = {
   treadmill: item('treadmill', 'treadmill', 'occupiable', 'Беговой тренажёр'),
   exerciseBike: item('exerciseBike', 'exerciseBike', 'occupiable', 'Велотренажёр'),
   hurdle: item('hurdle', 'hurdle', 'decorative', 'Барьер'),
+  startingGate: item('startingGate', 'startingGate', 'decorative', 'Стартовые ворота'),
   bed: item('bed', 'bed', 'occupiable', 'Койка'),
   table: item('table', 'table', 'decorative', 'Стол'),
   basketball: item('basketball', 'basketball', 'decorative', 'Баскетбольный мяч'),

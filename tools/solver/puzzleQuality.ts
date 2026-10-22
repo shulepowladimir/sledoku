@@ -37,6 +37,7 @@ const MAX_ITEM_RELATED_CLUE_TYPE_SHARE = 0.3;
  * to encourage authors to lean on the item library instead of defaulting to positional/parity padding. */
 const ITEM_RELATED_CLUE_TYPES = new Set([
   'adjacency',
+  'atEdgeItem',
   'floorFeature',
   'floorTexture',
   'sameRowOrColumnAsItem',

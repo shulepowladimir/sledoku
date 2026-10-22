@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, MouseEvent as ReactMouseEvent } from 'react';
 import type { RoomId } from '../../types/level';
 import { parseCellId, roomWorldId } from '../../types/level';
 import { isLegalTarget, cellBoundary } from '../../engine/board';
@@ -9,6 +9,7 @@ import { useAxisLabelsStore } from '../../state/axisLabelsStore';
 import { GridCell } from './GridCell';
 import { RoomLabel } from './RoomLabel';
 import { ItemOverlay } from './ItemOverlay';
+import { EdgeItemOverlay } from './EdgeItemOverlay';
 import { ItemTileOverlay } from './ItemTileOverlay';
 import { LabelPopup } from './LabelPopup';
 import { floorStyle, CELL_SIZE } from '../../styles/floorTextures';
@@ -38,6 +39,7 @@ export function Board() {
   const [hoveredRoomId, setHoveredRoomId] = useState<RoomId | null>(null);
   // Подпись предмета/фичи пола по долгому нажатию (мобильные; см. LabelPopup).
   const [labelPopup, setLabelPopup] = useState<{ text: string; x: number; y: number } | null>(null);
+  const [hoveredItemLabel, setHoveredItemLabel] = useState<{ id: string; label: string; left: number; top: number } | null>(null);
   // Обводка предмета при наведении (десктоп) / нажатии (мобайл): красная пунктирная
   // для decorative («туда нельзя»), зелёная сплошная для occupiable. id предмета
   // либо null; вспышка после короткого тапа держится до touchend + FLASH_MS.
@@ -149,6 +151,12 @@ export function Board() {
     for (const cid of item.cells) suppressedCellIds.add(cid);
   }
 
+  const edgeItemOverlays = (level.edgeItems ?? [])
+    .flatMap((edgeItem) => {
+      const itemType = itemTypesById.get(edgeItem.typeId);
+      return itemType ? [{ edgeItem, itemType }] : [];
+    });
+
   const roomLabels = level.rooms.map((room) => {
     const roomCells = level.cells.filter((c) => c.roomId === room.id);
     const position = room.labelPosition ?? 'bottom';
@@ -225,6 +233,60 @@ export function Board() {
   );
   const fitScaleH = Math.min(1, availHeight / effectiveHeight);
   const boardScale = Math.max(0.3, Math.min(baseScale, fitScaleW, fitScaleH));
+  const handleBoardMouseMove = (event: ReactMouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const border = hasCutouts ? 0 : BOARD_BORDER;
+    const scale = rect.width / (naturalWidth + border * 2);
+    const x = (event.clientX - rect.left) / scale - border;
+    const y = (event.clientY - rect.top) / scale - border;
+    const hit = edgeItemOverlays.find(({ edgeItem }) => {
+      const a = parseCellId(edgeItem.cellA);
+      const b = parseCellId(edgeItem.cellB);
+      const sameRow = a.row === b.row;
+      const centerX = sameRow ? (Math.min(a.col, b.col) + 1) * CELL_SIZE : a.col * CELL_SIZE + CELL_SIZE / 2;
+      const centerY = sameRow ? a.row * CELL_SIZE + CELL_SIZE / 2 : (Math.min(a.row, b.row) + 1) * CELL_SIZE;
+      const radius = CELL_SIZE * 0.36;
+      return Math.abs(x - centerX) <= radius && Math.abs(y - centerY) <= radius;
+    });
+
+    if (hit) {
+      const a = parseCellId(hit.edgeItem.cellA);
+      const b = parseCellId(hit.edgeItem.cellB);
+      const sameRow = a.row === b.row;
+      const centerX = sameRow ? (Math.min(a.col, b.col) + 1) * CELL_SIZE : a.col * CELL_SIZE + CELL_SIZE / 2;
+      const centerY = sameRow ? a.row * CELL_SIZE + CELL_SIZE / 2 : (Math.min(a.row, b.row) + 1) * CELL_SIZE;
+      setHoveredItemLabel((current) => current?.id === `edge:${hit.edgeItem.id}`
+        ? current
+        : { id: `edge:${hit.edgeItem.id}`, label: hit.itemType.label, left: centerX + border + 10, top: centerY + border + 10 },
+      );
+      return;
+    }
+
+    const row = Math.floor(y / CELL_SIZE);
+    const col = Math.floor(x / CELL_SIZE);
+    const cell = level.cells.find((candidate) => candidate.row === row && candidate.col === col);
+    const item = cell?.itemId ? itemsById.get(cell.itemId) : undefined;
+    const itemType = item ? itemTypesById.get(item.typeId) : undefined;
+    const feature = cell?.floorFeatureId ? floorFeaturesById.get(cell.floorFeatureId) : undefined;
+    const label = itemType?.label ?? feature?.label;
+    if (!cell || !label) {
+      setHoveredItemLabel((current) => current === null ? current : null);
+      return;
+    }
+
+    const itemCells = item?.cells.map(parseCellId) ?? [];
+    const centerX = itemCells.length > 0
+      ? (Math.min(...itemCells.map((coordinate) => coordinate.col)) + Math.max(...itemCells.map((coordinate) => coordinate.col)) + 1) * CELL_SIZE / 2
+      : (col + 0.5) * CELL_SIZE;
+    const centerY = itemCells.length > 0
+      ? (Math.min(...itemCells.map((coordinate) => coordinate.row)) + Math.max(...itemCells.map((coordinate) => coordinate.row)) + 1) * CELL_SIZE / 2
+      : (row + 0.5) * CELL_SIZE;
+    const id = item ? `item:${item.id}` : `feature:${feature?.id ?? cell.id}`;
+    setHoveredItemLabel((current) => current?.id === id
+      ? current
+      : { id, label, left: centerX + border + 10, top: centerY + border + 10 },
+    );
+  };
 
   return (
     <>
@@ -250,6 +312,8 @@ export function Board() {
           // перекрывать fixed-оверлей z-2000 из root-контекста).
           ...(boardScale !== 1 ? { transform: `scale(${boardScale})`, transformOrigin: 'top left' } : {}),
         }}
+        onMouseMove={handleBoardMouseMove}
+        onMouseLeave={() => setHoveredItemLabel(null)}
       >
       {rotatedTileOverlays.map(({ item, itemType, rotate180 }) => (
         <ItemTileOverlay key={item.id} item={item} itemType={itemType} rotate180={rotate180} />
@@ -262,6 +326,9 @@ export function Board() {
           rotate180={rotate180}
           occupied={item.cells.some((cid) => occupantOf(player, cid) != null)}
         />
+      ))}
+      {edgeItemOverlays.map(({ edgeItem, itemType }) => (
+        <EdgeItemOverlay key={edgeItem.id} edgeItem={edgeItem} itemType={itemType} />
       ))}
       {outlineStyle && outlinedItemType && (
         <div
@@ -392,6 +459,16 @@ export function Board() {
             </span>
           ))}
         </>
+      )}
+      {hoveredItemLabel && (
+        <div
+          className="item-label-tooltip"
+          role="tooltip"
+          data-testid="item-label-tooltip"
+          style={{ left: hoveredItemLabel.left, top: hoveredItemLabel.top }}
+        >
+          {hoveredItemLabel.label}
+        </div>
       )}
       </div>
     </div>

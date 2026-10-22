@@ -198,7 +198,6 @@ export function GridCell({
       data-testid={testId}
       data-world-id={worldId}
       style={style}
-      title={tooltip}
       onClick={interactive ? handleClick : undefined}
       onDoubleClick={interactive ? onDoubleClick : undefined}
       onContextMenu={interactive ? handleContextMenu : undefined}

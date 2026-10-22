@@ -70,6 +70,7 @@ import { chessLevel } from './68-chess';
 import { trafficJamLevel } from './69-trafficjam';
 import { airplaneLevel } from './70-9000m';
 import { christmasFairLevel } from './71-christmas-fair';
+import { hippodromeLevel } from './72-hippodrome';
 
 export const levels: Level[] = [
   tutorialLevel,
@@ -143,6 +144,7 @@ export const levels: Level[] = [
   trafficJamLevel,
   airplaneLevel,
   christmasFairLevel,
+  hippodromeLevel,
 ];
 
 /** Player-facing levels — used by the menu, size filters, profile stats and leaderboards.

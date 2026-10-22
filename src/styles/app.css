@@ -324,6 +324,30 @@
   z-index: 1;
 }
 
+.edge-item-overlay {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.item-label-tooltip {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  padding: 5px 9px;
+  border: 1px solid #2e2a24;
+  border-radius: 7px;
+  background: #fffdf7;
+  box-shadow: 0 3px 10px rgba(24, 20, 16, 0.28);
+  color: #2a2a2a;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 /* --- Обводка предмета при наведении (десктоп) / нажатии (мобайл) ---
    Красная пунктирная = decorative («поставить нельзя»), зелёная сплошная =
    occupiable («можно ставить»). Цвета — семантика ростера (incorrect/correct);

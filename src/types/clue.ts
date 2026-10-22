@@ -1,4 +1,4 @@
-import type { PersonId, RoomId, ItemId, ItemTypeId, Gender } from './level';
+import type { PersonId, RoomId, ItemId, ItemTypeId, EdgeItemId, Gender } from './level';
 
 // In ordinary levels, the victim has no person-subject clues because the roster shows a fixed sentence.
 // Opt-in hidden-victim levels may give them ordinary person-subject clues. Role subjects 'sheriff'/'murderer' denote the hidden anonymous holder of that role:
@@ -43,6 +43,16 @@ export interface AdjacencyClue extends ClueBase {
   type: 'adjacency';
   subject: Subject;
   itemTypeId: ItemTypeId;
+  negated?: boolean;
+}
+
+/** "Person X was standing in either cell adjoining an edge item of type T." */
+export interface AtEdgeItemClue extends ClueBase {
+  type: 'atEdgeItem';
+  subject: Subject;
+  edgeItemTypeId: ItemTypeId;
+  /** Optionally target one named edge item instead of every instance of this type. */
+  edgeItemId?: EdgeItemId;
   negated?: boolean;
 }
 
@@ -564,6 +574,7 @@ export type Clue =
   | RoomMembershipClue
   | RoomGroupMembershipClue
   | AdjacencyClue
+  | AtEdgeItemClue
   | SharedRoomGenderClue
   | SharedRoomLetterGroupClue
   | ItemTypeGenderClue

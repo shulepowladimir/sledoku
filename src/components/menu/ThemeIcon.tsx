@@ -277,6 +277,17 @@ function renderIconShape(theme: string): ReactNode {
           <circle cx="10" cy="10" r="2.4" fill="#e0a94a" opacity="0.6" />
         </>
       );
+    case 'hippodrome':
+      return (
+        <>
+          <ellipse cx="12" cy="12" rx="10" ry="8.5" fill="#C9A06B" stroke="currentColor" strokeWidth="1.4" />
+          <ellipse cx="12" cy="12" rx="6.5" ry="5.2" fill="#5E8A46" stroke="currentColor" strokeWidth="1" />
+          <ellipse cx="12" cy="12" rx="4" ry="3" fill="#E0A94A" stroke="#8A5A3A" strokeWidth="0.8" />
+          <path d="M7 3.5 H17" stroke="#1A1A1A" strokeWidth="2.2" strokeLinecap="round" />
+          <path d="M8 3.5 V5 M11 3.5 V5 M14 3.5 V5 M17 3.5 V5" stroke="#C8102E" strokeWidth="1.3" />
+          <path d="M12 9.5 V14.5 M12 10 L15 10.5 L12 11.5 Z" stroke="#8A5A3A" strokeWidth="0.9" strokeLinejoin="round" />
+        </>
+      );
     default:
       return <rect x="6" y="6" width="12" height="12" rx="2" fill="#cccccc" />;
   }

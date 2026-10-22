@@ -13,11 +13,16 @@ test('Пробка 10 баллов shows the approved map, traffic, and common v
   );
   await expect(page.getByTestId('roster-general').locator('.clue-item')).toHaveCount(1);
   await expect(page.locator('.board .item-icon')).toHaveCount(31);
-  await expect(page.getByTestId('cell-3-6')).toHaveAttribute('title', 'Дорожный ремонт');
-  await expect(page.getByTestId('cell-0-0')).toHaveAttribute('title', 'Дерево');
-  await expect(page.getByTestId('cell-0-6')).toHaveAttribute('title', 'Дерево');
-  await expect(page.getByTestId('cell-4-3')).toHaveAttribute('title', 'Трактор');
-  await expect(page.getByTestId('cell-4-4')).toHaveAttribute('title', 'Трактор');
+  for (const [cellId, label] of [
+    ['3-6', 'Дорожный ремонт'],
+    ['0-0', 'Дерево'],
+    ['0-6', 'Дерево'],
+    ['4-3', 'Трактор'],
+    ['4-4', 'Трактор'],
+  ]) {
+    await page.getByTestId(`cell-${cellId}`).hover();
+    await expect(page.getByTestId('item-label-tooltip')).toHaveText(label);
+  }
 });
 
 test('solving trafficjam-01 reveals the approved story and murderer', async ({ page }) => {

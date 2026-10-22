@@ -2,6 +2,7 @@ export type PersonId = string;
 export type RoomId = string;
 export type ItemTypeId = string;
 export type ItemId = string;
+export type EdgeItemId = string;
 export type LevelId = string;
 export type CellId = `${number}-${number}`; // `${row}-${col}`, 0-based
 export const DEFAULT_WORLD_ID = 'default';
@@ -83,6 +84,14 @@ export interface Item {
   flipHorizontal?: boolean;
 }
 
+/** A decorative item mounted on the shared boundary of two orthogonally adjacent cells. */
+export interface EdgeItem {
+  id: EdgeItemId;
+  typeId: ItemTypeId;
+  cellA: CellId;
+  cellB: CellId;
+}
+
 export interface FloorFeature {
   id: string;
   label: string;
@@ -148,6 +157,8 @@ export interface Level {
   roomGroups?: RoomGroup[];
   itemTypes: ItemType[];
   items: Item[];
+  /** Optional decorations attached to the boundary between two neighboring cells. */
+  edgeItems?: EdgeItem[];
   floorFeatures: FloorFeature[];
   cells: Cell[]; // size*size entries, row-major
   people: Person[]; // N entries: (N-1) regular + 1 victim

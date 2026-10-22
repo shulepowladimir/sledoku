@@ -346,6 +346,7 @@ export const christmasFairLevel: Level = {
     theme: 'christmasFair',
     difficulty: 8,
     maxFullyPinnedPeople: 0,
+    menuTag: 'expert',
   },
   size,
   rooms,

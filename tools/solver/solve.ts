@@ -21,6 +21,7 @@ const UNARY_TYPES = new Set([
   'roomMembership',
   'roomGroupMembership',
   'adjacency',
+  'atEdgeItem',
   'sameRowOrColumnAsItem',
   'itemAbsentInLine',
   'corner',
@@ -164,6 +165,16 @@ export function evalClue(clue: Clue, getCell: GetCell, level: Level, index: Leve
         return item?.typeId === clue.itemTypeId;
       });
       return clue.negated ? !hasAdjItem : hasAdjItem;
+    }
+    case 'atEdgeItem': {
+      const subjectCellId = getCell(subjectPersonId(clue.subject, level));
+      if (!subjectCellId) return undefined;
+      const result = (level.edgeItems ?? []).some((edgeItem) =>
+        edgeItem.typeId === clue.edgeItemTypeId &&
+        (clue.edgeItemId == null || edgeItem.id === clue.edgeItemId) &&
+        (edgeItem.cellA === subjectCellId || edgeItem.cellB === subjectCellId),
+      );
+      return clue.negated ? !result : result;
     }
     case 'sameRowOrColumnAsItem': {
       const subjectCellId = getCell(subjectPersonId(clue.subject, level));

@@ -805,6 +805,16 @@ function renderIconShape(icon: string): ReactNode {
           <rect x="18" y="4.5" width="1" height="3" rx="0.5" fill="#8a857c" />
         </>
       );
+    case 'startingGate':
+      return (
+        <>
+          <rect x="2.5" y="8" width="2.5" height="9" rx="0.8" fill="#8a5a3a" stroke="currentColor" strokeWidth="0.7" />
+          <rect x="19" y="8" width="2.5" height="9" rx="0.8" fill="#8a5a3a" stroke="currentColor" strokeWidth="0.7" />
+          <rect x="4.5" y="10" width="15" height="6" rx="1" fill="#9BA5AD" stroke="currentColor" strokeWidth="0.8" />
+          <path d="M6 10.5 L9 10.5 L6 15.5 L5 15.5 Z M12 10.5 L15 10.5 L12 15.5 L9 15.5 Z M18 10.5 L19.5 10.5 L16.5 15.5 L13.5 15.5 Z" fill="#C8102E" />
+          <path d="M6 9 L6 17 M18 9 L18 17" stroke="#D5DCE1" strokeWidth="0.8" />
+        </>
+      );
     case 'table':
       return (
         <>

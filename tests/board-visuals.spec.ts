@@ -97,6 +97,21 @@ test('shared board styling preserves hover, person colors, initials, and enlarge
   await expect(occupiedSofa.locator('.grid-cell__item-under svg')).toHaveAttribute('width', '58');
 });
 
+test('item hover labels use the custom board tooltip instead of the browser title', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId(`level-card-${apartmentLevel.meta.id}`).click();
+
+  const itemCell = page.getByTestId('cell-0-0');
+  await itemCell.hover();
+
+  const tooltip = page.getByTestId('item-label-tooltip');
+  await expect(tooltip).toBeVisible();
+  await expect(tooltip).toHaveText('Плита');
+  await expect(itemCell).not.toHaveAttribute('title');
+  await expect(tooltip).toHaveCSS('background-color', 'rgb(255, 253, 247)');
+  await expect(tooltip).toHaveCSS('border-radius', '7px');
+});
+
 test('a two-cell occupiable item stays a single enlarged overlay under its occupant', async ({ page }) => {
   await page.goto('/');
   await page.getByTestId('size-filter-12').click();

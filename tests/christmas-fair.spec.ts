@@ -22,10 +22,15 @@ test('Переполох с подарками показывает карту �
   await expect(liudmilaHeader.locator('..').locator('.roster-entry__clue')
     .filter({ hasText: 'В столбце Людмилы не было саней.' })).toHaveCount(1);
 
-  await expect(page.getByTestId('cell-0-1')).toHaveAttribute('title', 'Праздничный прилавок');
-  await expect(page.getByTestId('cell-1-1')).toHaveAttribute('title', 'Подарок');
-  await expect(page.getByTestId('cell-1-9')).toHaveAttribute('title', 'Сани');
-  await expect(page.getByTestId('cell-5-7')).toHaveAttribute('title', 'Гирлянда');
+  for (const [cellId, label] of [
+    ['0-1', 'Праздничный прилавок'],
+    ['1-1', 'Подарок'],
+    ['1-9', 'Сани'],
+    ['5-7', 'Гирлянда'],
+  ]) {
+    await page.getByTestId(`cell-${cellId}`).hover();
+    await expect(page.getByTestId('item-label-tooltip')).toHaveText(label);
+  }
 });
 
 test('solving christmas-fair-01 reveals the authored story and murderer', async ({ page }) => {

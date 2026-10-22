@@ -1,4 +1,4 @@
-import type { Level } from '../../src/types/level';
+import { parseCellId, type Level } from '../../src/types/level';
 import type { Clue } from '../../src/types/clue';
 
 function roleHolderCount(level: Level, roleId: string): number {
@@ -46,6 +46,29 @@ export function lintLevel(level: Level): string[] {
     }
   }
   const roomIds = new Set(level.rooms.map((room) => room.id));
+  const cellById = new Map(level.cells.map((cell) => [cell.id, cell]));
+  const itemTypeIds = new Set(level.itemTypes.map((itemType) => itemType.id));
+  const edgeItemIds = new Set<string>();
+  for (const edgeItem of level.edgeItems ?? []) {
+    if (edgeItemIds.has(edgeItem.id)) {
+      violations.push(`Граничный предмет "${edgeItem.id}": повторяющийся ID.`);
+    }
+    edgeItemIds.add(edgeItem.id);
+    if (!itemTypeIds.has(edgeItem.typeId)) {
+      violations.push(`Граничный предмет "${edgeItem.id}": тип "${edgeItem.typeId}" не описан в level.itemTypes.`);
+    }
+    const cellA = cellById.get(edgeItem.cellA);
+    const cellB = cellById.get(edgeItem.cellB);
+    if (!cellA || !cellB) {
+      violations.push(`Граничный предмет "${edgeItem.id}": обе клетки должны существовать на доске.`);
+      continue;
+    }
+    const a = parseCellId(edgeItem.cellA);
+    const b = parseCellId(edgeItem.cellB);
+    if (Math.abs(a.row - b.row) + Math.abs(a.col - b.col) !== 1) {
+      violations.push(`Граничный предмет "${edgeItem.id}": клетки должны быть разными ортогонально соседними клетками.`);
+    }
+  }
   const roomGroups = level.roomGroups ?? [];
   const seenRoomGroupIds = new Set<string>();
   for (const group of roomGroups) {
@@ -116,6 +139,22 @@ export function lintLevel(level: Level): string[] {
           }
           assignedPeople.add(personId);
         }
+      }
+    }
+
+    if (clue.type === 'atEdgeItem') {
+      if (clue.subject.type === 'person' && !level.people.some((person) => person.id === clue.subject.id)) {
+        violations.push(`Подсказка "${clue.id}" (atEdgeItem): персонаж "${clue.subject.id}" не найден.`);
+      }
+      if (!itemTypeIds.has(clue.edgeItemTypeId)) {
+        violations.push(`Подсказка "${clue.id}" (atEdgeItem): тип предмета "${clue.edgeItemTypeId}" не описан в level.itemTypes.`);
+      }
+      const matchingEdges = (level.edgeItems ?? []).filter((edgeItem) =>
+        edgeItem.typeId === clue.edgeItemTypeId &&
+        (clue.edgeItemId == null || edgeItem.id === clue.edgeItemId),
+      );
+      if (matchingEdges.length === 0) {
+        violations.push(`Подсказка "${clue.id}" (atEdgeItem): на уровне нет граничного предмета типа "${clue.edgeItemTypeId}"${clue.edgeItemId == null ? '' : ` с ID "${clue.edgeItemId}"`}.`);
       }
     }
 
